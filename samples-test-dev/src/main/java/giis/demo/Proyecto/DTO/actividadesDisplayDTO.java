@@ -1,4 +1,5 @@
 package giis.demo.Proyecto.DTO;
+import java.util.Date;
 
 public class actividadesDisplayDTO {
 
@@ -7,8 +8,8 @@ public class actividadesDisplayDTO {
 	private String tipo;
 	private float precioSocio;
 	private float precioNoSocio;
-	private String fechaInicio;
-	private String fechaFin;
+	private Date fechaInicio;
+	private Date fechaFin;
 	private float horaInicio;
 	private float horaFin;
 	private int idPeriodoInscripcion;
@@ -19,7 +20,7 @@ public class actividadesDisplayDTO {
 	public actividadesDisplayDTO() {}
 	
 	public actividadesDisplayDTO(int idActividad, String nombre, String tipo, float precioSocio, float precioNoSocio,
-			String fechaInicio, String fechaFin, float horaInicio, float horaFin, int idPeriodoInscripcion, int estado,
+			Date fechaInicio, Date fechaFin, float horaInicio, float horaFin, int idPeriodoInscripcion, int estado,
 			int plazas, int idInstalacion) {
 		this.idActividad = idActividad;
 		this.nombre = nombre;
@@ -76,19 +77,19 @@ public class actividadesDisplayDTO {
 		this.precioNoSocio = precioNoSocio;
 	}
 
-	public String getFechaInicio() {
+	public Date getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(String fechaInicio) {
+	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public String getFechaFin() {
+	public Date getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(String fechaFin) {
+	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 
