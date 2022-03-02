@@ -16,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+
 public class MostrarActividadesView {
 
 	private JFrame frame;
@@ -23,8 +24,9 @@ public class MostrarActividadesView {
 	
 	
 	private JButton btnLimpiar;
-	private JButton btnBuscar;
+	public JButton btnBuscar;
 	private JLabel lblPeriodo;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBoxPeriodo;
 	private JScrollPane scrollPane; 
 	
@@ -70,11 +72,12 @@ public class MostrarActividadesView {
 		this.lblPeriodo = lblPeriodo;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public JComboBox getComboBoxPeriodo() {
 		return comboBoxPeriodo;
 	}
 
-	public void setComboBoxPeriodo(JComboBox comboBoxPeriodo) {
+	public void setComboBoxPeriodo(@SuppressWarnings("rawtypes") JComboBox comboBoxPeriodo) {
 		this.comboBoxPeriodo = comboBoxPeriodo;
 	}
 
@@ -112,28 +115,30 @@ public class MostrarActividadesView {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Actividades");
 		frame.setName("Actividades");
 		frame.setBounds(100, 100, 450, 300);
 		
-		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar = new JButton("Limpiar");
 		
-		JLabel lblPeriodo = new JLabel("Seleccionar Periodo");
+		lblPeriodo = new JLabel("Seleccionar Periodo");
 		lblPeriodo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JComboBox comboBoxPeriodo = new JComboBox();
+		comboBoxPeriodo = new JComboBox();
 		comboBoxPeriodo.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Junio", "Septiembre"}));
 		comboBoxPeriodo.setToolTipText("");
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setToolTipText("");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -170,7 +175,11 @@ public class MostrarActividadesView {
 		);
 		
 		table = new JTable();
-		scrollPane.setColumnHeaderView(table);
+		
+		scrollPane.setViewportView(table);
+		
+		//scrollPane.setColumnHeaderView(table);
+		
 		frame.getContentPane().setLayout(groupLayout);
 	}
 	

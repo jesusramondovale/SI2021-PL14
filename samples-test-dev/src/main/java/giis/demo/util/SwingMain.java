@@ -6,6 +6,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import giis.demo.Proyecto.Controller.MostrarActividadesController;
+import giis.demo.Proyecto.Model.MostrarActividadesModel;
+import giis.demo.Proyecto.View.MostrarActividadesView;
 import giis.demo.tkrun.*;
 
 /**
@@ -48,7 +52,7 @@ public class SwingMain {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Main");
-		frame.setBounds(0, 0, 287, 185);
+		frame.setBounds(0, 0, 415, 497);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
@@ -80,6 +84,16 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
+		
+		JButton btnMostrarActividades = new JButton("Mostrar Actividades");
+		btnMostrarActividades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MostrarActividadesController controller=new MostrarActividadesController(new MostrarActividadesView() , new MostrarActividadesModel());
+				controller.initController();
+			}
+		});
+		frame.getContentPane().add(btnMostrarActividades);
 	}
 
 	public JFrame getFrame() { return this.frame; }
