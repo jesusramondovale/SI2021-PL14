@@ -15,11 +15,18 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
 public class visualizaReservasInstalacionesView {
 
 	private JFrame frame;
 	private JTable tabla_disponibilidad;
+	private JLabel Titulo;
+	private JComboBox comboBox_instalacion;
+	private JLabel label_instalacion;
+	private JComboBox comboBox_fecha;
+	private JButton btnComprobarReservsa;
+	private JLabel lblFecha;	
 
 	/**
 	 * Launch the application.
@@ -61,7 +68,7 @@ public class visualizaReservasInstalacionesView {
 		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JComboBox comboBox_instalacion = new JComboBox();
-		comboBox_instalacion.setModel(new DefaultComboBoxModel(new String[] {"Piscina", "Pista de tenis", "Pista atletismo"}));
+		comboBox_instalacion.setModel(new DefaultComboBoxModel(new String[] {"--Instalación--"}));
 		comboBox_instalacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		JComboBox comboBox_fecha = new JComboBox();
@@ -69,10 +76,12 @@ public class visualizaReservasInstalacionesView {
 		comboBox_fecha.setModel(new DefaultComboBoxModel(new String[] {"02/03/2022", "03/03/2022", "04/03/2022", "05/03/2022", "06/03/2022", "07/03/2022", "08/03/2022", "09/03/2022", "10/03/2022", "11/03/2022", "12/03/2022"}));
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		JButton btnComprobarReservsa = new JButton("Comprobar");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(Titulo, GroupLayout.PREFERRED_SIZE, 520, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -81,11 +90,14 @@ public class visualizaReservasInstalacionesView {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 						.addComponent(comboBox_instalacion, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(label_instalacion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+					.addGap(72)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblFecha)
-						.addComponent(comboBox_fecha, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-					.addGap(113))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(comboBox_fecha, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+							.addGap(73)
+							.addComponent(btnComprobarReservsa))
+						.addComponent(lblFecha))
+					.addGap(48))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(21, Short.MAX_VALUE))
@@ -101,6 +113,7 @@ public class visualizaReservasInstalacionesView {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(comboBox_instalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnComprobarReservsa)
 						.addComponent(comboBox_fecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE))
@@ -109,13 +122,13 @@ public class visualizaReservasInstalacionesView {
 		tabla_disponibilidad = new JTable();
 		tabla_disponibilidad.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"6:00 - 7:00", Boolean.TRUE, "", null},
+				{"6:00 - 7:00", Boolean.FALSE, "", null},
 				{"7:00 - 8:00", null, null, null},
 				{"8:00 - 9:00", null, null, null},
-				{"9:00 - 10:00", Boolean.TRUE, null, "Yoga"},
-				{"10:00 - 11:00", Boolean.TRUE, null, "Yoga"},
+				{"9:00 - 10:00", Boolean.FALSE, null, ""},
+				{"10:00 - 11:00", Boolean.FALSE, null, ""},
 				{"11:00 - 12:00", null, null, null},
-				{"12:00 - 13:00", Boolean.TRUE, null, null},
+				{"12:00 - 13:00", Boolean.FALSE, null, null},
 				{"13:00 - 14:00", null, null, null},
 				{"14:00 - 15:00", null, null, null},
 				{"15:00 - 16:00", null, null, null},
