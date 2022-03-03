@@ -18,7 +18,7 @@ public class visualizarReservasInstalacionesModel {
 
 	}
 
-	public List<actividadReservaInstalacionDTO> getListaInstalacionParaActividades(double hora, String nombreInstalacion, Date fecha){
+	public List<actividadReservaInstalacionDTO> getListaInstalacionParaActividades(double hora, String nombreInstalacion, String fecha){
 
 		String sql = "SELECT a.nombre as Actividad, i.nombre as Instalacion, r.fecha as fechaReserva, r.horaInicio as hora " + 
 				"FROM actividades a " + 

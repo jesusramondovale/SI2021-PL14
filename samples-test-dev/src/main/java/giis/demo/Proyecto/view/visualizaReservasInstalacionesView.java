@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class visualizaReservasInstalacionesView {
 
@@ -27,6 +28,9 @@ public class visualizaReservasInstalacionesView {
 	private JComboBox comboBox_fecha;
 	private JButton btnComprobarReservsa;
 	private JLabel lblFecha;	
+	private JTextField txtFecha;
+	private JButton btnAnterior;
+	private JButton btnSiguiente;
 
 	/**
 	 * Launch the application.
@@ -56,7 +60,7 @@ public class visualizaReservasInstalacionesView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 536, 376);
+		frame.setBounds(100, 100, 546, 462);
 		
 		JLabel Titulo = new JLabel("RESERVAS DE LAS INSTALACIONES EN LA ACTUALIDAD");
 		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -71,36 +75,51 @@ public class visualizaReservasInstalacionesView {
 		comboBox_instalacion.setModel(new DefaultComboBoxModel(new String[] {"--Instalación--"}));
 		comboBox_instalacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		JComboBox comboBox_fecha = new JComboBox();
-		comboBox_fecha.setMaximumRowCount(30);
-		comboBox_fecha.setModel(new DefaultComboBoxModel(new String[] {"02/03/2022", "03/03/2022", "04/03/2022", "05/03/2022", "06/03/2022", "07/03/2022", "08/03/2022", "09/03/2022", "10/03/2022", "11/03/2022", "12/03/2022"}));
-		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnComprobarReservsa = new JButton("Comprobar");
+		
+		txtFecha = new JTextField();
+		txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtFecha.setEnabled(false);
+		txtFecha.setEditable(false);
+		txtFecha.setColumns(10);
+		
+		JButton btnAnterior = new JButton("<-");
+		btnAnterior.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		JButton btnSiguiente = new JButton("->");
+		btnSiguiente.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(Titulo, GroupLayout.PREFERRED_SIZE, 520, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addContainerGap()
+					.addComponent(Titulo, GroupLayout.PREFERRED_SIZE, 520, GroupLayout.PREFERRED_SIZE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(60)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(comboBox_instalacion, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(label_instalacion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(72)
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_instalacion, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(comboBox_instalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+							.addComponent(btnAnterior)
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(comboBox_fecha, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-							.addGap(73)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnSiguiente, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
 							.addComponent(btnComprobarReservsa))
-						.addComponent(lblFecha))
-					.addGap(48))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(32)
+							.addComponent(lblFecha)))
+					.addGap(27))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 519, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -113,10 +132,12 @@ public class visualizaReservasInstalacionesView {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(comboBox_instalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnComprobarReservsa)
-						.addComponent(comboBox_fecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnSiguiente, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAnterior))
+					.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
 		);
 		
 		tabla_disponibilidad = new JTable();
@@ -153,5 +174,93 @@ public class visualizaReservasInstalacionesView {
 		});
 		scrollPane.setViewportView(tabla_disponibilidad);
 		frame.getContentPane().setLayout(groupLayout);
+	}
+
+	public String getTxtFecha() {
+		return txtFecha.getText();
+	}
+
+	public void setTxtFecha(String txtFecha) {
+		this.txtFecha.setText(txtFecha);
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JTable getTabla_disponibilidad() {
+		return tabla_disponibilidad;
+	}
+
+	public void setTabla_disponibilidad(JTable tabla_disponibilidad) {
+		this.tabla_disponibilidad = tabla_disponibilidad;
+	}
+
+	public JLabel getTitulo() {
+		return Titulo;
+	}
+
+	public void setTitulo(JLabel titulo) {
+		Titulo = titulo;
+	}
+
+	public JComboBox getComboBox_instalacion() {
+		return comboBox_instalacion;
+	}
+
+	public void setComboBox_instalacion(JComboBox comboBox_instalacion) {
+		this.comboBox_instalacion = comboBox_instalacion;
+	}
+
+	public JLabel getLabel_instalacion() {
+		return label_instalacion;
+	}
+
+	public void setLabel_instalacion(JLabel label_instalacion) {
+		this.label_instalacion = label_instalacion;
+	}
+
+	public JComboBox getComboBox_fecha() {
+		return comboBox_fecha;
+	}
+
+	public void setComboBox_fecha(JComboBox comboBox_fecha) {
+		this.comboBox_fecha = comboBox_fecha;
+	}
+
+	public JButton getBtnComprobarReservsa() {
+		return btnComprobarReservsa;
+	}
+
+	public void setBtnComprobarReservsa(JButton btnComprobarReservsa) {
+		this.btnComprobarReservsa = btnComprobarReservsa;
+	}
+
+	public JLabel getLblFecha() {
+		return lblFecha;
+	}
+
+	public void setLblFecha(JLabel lblFecha) {
+		this.lblFecha = lblFecha;
+	}
+
+	public JButton getBtnAnterior() {
+		return btnAnterior;
+	}
+
+	public void setBtnAnterior(JButton btnAnterior) {
+		this.btnAnterior = btnAnterior;
+	}
+
+	public JButton getBtnSiguiente() {
+		return btnSiguiente;
+	}
+
+	public void setBtnSiguiente(JButton btnSiguiente) {
+		this.btnSiguiente = btnSiguiente;
 	}
 }
