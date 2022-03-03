@@ -41,6 +41,7 @@ public class RealizarReservasView {
 	private JLabel lblSocio;
 	private JTextField textFieldSocio;
 	private JComboBox comboBoxActividad;
+	private JTextField textFieldActividad;
 	
 	
 	
@@ -209,7 +210,7 @@ public class RealizarReservasView {
 	private void initialize() {
 		frmRealizarReserva = new JFrame();
 		frmRealizarReserva.setTitle("Realizar Reserva");
-		frmRealizarReserva.setBounds(100, 100, 497, 674);
+		frmRealizarReserva.setBounds(100, 100, 501, 670);
 		frmRealizarReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnCrearReserva = new JButton("Crear Reserva");
@@ -234,6 +235,7 @@ public class RealizarReservasView {
 		lblFinalDeReserva.setFont(new Font("Tahoma", Font.ITALIC, 15));
 		
 		 comboBoxInstalacion = new JComboBox();
+		 comboBoxInstalacion.setToolTipText("Seleccione la instalación a reservar.");
 		comboBoxInstalacion.setModel(new DefaultComboBoxModel(new String[] {"pista de pádel", "campo de futbito", "cancha de baloncesto", "salon de yoga", "cancha de balonmano", "piscina"}));
 		
 		 cbDiaIni = new JComboBox();
@@ -268,12 +270,19 @@ public class RealizarReservasView {
 		lblSocio = new JLabel("Socio: ");
 		
 		textFieldSocio = new JTextField();
+		textFieldSocio.setToolTipText("Indique el número de carnet de socio. ");
+		textFieldSocio.setText("# ID de Socio");
 		textFieldSocio.setColumns(10);
 		
 		btnActualizar = new JButton("Actualizar");
 		
 		comboBoxActividad = new JComboBox();
 		comboBoxActividad.setModel(new DefaultComboBoxModel(new String[] {"Tenis ", "Natación", "Futbol"}));
+		
+		textFieldActividad = new JTextField();
+		textFieldActividad.setToolTipText("Indique el #ID de la nueva actividad a crear.");
+		textFieldActividad.setText("Nº");
+		textFieldActividad.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frmRealizarReserva.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -305,27 +314,25 @@ public class RealizarReservasView {
 								.addComponent(lblPosteriores, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
 								.addComponent(scrollPaneAnteriores, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
 								.addComponent(scrollPanePosteriores, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-										.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-											.addComponent(lblActividad, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
-										.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-											.addComponent(lblFinalDeReserva, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-											.addGap(21)
-											.addComponent(cbDiaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(18)
-											.addComponent(cbMesFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addGap(15)
-											.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(65)
-											.addComponent(lblSocio)
-											.addGap(18)
-											.addComponent(textFieldSocio, 0, 0, Short.MAX_VALUE)))))
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+										.addComponent(lblActividad, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(textFieldActividad, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+										.addGap(18)
+										.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(lblSocio)
+										.addGap(3)
+										.addComponent(textFieldSocio, 0, 0, Short.MAX_VALUE))
+									.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+										.addComponent(lblFinalDeReserva, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+										.addGap(21)
+										.addComponent(cbDiaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addGap(18)
+										.addComponent(cbMesFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 							.addContainerGap(32, GroupLayout.PREFERRED_SIZE))))
 		);
 		groupLayout.setVerticalGroup(
@@ -351,22 +358,18 @@ public class RealizarReservasView {
 							.addGap(3)
 							.addComponent(lblFinalDeReserva, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 						.addComponent(cbDiaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbMesFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(13)
-							.addComponent(lblActividad, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-							.addGap(22)
-							.addComponent(lblAntreiores))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(15)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblSocio)
-								.addComponent(textFieldSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(cbMesFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(13)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblActividad, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblSocio)
+						.addComponent(textFieldSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(22)
+					.addComponent(lblAntreiores)
 					.addGap(4)
 					.addComponent(scrollPaneAnteriores, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
 					.addGap(28)
