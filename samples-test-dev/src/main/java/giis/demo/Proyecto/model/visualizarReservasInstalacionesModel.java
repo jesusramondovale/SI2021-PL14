@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import giis.demo.util.Database;
-import giis.demo.util.Util;
 import giis.demo.Proyecto.DTO.*;
 
 public class visualizarReservasInstalacionesModel {
@@ -19,15 +18,15 @@ public class visualizarReservasInstalacionesModel {
 
 	}
 
-	public List<ActividadReservaInstalacionDTO> getListaInstalacionParaActividades(double hora, String nombreInstalacion, Date fecha){
+	public List<actividadReservaInstalacionDTO> getListaInstalacionParaActividades(double hora, String nombreInstalacion, Date fecha){
 
 		String sql = "SELECT a.nombre as Actividad, i.nombre as Instalacion, r.fecha as fechaReserva, r.horaInicio as hora " + 
 				"FROM actividades a " + 
 				"INNER JOIN instalaciones i USING(idInstalacion) " + 
 				"INNER JOIN reservas r USING(idActividad)" + 
-				"WHERE r.horaInicio=9 AND r.fecha='2021-05-12'";
+				"WHERE r.horaInicio=9 AND r.fecha='2022-03-03'";
 
-		return db.executeQueryPojo(ActividadReservaInstalacionDTO.class, sql, hora, nombreInstalacion, fecha);
+		return db.executeQueryPojo(actividadReservaInstalacionDTO.class, sql, hora, nombreInstalacion, fecha);
 
 	}
 
@@ -53,17 +52,17 @@ public class visualizarReservasInstalacionesModel {
 	}
 
 
-	public List<EstadoReservaDTO> getEstadoReserva(String nombreInstalacion, String fecha,double hora){
+	public List<estadoReservaDTO> getEstadoReserva(String nombreInstalacion, String fecha,double hora){
 		String sql = "SELECT " + 
-				"CASE WHEN (r.fecha=? AND r.horaInicio=? AND r.idActividad is NULL) THEN 'Por un socio' " + 
+				"CASE WHEN (r.fecha=? AND r.horaInicio=? AND r.idActividad is NULL) THEN TRUE " + 
 				"WHEN (r.fecha=? AND r.horaInicio=? AND r.idSocio is NULL) THEN a.nombre " + 
-				"ELSE 'Libre' " + 
+				"ELSE FALSE " + 
 				"END EstadoReserva " + 
 				"FROM reservas r  " + 
 				"INNER JOIN instalaciones i USING(idInstalacion) " +
 				"INNER JOIN actividades a USING (idActividad) " +
 				"WHERE i.nombre=? AND r.horaInicio=? AND r.fecha=? ";
-		return db.executeQueryPojo(EstadoReservaDTO.class, sql, fecha,hora,fecha,hora,nombreInstalacion,hora,fecha);
+		return db.executeQueryPojo(estadoReservaDTO.class, sql, fecha,hora,fecha,hora,nombreInstalacion,hora,fecha);
 	}
 
 	

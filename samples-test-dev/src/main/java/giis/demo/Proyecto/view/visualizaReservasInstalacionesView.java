@@ -120,6 +120,7 @@ public class visualizaReservasInstalacionesView {
 		);
 		
 		tabla_disponibilidad = new JTable();
+		tabla_disponibilidad.setEnabled(false);
 		tabla_disponibilidad.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"6:00 - 7:00", Boolean.FALSE, "", null},
