@@ -62,22 +62,22 @@ public class visualizaReservasInstalacionesView {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 546, 462);
 		
-		JLabel Titulo = new JLabel("RESERVAS DE LAS INSTALACIONES EN LA ACTUALIDAD");
+		 Titulo = new JLabel("RESERVAS DE LAS INSTALACIONES EN LA ACTUALIDAD");
 		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		JLabel label_instalacion = new JLabel("INSTALACIÓN");
+		 label_instalacion = new JLabel("INSTALACIÓN");
 		label_instalacion.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel lblFecha = new JLabel("FECHA");
+		 lblFecha = new JLabel("FECHA");
 		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JComboBox comboBox_instalacion = new JComboBox();
+		comboBox_instalacion = new JComboBox();
 		comboBox_instalacion.setModel(new DefaultComboBoxModel(new String[] {"--Instalación--"}));
 		comboBox_instalacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JButton btnComprobarReservsa = new JButton("Comprobar");
+		btnComprobarReservsa = new JButton("Comprobar");
 		
 		txtFecha = new JTextField();
 		txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -85,10 +85,10 @@ public class visualizaReservasInstalacionesView {
 		txtFecha.setEditable(false);
 		txtFecha.setColumns(10);
 		
-		JButton btnAnterior = new JButton("<-");
+		btnAnterior = new JButton("<-");
 		btnAnterior.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		JButton btnSiguiente = new JButton("->");
+		btnSiguiente = new JButton("->");
 		btnSiguiente.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -99,10 +99,10 @@ public class visualizaReservasInstalacionesView {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_instalacion, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+						.addComponent(label_instalacion, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(comboBox_instalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
 							.addComponent(btnAnterior)
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -110,15 +110,15 @@ public class visualizaReservasInstalacionesView {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnSiguiente, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addComponent(btnSiguiente, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnComprobarReservsa))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(32)
 							.addComponent(lblFecha)))
 					.addGap(27))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(

@@ -24,7 +24,7 @@ public class visualizarReservasInstalacionesModel {
 				"FROM actividades a " + 
 				"INNER JOIN instalaciones i USING(idInstalacion) " + 
 				"INNER JOIN reservas r USING(idActividad)" + 
-				"WHERE r.horaInicio=9 AND r.fecha='2022-03-03'";
+				"WHERE r.horaInicio=6 AND r.fecha='2022-03-03'";
 
 		return db.executeQueryPojo(actividadReservaInstalacionDTO.class, sql, hora, nombreInstalacion, fecha);
 

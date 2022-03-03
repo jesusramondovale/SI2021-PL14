@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import giis.demo.tkrun.*;
+import giis.demo.Proyecto.Controller.*;
+import giis.demo.Proyecto.model.*;
+import giis.demo.Proyecto.view.*;
 
 /**
  * Punto de entrada principal que incluye botones para la ejecucion de las pantallas 
@@ -48,7 +51,7 @@ public class SwingMain {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Main");
-		frame.setBounds(0, 0, 287, 185);
+		frame.setBounds(0, 0, 421, 290);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
@@ -80,6 +83,18 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
+		
+		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones");
+		btnVisualizarReservas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				visualizarReservasInstalacionesController controller = new visualizarReservasInstalacionesController(new visualizarReservasInstalacionesModel()
+						,new visualizaReservasInstalacionesView());
+				
+				controller.initController();
+			}
+		});
+		frame.getContentPane().add(btnVisualizarReservas);
 	}
 
 	public JFrame getFrame() { return this.frame; }

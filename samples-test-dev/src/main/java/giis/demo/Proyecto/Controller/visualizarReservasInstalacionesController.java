@@ -115,10 +115,10 @@ public class visualizarReservasInstalacionesController {
 		double k;
 		int i,h;
 
-		for( k=(double) 6.00,i=0,h=6;k <= (double) 23.00;k++, i++, h++) {
+		for( k=(double) 6.00,i=0,h=6;k < (double) 23.00;k++, i++, h++) {
 			List<estadoReservaDTO> estadoReserva = model.getEstadoReserva(nombreInstalacion, view.getTxtFecha(),k);
 			List<SociosDisplayDTO> SocioReserva = model.getDniSociosReserva(nombreInstalacion, k, view.getTxtFecha());
-			List<actividadReservaInstalacionDTO> actividadReserva = model.getListaInstalacionParaActividades(k,nombreInstalacion,view.getTxtFecha());
+			//List<actividadReservaInstalacionDTO> actividadReserva = model.getListaInstalacionParaActividades(k,nombreInstalacion,view.getTxtFecha());
 			String hora=(h+":00-"+(h+1)+":00");
 
 			if(!estadoReserva.get(i).getEstadoReserva()) {
@@ -137,7 +137,7 @@ public class visualizarReservasInstalacionesController {
 			
 
 				}
-				 else if(!actividadReserva.isEmpty()) {
+				 /**else if(!actividadReserva.isEmpty()) {
 					 Object actividad = actividadReserva.get(0).getActividad();					
 						
 						elementos[i][0]=hora;
@@ -147,10 +147,10 @@ public class visualizarReservasInstalacionesController {
 
 						System.out.println("Disponibilidad: " + estado);
 						System.out.println("Actividad: " + actividad);
-				 }	 
+				 }	 */
 				 else {
 
-					if(SocioReserva.isEmpty() && actividadReserva.isEmpty() && (!estadoReserva.get(i).getEstadoReserva())) {
+					if(SocioReserva.isEmpty() && (!estadoReserva.get(i).getEstadoReserva())) {
 						elementos[i][0]=hora;
 						elementos[i][1]=estado;
 						elementos[i][2]=" ";
