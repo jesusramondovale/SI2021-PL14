@@ -2,7 +2,7 @@ package giis.demo.Proyecto.Controller;
 
 import java.util.List;
 
-
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 import giis.demo.Proyecto.DTO.MostrarActividadesDTO;
@@ -47,7 +47,9 @@ public class MostrarActividadesController {
 	}
 
 	
+	//Imprime la pantalla con la información solicitada por el usuario
 	public void getListaActividades() {
+		
 		
 		List<MostrarActividadesDTO> listActividades= null;
 		
@@ -58,29 +60,41 @@ public class MostrarActividadesController {
 				    1 : 
 					view.getComboBoxPeriodo().getSelectedIndex() + 1);
 		
+		
 		//Delegamos en el modelo 
 		listActividades = model.getListaActividades(periodo);
 		
 		
+		//Comprueba si la consulta retornada está vacía 
+		if (listActividades.isEmpty()){
+			
+			JOptionPane.showMessageDialog(null,
+	                "No se encontraron resultados!",
+	                "Vacío",
+	                JOptionPane.INFORMATION_MESSAGE);
+		}
 		
+		
+		//Generamos el modelo de tabla y lo cargamos con los datos de la BD
 		TableModel tmodel=SwingUtil.getTableModelFromPojos(listActividades, new String[] { 
 				"nombre", "fechaInicio" ,"horaInicio", "horaFin", "plazas", "precioSocio" , "precioNoSocio" });
+		
 		
 		// Asigna a la tabla de la vista el modelo generado
 		view.getTable().setModel(tmodel);
 		SwingUtil.autoAdjustColumns(view.getTable());
-		
-		
+			
 		
 	}
+	
 	
 	
 	public void reseteaListaActividades() {
 		
 		List<MostrarActividadesDTO> listActividades= null;
 		
-		//Delegamos en el modelo 
-			listActividades = model.getListaActividades(100);
+		   //Delegamos en el modelo 
+			//List <MostrarActividadesDTO> listActividades = new List<MostrarActividadesDTO>();
 				
 			TableModel tmodel=SwingUtil.getTableModelFromPojos(listActividades, new String[] { 
 						"nombre", "fecha" ,"horaInicio", "horaFin", "plazas", "precioSocio" , "precioNoSocio" });
