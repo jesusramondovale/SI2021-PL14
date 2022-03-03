@@ -100,9 +100,9 @@ DROP TABLE IF EXISTS "periodos";
 CREATE TABLE IF NOT EXISTS "periodos" (
 	"idPeriodoInscripcion"	INTEGER NOT NULL,
 	"nombre"	TEXT NOT NULL,
-	"inicioInscrSocios"	TEXT NOT NULL,
-	"finInscrSocios"	TEXT NOT NULL,
-	"finInscrNoSocios"	TEXT NOT NULL,
+	"inicioInscrSocios"	DATE,
+	"finInscrSocios" 	DATE,
+	"finInscrNoSocios"	DATE,
 	PRIMARY KEY("idPeriodoInscripcion" AUTOINCREMENT)
 );
 
@@ -121,7 +121,6 @@ CREATE TABLE IF NOT EXISTS "actividades" (
 	"idPeriodoInscripcion"	INTEGER NOT NULL,
 	"estado"	INTEGER NOT NULL,
 	"plazas"	INTEGER,
-	"deporte"	TEXT NOT NULL
 	"idInstalacion"	INTEGER,
 	PRIMARY KEY("idActividad" AUTOINCREMENT),
 	FOREIGN KEY("idInstalacion") REFERENCES "instalaciones"("idInstalacion"),

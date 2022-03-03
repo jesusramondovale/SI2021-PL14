@@ -1,8 +1,7 @@
 package giis.demo.Proyecto.Model;
-
-
 import java.util.*;
 import giis.demo.util.Util;
+import giis.demo.Proyecto.DTO.PeriodoIncripcionDTO;
 import giis.demo.util.ApplicationException;
 import giis.demo.util.Database;
 /**
@@ -16,22 +15,20 @@ import giis.demo.util.Database;
  * 
  * <br/>Si utilizase algún otro framework para manejar la persistencia, la funcionalidad proporcionada por esta clase sería la asignada
  * a los Servicios, Repositorios y DAOs.
- * 
- **/
+ */
+public class CrearPeriodoModel {
 
-public class CrearActividadModel {
-	/*
 	private Database db=new Database();
-	private String sql= "Insert into actividad(nombre,plazas,tipo,precio,precio_ns,fecha_ini,fecha_fin,periodoIns_id ,estado) values (?, ?, ? ...);
-	
-	
-	//inserta la activdad en la base de  datos y returna el id de la actividad
-		public int insertaActividad(String nombre,String plazas,String precio,String precio2,String tipo, Date ini,Date fin,String idd){
-			System.out.println(Util.dateToIsoString(ini));
-			
-			return db.executeUpdate(sql, nombre, plazas, ...);
-					//values("+"'"+nombre+"'"+","+plazas+","+"'"+tipo+"'"+","+precio+","+precio2+","+"'"+Util.dateToIsoString(ini)+"'"+","+"'"+Util.dateToIsoString(fin)+"',"+idd+",1)");
-			
-		}
-*/
+
+	//Obtiene los peridodos de isncipción 
+	public List<PeriodoIncripcionDTO> getPeriodos(){
+		return db.executeQueryPojo(PeriodoIncripcionDTO.class, "SELECT id,nombre from periodos");
+	}
+
+	public void insertaPeriodo(String nombre,Date inicio,Date fin,Date finNoSocio){
+
+		db.executeUpdate("Insert into periodos (nombre,inicioInscrSocios,finInscrSocios,finInscrNoSocios) values('"+nombre+"','"+Util.dateToIsoString(inicio)+"','"+Util.dateToIsoString(fin)+"','"+Util.dateToIsoString(finNoSocio)+"')");
+
+	}
+
 }
