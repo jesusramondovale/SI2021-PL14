@@ -121,6 +121,7 @@ CREATE TABLE IF NOT EXISTS "actividades" (
 	"idPeriodoInscripcion"	INTEGER NOT NULL,
 	"estado"	INTEGER NOT NULL,
 	"plazas"	INTEGER,
+	"deporte"	TEXT NOT NULL
 	"idInstalacion"	INTEGER,
 	PRIMARY KEY("idActividad" AUTOINCREMENT),
 	FOREIGN KEY("idInstalacion") REFERENCES "instalaciones"("idInstalacion"),

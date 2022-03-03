@@ -15,10 +15,84 @@ import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerListModel;
+import javax.swing.SpinnerModel;
+import java.awt.Dimension;
+import com.toedter.calendar.JDateChooser;
 
-public class CrearActividadView {
+public class CrearActividadView extends JFrame{
 
 	private JFrame frame;
+	private JTable tableDias;
+	private JLabel lblNewLabel;
+	
+	private JLabel lblNewLabel_1;
+	
+	private JLabel lblDescripcion; 
+	
+	private JLabel lblFechaInicio; 
+	
+	private JLabel lblFechaFin ;
+	
+	private JLabel lblPlazas ;
+	
+	private JLabel lblPrecio ;
+	
+	private JLabel lblNmeroDeSesiones; 
+	
+	private JTextArea textArea_Nombre ;
+	
+	private JTextArea textArea_Descripcion;
+	private JTextArea textArea_Precio ;
+	private JLabel lblNewLabel_2;
+	private JList list;
+	private JComboBox comboBox_Plazas;
+	private JComboBox comboBox_NumeroSesiones ;
+	
+	private JLabel lblPeriodoIncripcin ;
+	
+	private JComboBox comboBox_periodoIncripcion ;
+	
+	private JLabel lblPrecioNoSocio;
+	
+	private JTextArea textArea_Precio_1;
+	
+	private JLabel lblDeporte ;
+	
+	private JLabel lblInstalacion;
+	
+	private JComboBox comboBox_Deporte ;
+	
+	private JComboBox comboBox_Instalacion ;
+	
+	private JButton boton_LimpiarValores ;
+	
+	private JButton boton_CrearActividad;
+	
+	private JLabel lblNewLabel_3;
+	
+	private JDateChooser FechaInicio ;
+	
+	private JDateChooser FechaFin ;
+	
+	private JSpinner ILunes ;
+	private JSpinner IDomingo ;
+	private JSpinner IMartes ;
+	private JSpinner IMiercoles ;
+	private JSpinner IJueves ;
+	private JSpinner ISabado ;
+	private JSpinner IViernes ;
+
+	private JSpinner FJueves ;
+	private JSpinner FDomingo ;
+	private JSpinner FViernes ;
+	private JSpinner FSabado ;
+	private JSpinner FMiercoles ;
+	private JSpinner FLunes ;
+	private JSpinner FMartes ;
 
 	/**
 	 * Launch the application.
@@ -48,7 +122,7 @@ public class CrearActividadView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 593, 607);
+		frame.setBounds(100, 100, 974, 754);
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
 		
@@ -63,122 +137,240 @@ public class CrearActividadView {
 		
 		JLabel lblPlazas = new JLabel("Plazas:");
 		
-		JLabel lblPrecio = new JLabel("Precio:");
+		JLabel lblPrecioSocio = new JLabel("Precio Socio:");
 		
 		JLabel lblNmeroDeSesiones = new JLabel("Número de sesiones:");
 		
-		JTextArea textArea = new JTextArea();
+		JTextArea textArea_Nombre = new JTextArea();
 		
-		JTextArea textArea_1 = new JTextArea();
+		JTextArea textArea_Descripcion = new JTextArea();
 		
-		JTextArea textArea_3 = new JTextArea();
+		JTextArea textArea_Precio = new JTextArea();
 		
 		JLabel lblNewLabel_2 = new JLabel("€");
 		
 		JList list = new JList();
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox comboBox_Plazas = new JComboBox();
+		comboBox_Plazas.setModel(new DefaultComboBoxModel(new String[] {"5", "10", "15", "20", "25", "30"}));
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"5", "10", "15", "20", "25", "30"}));
+		JComboBox comboBox_NumeroSesiones = new JComboBox();
+		comboBox_NumeroSesiones.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6", "8", "10", "12", "14", "16", "18", "20"}));
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6", "8", "10", "12", "14", "16", "18", "20"}));
+		lblPeriodoIncripcin = new JLabel("Periodo Incripción");
 		
-		JComboBox comboBox_1 = new JComboBox();
-		
-		JLabel lblPeriodoIncripcin = new JLabel("Periodo Incripción");
-		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno", "Otoño", "Primavera", "Semana Santa"}));
-		
-		JButton btnNewButton = new JButton("Crear Periodo Incripción");
+		JComboBox comboBox_periodoIncripcion = new JComboBox();
+		comboBox_periodoIncripcion.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno", "Otoño", "Primavera", "Semana Santa"}));
 		
 		JLabel lblDeporte = new JLabel("Deporte");
 		
 		JLabel lblInstalacion = new JLabel("Instalacion");
 		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"Tenis", "Padel", "Yoga", "Spinning", "Natación"}));
+		JComboBox comboBox_Deporte = new JComboBox();
+		comboBox_Deporte.setModel(new DefaultComboBoxModel(new String[] {"Tenis", "Padel", "Yoga", "Spinning", "Natación"}));
 		
-		JComboBox comboBox_6 = new JComboBox();
-		comboBox_6.setModel(new DefaultComboBoxModel(new String[] {"Pista de Tenis 1", "Pista de Tenis 2", "Pista de Tenis 3", "Pista de Padel 1", "Pista de Padel 2", "Pista de Padel 3", "Piscina 1", "Piscina 2", "Sala de Spinning 1", "Sala de Spinning 2"}));
+		JComboBox comboBox_Instalacion = new JComboBox();
+		comboBox_Instalacion.setModel(new DefaultComboBoxModel(new String[] {"Pista de Tenis 1", "Pista de Tenis 2", "Pista de Tenis 3", "Pista de Padel 1", "Pista de Padel 2", "Pista de Padel 3", "Piscina 1", "Piscina 2", "Sala de Spinning 1", "Sala de Spinning 2"}));
 		
-		JButton btnNewButton_1 = new JButton("Limpiar valores");
+		JButton boton_LimpiarValores = new JButton("Limpiar valores");
 		
-		JButton btnNewButton_1_1 = new JButton("Crear Actividad");
+		JButton boton_CrearActividad = new JButton("Crear Actividad");
+		
+		JLabel lblNewLabel_3 = new JLabel("Días y horas de las sesiones");
+		
+		tableDias = new JTable();
+		tableDias.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tableDias.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null},
+				{"Lunes"},
+				{"Martes"},
+				{"Mi\u00E9rcoles"},
+				{"Jueves"},
+				{"Viernes"},
+				{"Sabado"},
+				{"Domingo"},
+			},
+			new String[] {
+				"New column"
+			}
+		));
+		
+		JSpinner ILunes = new JSpinner();
+		ILunes.setPreferredSize(new Dimension(26, 18));
+		ILunes.setMinimumSize(new Dimension(26, 18));
+		ILunes.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		
+		JSpinner IDomingo = new JSpinner();
+		IDomingo.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		IDomingo.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner IMartes = new JSpinner();
+		IMartes.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		IMartes.setPreferredSize(new Dimension(26, 18));
+		IMartes.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner IMiercoles = new JSpinner();
+		IMiercoles.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		IMiercoles.setPreferredSize(new Dimension(26, 18));
+		IMiercoles.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner IJueves = new JSpinner();
+		IJueves.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		IJueves.setPreferredSize(new Dimension(26, 18));
+		IJueves.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner ISabado = new JSpinner();
+		ISabado.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		ISabado.setPreferredSize(new Dimension(26, 18));
+		ISabado.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner IViernes = new JSpinner();
+		IViernes.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		IViernes.setPreferredSize(new Dimension(26, 18));
+		IViernes.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner FJueves = new JSpinner();
+		FJueves.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		FJueves.setPreferredSize(new Dimension(26, 18));
+		FJueves.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner FDomingo = new JSpinner();
+		FDomingo.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		FDomingo.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner FViernes = new JSpinner();
+		FViernes.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		FViernes.setPreferredSize(new Dimension(26, 18));
+		FViernes.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner FSabado = new JSpinner();
+		FSabado.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		FSabado.setPreferredSize(new Dimension(26, 18));
+		FSabado.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner FMiercoles = new JSpinner();
+		FMiercoles.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		FMiercoles.setPreferredSize(new Dimension(26, 18));
+		FMiercoles.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner FLunes = new JSpinner();
+		FLunes.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		FLunes.setPreferredSize(new Dimension(26, 18));
+		FLunes.setMinimumSize(new Dimension(26, 18));
+		
+		JSpinner FMartes = new JSpinner();
+		FMartes.setModel(new SpinnerListModel(new String[] {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
+		FMartes.setPreferredSize(new Dimension(26, 18));
+		FMartes.setMinimumSize(new Dimension(26, 18));
+		
+		JDateChooser FechaInicio = new JDateChooser();
+		
+		JDateChooser FechaFin = new JDateChooser();
+		
+		JLabel lblPrecioNoSocio = new JLabel("Precio No Socio:");
+		
+		JTextArea textArea_Precio_1 = new JTextArea();
+		
+		JLabel lblNewLabel_2_1 = new JLabel("€");
+		
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(222, Short.MAX_VALUE)
-					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-					.addGap(182))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(15)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel)
-										.addComponent(lblDescripcion))
-									.addGap(3)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(17)
-											.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(211)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(btnNewButton_1)
-												.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)))))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(24)
+					.addGap(69)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblNewLabel)
+						.addComponent(lblDescripcion)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(textArea_Nombre, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnNewButton)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblPeriodoIncripcin)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(lblFechaInicio, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(lblFechaFin))
-									.addGap(14)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-										.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))))))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addGap(58)
+									.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE))
+								.addComponent(textArea_Descripcion, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(9)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblPlazas, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(textArea_3, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(comboBox_Plazas, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
 									.addComponent(lblNmeroDeSesiones)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+									.addGap(18)
+									.addComponent(comboBox_NumeroSesiones, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblPeriodoIncripcin)
+									.addGap(18)
+									.addComponent(comboBox_periodoIncripcion, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblNewLabel_3))
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(225)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+											.addComponent(lblPrecioNoSocio, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblPrecioSocio, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
 										.addComponent(lblDeporte, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblInstalacion, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-										.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))))
+										.addComponent(comboBox_Instalacion, 0, 0, Short.MAX_VALUE)
+										.addComponent(comboBox_Deporte, 0, 148, Short.MAX_VALUE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(textArea_Precio_1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(textArea_Precio, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblFechaInicio, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblFechaFin))
+									.addGap(18)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(FechaFin, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+										.addComponent(FechaInicio, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))))
+							.addGap(130))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(22)
-							.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))))
+							.addGap(157)
+							.addComponent(boton_LimpiarValores)
+							.addGap(31)
+							.addComponent(boton_CrearActividad, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(90)
+					.addComponent(tableDias, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(IMiercoles, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ILunes, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(IMartes, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(IJueves, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(IDomingo, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(IViernes, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ISabado, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+					.addGap(29)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(FLunes, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(FMartes, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(FMiercoles, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(FJueves, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(FViernes, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(FSabado, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(FDomingo, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(704, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(421)
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(441, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -187,55 +379,103 @@ public class CrearActividadView {
 					.addGap(33)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
-						.addComponent(lblPlazas)
-						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(18)
-							.addComponent(lblDescripcion)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(26)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPrecio)
-								.addComponent(textArea_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_2))
-							.addGap(43)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblDeporte)
-								.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblInstalacion)
-								.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))))
+						.addComponent(textArea_Nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNmeroDeSesiones)
-								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-							.addGap(79))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(40)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblPeriodoIncripcin)
-								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnNewButton)
-							.addGap(146)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblFechaInicio)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblDescripcion)
+								.addComponent(textArea_Precio_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_2_1)
+								.addComponent(lblPrecioNoSocio))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textArea_Descripcion, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+							.addGap(65))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(82)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(textArea_Precio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblNewLabel_2))
+								.addComponent(lblPrecioSocio))
+							.addPreferredGap(ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblDeporte)
+								.addComponent(comboBox_Deporte, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))))
+					.addGap(18)
+					.addComponent(comboBox_Instalacion, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblPlazas)
+								.addComponent(comboBox_Plazas, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNmeroDeSesiones)
+								.addComponent(comboBox_NumeroSesiones, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(27)
+									.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(18)
+									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(comboBox_periodoIncripcion, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblPeriodoIncripcin))))
+							.addGap(49)
+							.addComponent(lblNewLabel_3)
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(tableDias, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGap(3)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addGroup(groupLayout.createSequentialGroup()
+												.addGap(18)
+												.addComponent(IMartes, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+												.addGap(1)
+												.addComponent(IMiercoles, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+											.addComponent(ILunes, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+										.addGap(3)
+										.addComponent(IJueves, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(IViernes, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+										.addGap(1)
+										.addComponent(ISabado, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+										.addGap(1)
+										.addComponent(IDomingo, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+										.addGap(3)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(FLunes, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addGap(2)
+									.addComponent(FMartes, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addGap(1)
+									.addComponent(FMiercoles, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addGap(3)
+									.addComponent(FJueves, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addGap(6)
+									.addComponent(FViernes, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addGap(1)
+									.addComponent(FSabado, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addGap(1)
+									.addComponent(FDomingo, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblInstalacion)
+									.addGap(99)
+									.addComponent(lblFechaInicio))
+								.addComponent(FechaInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(lblFechaFin)
-								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnNewButton_1)
-								.addComponent(btnNewButton_1_1))
-							.addContainerGap())))
+								.addComponent(FechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(138)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(boton_CrearActividad)
+								.addComponent(boton_LimpiarValores))))
+					.addGap(97))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

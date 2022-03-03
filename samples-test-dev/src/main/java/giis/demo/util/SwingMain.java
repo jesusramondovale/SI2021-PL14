@@ -48,7 +48,7 @@ public class SwingMain {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Main");
-		frame.setBounds(0, 0, 287, 185);
+		frame.setBounds(0, 0, 568, 469);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
@@ -80,6 +80,21 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
+		
+		JButton boton_CrearActividad = new JButton("Crear Actividad");
+		boton_CrearActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				  // Eso es lo que hay que modificar
+
+               // MostrarActividadesController controller=new MostrarActividadesController(new MostrarActividadesView() , new MostrarActividadesModel());
+               // controller.initController();
+
+                //
+				
+			}
+		});
+		frame.getContentPane().add(boton_CrearActividad);
 	}
 
 	public JFrame getFrame() { return this.frame; }
