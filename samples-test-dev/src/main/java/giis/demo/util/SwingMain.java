@@ -6,6 +6,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import giis.demo.Proyecto.Controller.RealizarReservaController;
+import giis.demo.Proyecto.Model.RealizarReservaModel;
+import giis.demo.Proyecto.View.RealizarReservasView;
 import giis.demo.tkrun.*;
 
 /**
@@ -80,6 +84,18 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
+		
+		JButton btnRealizarReserva = new JButton("Realizar Reserva");
+		btnRealizarReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				RealizarReservaController controller=new RealizarReservaController(new RealizarReservasView() , new RealizarReservaModel());
+				controller.initController();
+				
+							
+			}
+		});
+		frame.getContentPane().add(btnRealizarReserva);
 	}
 
 	public JFrame getFrame() { return this.frame; }

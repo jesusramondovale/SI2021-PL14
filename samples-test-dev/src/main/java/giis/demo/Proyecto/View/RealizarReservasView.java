@@ -42,11 +42,64 @@ public class RealizarReservasView {
 	private JTextField textFieldSocio;
 	private JComboBox comboBoxActividad;
 	private JTextField textFieldActividad;
+	private JTextField textFieldHorasIni;
+	private JTextField textFieldHorasFin;
+	private JLabel label;
+	private JTextField textFieldMinIni;
+	private JTextField textFieldMinFin;
 	
 	
 	
 	
 	
+
+	public JComboBox getComboBoxActividad() {
+		return comboBoxActividad;
+	}
+
+	public void setComboBoxActividad(JComboBox comboBoxActividad) {
+		this.comboBoxActividad = comboBoxActividad;
+	}
+
+	public JTextField getTextFieldActividad() {
+		return textFieldActividad;
+	}
+
+	public void setTextFieldActividad(JTextField textFieldActividad) {
+		this.textFieldActividad = textFieldActividad;
+	}
+
+	public JTextField getTextFieldHorasIni() {
+		return textFieldHorasIni;
+	}
+
+	public void setTextFieldHorasIni(JTextField textFieldHorasIni) {
+		this.textFieldHorasIni = textFieldHorasIni;
+	}
+
+	public JTextField getTextFieldHorasFin() {
+		return textFieldHorasFin;
+	}
+
+	public void setTextFieldHorasFin(JTextField textFieldHorasFin) {
+		this.textFieldHorasFin = textFieldHorasFin;
+	}
+
+	public JTextField getTextFieldMinIni() {
+		return textFieldMinIni;
+	}
+
+	public void setTextFieldMinIni(JTextField textFieldMinIni) {
+		this.textFieldMinIni = textFieldMinIni;
+	}
+
+	public JTextField getTextFieldMinFin() {
+		return textFieldMinFin;
+	}
+
+	public void setTextFieldMinFin(JTextField textFieldMinFin) {
+		this.textFieldMinFin = textFieldMinFin;
+	}
 
 	public JButton getBtnActualizar() {
 		return btnActualizar;
@@ -210,16 +263,15 @@ public class RealizarReservasView {
 	private void initialize() {
 		frmRealizarReserva = new JFrame();
 		frmRealizarReserva.setTitle("Realizar Reserva");
-		frmRealizarReserva.setBounds(100, 100, 501, 670);
-		frmRealizarReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmRealizarReserva.setBounds(100, 100, 632, 695);
 		
-		JButton btnCrearReserva = new JButton("Crear Reserva");
+		btnCrearReserva = new JButton("Crear Reserva");
 		btnCrearReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -283,6 +335,28 @@ public class RealizarReservasView {
 		textFieldActividad.setToolTipText("Indique el #ID de la nueva actividad a crear.");
 		textFieldActividad.setText("Nº");
 		textFieldActividad.setColumns(10);
+		
+		JLabel lblH = new JLabel("H:");
+		
+		JLabel lblH_1 = new JLabel("H:");
+		
+		textFieldHorasIni = new JTextField();
+		textFieldHorasIni.setColumns(10);
+		
+		textFieldHorasFin = new JTextField();
+		textFieldHorasFin.setColumns(10);
+		
+		JLabel label_1 = new JLabel(":");
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 17));
+		
+		label = new JLabel(":");
+		label.setFont(new Font("Tahoma", Font.BOLD, 17));
+		
+		textFieldMinIni = new JTextField();
+		textFieldMinIni.setColumns(10);
+		
+		textFieldMinFin = new JTextField();
+		textFieldMinFin.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frmRealizarReserva.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -291,17 +365,44 @@ public class RealizarReservasView {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnBorrar)
-							.addGap(96)
+							.addPreferredGap(ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
 							.addComponent(btnActualizar)
-							.addGap(18)
-							.addComponent(btnCrearReserva)
-							.addGap(21))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGap(32)
+							.addComponent(btnCrearReserva))
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+							.addGap(15)
+							.addComponent(comboBoxInstalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblAntreiores, Alignment.LEADING)
+						.addComponent(lblPosteriores, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPaneAnteriores, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+						.addComponent(scrollPanePosteriores, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
-									.addGap(15)
-									.addComponent(comboBoxInstalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblActividad, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textFieldActividad, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(lblSocio)
+											.addGap(3)
+											.addComponent(textFieldSocio, 0, 0, Short.MAX_VALUE))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblFinalDeReserva, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+											.addGap(21)
+											.addComponent(cbDiaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(cbMesFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addGap(18)
+									.addComponent(lblH_1)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textFieldHorasFin, 0, 0, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblInicioDeReserva, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
 									.addGap(15)
@@ -309,31 +410,23 @@ public class RealizarReservasView {
 									.addGap(18)
 									.addComponent(cbMesIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addGap(15)
-									.addComponent(cbAnoIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(lblAntreiores)
-								.addComponent(lblPosteriores, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-								.addComponent(scrollPaneAnteriores, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-								.addComponent(scrollPanePosteriores, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-									.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-										.addComponent(lblActividad, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(textFieldActividad, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-										.addGap(18)
-										.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(lblSocio)
-										.addGap(3)
-										.addComponent(textFieldSocio, 0, 0, Short.MAX_VALUE))
-									.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-										.addComponent(lblFinalDeReserva, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-										.addGap(21)
-										.addComponent(cbDiaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addGap(18)
-										.addComponent(cbMesFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-							.addContainerGap(32, GroupLayout.PREFERRED_SIZE))))
+									.addComponent(cbAnoIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(lblH)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textFieldHorasIni, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textFieldMinFin, 0, 0, Short.MAX_VALUE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(label, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textFieldMinIni, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(190))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -351,7 +444,12 @@ public class RealizarReservasView {
 							.addComponent(lblInicioDeReserva, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 						.addComponent(cbDiaIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(cbMesIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbAnoIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(cbAnoIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblH)
+							.addComponent(textFieldHorasIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(label, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textFieldMinIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(10)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -360,7 +458,11 @@ public class RealizarReservasView {
 						.addComponent(cbDiaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 							.addComponent(cbMesFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblH_1)
+							.addComponent(textFieldHorasFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(label_1)
+							.addComponent(textFieldMinFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(13)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblActividad, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
@@ -376,13 +478,12 @@ public class RealizarReservasView {
 					.addComponent(lblPosteriores)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(scrollPanePosteriores, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-					.addGap(27)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnBorrar)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnCrearReserva)
-							.addComponent(btnActualizar)))
-					.addContainerGap(22, Short.MAX_VALUE))
+						.addComponent(btnActualizar)
+						.addComponent(btnCrearReserva))
+					.addContainerGap(44, Short.MAX_VALUE))
 		);
 		
 		tablePosteriores = new JTable();
