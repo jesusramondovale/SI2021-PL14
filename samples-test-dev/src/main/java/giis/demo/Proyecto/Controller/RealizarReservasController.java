@@ -1,11 +1,10 @@
 package giis.demo.Proyecto.Controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import giis.demo.Proyecto.DTO.ReservaDTO;
@@ -65,9 +64,10 @@ public class RealizarReservasController {
 		listReservas = model.getListaReservas(fecha);
 		
 		
+		
 		//Generamos el modelo de tabla y lo cargamos con los datos de la BD
 		TableModel tmodel=SwingUtil.getTableModelFromPojos(listReservas, new String[] { 
-				"idReserva" , "fecha"  , "horaInicio" , "horaFin" , "idInstalacion" , "idActividad" , "idSocio" , "estado" });
+				 "fecha"  , "horaInicio" , "horaFin" });
 
 
 		// Asigna a la tabla de la vista el modelo generado
@@ -97,7 +97,12 @@ public class RealizarReservasController {
 
 		this.view.getTextFieldActividad().setText("Nº");
 		this.view.getTextFieldSocio().setText("# ID de Socio");
-
+		
+		DefaultTableModel dm = (DefaultTableModel) this.view.getTableAnteriores().getModel();
+		int rowCount = dm.getRowCount();
+		for (int i = rowCount - 1; i >= 0; i--) {
+		    dm.removeRow(i);
+		}
 		
 	}
 
@@ -162,7 +167,6 @@ public class RealizarReservasController {
 		@SuppressWarnings("unused")
 		int instalacion, deporte, diaIni, mesIni, anoIni, diaFin, mesFin, anoFin;
 		String fecha;
-		Date fechaDate = null;
 		float hIni1,hIni2,hFin1,hFin2;
 		double horaInicio;
 		double horaFinal;
@@ -179,12 +183,14 @@ public class RealizarReservasController {
 		anoFin = Integer.parseInt(this.view.getCbAnoIni().getModel().getElementAt(this.view.getCbAnoFin().getSelectedIndex()).toString());
 		
 		fecha = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
+		/*
 		try {
 			fechaDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
 		} catch (ParseException e) {
 			
 			e.printStackTrace();
 		}
+		*/
 		
 		hIni1 = Float.parseFloat(this.view.getTextFieldHorasIni().getText());
 		hIni2 = Float.parseFloat(this.view.getTextFieldMinIni().getText());
@@ -199,7 +205,7 @@ public class RealizarReservasController {
 
 		//Delega en el modelo
 			
-		model.crearReserva(idReserva, fechaDate, horaInicio, horaFinal, instalacion, deporte, idSocio, 1);
+		model.crearReserva(idReserva, fecha, horaInicio, horaFinal, instalacion, deporte, idSocio, 1);
 								
 		}
 

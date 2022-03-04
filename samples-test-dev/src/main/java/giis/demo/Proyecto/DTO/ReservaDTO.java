@@ -15,6 +15,10 @@ public class ReservaDTO {
 
 	
 
+	public ReservaDTO() {
+		super();
+	}
+
 	public ReservaDTO(String fecha, float horaInicio, float horaFin) {
 		super();
 		this.fecha = fecha;

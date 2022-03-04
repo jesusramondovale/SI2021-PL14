@@ -1,6 +1,5 @@
 package giis.demo.Proyecto.Model;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -15,12 +14,12 @@ public class RealizarReservasModel {
 	public Database db = new Database();
 	
 	private static String SQL = "INSERT INTO reservas VALUES (?,?,?,?,?,?,?,?)" ;
-	private static String SQL2 = "SELECT idReserva, fecha , horaInicio , horaFin , idInstalacion , idActividad , idSocio , estado "
-			+ "FROM reservas";
+	private static String SQL2 = "SELECT fecha , horaInicio , horaFin "
+			+ "FROM reservas "
 			
-			//+ "WHERE fecha > ?";
+			+ "WHERE fecha = ?";
 	
-	public void crearReserva(int idReserva, Date fecha, double horaInicio, double horaFinal, int instalacion,
+	public void crearReserva(int idReserva, String fecha, double horaInicio, double horaFinal, int instalacion,
 			int deporte, int idSocio, int i){
 		
 		
@@ -49,7 +48,7 @@ public class RealizarReservasModel {
 	
 	public List<ReservaDTO> getListaReservas(String fecha) {
 
-			return db.executeQueryPojo(ReservaDTO.class, SQL2);
+			return db.executeQueryPojo(ReservaDTO.class, SQL2, fecha);
 		
 	}
 
