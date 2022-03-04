@@ -39,10 +39,16 @@ public class CrearPeriodoController {
 			SwingUtil.showMessage("La fecha 'Fin no socios' es antes que la de fin de socios", "ERROR", JOptionPane.ERROR_MESSAGE);
 		
 		}
+	
 		//Si todo esta correcto se puede crear dicho periodo
 		else
 			model.insertaPeriodo(view.getNombrePeriodo().getText(), view.getFechaInicioPeriodo().getDate(),  view.getFechaFinPeriodo().getDate(), view.getFechaFinPeriodoNoSocio().getDate());
-	
+		JOptionPane.showMessageDialog(
+			    null, 
+			    "Periodo creado con exito", 
+			    "OK",
+			    JOptionPane.INFORMATION_MESSAGE); 
+   
 	}
 	
 

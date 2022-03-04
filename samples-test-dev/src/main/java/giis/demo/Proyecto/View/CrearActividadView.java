@@ -1,6 +1,11 @@
 package giis.demo.Proyecto.View;
 
 import java.awt.EventQueue;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -22,6 +27,8 @@ import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerModel;
 import java.awt.Dimension;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CrearActividadView extends JFrame{
 
@@ -159,8 +166,14 @@ public class CrearActividadView extends JFrame{
 		
 		lblPeriodoIncripcin = new JLabel("Periodo Incripción");
 		
+		//AQUI
+		
 		JComboBox comboBox_periodoIncripcion = new JComboBox();
-		comboBox_periodoIncripcion.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno", "Otoño", "Primavera", "Semana Santa"}));
+		comboBox_periodoIncripcion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		
 		JLabel lblDeporte = new JLabel("Deporte");
 		
