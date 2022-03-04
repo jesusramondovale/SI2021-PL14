@@ -146,6 +146,7 @@ public class CrearActividadView extends JFrame{
 		
 		JLabel lblPrecioSocio = new JLabel("Precio Socio:");
 		
+		
 		JLabel lblNmeroDeSesiones = new JLabel("Número de sesiones:");
 		
 		JTextArea textArea_Nombre = new JTextArea();
