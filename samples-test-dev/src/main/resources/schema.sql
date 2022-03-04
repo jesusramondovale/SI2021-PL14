@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS "instalaciones" (
 
 DROP TABLE IF EXISTS "reservas";
 CREATE TABLE IF NOT EXISTS "reservas" (
-	"idReserva"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"idReserva"	INTEGER NOT NULL,
 	"fecha"	TEXT,
 	"horaInicio"	FLOAT,
 	"horaFin"	FLOAT,
@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS "reservas" (
 	"idActividad"	INTEGER,
 	"idSocio"	INTEGER,
 	"estado"	INTEGER,
+        PRIMARY KEY("idReserva" AUTOINCREMENT),
 	FOREIGN KEY("idSocio") REFERENCES "socios"("idSocio"),
 	FOREIGN KEY("idInstalacion") REFERENCES "instalaciones"("idInstalacion"),
 	FOREIGN KEY("idActividad") REFERENCES "actividades"("idActividad")

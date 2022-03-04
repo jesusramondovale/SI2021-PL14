@@ -7,8 +7,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import giis.demo.Proyecto.Controller.RealizarReservaController;
-import giis.demo.Proyecto.Model.RealizarReservaModel;
+import giis.demo.Proyecto.Controller.RealizarReservasController;
+import giis.demo.Proyecto.Model.RealizarReservasModel;
 import giis.demo.Proyecto.View.RealizarReservasView;
 import giis.demo.tkrun.*;
 
@@ -89,7 +89,7 @@ public class SwingMain {
 		btnRealizarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				RealizarReservaController controller=new RealizarReservaController(new RealizarReservasView() , new RealizarReservaModel());
+				RealizarReservasController controller=new RealizarReservasController(new RealizarReservasView() , new RealizarReservasModel());
 				controller.initController();
 				
 							
