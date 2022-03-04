@@ -217,8 +217,8 @@ public class realizarReservaController {
 		periodo= cbInstalacion.getSelectedIndex();
 		return periodo;
 	}
-	public static void escribeTextoField(JTextField area, JTextField jTextField) {
-		area.setText(jTextField);
+	public static void escribeTextoField(JTextField area, String string) {
+		area.setText(string);
 	}
 	public static String getSelectedItem(JComboBox<Object> cbInstalacion) {
 		String select;
@@ -234,12 +234,17 @@ public class realizarReservaController {
 	public void generarResguardo() {
 		try{
 		escribeTextoField(viewResg.getTxtSocioR(),(view.getTxtSocio()));
-		escribeTextoField(viewResg.getTxtFecha(),(view.getTfFecha()));
-		escribeTextoField(viewResg.getTxtHora1R(),(view.()));
-		escribeTextoField(viewResg.gettFInstalacion(),(view.getTfInstalacion()));
-		escribeTextoField(viewResg.gettFNombre(),(view.getTfNombre()) + " "+ view.getTfApellidos());
-		escribeTextoField(viewResg.gettFRes(),(view.getTfNumReserva()));
-		viewResg.getFrameResguardo().setVisible(true);
+		escribeTextoField(viewResg.getTxtFecha(),(view.getTxtFecha()));
+		escribeTextoField(viewResg.getTxtHora1R(),Integer.toString((int) view.getComboBox_HoraC().getSelectedItem()));
+		escribeTextoField(viewResg.getTxtHora2R(),Integer.toString((int) view.getComboBox_HoraF().getSelectedItem()));
+		escribeTextoField(viewResg.getTxtInstalacionR(),Integer.toString((int)view.getComboBox_instalacion().getSelectedItem()));
+		escribeTextoField(viewResg.getTxtNombreR(),(view.getTxtNombre()));
+		escribeTextoField(viewResg.getTxtApellidosR(),(view.getTxtApellidos()));
+		escribeTextoField(viewResg.getTxtReservaR(),(view.getTxtReserva()));
+		escribeTextoField(viewResg.getTxtPrecioR(),(view.getTxtPrecio()));
+		escribeTextoField(viewResg.getTxtPagoR(),(view.getGrupo().getSelection().toString()));
+		
+		viewResg.getFrame().setVisible(true);
 		JOptionPane pane = new JOptionPane("Reserva realizada.",JOptionPane.INFORMATION_MESSAGE);
 		pane.setOptions(new Object[] {"ACEPTAR"}); //fija este valor para que no dependa del idioma
 		JDialog d = pane.createDialog(pane, "Confirmacion reserva");

@@ -264,29 +264,29 @@ public class realizarReservaView {
 		this.frame = frame;
 	}
 
-	public JTextField getTxtSocio() {
-		return txtSocio;
+	public String getTxtSocio() {
+		return txtSocio.getText();
 	}
 
-	public void setTxtSocio(JTextField txtSocio) {
-		this.txtSocio = txtSocio;
+	public void setTxtSocio(String txtSocio) {
+		this.txtSocio.setText(txtSocio);
 	}
 
 
-	public JTextField getTxtApellidos() {
-		return txtApellidos;
+	public String getTxtApellidos() {
+		return txtApellidos.getText();
 	}
 
-	public void setTxtApellidos(JTextField txtApellidos) {
-		this.txtApellidos = txtApellidos;
+	public void setTxtApellidos(String txtApellidos) {
+		this.txtApellidos.setText(txtApellidos);;
 	}
 
-	public JTextField getTxtReserva() {
-		return txtReserva;
+	public String getTxtReserva() {
+		return txtReserva.getText();
 	}
 
-	public void setTxtReserva(JTextField txtReserva) {
-		this.txtReserva = txtReserva;
+	public void setTxtReserva(String txtReserva) {
+		this.txtReserva.setText(txtReserva);
 	}
 
 	public JComboBox getComboBox_HoraC() {
@@ -365,20 +365,20 @@ public class realizarReservaView {
 		this.txtFecha.setText(string);;
 	}
 
-	public JTextField getTxtNombre() {
-		return txtNombre;
+	public String getTxtNombre() {
+		return txtNombre.getText();
 	}
 
-	public void setTxtNombre(JTextField txtNombre) {
-		this.txtNombre = txtNombre;
+	public void setTxtNombre(String txtNombre) {
+		this.txtNombre.setText(txtNombre);;
 	}
 
-	public JTextField getTxtPrecio() {
-		return txtPrecio;
+	public String getTxtPrecio() {
+		return txtPrecio.getText();
 	}
 
-	public void setTxtPrecio(JTextField txtPrecio) {
-		this.txtPrecio = txtPrecio;
+	public void setTxtPrecio(String txtPrecio) {
+		this.txtPrecio.setText(txtPrecio);;
 	}
 	
 	

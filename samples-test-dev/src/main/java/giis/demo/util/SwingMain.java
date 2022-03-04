@@ -6,6 +6,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import giis.demo.Proyecto.Controller.realizarReservaController;
+import giis.demo.Proyecto.model.realizarReservasModel;
+import giis.demo.Proyecto.view.realizarReservaView;
+import giis.demo.Proyecto.view.resguardoView;
 import giis.demo.tkrun.*;
 
 /**
@@ -48,7 +53,7 @@ public class SwingMain {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Main");
-		frame.setBounds(0, 0, 287, 185);
+		frame.setBounds(0, 0, 512, 358);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
@@ -80,6 +85,15 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
+		
+		JButton btnReservar = new JButton("Realizar reserva");
+		btnReservar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 realizarReservaController controller=new realizarReservaController(new realizarReservasModel() , new realizarReservaView(), new resguardoView());
+	                controller.initController();
+			}
+		});
+		frame.getContentPane().add(btnReservar);
 	}
 
 	public JFrame getFrame() { return this.frame; }
