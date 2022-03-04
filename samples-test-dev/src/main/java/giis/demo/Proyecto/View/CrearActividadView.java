@@ -164,7 +164,6 @@ public class CrearActividadView extends JFrame{
 		lblPeriodoIncripcin = new JLabel("Periodo Incripción");
 
 		comboBox_periodoIncripcion = new JComboBox();
-		comboBox_periodoIncripcion.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno", "Otoño", "Primavera", "Semana Santa"}));
 
 		lblDeporte = new JLabel("Deporte");
 
