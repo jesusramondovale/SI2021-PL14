@@ -15,6 +15,13 @@ public class ReservaDTO {
 
 	
 
+	public ReservaDTO(String fecha, float horaInicio, float horaFin) {
+		super();
+		this.fecha = fecha;
+		this.horaInicio = horaInicio;
+		this.horaFin = horaFin;
+	}
+
 	public ReservaDTO(int idReserva, int idInstalacion, int idActividad, int idSocio) {
 		super();
 		this.idReserva = idReserva;

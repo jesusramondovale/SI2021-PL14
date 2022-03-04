@@ -21,7 +21,6 @@ public class RealizarReservasView {
 
 	private JFrame frmRealizarReserva;
 	private JTable tableAnteriores;
-	private JTable tablePosteriores;
 	
 
 	@SuppressWarnings("rawtypes")
@@ -125,14 +124,6 @@ public class RealizarReservasView {
 
 	public void setTableAnteriores(JTable tableAnteriores) {
 		this.tableAnteriores = tableAnteriores;
-	}
-
-	public JTable getTablePosteriores() {
-		return tablePosteriores;
-	}
-
-	public void setTablePosteriores(JTable tablePosteriores) {
-		this.tablePosteriores = tablePosteriores;
 	}
 
 	public JComboBox getComboBoxInstalacion() {
@@ -263,7 +254,7 @@ public class RealizarReservasView {
 	private void initialize() {
 		frmRealizarReserva = new JFrame();
 		frmRealizarReserva.setTitle("Realizar Reserva");
-		frmRealizarReserva.setBounds(100, 100, 632, 695);
+		frmRealizarReserva.setBounds(100, 100, 600, 525);
 		
 		btnCrearReserva = new JButton("Crear Reserva");
 		btnCrearReserva.addActionListener(new ActionListener() {
@@ -313,11 +304,7 @@ public class RealizarReservasView {
 		
 		JScrollPane scrollPaneAnteriores = new JScrollPane();
 		
-		JScrollPane scrollPanePosteriores = new JScrollPane();
-		
-		JLabel lblAntreiores = new JLabel("Anteriores");
-		
-		JLabel lblPosteriores = new JLabel("Posteriores");
+		JLabel lblAntreiores = new JLabel("Reservas Anteriores");
 		
 		lblSocio = new JLabel("Socio: ");
 		
@@ -359,25 +346,24 @@ public class RealizarReservasView {
 		textFieldMinFin.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frmRealizarReserva.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addGap(31)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(btnBorrar)
-							.addPreferredGap(ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
 							.addComponent(btnActualizar)
-							.addGap(32)
-							.addComponent(btnCrearReserva))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGap(28)
+							.addComponent(btnCrearReserva)
+							.addPreferredGap(ComponentPlacement.RELATED))
+						.addComponent(scrollPaneAnteriores, GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
 							.addGap(15)
 							.addComponent(comboBoxInstalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblAntreiores, Alignment.LEADING)
-						.addComponent(lblPosteriores, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-						.addComponent(scrollPaneAnteriores, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-						.addComponent(scrollPanePosteriores, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+						.addComponent(lblAntreiores)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
@@ -473,21 +459,14 @@ public class RealizarReservasView {
 					.addGap(22)
 					.addComponent(lblAntreiores)
 					.addGap(4)
-					.addComponent(scrollPaneAnteriores, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
-					.addComponent(lblPosteriores)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPanePosteriores, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(scrollPaneAnteriores, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnBorrar)
+						.addComponent(btnCrearReserva)
 						.addComponent(btnActualizar)
-						.addComponent(btnCrearReserva))
-					.addContainerGap(44, Short.MAX_VALUE))
+						.addComponent(btnBorrar))
+					.addContainerGap(35, Short.MAX_VALUE))
 		);
-		
-		tablePosteriores = new JTable();
-		scrollPanePosteriores.setColumnHeaderView(tablePosteriores);
 		
 		tableAnteriores = new JTable();
 		scrollPaneAnteriores.setColumnHeaderView(tableAnteriores);

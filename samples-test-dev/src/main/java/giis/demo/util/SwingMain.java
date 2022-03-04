@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 import giis.demo.Proyecto.Controller.RealizarReservasController;
@@ -90,7 +91,12 @@ public class SwingMain {
 			public void actionPerformed(ActionEvent e) {
 				
 				RealizarReservasController controller=new RealizarReservasController(new RealizarReservasView() , new RealizarReservasModel());
-				controller.initController();
+				try {
+					controller.initController();
+				} catch (ParseException e1) {
+					
+					e1.printStackTrace();
+				}
 				
 							
 			}

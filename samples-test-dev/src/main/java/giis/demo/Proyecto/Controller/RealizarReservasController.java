@@ -1,7 +1,14 @@
 package giis.demo.Proyecto.Controller;
 
-import javax.swing.JOptionPane;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+
+import giis.demo.Proyecto.DTO.ReservaDTO;
 import giis.demo.Proyecto.Model.RealizarReservasModel;
 import giis.demo.Proyecto.View.RealizarReservasView;
 import giis.demo.util.SwingUtil;
@@ -25,16 +32,76 @@ public class RealizarReservasController {
 		
 	}
 
-	public void initController(){
-		
+	public void initController() throws ParseException{
+
 		this.view.getFrmRealizarReserva().setVisible(true);
+
 		this.view.getBtnCrearReserva().addActionListener(e -> SwingUtil.exceptionWrapper(() -> generarReserva()));
 
-		
+
+		this.view.getBtnBorrar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> borrar()));
+		this.view.getBtnActualizar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarTablas()));
+
+
 		
 	}
 
 	
+	
+	
+	private void actualizarTablas() {
+		
+		
+		int diaIni, mesIni, anoIni;
+		String fecha;
+		diaIni = this.view.getCbDiaIni().getSelectedIndex() +1;
+		mesIni = this.view.getCbMesIni().getSelectedIndex()+1;
+		anoIni = Integer.parseInt(this.view.getCbAnoIni().getModel().getElementAt(this.view.getCbAnoIni().getSelectedIndex()).toString());
+
+		fecha = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
+		
+		List<ReservaDTO> listReservas= null;
+
+		listReservas = model.getListaReservas(fecha);
+		
+		
+		//Generamos el modelo de tabla y lo cargamos con los datos de la BD
+		TableModel tmodel=SwingUtil.getTableModelFromPojos(listReservas, new String[] { 
+				"idReserva" , "fecha"  , "horaInicio" , "horaFin" , "idInstalacion" , "idActividad" , "idSocio" , "estado" });
+
+
+		// Asigna a la tabla de la vista el modelo generado
+		view.getTableAnteriores().setModel(tmodel);
+		SwingUtil.autoAdjustColumns(view.getTableAnteriores());
+
+				
+	}
+
+
+	private void borrar() {
+		
+		this.view.getCbAnoFin().setSelectedIndex(0);
+		this.view.getCbDiaFin().setSelectedIndex(0);
+		this.view.getCbMesFin().setSelectedIndex(0);
+		this.view.getCbAnoIni().setSelectedIndex(0);
+		this.view.getCbMesIni().setSelectedIndex(0);
+		this.view.getCbDiaIni().setSelectedIndex(0);
+		this.view.getComboBoxInstalacion().setSelectedIndex(0);
+		this.view.getComboBoxActividad().setSelectedIndex(0);
+
+		
+		this.view.getTextFieldHorasIni().setText("");
+		this.view.getTextFieldHorasFin().setText("");
+		this.view.getTextFieldMinIni().setText("");
+		this.view.getTextFieldMinFin().setText("");
+
+		this.view.getTextFieldActividad().setText("Nº");
+		this.view.getTextFieldSocio().setText("# ID de Socio");
+
+		
+	}
+
+
 	public boolean camposLlenos(){
 
 		if((this.view.getTextFieldActividad().getText().isEmpty())
@@ -76,7 +143,6 @@ public class RealizarReservasController {
 
 	}
 	
-
 	
 	public void generarReserva() {
 		
@@ -96,6 +162,7 @@ public class RealizarReservasController {
 		@SuppressWarnings("unused")
 		int instalacion, deporte, diaIni, mesIni, anoIni, diaFin, mesFin, anoFin;
 		String fecha;
+		Date fechaDate = null;
 		float hIni1,hIni2,hFin1,hFin2;
 		double horaInicio;
 		double horaFinal;
@@ -112,7 +179,12 @@ public class RealizarReservasController {
 		anoFin = Integer.parseInt(this.view.getCbAnoIni().getModel().getElementAt(this.view.getCbAnoFin().getSelectedIndex()).toString());
 		
 		fecha = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
-		
+		try {
+			fechaDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
 		
 		hIni1 = Float.parseFloat(this.view.getTextFieldHorasIni().getText());
 		hIni2 = Float.parseFloat(this.view.getTextFieldMinIni().getText());
@@ -127,7 +199,7 @@ public class RealizarReservasController {
 
 		//Delega en el modelo
 			
-		model.crearReserva(idReserva, fecha, horaInicio, horaFinal, instalacion, deporte, idSocio, 1);
+		model.crearReserva(idReserva, fechaDate, horaInicio, horaFinal, instalacion, deporte, idSocio, 1);
 								
 		}
 
