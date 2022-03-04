@@ -82,10 +82,12 @@ public class realizarReservaView {
 		JLabel lblHoraC = new JLabel("Hora comienzo");
 		
 		comboBox_HoraC = new JComboBox();
+		comboBox_HoraC.setModel(new DefaultComboBoxModel(new String[] {"9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"}));
 		
 		JLabel lblHoraF = new JLabel("Hora fin");
 		
 		comboBox_HoraF = new JComboBox();
+		comboBox_HoraF.setModel(new DefaultComboBoxModel(new String[] {"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"}));
 		
 		JLabel lblDisponible = new JLabel("Disponibilidad");
 		
@@ -131,8 +133,10 @@ public class realizarReservaView {
 		frame.getContentPane().add(rdBtnFinal);
 		
 		btnReserva = new JButton("Reservar");
+		btnReserva.setEnabled(false);
 		
 		btnResguardo = new JButton("Generar resguardo");
+		btnResguardo.setEnabled(false);
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
