@@ -22,16 +22,14 @@ import giis.demo.util.Database;
 public class CrearActividadModel {
 	
 	private Database db=new Database();
-	private String sql= "Insert into actividad(nombre,plazas,tipo,precio,precio_ns,fecha_ini,fecha_fin,periodoIns_id ,estado) values (?,?,?,?,?,?,?,?,?)";
+	private String sql= "Insert into actividad(nombre,tipo,precioSocio,precioNoSocio,fechaInicio,fechaFin,estado,plazas) values (?,?,?,?,?,?,?,?)";
 	
 	
 	//inserta la activdad en la base de  datos y returna el id de la actividad
-		public int insertaActividad(String nombre,String plazas,String precio,String precio2,String tipo, Date ini,Date fin,String idd){
-			System.out.println(Util.dateToIsoString(ini));
-			
-			//return db.executeUpdate(sql, nombre, plazas);
-			return (Integer) null;
-					//values("+"'"+nombre+"'"+","+plazas+","+"'"+tipo+"'"+","+precio+","+precio2+","+"'"+Util.dateToIsoString(ini)+"'"+","+"'"+Util.dateToIsoString(fin)+"',"+idd+",1)");
-			
+		public int insertaActividad(String nombre,String tipo, Integer precioSocio,Integer precioNoSocio,Date fechaInicio,Date fechaFin,Integer estado, Integer plazas){
+			System.out.println(Util.dateToIsoString(fechaInicio));
+		
+			return db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),estado, plazas);
+					
 		}
 }
