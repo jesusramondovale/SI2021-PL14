@@ -1,25 +1,20 @@
 package giis.demo.Proyecto.Controller;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 
-import giis.demo.Proyecto.DTO.PeriodoIncripcionDTO;
 import giis.demo.Proyecto.Model.CrearActividadModel;
 import giis.demo.Proyecto.View.CrearActividadView;
 import giis.demo.util.Dia;
 import giis.demo.util.SwingUtil;
-import giis.demo.util.Util;
 
 public class CrearActividadController {
 
 	private CrearActividadModel model;
 	private CrearActividadView view;
-	private String lastSelectedKeyI=""; //recuerda la ultima fila seleccionada para restaurarla cuando cambie la tabla de carreras
-	private String lastSelectedKeyD[];
 	private LinkedList<Dia> dias;
 
 	public CrearActividadController(CrearActividadModel model,  CrearActividadView view ) {
@@ -125,7 +120,7 @@ public class CrearActividadController {
 			String sabado ="S";
 			String domingo ="D";
 
-			int [] prueba=view.getTableDias().getSelectedRows();
+
 			for(int i=0; i<view.getTableDias().getSelectedRows().length;i++) {
 
 				/*

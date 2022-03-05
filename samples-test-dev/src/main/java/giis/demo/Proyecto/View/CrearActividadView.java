@@ -30,6 +30,7 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings({ "serial", "unused" })
 public class CrearActividadView extends JFrame{
 
 	private String [] periodos;
@@ -54,11 +55,14 @@ public class CrearActividadView extends JFrame{
 	private JTextArea textArea_Descripcion;
 	private JTextArea PrecioSocio ;
 	private JLabel lblNewLabel_2;
+	@SuppressWarnings("rawtypes")
 	private JList list;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_Plazas;
 
 	private JLabel lblPeriodoIncripcin ;
 
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_periodoIncripcion ;
 
 	private JLabel lblPrecioNoSocio;
@@ -71,8 +75,10 @@ public class CrearActividadView extends JFrame{
 
 	private JLabel lblInstalacion;
 
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_Deporte ;
 
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_Instalacion ;
 
 	private JButton boton_LimpiarValores ;
@@ -267,18 +273,22 @@ public class CrearActividadView extends JFrame{
 		this.lblNewLabel_2 = lblNewLabel_2;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public JList getList() {
 		return list;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void setList(JList list) {
 		this.list = list;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public JComboBox getComboBox_Plazas() {
 		return comboBox_Plazas;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void setComboBox_Plazas(JComboBox comboBox_Plazas) {
 		this.comboBox_Plazas = comboBox_Plazas;
 	}
@@ -291,10 +301,12 @@ public class CrearActividadView extends JFrame{
 		this.lblPeriodoIncripcin = lblPeriodoIncripcin;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public JComboBox getComboBox_periodoIncripcion() {
 		return comboBox_periodoIncripcion;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void setComboBox_periodoIncripcion(JComboBox comboBox_periodoIncripcion) {
 		this.comboBox_periodoIncripcion = comboBox_periodoIncripcion;
 	}
@@ -339,18 +351,22 @@ public class CrearActividadView extends JFrame{
 		this.lblInstalacion = lblInstalacion;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public JComboBox getComboBox_Deporte() {
 		return comboBox_Deporte;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void setComboBox_Deporte(JComboBox comboBox_Deporte) {
 		this.comboBox_Deporte = comboBox_Deporte;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public JComboBox getComboBox_Instalacion() {
 		return comboBox_Instalacion;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void setComboBox_Instalacion(JComboBox comboBox_Instalacion) {
 		this.comboBox_Instalacion = comboBox_Instalacion;
 	}
@@ -522,6 +538,7 @@ public class CrearActividadView extends JFrame{
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame("Crear Actividad");
 		frame.setBounds(100, 100, 906, 549);
@@ -834,6 +851,7 @@ public class CrearActividadView extends JFrame{
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void setPeriodos(String[] value) {
 		periodos=value;
 		comboBox_periodoIncripcion.setModel(new DefaultComboBoxModel(periodos));
