@@ -98,26 +98,31 @@ public class realizarReservaView {
 		JLabel lblSocio = new JLabel("Nº Socio");
 		
 		txtSocio = new JTextField();
+		txtSocio.setEditable(false);
 		txtSocio.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		
 		txtNombre = new JTextField();
+		txtNombre.setEditable(false);
 		txtNombre.setColumns(10);
 		
 		JLabel lblApellidos = new JLabel("Apellidos");
 		
 		txtApellidos = new JTextField();
+		txtApellidos.setEditable(false);
 		txtApellidos.setColumns(10);
 		
 		JLabel lblReserva = new JLabel("Nº Reserva");
 		
 		txtReserva = new JTextField();
+		txtReserva.setEditable(false);
 		txtReserva.setColumns(10);
 		
 		JLabel lblPrecio = new JLabel("Precio Reserva\r\n");
 		
 		txtPrecio = new JTextField();
+		txtPrecio.setEditable(false);
 		txtPrecio.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("euros");

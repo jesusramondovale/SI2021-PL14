@@ -54,7 +54,7 @@ public class resguardoView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 584, 470);
+		frame.setBounds(100, 100, 561, 374);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblTitulo = new JLabel("RESGUARDO DE LA RESERVA DE LA INSTALACIÓN");
@@ -125,51 +125,54 @@ public class resguardoView {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblTitulo)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtSocioR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_1)
-							.addGap(18)
-							.addComponent(txtNombreR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_2)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtApellidosR, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_3)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtReservaR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_4)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtInstalacionR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblNewLabel_7)
-							.addGap(18)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-									.addComponent(lblNewLabel_8)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(txtHora1R, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-									.addComponent(txtHora2R, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-									.addGap(77))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblNewLabel_5)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblNewLabel_8)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(txtHora1R, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+											.addComponent(txtHora2R, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+											.addGap(77))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblNewLabel_5)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(txtPagoR, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+											.addGap(74)
+											.addComponent(lblNewLabel_6)))
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtPagoR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-									.addComponent(lblNewLabel_6)))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(txtPrecioR, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnImprimir))
-							.addGap(51)))
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(txtPrecioR, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnImprimir)))
+								.addComponent(lblTitulo))
+							.addGap(51))
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblNewLabel)
+								.addGap(26)
+								.addComponent(txtSocioR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblNewLabel_1)
+									.addComponent(lblNewLabel_2))
+								.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(txtNombreR, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtApellidosR, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNewLabel_4)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtInstalacionR, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNewLabel_3)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtReservaR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -182,19 +185,19 @@ public class resguardoView {
 						.addComponent(lblNewLabel)
 						.addComponent(txtSocioR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1)
 						.addComponent(txtNombreR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_2)
 						.addComponent(txtApellidosR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_3)
 						.addComponent(txtReservaR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_4)
 						.addComponent(txtInstalacionR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
@@ -216,7 +219,7 @@ public class resguardoView {
 								.addComponent(lblNewLabel_8)
 								.addComponent(txtHora1R, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtHora2R, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap(42, Short.MAX_VALUE))
+							.addContainerGap(38, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnImprimir)
@@ -267,20 +270,20 @@ public class resguardoView {
 		this.txtReservaR = txtReservaR;
 	}
 
-	public JTextField getTxtInstalacionR() {
-		return txtInstalacionR;
+	public String getTxtInstalacionR() {
+		return txtInstalacionR.getText();
 	}
 
-	public void setTxtInstalacionR(JTextField txtInstalacionR) {
-		this.txtInstalacionR = txtInstalacionR;
+	public void setTxtInstalacionR(String string) {
+		this.txtInstalacionR.setText(string);;
 	}
 
-	public JTextField getTxtPagoR() {
-		return txtPagoR;
+	public String getTxtPagoR() {
+		return txtPagoR.getText();
 	}
 
-	public void setTxtPagoR(JTextField txtPagoR) {
-		this.txtPagoR = txtPagoR;
+	public void setTxtPagoR(String txtPagoR) {
+		this.txtPagoR.setText(txtPagoR);
 	}
 
 	public JTextField getTxtPrecioR() {
@@ -291,28 +294,28 @@ public class resguardoView {
 		this.txtPrecioR = txtPrecioR;
 	}
 
-	public JTextField getTxtHora1R() {
-		return txtHora1R;
+	public String getTxtHora1R() {
+		return txtHora1R.getText();
 	}
 
-	public void setTxtHora1R(JTextField txtHora1R) {
-		this.txtHora1R = txtHora1R;
+	public void setTxtHora1R(String txtHora1R) {
+		this.txtHora1R.setText(txtHora1R);;
 	}
 
-	public JTextField getTxtHora2R() {
-		return txtHora2R;
+	public String getTxtHora2R() {
+		return txtHora2R.getText();
 	}
 
-	public void setTxtHora2R(JTextField txtHora2R) {
-		this.txtHora2R = txtHora2R;
+	public void setTxtHora2R(String txtHora2R) {
+		this.txtHora2R.setText(txtHora2R);
 	}
 
 	public JTextField getTxtFecha() {
 		return txtFecha;
 	}
 
-	public void setTxtFecha(JTextField txtFecha) {
-		this.txtFecha = txtFecha;
+	public void setTxtFecha(String txtFecha) {
+		this.txtFecha.setText(txtFecha);;
 	}
 
 	public JButton getBtnImprimir() {

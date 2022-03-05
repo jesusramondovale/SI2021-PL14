@@ -51,11 +51,12 @@ public class realizarReservaController {
 		this.initView();
 		//Boton para controlar que no hagan reservas con mas de 7 días de antelación
 		view.getBtnDispo().addActionListener(e -> getFechaCorrect());
-		view.getBtnDispo().addActionListener(e -> getListaInstalaciones());
+		view.getBtnDispo().addActionListener(e -> getListaInstalaciones());		
 		//Boton para rellenar los DATOS de una Reserva
 		view.getBtnReserva().addActionListener(e -> rellenaReservaInstalacion());
 		//Boton para generar el resguardo
 		view.getBtnResguardo().addActionListener(e -> generarResguardo());
+		viewResg.getBtnImprimir().addActionListener(e -> System.exit(0));
 	}  
 
 	
@@ -81,7 +82,6 @@ public class realizarReservaController {
 		ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(instalaciones);
 		view.getComboBox_instalacion().setModel(l);
 	}
-
 
 	/**
 	 * Metodo que añade al comboBox los elemntos de busqueda sql
@@ -138,6 +138,7 @@ public class realizarReservaController {
 		List<Object[]> compHora=model.getFechasReservas(Util.isoStringToDate(fecha), horaInicio, horaFin);
 		if (compHora.isEmpty() && horaFin-horaInicio<=(float)2.0 && todayDate.compareTo(controlReserva(sqlDate, 15))<=0) {
 			System.out.println("Entro aqui 1");
+			rellenaDatos();
 			view.getBtnReserva().setEnabled(true);
 			
 		}
@@ -169,48 +170,30 @@ public class realizarReservaController {
 
 	}
 	
+	public void rellenaDatos() {
+		List<Object[]> info=model.getInfoSocio(1);
+		view.setTxtSocio("1");
+		view.setTxtNombre("Javier");
+		view.setTxtApellidos("Santos" + " "+"Menendez");
+		view.setTxtReserva("1");
+		view.setTxtPrecio("20");
+		view.getRdBtnFinal().setSelected(true);
+	}
+	
 	public void rellenaReservaInstalacion() {
-		int estado = 0;
+//		int estado = 0;
+//			String fecha=view.getTxtFecha();
+//			if(view.getRdBtnFinal().isSelected()) estado = 1;
+//			if(view.getRdBtnEfectivo().isSelected()) estado = 0;
+//			model.realizarReserva(numSocio, 0, getSelectedIndex(view.getComboBox_instalacion()), 
+//					Util.isoStringToDate(fecha),
+//					(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())),
+//					(float) Double.parseDouble(getSelectedItem(view.getComboBox_instalacion())), estado);
+		view.getBtnResguardo().setEnabled(true);
+			System.out.println("Reserva Instalación Realizada");
+	}
+				
 		
-		try{
-			
-			/*List<Object[]> info=model.getInfoSocio(numSocio);
-			view.setTfNombre(info.get(0)[0].toString());
-			view.setTfApellidos(info.get(0)[1].toString());
-			view.tfNumReserva.setText("1");
-			view.tfInstalacion.setText(getSelectedItem(view.cbInstalacion));
-			view.tfFecha.setText(getText(view.getTfFecha_1()));
-			view.tfHora.setText(getSelectedItem(view.cbHoraInicio)+"-"+getSelectedItem(view.cbHoraFin));*/
-			String fecha=view.getTxtFecha();
-			if(view.getRdBtnFinal().isSelected()) estado = 1;
-			if(view.getRdBtnEfectivo().isSelected()) estado = 0;
-			model.realizarReserva(numSocio, 0, getSelectedIndex(view.getComboBox_instalacion()), 
-					Util.isoStringToDate(fecha),
-					(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())),
-					(float) Double.parseDouble(getSelectedItem(view.getComboBox_instalacion())), estado);
-			System.out.println("Reserva Instalación Realizada");}
-		catch(NullPointerException e){
-			JOptionPane pane = new JOptionPane("Falta un campo por rellenar.",JOptionPane.INFORMATION_MESSAGE);
-			pane.setOptions(new Object[] {"ACEPTAR"}); //fija este valor para que no dependa del idioma
-			JDialog d = pane.createDialog(pane, "Error");
-			d.setVisible(true);
-			
-		}
-		catch(ApplicationException e){
-			JOptionPane pane = new JOptionPane("Falta un campo por rellenar.",JOptionPane.INFORMATION_MESSAGE);
-			pane.setOptions(new Object[] {"ACEPTAR"}); //fija este valor para que no dependa del idioma
-			JDialog d = pane.createDialog(pane, "Error");
-			d.setVisible(true);
-		}catch(NumberFormatException e){
-			JOptionPane pane = new JOptionPane("Un valor introducido no tiene el formato correcto.",JOptionPane.INFORMATION_MESSAGE);
-			pane.setOptions(new Object[] {"ACEPTAR"}); //fija este valor para que no dependa del idioma
-			JDialog d = pane.createDialog(pane, "Error");
-			d.setVisible(true);
-		}
-		
-			
-			
-		}
 	public static int getSelectedIndex(JComboBox<Object> cbInstalacion) {
 
 		int periodo;
@@ -230,34 +213,39 @@ public class realizarReservaController {
 		return Fecha;
 	}
 		
-
+	public void btngrupo() {
+		if(view.getRdBtnFinal().isSelected())
+			viewResg.setTxtPagoR("Pago al final del mes");
+		else
+			viewResg.setTxtPagoR("Pago en efectivo");
+	}
 	public void generarResguardo() {
 		try{
+		btngrupo();	
 		escribeTextoField(viewResg.getTxtSocioR(),(view.getTxtSocio()));
 		escribeTextoField(viewResg.getTxtFecha(),(view.getTxtFecha()));
-		escribeTextoField(viewResg.getTxtHora1R(),Integer.toString((int) view.getComboBox_HoraC().getSelectedItem()));
-		escribeTextoField(viewResg.getTxtHora2R(),Integer.toString((int) view.getComboBox_HoraF().getSelectedItem()));
-		escribeTextoField(viewResg.getTxtInstalacionR(),Integer.toString((int)view.getComboBox_instalacion().getSelectedItem()));
+		viewResg.setTxtHora1R(view.getComboBox_HoraC().getSelectedItem().toString());
+		viewResg.setTxtHora2R(view.getComboBox_HoraF().getSelectedItem().toString());
+		viewResg.setTxtInstalacionR(view.getComboBox_instalacion().getSelectedItem().toString());
 		escribeTextoField(viewResg.getTxtNombreR(),(view.getTxtNombre()));
 		escribeTextoField(viewResg.getTxtApellidosR(),(view.getTxtApellidos()));
 		escribeTextoField(viewResg.getTxtReservaR(),(view.getTxtReserva()));
 		escribeTextoField(viewResg.getTxtPrecioR(),(view.getTxtPrecio()));
-		escribeTextoField(viewResg.getTxtPagoR(),(view.getGrupo().getSelection().toString()));
 		
 		viewResg.getFrame().setVisible(true);
 		JOptionPane pane = new JOptionPane("Reserva realizada.",JOptionPane.INFORMATION_MESSAGE);
-		pane.setOptions(new Object[] {"ACEPTAR"}); //fija este valor para que no dependa del idioma
+		pane.setOptions(new Object[] {"ACEPTAR"}); 
 		JDialog d = pane.createDialog(pane, "Confirmacion reserva");
 		d.setLocation(200,200);
 		d.setVisible(true);}
 		catch(NullPointerException e){
 			JOptionPane pane = new JOptionPane("Hay algun campo vacio.",JOptionPane.INFORMATION_MESSAGE);
-			pane.setOptions(new Object[] {"ACEPTAR"}); //fija este valor para que no dependa del idioma
+			pane.setOptions(new Object[] {"ACEPTAR"}); 
 			JDialog d = pane.createDialog(pane, "Reviselo");
 			d.setVisible(true);
 		}catch(NumberFormatException e){
 			JOptionPane pane = new JOptionPane("Hay algun campo que no coincide con el formato que se pide.",JOptionPane.INFORMATION_MESSAGE);
-			pane.setOptions(new Object[] {"ACEPTAR"}); //fija este valor para que no dependa del idioma
+			pane.setOptions(new Object[] {"ACEPTAR"});
 			JDialog d = pane.createDialog(pane, "Reviselo");
 			d.setVisible(true);
 		}

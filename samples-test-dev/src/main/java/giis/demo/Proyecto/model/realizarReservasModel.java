@@ -101,9 +101,8 @@ public Database db=new Database();
 			float horaInicioReserva, float horaFinReserva, int estado) {
 		String sql="INSERT into reservas (idSocio,idActividad,idInstalacion,fecha,horaInicio,horaFin, estado)"
 				+ " values (?,?,?,?,?,?, ?)";
-		String fechaInicio=Util.dateToIsoString(fechaInicioReserva);
-		//String fechaFin=Util.dateToIsoString(fechaFinReserva);
-		db.executeUpdate(sql, idUsuario,null,idInstalacion,fechaInicio,horaInicioReserva,horaFinReserva, estado);
+		//String fechaInicio=Util.dateToIsoString(fechaInicioReserva);
+		db.executeUpdate(sql, idUsuario,null,idInstalacion,fechaInicioReserva,horaInicioReserva,horaFinReserva, estado);
 	}
 	
 	public List<Object[]> getInstalacion() {
