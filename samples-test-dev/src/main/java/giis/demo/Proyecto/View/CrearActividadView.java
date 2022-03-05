@@ -49,16 +49,13 @@ public class CrearActividadView extends JFrame{
 
 	private JLabel lblPrecio ;
 
-	private JLabel lblNmeroDeSesiones; 
-
 	private JTextArea textArea_Nombre ;
 
 	private JTextArea textArea_Descripcion;
-	private JTextArea textArea_Precio ;
+	private JTextArea PrecioSocio ;
 	private JLabel lblNewLabel_2;
 	private JList list;
 	private JComboBox comboBox_Plazas;
-	private JComboBox comboBox_NumeroSesiones ;
 
 	private JLabel lblPeriodoIncripcin ;
 
@@ -68,7 +65,7 @@ public class CrearActividadView extends JFrame{
 
 	private JLabel lblPrecioSocio;
 
-	private JTextArea textArea_Precio_1;
+	private JTextArea PrecioNoSocio;
 
 	private JLabel lblDeporte ;
 
@@ -84,6 +81,7 @@ public class CrearActividadView extends JFrame{
 	private JLabel lblNewLabel_2_1 ;
 
 	private JLabel lblNewLabel_3;
+	private JLabel Tipo;
 
 	private JDateChooser FechaInicio ;
 
@@ -104,6 +102,7 @@ public class CrearActividadView extends JFrame{
 	private JSpinner FMiercoles ;
 	private JSpinner FLunes ;
 	private JSpinner FMartes ;
+	private JTextField Tipo_deporte;
 
 	/**
 	 * Launch the application.
@@ -125,7 +124,7 @@ public class CrearActividadView extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	
+
 	public CrearActividadView() {
 		this.initialize();
 	}
@@ -178,6 +177,40 @@ public class CrearActividadView extends JFrame{
 		this.lblFechaInicio = lblFechaInicio;
 	}
 
+
+
+	public JTextArea getPrecioSocio() {
+		return PrecioSocio;
+	}
+
+	public void setPrecioSocio(JTextArea precioSocio) {
+		PrecioSocio = precioSocio;
+	}
+
+	public JTextArea getPrecioNoSocio() {
+		return PrecioNoSocio;
+	}
+
+	public void setPrecioNoSocio(JTextArea precioNoSocio) {
+		PrecioNoSocio = precioNoSocio;
+	}
+
+	public JLabel getTipo() {
+		return Tipo;
+	}
+
+	public void setTipo(JLabel tipo) {
+		Tipo = tipo;
+	}
+
+	public JTextField getTipo_deporte() {
+		return Tipo_deporte;
+	}
+
+	public void setTipo_deporte(JTextField tipo_deporte) {
+		Tipo_deporte = tipo_deporte;
+	}
+
 	public JLabel getLblFechaFin() {
 		return lblFechaFin;
 	}
@@ -202,14 +235,6 @@ public class CrearActividadView extends JFrame{
 		this.lblPrecio = lblPrecio;
 	}
 
-	public JLabel getLblNmeroDeSesiones() {
-		return lblNmeroDeSesiones;
-	}
-
-	public void setLblNmeroDeSesiones(JLabel lblNmeroDeSesiones) {
-		this.lblNmeroDeSesiones = lblNmeroDeSesiones;
-	}
-
 	public JTextArea getTextArea_Nombre() {
 		return textArea_Nombre;
 	}
@@ -227,11 +252,11 @@ public class CrearActividadView extends JFrame{
 	}
 
 	public JTextArea getTextArea_Precio() {
-		return textArea_Precio;
+		return PrecioSocio;
 	}
 
 	public void setTextArea_Precio(JTextArea textArea_Precio) {
-		this.textArea_Precio = textArea_Precio;
+		this.PrecioSocio = textArea_Precio;
 	}
 
 	public JLabel getLblNewLabel_2() {
@@ -256,14 +281,6 @@ public class CrearActividadView extends JFrame{
 
 	public void setComboBox_Plazas(JComboBox comboBox_Plazas) {
 		this.comboBox_Plazas = comboBox_Plazas;
-	}
-
-	public JComboBox getComboBox_NumeroSesiones() {
-		return comboBox_NumeroSesiones;
-	}
-
-	public void setComboBox_NumeroSesiones(JComboBox comboBox_NumeroSesiones) {
-		this.comboBox_NumeroSesiones = comboBox_NumeroSesiones;
 	}
 
 	public JLabel getLblPeriodoIncripcin() {
@@ -299,11 +316,11 @@ public class CrearActividadView extends JFrame{
 	}
 
 	public JTextArea getTextArea_Precio_1() {
-		return textArea_Precio_1;
+		return PrecioNoSocio;
 	}
 
 	public void setTextArea_Precio_1(JTextArea textArea_Precio_1) {
-		this.textArea_Precio_1 = textArea_Precio_1;
+		this.PrecioNoSocio = textArea_Precio_1;
 	}
 
 	public JLabel getLblDeporte() {
@@ -507,7 +524,7 @@ public class CrearActividadView extends JFrame{
 	 */
 	private void initialize() {
 		frame = new JFrame("Crear Actividad");
-		frame.setBounds(100, 100, 835, 509);
+		frame.setBounds(100, 100, 906, 549);
 
 		lblNewLabel = new JLabel("Nombre:");
 
@@ -522,12 +539,9 @@ public class CrearActividadView extends JFrame{
 
 		lblPrecioSocio = new JLabel("Precio Socio:");
 
-
-		lblNmeroDeSesiones = new JLabel("Número de sesiones:");
-
 		textArea_Nombre = new JTextArea();
 
-		textArea_Precio = new JTextArea();
+		PrecioSocio = new JTextArea();
 
 		lblNewLabel_2 = new JLabel("€");
 
@@ -536,15 +550,12 @@ public class CrearActividadView extends JFrame{
 		comboBox_Plazas = new JComboBox();
 		comboBox_Plazas.setModel(new DefaultComboBoxModel(new String[] {"5", "10", "15", "20", "25", "30"}));
 
-		comboBox_NumeroSesiones = new JComboBox();
-		comboBox_NumeroSesiones.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6", "8", "10", "12", "14", "16", "18", "20"}));
-
 		lblPeriodoIncripcin = new JLabel("Periodo Incripción");
 
 
 
 		comboBox_periodoIncripcion = new JComboBox();
-	
+
 
 		lblInstalacion = new JLabel("Instalacion");
 
@@ -647,12 +658,28 @@ public class CrearActividadView extends JFrame{
 
 		lblPrecioNoSocio = new JLabel("Precio No Socio:");
 
-		textArea_Precio_1 = new JTextArea();
+		PrecioNoSocio = new JTextArea();
 
 		lblNewLabel_2_1 = new JLabel("€");
+
+		Tipo = new JLabel("Tipo");
+
+		Tipo_deporte = new JTextField();
+
+		Tipo_deporte.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(127)
+					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 506, Short.MAX_VALUE)
+					.addComponent(boton_CrearActividad)
+					.addGap(151))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(405, Short.MAX_VALUE)
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+					.addGap(310))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(69)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -662,18 +689,6 @@ public class CrearActividadView extends JFrame{
 							.addComponent(comboBox_periodoIncripcion, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblNewLabel)
-									.addGap(32)
-									.addComponent(textArea_Nombre, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblPlazas, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(comboBox_Plazas, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-									.addGap(32)
-									.addComponent(lblNmeroDeSesiones)
-									.addGap(18)
-									.addComponent(comboBox_NumeroSesiones, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
 								.addComponent(lblNewLabel_3)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(12)
@@ -695,45 +710,43 @@ public class CrearActividadView extends JFrame{
 										.addComponent(FJueves, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 										.addComponent(FViernes, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 										.addComponent(FSabado, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-										.addComponent(FDomingo, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))))
+										.addComponent(FDomingo, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblNewLabel)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addComponent(lblPlazas, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+											.addComponent(Tipo, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
+									.addGap(32)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(Tipo_deporte)
+										.addComponent(textArea_Nombre, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+										.addComponent(comboBox_Plazas, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))))
 							.addGap(142)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-									.addComponent(lblPrecioNoSocio, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(lblFechaInicio, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblFechaFin)
+								.addComponent(lblInstalacion, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblPrecioNoSocio, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+								.addComponent(lblPrecioSocio, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(10)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textArea_Precio_1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+										.addComponent(PrecioSocio)
+										.addComponent(PrecioNoSocio, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblPrecioSocio, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblInstalacion, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_Instalacion, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(textArea_Precio, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-											.addGap(18)
-											.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblFechaInicio, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblFechaFin))
-									.addGap(18)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(FechaFin, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-										.addComponent(FechaInicio, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))))))
-					.addGap(49))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(127)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 443, Short.MAX_VALUE)
-					.addComponent(boton_CrearActividad)
-					.addGap(151))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(332, Short.MAX_VALUE)
-					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-					.addGap(310))
+											.addGap(12)
+											.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(comboBox_Instalacion, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
+								.addComponent(FechaFin, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+								.addComponent(FechaInicio, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))))
+					.addGap(100))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -744,7 +757,7 @@ public class CrearActividadView extends JFrame{
 						.addComponent(lblNewLabel)
 						.addComponent(textArea_Nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPrecioNoSocio)
-						.addComponent(textArea_Precio_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(PrecioNoSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_2_1))
 					.addGap(3)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -752,10 +765,11 @@ public class CrearActividadView extends JFrame{
 							.addGap(27)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblPrecioSocio)
-								.addComponent(textArea_Precio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Tipo)
+								.addComponent(PrecioSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblNewLabel_2))
-							.addGap(33)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addGap(45)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblInstalacion)
 								.addComponent(comboBox_Instalacion, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
 							.addGap(51)
@@ -767,13 +781,13 @@ public class CrearActividadView extends JFrame{
 								.addComponent(lblFechaFin)
 								.addComponent(FechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(34)
+							.addGap(28)
+							.addComponent(Tipo_deporte, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPlazas)
 								.addComponent(comboBox_Plazas, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNmeroDeSesiones)
-								.addComponent(comboBox_NumeroSesiones, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-							.addGap(59)
+								.addComponent(lblPlazas))
+							.addGap(39)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblPeriodoIncripcin)
 								.addComponent(comboBox_periodoIncripcion, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
@@ -819,11 +833,11 @@ public class CrearActividadView extends JFrame{
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
-	
+
 	public void setPeriodos(String[] value) {
 		periodos=value;
 		comboBox_periodoIncripcion.setModel(new DefaultComboBoxModel(periodos));
-		
+
 	}
 	public String[] getListainstalacion() {
 		return periodos;

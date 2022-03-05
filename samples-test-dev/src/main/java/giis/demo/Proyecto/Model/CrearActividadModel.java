@@ -9,6 +9,7 @@ import giis.demo.util.Util;
 import giis.demo.Proyecto.DTO.PeriodoIncripcionDTO;
 import giis.demo.util.ApplicationException;
 import giis.demo.util.Database;
+import giis.demo.util.Dia;
 import giis.demo.util.UnexpectedException;
 /**
  * Acceso a los datos de carreras e inscripciones, 
@@ -27,36 +28,45 @@ import giis.demo.util.UnexpectedException;
 public class CrearActividadModel {
 
 	private Database db=new Database();
-	private String sql= "Insert into actividad(nombre,tipo,precioSocio,precioNoSocio,fechaInicio,fechaFin,estado,plazas) values (?,?,?,?,?,?,?,?)";
+	private String sql= "Insert into actividad(nombre,tipo,precioSocio,precioNoSocio,fechaInicio,fechaFin,idPeriodoInscripcion,estado,plazas) values (?,?,?,?,?,?,?,?)";
 
 
 	//inserta la activdad en la base de  datos y returna el id de la actividad
-	public void insertaActividad(String nombre,String tipo, Integer precioSocio,Integer precioNoSocio,Date fechaInicio,Date fechaFin,Integer estado, Integer plazas){
+	public void insertaActividad(String nombre,String tipo, Integer precioSocio,Integer precioNoSocio,Date fechaInicio,Date fechaFin,
+			Integer idPeriodoInscripcion, Integer estado, Integer plazas){
 		System.out.println(Util.dateToIsoString(fechaInicio));
 
 		try {
-			db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),estado, plazas);
+			db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),idPeriodoInscripcion,estado, plazas);
 			JOptionPane.showMessageDialog(
-				    null, 
-				    "Actividad creada con exito", 
-				    "OK",
-				    JOptionPane.INFORMATION_MESSAGE); 
+					null, 
+					"Actividad creada con exito", 
+					"OK",
+					JOptionPane.INFORMATION_MESSAGE); 
 		}catch (UnexpectedException e) {
 			//Como el de arriba pero de error
 			JOptionPane.showMessageDialog(
-				    null, 
-				    "No se ha podido crear la actividad, problema con sql", 
-				    "Error",
-				    JOptionPane.ERROR_MESSAGE); 
+					null, 
+					"No se ha podido crear la actividad, problema con sql", 
+					"Error",
+					JOptionPane.ERROR_MESSAGE); 
 		}
-		
+
 	}
 
-	public List<PeriodoIncripcionDTO> getListaInstalaciones() {
-		String sql="select nombre from periodos";
-		List<PeriodoIncripcionDTO> iden=db.executeQueryPojo(PeriodoIncripcionDTO.class, sql);
+	public List<Object[]> getPeriodos() {
+		String sql= "SELECT nombre from periodos";
+		return db.executeQueryArray(sql);
 
-		if(iden.isEmpty())return null;
-		return iden;
 	}
-}
+
+	//inserta los dias y hora en ela activada con el id especificado  
+	public void inserta_hora(List<Dia> a,int id){
+
+		String insert = "Insert into actividad_horario values(?,?,?,?) ";
+		for(Dia i:a){
+			db.executeUpdate(insert,id,i.getDia(),i.getIni(),i.getFin());
+		}
+	}
+
+	}

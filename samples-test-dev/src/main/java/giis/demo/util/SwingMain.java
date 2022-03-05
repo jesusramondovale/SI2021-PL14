@@ -6,6 +6,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import giis.demo.Proyecto.Controller.CrearActividadController;
+import giis.demo.Proyecto.Model.CrearActividadModel;
+import giis.demo.Proyecto.View.CrearActividadView;
 import giis.demo.tkrun.*;
 
 /**
@@ -83,15 +87,9 @@ public class SwingMain {
 		
 		JButton boton_CrearActividad = new JButton("Crear Actividad");
 		boton_CrearActividad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				  // Eso es lo que hay que modificar
-
-               // MostrarActividadesController controller=new MostrarActividadesController(new MostrarActividadesView() , new MostrarActividadesModel());
-               // controller.initController();
-
-                //
-				
+			public void actionPerformed(ActionEvent e) {
+				CrearActividadController controller = new CrearActividadController(new CrearActividadModel(), new CrearActividadView());
+				controller.initController();
 			}
 		});
 		frame.getContentPane().add(boton_CrearActividad);
