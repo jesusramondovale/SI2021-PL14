@@ -1,7 +1,14 @@
 package giis.demo.Proyecto.Controller;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javax.swing.ComboBoxModel;
+
+import giis.demo.Proyecto.DTO.PeriodoIncripcionDTO;
 import giis.demo.Proyecto.Model.CrearActividadModel;
 import giis.demo.Proyecto.View.CrearActividadView;
+import giis.demo.util.SwingUtil;
 
 public class CrearActividadController {
 
@@ -10,9 +17,9 @@ public class CrearActividadController {
 	private String lastSelectedKeyI=""; //recuerda la ultima fila seleccionada para restaurarla cuando cambie la tabla de carreras
 	private String lastSelectedKeyD[];
 	
-	public CrearActividadController(CrearActividadModel m,  CrearActividadView v ) {
-		this.model = m;
-		this.view = v;
+	public CrearActividadController(CrearActividadModel model,  CrearActividadView view ) {
+		this.model = model;
+		this.view = view;
 		//no hay inicializacion especifica del modelo, solo de la vista
 		this.initView();
 	}
@@ -24,40 +31,12 @@ public class CrearActividadController {
 	 */
 	public void initController() {
 		
-		view.get().addActionListener(e ->CrearActividad());
-		//Boton cerar peridodo
-		
-		//view.getBtnCrear(.addActionListener(e -> SwingUtil.exceptionWrapper(() -> getListaCarreras()));
-		
-		
-		//En el caso del mouse listener (para detectar seleccion de una fila) no es un interfaz funcional puesto que tiene varios metodos
-		//ver discusion: https://stackoverflow.com/questions/21833537/java-8-lambda-expressions-what-about-multiple-methods-in-nested-class
-		view.gettInstalacion().addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				//no usa mouseClicked porque al establecer seleccion simple en la tabla de carreras
-				//el usuario podria arrastrar el raton por varias filas e interesa solo la ultima
-				SwingUtil.exceptionWrapper(() -> updateDetail(true));
-			}
-		});
-		view.gettDias().addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				//no usa mouseClicked porque al establecer seleccion simple en la tabla de carreras
-				//el usuario podria arrastrar el raton por varias filas e interesa solo la ultima
-				SwingUtil.exceptionWrapper(() -> updateDetail(false));
-			}
-		});
-		
+		//Algo falla con view
+		view.get.addActionListener(e ->CrearActividad());
 		
 	}
 	
 	public void initView() {
-		//Inicializa la fecha de hoy a un valor que permitira mostrar carreras en diferentes fases 
-		//y actualiza los datos de la vista
-		
-		this.getPeriodo();
-		this.getInstalaciones();
 		
 		//Abre la ventana (sustituye al main generado por WindowBuilder)
 		view.getFrame().setVisible(true); 
@@ -65,9 +44,25 @@ public class CrearActividadController {
 	}
 
 	
-	  public void añadeInstCB() {
-	        List<Object []> instalaciones=model.getInstalacion();
-	        ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(instalaciones);
-	        view.getComboBox_instalacion().setModel(l);
-	    }
+	public void CrearActividad() {
+		
+	}
+	private void VerPeriodos() {
+		List<PeriodoIncripcionDTO> lista=model.getListaInstalaciones();
+		String[] listaformateada=new String[lista.size()];
+		Iterator<PeriodoIncripcionDTO> itr= lista.iterator();
+		int i=0;
+		while(itr.hasNext()) {
+			listaformateada[i]=itr.next().getNombre_periodo();
+			i++;
+		}
+		view.setPeriodos(listaformateada);
+		
+	}
+	/*
+	  public void añadePeriodos() {
+	        List<Object[]> periodos =model.getPeriodos();
+	        ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(periodos);
+	        view.getCombobox_periodoIncripcion().setModel(l);
+	    }*/
 }

@@ -3,6 +3,7 @@ package giis.demo.Proyecto.Model;
 
 import java.util.*;
 import giis.demo.util.Util;
+import giis.demo.Proyecto.DTO.PeriodoIncripcionDTO;
 import giis.demo.util.ApplicationException;
 import giis.demo.util.Database;
 /**
@@ -20,16 +21,25 @@ import giis.demo.util.Database;
  **/
 
 public class CrearActividadModel {
-	
+
 	private Database db=new Database();
 	private String sql= "Insert into actividad(nombre,tipo,precioSocio,precioNoSocio,fechaInicio,fechaFin,estado,plazas) values (?,?,?,?,?,?,?,?)";
-	
-	
+
+
 	//inserta la activdad en la base de  datos y returna el id de la actividad
-		public int insertaActividad(String nombre,String tipo, Integer precioSocio,Integer precioNoSocio,Date fechaInicio,Date fechaFin,Integer estado, Integer plazas){
-			System.out.println(Util.dateToIsoString(fechaInicio));
-		
-			return db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),estado, plazas);
-					
-		}
+	public int insertaActividad(String nombre,String tipo, Integer precioSocio,Integer precioNoSocio,Date fechaInicio,Date fechaFin,Integer estado, Integer plazas){
+		System.out.println(Util.dateToIsoString(fechaInicio));
+
+		return db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),estado, plazas);
+
+	}
+
+
+	public List<PeriodoIncripcionDTO> getListaInstalaciones() {
+		String sql="select nombre from periodos";
+		List<PeriodoIncripcionDTO> iden=db.executeQueryPojo(PeriodoIncripcionDTO.class, sql);
+
+		if(iden.isEmpty())return null;
+		return iden;
+	}
 }
