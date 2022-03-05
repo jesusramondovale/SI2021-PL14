@@ -2,10 +2,14 @@ package giis.demo.Proyecto.Model;
 
 
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import giis.demo.util.Util;
 import giis.demo.Proyecto.DTO.PeriodoIncripcionDTO;
 import giis.demo.util.ApplicationException;
 import giis.demo.util.Database;
+import giis.demo.util.UnexpectedException;
 /**
  * Acceso a los datos de carreras e inscripciones, 
  * utilizado como modelo para el ejemplo de swing y para las pruebas unitarias y de interfaz de usuario.
@@ -27,13 +31,20 @@ public class CrearActividadModel {
 
 
 	//inserta la activdad en la base de  datos y returna el id de la actividad
-	public int insertaActividad(String nombre,String tipo, Integer precioSocio,Integer precioNoSocio,Date fechaInicio,Date fechaFin,Integer estado, Integer plazas){
+	public void insertaActividad(String nombre,String tipo, Integer precioSocio,Integer precioNoSocio,Date fechaInicio,Date fechaFin,Integer estado, Integer plazas){
 		System.out.println(Util.dateToIsoString(fechaInicio));
 
-		return db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),estado, plazas);
+		try {
+			db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),estado, plazas);
+			//Joption todo OK
+			
 
+		}catch (UnexpectedException e) {
+			//JOptionPane() //Error
+			
+		}
+		
 	}
-
 
 	public List<PeriodoIncripcionDTO> getListaInstalaciones() {
 		String sql="select nombre from periodos";
