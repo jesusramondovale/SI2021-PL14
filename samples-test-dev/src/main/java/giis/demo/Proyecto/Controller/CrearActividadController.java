@@ -113,9 +113,7 @@ public class CrearActividadController {
 		}
 	}
 	
-	
-	
-	
+
 	
 	private void VerPeriodos() {
 		List<PeriodoIncripcionDTO> lista=model.getListaInstalaciones();

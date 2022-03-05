@@ -36,12 +36,18 @@ public class CrearActividadModel {
 
 		try {
 			db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),estado, plazas);
-			//Joption todo OK
-			
-
+			JOptionPane.showMessageDialog(
+				    null, 
+				    "Actividad creada con exito", 
+				    "OK",
+				    JOptionPane.INFORMATION_MESSAGE); 
 		}catch (UnexpectedException e) {
-			//JOptionPane() //Error
-			
+			//Como el de arriba pero de error
+			JOptionPane.showMessageDialog(
+				    null, 
+				    "No se ha podido crear la actividad, problema con sql", 
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE); 
 		}
 		
 	}

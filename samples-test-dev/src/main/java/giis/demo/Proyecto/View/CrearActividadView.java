@@ -122,12 +122,6 @@ public class CrearActividadView extends JFrame{
 		});
 	}*/
 
-	
-	
-	
-	
-	
-	
 	/**
 	 * Create the application.
 	 */
