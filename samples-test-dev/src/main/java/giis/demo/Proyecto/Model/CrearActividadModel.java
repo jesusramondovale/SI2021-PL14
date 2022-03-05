@@ -28,16 +28,16 @@ import giis.demo.util.UnexpectedException;
 public class CrearActividadModel {
 
 	private Database db=new Database();
-	private String sql= "Insert into actividad(nombre,tipo,precioSocio,precioNoSocio,fechaInicio,fechaFin,idPeriodoInscripcion,estado,plazas) values (?,?,?,?,?,?,?,?)";
-
+	private String sql= "Insert into actividades(nombre,tipo,precioSocio,precioNoSocio,fechaInicio,fechaFin,idPeriodoInscripcion,estado,plazas,idInstalacion) values (?,?,?,?,?,?,?,?,?,?)";
+	private String sql2= "Insert into horario_actividad(dia_sem,hora_ini,hora_fin) values (?,?,?)";
+	
 
 	//inserta la activdad en la base de  datos y returna el id de la actividad
-	public void insertaActividad(String nombre,String tipo, Integer precioSocio,Integer precioNoSocio,Date fechaInicio,Date fechaFin,
-			Integer idPeriodoInscripcion, Integer estado, Integer plazas){
+	public void insertaActividad(String nombre,String tipo, int precioSocio,int precioNoSocio,Date fechaInicio,Date fechaFin,
+			String string, int estado, int plazas, int idInstalacion){
 		System.out.println(Util.dateToIsoString(fechaInicio));
-
 		try {
-			db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),idPeriodoInscripcion,estado, plazas);
+			db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),string,estado, plazas, idInstalacion);
 			JOptionPane.showMessageDialog(
 					null, 
 					"Actividad creada con exito", 
@@ -52,6 +52,23 @@ public class CrearActividadModel {
 					JOptionPane.ERROR_MESSAGE); 
 		}
 
+		
+	}
+	
+	public void insertaHoras(String dia_sem, String string, String string2) {
+		
+		try {
+			db.executeUpdate(sql2,dia_sem,string,string2);
+		}catch (UnexpectedException e) {
+			//Como el de arriba pero de error
+			JOptionPane.showMessageDialog(
+					null, 
+					"No se ha podido crear la actividad, problema con la tabla horario_actividad", 
+					"Error",
+					JOptionPane.ERROR_MESSAGE); 
+					
+		}
+		
 	}
 
 	public List<Object[]> getPeriodos() {

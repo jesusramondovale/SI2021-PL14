@@ -560,7 +560,7 @@ public class CrearActividadView extends JFrame{
 		lblInstalacion = new JLabel("Instalacion");
 
 		comboBox_Instalacion = new JComboBox();
-		comboBox_Instalacion.setModel(new DefaultComboBoxModel(new String[] {"Pista de Tenis 1", "Piscina 1", "Pista de baloncesto 1"}));
+		comboBox_Instalacion.setModel(new DefaultComboBoxModel(new String[] {"pista de pádel", "campo de futbito", "cancha de baloncesto", "salon de yoga", "cancha de balonmano", "piscina"}));
 
 		boton_CrearActividad = new JButton("Crear Actividad");
 
@@ -569,20 +569,20 @@ public class CrearActividadView extends JFrame{
 		tableDias = new JTable();
 		tableDias.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tableDias.setModel(new DefaultTableModel(
-				new Object[][] {
-					{null},
-					{"Lunes"},
-					{"Martes"},
-					{"Mi\u00E9rcoles"},
-					{"Jueves"},
-					{"Viernes"},
-					{"Sabado"},
-					{"Domingo"},
-				},
-				new String[] {
-						"New column"
-				}
-				));
+			new Object[][] {
+				{null},
+				{"Lunes"},
+				{"Martes"},
+				{"Mi\u00E9rcoles"},
+				{"Jueves"},
+				{"Viernes"},
+				{"Sabado"},
+				{"Domingo"},
+			},
+			new String[] {
+				"New column"
+			}
+		));
 
 		ILunes = new JSpinner();
 		ILunes.setPreferredSize(new Dimension(26, 18));

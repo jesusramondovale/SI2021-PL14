@@ -131,8 +131,8 @@ DROP TABLE IF EXISTS "horario_actividad";
 CREATE TABLE horario_actividad(
 	actividad_id INTEGER,
 	dia_sem VARCHAR(32),
-	hora_ini INTEGER,
-	hora_fin INTEGER,
+	hora_ini TEXT NOT NULL,
+	hora_fin TEXT NOT NULL,
 	FOREIGN KEY (actividad_id) REFERENCES actividad(idActividad)
 );
 
