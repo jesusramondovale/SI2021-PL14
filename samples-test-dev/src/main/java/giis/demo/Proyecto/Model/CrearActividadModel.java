@@ -22,7 +22,7 @@ import giis.demo.util.Database;
 public class CrearActividadModel {
 	
 	private Database db=new Database();
-	private String sql= "Insert into actividad(nombre,plazas,tipo,precio,precio_ns,fecha_ini,fecha_fin,periodoIns_id ,estado) values (?, ?, ? ...)";
+	private String sql= "Insert into actividad(nombre,plazas,tipo,precio,precio_ns,fecha_ini,fecha_fin,periodoIns_id ,estado) values (?,?,?,?,?,?,?,?,?)";
 	
 	
 	//inserta la activdad en la base de  datos y returna el id de la actividad

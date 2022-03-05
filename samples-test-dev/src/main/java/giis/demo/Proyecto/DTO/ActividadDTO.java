@@ -5,7 +5,7 @@ import java.sql.Date;
 public class ActividadDTO {
 
 	private int id;
-	private String nombre,tipo; //tipo=descripcion
+	private String nombre,tipo; //tipo = tipo de deporte
 	private Integer precio_socio, precio_noSocio;
 	private String fechaInicio,fechaFin, deporte;
 	private Integer plazas, id_instalacion, id_periodoIncr, estado;
