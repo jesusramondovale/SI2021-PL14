@@ -1,9 +1,13 @@
 package giis.demo.Proyecto.Model;
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import giis.demo.util.Util;
 import giis.demo.Proyecto.DTO.PeriodoIncripcionDTO;
 import giis.demo.util.ApplicationException;
 import giis.demo.util.Database;
+import giis.demo.util.UnexpectedException;
 /**
  * Acceso a los datos de carreras e inscripciones, 
  * utilizado como modelo para el ejemplo de swing y para las pruebas unitarias y de interfaz de usuario.
@@ -27,8 +31,22 @@ public class CrearPeriodoModel {
 
 	public void insertaPeriodo(String nombre,Date inicio,Date fin,Date finNoSocio){
 
-		db.executeUpdate("Insert into periodos (nombre,inicioInscrSocios,finInscrSocios,finInscrNoSocios) values('"+nombre+"','"+Util.dateToIsoString(inicio)+"','"+Util.dateToIsoString(fin)+"','"+Util.dateToIsoString(finNoSocio)+"')");
-
+		try {
+			db.executeUpdate("Insert into periodos (nombre,inicioInscrSocios,finInscrSocios,finInscrNoSocios) values('"+nombre+"','"+Util.dateToIsoString(inicio)+"','"+Util.dateToIsoString(fin)+"','"+Util.dateToIsoString(finNoSocio)+"')");
+			JOptionPane.showMessageDialog(
+				    null, 
+				    "Periodo creado con exito", 
+				    "OK",
+				    JOptionPane.INFORMATION_MESSAGE); 
+		}catch (UnexpectedException e) {
+			//Como el de arriba pero de error
+			JOptionPane.showMessageDialog(
+				    null, 
+				    "No se ha podido crear el periodo, problema con sql", 
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE); 
+		}
+		
 	}
 
 }

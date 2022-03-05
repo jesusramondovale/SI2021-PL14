@@ -43,11 +43,6 @@ public class CrearPeriodoController {
 		//Si todo esta correcto se puede crear dicho periodo
 		else
 			model.insertaPeriodo(view.getNombrePeriodo().getText(), view.getFechaInicioPeriodo().getDate(),  view.getFechaFinPeriodo().getDate(), view.getFechaFinPeriodoNoSocio().getDate());
-		JOptionPane.showMessageDialog(
-			    null, 
-			    "Periodo creado con exito", 
-			    "OK",
-			    JOptionPane.INFORMATION_MESSAGE); 
    
 	}
 	
