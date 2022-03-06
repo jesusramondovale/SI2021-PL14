@@ -120,7 +120,7 @@ public class MostrarActividadesView {
 		frame = new JFrame();
 		frame.setTitle("Actividades");
 		frame.setName("Actividades");
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 623, 303);
 		
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {

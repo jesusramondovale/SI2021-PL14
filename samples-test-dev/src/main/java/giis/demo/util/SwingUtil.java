@@ -39,7 +39,7 @@ public class SwingUtil {
 			showMessage(e.toString(), "Excepcion no controlada",JOptionPane.ERROR_MESSAGE);
 		}
 	}	 
-	private static void showMessage(String message, String title, int type) {
+	public static void showMessage(String message, String title, int type) {
 		//Como este metodo no recibe el contexto de la ventana de la aplicacion, 
 		//no usa el metodo estatico showMessageDialog de JOptionPane 
 		//y establece la posicion para que no aparezca en el centro de la pantalla
@@ -93,14 +93,14 @@ public class SwingUtil {
 	 * @param colProperties Los nombres de atributo de los objetos (ordenados) que se incluiran en el tablemodel
 	 * (cada uno debe disponer del correspondiente getter)
 	 */
-	public static <E> TableModel getTableModelFromPojos(List<E> pojos, String[] colProperties ) {
+	public static <E> TableModel getTableModelFromPojos(List<E> pojos, String[] colProperties , String [] colNames) {
 		//Creacion inicial del tablemodel y dimensionamiento
 		//tener en cuenta que para que la tabla pueda mostrar las columnas debera estar dentro de un JScrollPane
 		TableModel tm;
 		if (pojos==null) //solo las columnas (p.e. para inicializaciones)
-			return new DefaultTableModel(colProperties,0);
+			return new DefaultTableModel(colNames,0);
 		else
-			tm=new DefaultTableModel(colProperties, pojos.size());
+			tm=new DefaultTableModel(colNames, pojos.size());
 		//carga cada uno de los valores de pojos usando PropertyUtils (de apache coommons beanutils)
 		for (int i=0; i<pojos.size(); i++) {
 			for (int j=0; j<colProperties.length; j++) {

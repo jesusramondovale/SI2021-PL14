@@ -10,14 +10,16 @@ public class MostrarActividadesModel {
 
 	private Database db=new Database();
 
-	private static String SQL = "SELECT  nombre , precioSocio, precioNoSocio, fechaInicio , "
-			+ "horaInicio , horaFin , plazas "
-			+ "FROM actividades "
-			+ "WHERE idPeriodoInscripcion=? " ;
+	private static String SQL = "SELECT  a.nombre , a.precioSocio, a.precioNoSocio, a.fechaInicio , "
+			+ "a.horaInicio , a.horaFin , a.plazas "
+			+ "FROM actividades a "
+			+ "INNER JOIN periodos p "
+			+ "USING (idPeriodoInscripcion)"
+			+ "WHERE p.nombre=? " ;
 	
 	
-	public List<MostrarActividadesDTO> getListaActividades(int idPer){
-		return db.executeQueryPojo(MostrarActividadesDTO.class,SQL,idPer);
+	public List<MostrarActividadesDTO> getListaActividades(String nombrePeriodo){
+		return db.executeQueryPojo(MostrarActividadesDTO.class,SQL,nombrePeriodo);
 	}
 	
 	
