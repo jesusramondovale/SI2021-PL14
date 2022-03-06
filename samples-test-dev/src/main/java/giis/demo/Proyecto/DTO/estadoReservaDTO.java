@@ -2,18 +2,14 @@ package giis.demo.Proyecto.DTO;
 
 public class estadoReservaDTO {
 	
-	private boolean estadoReserva;
+	private String EstadoReserva;
 
-	public estadoReservaDTO(boolean estadoReserva) {
-		this.estadoReserva = estadoReserva;
+	public String getEstadoReserva() {
+		return EstadoReserva;
 	}
 
-	public boolean getEstadoReserva() {
-		return estadoReserva;
-	}
-
-	public void setEstadoReserva(boolean estadoReserva) {
-		this.estadoReserva = estadoReserva;
+	public void setEstadoReserva(String estadoReserva) {
+		EstadoReserva = estadoReserva;
 	}
 	
 }

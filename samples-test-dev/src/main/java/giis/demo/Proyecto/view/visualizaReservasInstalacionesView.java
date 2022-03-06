@@ -31,6 +31,7 @@ public class visualizaReservasInstalacionesView {
 	private JTextField txtFecha;
 	private JButton btnAnterior;
 	private JButton btnSiguiente;
+	private JTextField txtDNI;
 
 	/**
 	 * Launch the application.
@@ -90,6 +91,11 @@ public class visualizaReservasInstalacionesView {
 		
 		btnSiguiente = new JButton("->");
 		btnSiguiente.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		JLabel lblNewLabel = new JLabel("Introduzca su DNI");
+		
+		txtDNI = new JTextField();
+		txtDNI.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -99,10 +105,10 @@ public class visualizaReservasInstalacionesView {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_instalacion, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+						.addComponent(label_instalacion, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(comboBox_instalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
 							.addComponent(btnAnterior)
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -120,6 +126,12 @@ public class visualizaReservasInstalacionesView {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
 					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNewLabel)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(318, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -136,7 +148,11 @@ public class visualizaReservasInstalacionesView {
 						.addComponent(btnComprobarReservsa)
 						.addComponent(btnSiguiente, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnAnterior))
-					.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+					.addGap(28)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel)
+						.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
 		);
 		
@@ -144,13 +160,13 @@ public class visualizaReservasInstalacionesView {
 		tabla_disponibilidad.setEnabled(false);
 		tabla_disponibilidad.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"6:00 - 7:00", Boolean.FALSE, "", null},
+				{"6:00 - 7:00", null, "", null},
 				{"7:00 - 8:00", null, null, null},
 				{"8:00 - 9:00", null, null, null},
-				{"9:00 - 10:00", Boolean.FALSE, null, ""},
-				{"10:00 - 11:00", Boolean.FALSE, null, ""},
+				{"9:00 - 10:00", null, null, ""},
+				{"10:00 - 11:00", null, null, ""},
 				{"11:00 - 12:00", null, null, null},
-				{"12:00 - 13:00", Boolean.FALSE, null, null},
+				{"12:00 - 13:00", null, null, null},
 				{"13:00 - 14:00", null, null, null},
 				{"14:00 - 15:00", null, null, null},
 				{"15:00 - 16:00", null, null, null},
@@ -166,7 +182,7 @@ public class visualizaReservasInstalacionesView {
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				String.class, Boolean.class, Object.class, Object.class
+				String.class, String.class, Object.class, Object.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
@@ -174,6 +190,18 @@ public class visualizaReservasInstalacionesView {
 		});
 		scrollPane.setViewportView(tabla_disponibilidad);
 		frame.getContentPane().setLayout(groupLayout);
+	}
+
+	public String getTxtDNI() {
+		return txtDNI.getText();
+	}
+
+	public void setTxtDNI(String txtDNI) {
+		this.txtDNI.setText(txtDNI);
+	}
+
+	public void setTxtFecha(JTextField txtFecha) {
+		this.txtFecha = txtFecha;
 	}
 
 	public String getTxtFecha() {
