@@ -175,22 +175,51 @@ public class realizarReservaController {
 		view.setTxtSocio("1");
 		view.setTxtNombre("Javier");
 		view.setTxtApellidos("Santos" + " "+"Menendez");
-		view.setTxtReserva("1");
+		view.setTxtReserva("3");
 		view.setTxtPrecio("20");
 		view.getRdBtnFinal().setSelected(true);
+		
+		
+		  int estado = 0;
+		  
+		  try{ String fecha=view.getTxtFecha();
+		  if(view.getRdBtnEfectivo().isSelected()) estado = 0;
+		  if(view.getRdBtnFinal().isSelected()) estado = 1;
+		  model.realizarReserva(numSocio, 0, getSelectedIndex(view.getCbInstalacion()),
+		  Util.isoStringToDate(fecha), (float)
+		  Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())), (float)
+		  Double.parseDouble(getSelectedItem(view.getComboBox_HoraF())), estado);
+		  System.out.println("Reserva Instalación Realizada");}
+		  catch(NullPointerException e){ JOptionPane pane = new
+		  JOptionPane("Falta un campo por rellenar.",JOptionPane.INFORMATION_MESSAGE);
+		  pane.setOptions(new Object[] {"ACEPTAR"});  
+		  JDialog d = pane.createDialog(pane, "Error");
+		  d.setVisible(true);
+		  
+		  } catch(ApplicationException e){ JOptionPane pane = new
+		  JOptionPane("Falta un campo por rellenar.",JOptionPane.INFORMATION_MESSAGE);
+		  pane.setOptions(new Object[] {"ACEPTAR"}); //fijar este valor 
+		  JDialog d = pane.createDialog(pane, "Error");
+		  d.setVisible(true); }catch(NumberFormatException e){ JOptionPane pane = new
+		  JOptionPane("Un valor introducido no tiene el formato correcto.",JOptionPane.
+		  INFORMATION_MESSAGE); pane.setOptions(new Object[] {"ACEPTAR"}); 
+		  JDialog d = pane.createDialog(pane,
+		  "Error"); d.setVisible(true); }
+		 
+		
 	}
 	
 	public void rellenaReservaInstalacion() {
-//		int estado = 0;
-//			String fecha=view.getTxtFecha();
-//			if(view.getRdBtnFinal().isSelected()) estado = 1;
-//			if(view.getRdBtnEfectivo().isSelected()) estado = 0;
-//			model.realizarReserva(numSocio, 0, getSelectedIndex(view.getComboBox_instalacion()), 
-//					Util.isoStringToDate(fecha),
-//					(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())),
-//					(float) Double.parseDouble(getSelectedItem(view.getComboBox_instalacion())), estado);
+		int estado = 0;
+		String fecha=view.getTxtFecha();
+			if(view.getRdBtnFinal().isSelected()) estado = 1;
+			if(view.getRdBtnEfectivo().isSelected()) estado = 0;
+			model.realizarReserva(numSocio, 0, getSelectedIndex(view.getComboBox_instalacion()), 
+					Util.isoStringToDate(fecha),
+					(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())),
+					(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraF())), estado);
 		view.getBtnResguardo().setEnabled(true);
-			System.out.println("Reserva Instalación Realizada");
+		System.out.println("Reserva Instalación Realizada");
 	}
 				
 		

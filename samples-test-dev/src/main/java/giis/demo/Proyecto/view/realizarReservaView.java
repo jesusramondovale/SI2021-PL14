@@ -28,7 +28,7 @@ public class realizarReservaView {
 	private JComboBox comboBox_HoraC;
 	private JComboBox comboBox_HoraF;
 	private JButton btnDispo;
-	private JComboBox comboBox_instalacion;
+	private JComboBox <Object> comboBox_instalacion;
 	private JRadioButton rdBtnEfectivo;
 	private JRadioButton rdBtnFinal;
 	private final ButtonGroup grupo = new ButtonGroup();
@@ -322,12 +322,38 @@ public class realizarReservaView {
 		this.btnDispo = btnDispo;
 	}
 
-	public JComboBox getComboBox_instalacion() {
+	public JComboBox<Object> getCbInstalacion() {return comboBox_instalacion;}
+	
+	public JComboBox<Object> getComboBox_instalacion() {
 		return comboBox_instalacion;
 	}
 
-	public void setComboBox_instalacion(JComboBox comboBox_instalacion) {
+	public void setComboBox_instalacion(JComboBox<Object> comboBox_instalacion) {
 		this.comboBox_instalacion = comboBox_instalacion;
+	}
+
+	public void setTxtFecha(JTextField txtFecha) {
+		this.txtFecha = txtFecha;
+	}
+
+	public void setTxtSocio(JTextField txtSocio) {
+		this.txtSocio = txtSocio;
+	}
+
+	public void setTxtNombre(JTextField txtNombre) {
+		this.txtNombre = txtNombre;
+	}
+
+	public void setTxtApellidos(JTextField txtApellidos) {
+		this.txtApellidos = txtApellidos;
+	}
+
+	public void setTxtReserva(JTextField txtReserva) {
+		this.txtReserva = txtReserva;
+	}
+
+	public void setTxtPrecio(JTextField txtPrecio) {
+		this.txtPrecio = txtPrecio;
 	}
 
 	public JRadioButton getRdBtnEfectivo() {
