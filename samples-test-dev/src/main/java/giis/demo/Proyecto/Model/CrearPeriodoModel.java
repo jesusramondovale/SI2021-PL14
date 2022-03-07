@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 
 import giis.demo.util.Util;
 import giis.demo.Proyecto.DTO.PeriodoIncripcionDTO;
-import giis.demo.util.ApplicationException;
 import giis.demo.util.Database;
 import giis.demo.util.UnexpectedException;
 /**
