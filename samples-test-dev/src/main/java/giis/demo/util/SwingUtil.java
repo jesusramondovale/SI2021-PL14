@@ -147,10 +147,5 @@ public class SwingUtil {
 		return cm;
 	}
 	
-	
+}
 
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> refs/remotes/origin/17298
