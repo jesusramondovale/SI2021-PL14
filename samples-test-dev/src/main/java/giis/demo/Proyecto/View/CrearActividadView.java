@@ -547,7 +547,7 @@ public class CrearActividadView extends JFrame{
 
 		lblNewLabel_1 = new JLabel("CREAR ACTIVIDAD");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-<<<<<<< HEAD
+
 
 		lblFechaInicio = new JLabel("Fecha Inicio:");
 
@@ -566,7 +566,7 @@ public class CrearActividadView extends JFrame{
 		list = new JList();
 
 		comboBox_Plazas = new JComboBox();
-=======
+
 		
 		JLabel lblDescripcion = new JLabel("Descripcion:");
 		
@@ -592,11 +592,9 @@ public class CrearActividadView extends JFrame{
 		JList list = new JList();
 		
 		JComboBox comboBox_Plazas = new JComboBox();
->>>>>>> refs/remotes/origin/17294
 		comboBox_Plazas.setModel(new DefaultComboBoxModel(new String[] {"5", "10", "15", "20", "25", "30"}));
 
 		lblPeriodoIncripcin = new JLabel("Periodo Incripción");
-<<<<<<< HEAD
 
 
 
@@ -612,7 +610,6 @@ public class CrearActividadView extends JFrame{
 
 		lblNewLabel_3 = new JLabel("Días y horas de las sesiones");
 
-=======
 		
 		//AQUI
 		
@@ -639,7 +636,6 @@ public class CrearActividadView extends JFrame{
 		
 		JLabel lblNewLabel_3 = new JLabel("Días y horas de las sesiones");
 		
->>>>>>> refs/remotes/origin/17294
 		tableDias = new JTable();
 		tableDias.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tableDias.setModel(new DefaultTableModel(

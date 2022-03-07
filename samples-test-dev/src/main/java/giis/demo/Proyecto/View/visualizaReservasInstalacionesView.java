@@ -1,17 +1,15 @@
-package giis.demo.Proyecto.view;
+package giis.demo.Proyecto.View;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -181,6 +179,10 @@ public class visualizaReservasInstalacionesView {
 				"Hora", "Disponibilidad", "Socio", "Actividad"
 			}
 		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] {
 				String.class, String.class, Object.class, Object.class
 			};

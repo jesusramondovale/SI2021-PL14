@@ -152,7 +152,6 @@ public class CrearPeriodoView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 608, 313);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		lblNewLabel = new JLabel("CREAR PERIODO");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));

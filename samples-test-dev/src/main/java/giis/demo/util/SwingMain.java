@@ -11,8 +11,8 @@ import java.awt.event.ActionEvent;
 
 
 import giis.demo.Proyecto.Controller.*;
-import giis.demo.Proyecto.model.*;
-import giis.demo.Proyecto.view.*;
+import giis.demo.Proyecto.Model.*;
+import giis.demo.Proyecto.View.*;
 import giis.demo.Proyecto.Controller.CrearPeriodoController;
 import giis.demo.Proyecto.Model.CrearPeriodoModel;
 import giis.demo.Proyecto.View.CrearPeriodoView;
@@ -149,28 +149,16 @@ public class SwingMain {
 		btnVisualizarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				visualizarReservasInstalacionesController controller = new visualizarReservasInstalacionesController(new visualizarReservasInstalacionesModel()
-						,new visualizaReservasInstalacionesView());
+				visualizarReservasInstalacionesController controller = 
+						new visualizarReservasInstalacionesController(
+								 new visualizarReservasInstalacionesModel()
+								,new visualizaReservasInstalacionesView());
 				
 				controller.initController();
 			}
 		});
 		frame.getContentPane().add(btnVisualizarReservas);
-		
-		
-		JButton boton_CrearActividad = new JButton("Crear Actividad");
-		boton_CrearActividad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				  // Eso es lo que hay que modificar
 
-               // MostrarActividadesController controller=new MostrarActividadesController(new MostrarActividadesView() , new MostrarActividadesModel());
-               // controller.initController();
-
-                //
-				
-			}
-		});
 	}
 
 	public JFrame getFrame() { return this.frame; }
