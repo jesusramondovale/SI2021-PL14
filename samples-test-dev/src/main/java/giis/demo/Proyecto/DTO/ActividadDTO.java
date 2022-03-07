@@ -1,6 +1,5 @@
 package giis.demo.Proyecto.DTO;
 
-import java.sql.Date;
 
 public class ActividadDTO {
 

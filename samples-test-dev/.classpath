@@ -41,9 +41,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/UO269603/OneDrive - Universidad de Oviedo/Universidad/3º AÑO/2º Cuatrimestre/Sistemas Informacion/PL/trabajo_pl/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/UO269603/OneDrive - Universidad de Oviedo/Universidad/3º AÑO/2º Cuatrimestre/Sistemas Informacion/PL/trabajo_pl/jgoodies-common-1.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/UO269603/OneDrive - Universidad de Oviedo/Universidad/3º AÑO/2º Cuatrimestre/Sistemas Informacion/PL/trabajo_pl/jgoodies-looks-2.4.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/UO269603/OneDrive - Universidad de Oviedo/Universidad/3º AÑO/2º Cuatrimestre/Sistemas Informacion/PL/trabajo_pl/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/jcalendar-1.4 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/jgoodies-common-1.2.0.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/jgoodies-looks-2.4.1.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/junit-4.6.jar.zip"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

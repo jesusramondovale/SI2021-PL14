@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import org.apache.commons.beanutils.PropertyUtils;
 
+
 /**
  * Metodos de utilidad para interfaces de usuario con swing (poblar tablas a partir de un objeto POJO
  * que ha sido obtenido desde la base de datos, manejo de excepciones para metodos del 
@@ -41,7 +42,7 @@ public class SwingUtil {
 			showMessage(e.toString(), "Excepcion no controlada",JOptionPane.ERROR_MESSAGE);
 		}
 	}	 
-	private static void showMessage(String message, String title, int type) {
+	public static void showMessage(String message, String title, int type) {
 		//Como este metodo no recibe el contexto de la ventana de la aplicacion, 
 		//no usa el metodo estatico showMessageDialog de JOptionPane 
 		//y establece la posicion para que no aparezca en el centro de la pantalla
@@ -177,6 +178,29 @@ public class SwingUtil {
 		select=(String) a.getSelectedItem();
 		return select;
 
+	}
+
+	public static <E> TableModel getTableModelFromPojos(List<E> pojos, String[] colProperties , String [] colNames) {
+		//Creacion inicial del tablemodel y dimensionamiento
+		//tener en cuenta que para que la tabla pueda mostrar las columnas debera estar dentro de un JScrollPane
+		TableModel tm;
+		if (pojos==null) //solo las columnas (p.e. para inicializaciones)
+			return new DefaultTableModel(colNames,0);
+		else
+			tm=new DefaultTableModel(colNames, pojos.size());
+		//carga cada uno de los valores de pojos usando PropertyUtils (de apache coommons beanutils)
+		for (int i=0; i<pojos.size(); i++) {
+			for (int j=0; j<colProperties.length; j++) {
+				try {
+					Object pojo=pojos.get(i);
+					Object value=PropertyUtils.getSimpleProperty(pojo, colProperties[j]);
+					tm.setValueAt(value, i, j);
+				} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+					throw new UnexpectedException(e);
+				}
+			}
+		}
+		return tm;
 	}
 	
 	

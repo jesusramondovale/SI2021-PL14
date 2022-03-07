@@ -1,6 +1,5 @@
-package giis.demo.Proyecto.model;
+package giis.demo.Proyecto.Model;
 
-import java.util.Date;
 import java.util.List;
 
 import giis.demo.util.Database;
