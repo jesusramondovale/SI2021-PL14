@@ -50,42 +50,23 @@ public class visualizarReservasInstalacionesController {
 	}
 	
 	public boolean compruebaDNI() {
-		String letraM = "";
-		if(view.getTxtDNI().length() != 9 || Character.isLetter(view.getTxtDNI().charAt(8)) == false) {
-			JOptionPane.showMessageDialog(null, "Debes introducir un DNI","Error",JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		
-		letraM = (view.getTxtDNI().substring(8)).toUpperCase();
-		
-		if(numeros())
+		if(!view.getTxtFecha().isEmpty())
 			return true;
-		else{
-			JOptionPane.showMessageDialog(null, "Formato mal introducido","Error",JOptionPane.ERROR_MESSAGE);
+		else
 			return false;
-		}
 	}
 	
-	private boolean numeros() {
-		int i,j=0;
-		String numero="";
-		String DNI="";
-		String[] nums = {"0","1","2","3","4","5","6","7","8","9"};
-		
-		for(i = 0;i < view.getTxtDNI().length() -1;i++) {
-			numero = view.getTxtDNI().substring(i,i+1);
-			
-			for(j=0; j < nums.length;j++) {
-				if(numero.equals(nums[j]))
-					DNI+=nums[j];
-			}
-		}
-		
-		if(DNI.length() !=8)
-			return false;
-		else
-			return true;
-	}
+	/*
+	 * private boolean numeros() { int i,j=0; String numero=""; String DNI="";
+	 * String[] nums = {"0","1","2","3","4","5","6","7","8","9"};
+	 * 
+	 * for(i = 0;i < view.getTxtDNI().length() -1;i++) { numero =
+	 * view.getTxtDNI().substring(i,i+1);
+	 * 
+	 * for(j=0; j < nums.length;j++) { if(numero.equals(nums[j])) DNI+=nums[j]; } }
+	 * 
+	 * if(DNI.length() !=8) return false; else return true; }
+	 */
 	
 	/*
 	 * private String letra() { int DNI =
@@ -180,12 +161,12 @@ public class visualizarReservasInstalacionesController {
 
 					if(!dniSocioReserva.isEmpty()) {//reserva para socio
 						Object dniSocio = dniSocioReserva.get(0).getIdSocio();
-						String dniVista = view.getTxtDNI();
+						//String dniVista = view.getTxtDNI();
 
 
-						if(dniSocio.equals(dniVista)) {
+						//if(dniSocio.equals(dniVista)) {
 							dniSocio = "Mi Reserva";
-						}
+						//}
 						elementos[i][0]=hora;
 						elementos[i][1]="Ocupado";
 						elementos[i][2]=dniSocio;	
@@ -203,6 +184,11 @@ public class visualizarReservasInstalacionesController {
 							elementos[i][2]="---";
 							elementos[i][3]=estado;
 							System.out.println("Estado dni vacío");
+						}else {
+							elementos[i][0]=hora;
+							elementos[i][1]="Ocupado";
+							elementos[i][2]="---";
+							elementos[i][3]="---";
 						}
 					}
 					
