@@ -51,13 +51,13 @@ DROP TABLE IF EXISTS "reservas";
 CREATE TABLE IF NOT EXISTS "reservas" (
 	"idReserva"	INTEGER NOT NULL,
 	"fecha"	TEXT,
-	"horaInicio"	FLOAT,
-	"horaFin"	FLOAT,
+	"horaInicio"	INTEGER,
+	"horaFin"	INTEGER,
 	"idInstalacion"	INTEGER NOT NULL,
 	"idActividad"	INTEGER,
 	"idSocio"	INTEGER,
 	"estado"	INTEGER,
-        PRIMARY KEY("idReserva" AUTOINCREMENT),
+	PRIMARY KEY("idReserva" AUTOINCREMENT),
 	FOREIGN KEY("idSocio") REFERENCES "socios"("idSocio"),
 	FOREIGN KEY("idInstalacion") REFERENCES "instalaciones"("idInstalacion"),
 	FOREIGN KEY("idActividad") REFERENCES "actividades"("idActividad")
@@ -100,9 +100,9 @@ DROP TABLE IF EXISTS "periodos";
 CREATE TABLE IF NOT EXISTS "periodos" (
 	"idPeriodoInscripcion"	INTEGER NOT NULL,
 	"nombre"	TEXT NOT NULL,
-	"inicioInscrSocios"	TEXT NOT NULL,
-	"finInscrSocios"	TEXT NOT NULL,
-	"finInscrNoSocios"	TEXT NOT NULL,
+	"inicioInscrSocios"	DATE,
+	"finInscrSocios" 	DATE,
+	"finInscrNoSocios"	DATE,
 	PRIMARY KEY("idPeriodoInscripcion" AUTOINCREMENT)
 );
 
@@ -116,10 +116,8 @@ CREATE TABLE IF NOT EXISTS "actividades" (
 	"tipo"	TEXT NOT NULL,
 	"precioSocio"	NUMERIC NOT NULL,
 	"precioNoSocio"	NUMERIC NOT NULL,
-	"fechaInicio"	DATE NOT NULL,
-	"fechaFin"	DATE NOT NULL,
-        "horaInicio"	REAL NOT NULL,
-	"horaFin"	REAL NOT NULL,
+	"fechaInicio"	TEXT NOT NULL,
+	"fechaFin"	TEXT NOT NULL,
 	"idPeriodoInscripcion"	INTEGER NOT NULL,
 	"estado"	INTEGER NOT NULL,
 	"plazas"	INTEGER,
@@ -129,6 +127,14 @@ CREATE TABLE IF NOT EXISTS "actividades" (
 	FOREIGN KEY("idPeriodoInscripcion") REFERENCES "periodos"("idPeriodoInscripcion")
 );
 
+DROP TABLE IF EXISTS "horario_actividad";
+CREATE TABLE horario_actividad(
+	actividad_id INTEGER,
+	dia_sem VARCHAR(32),
+	hora_ini TEXT NOT NULL,
+	hora_fin TEXT NOT NULL,
+	FOREIGN KEY (actividad_id) REFERENCES actividad(idActividad)
+);
 
 
 DROP TABLE IF EXISTS "horarioActividad";

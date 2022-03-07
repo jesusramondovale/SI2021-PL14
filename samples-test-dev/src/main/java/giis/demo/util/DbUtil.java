@@ -94,6 +94,7 @@ public abstract class DbUtil {
 	/**
 	 * Ejecuta una sentencia sql de actualizacion con los parametros especificados;
 	 * Utiliza apache commons-dbutils para manejar todos los aspectos de jdbc
+	 * @return 
 	 */
 	public void executeUpdate(String sql, Object... params) {
 		Connection conn=null;

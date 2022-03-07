@@ -9,6 +9,10 @@ import java.text.ParseException;
 
 import java.awt.event.ActionEvent;
 
+
+import giis.demo.Proyecto.Controller.CrearActividadController;
+import giis.demo.Proyecto.Model.CrearActividadModel;
+import giis.demo.Proyecto.View.CrearActividadView;
 import giis.demo.Proyecto.Controller.MostrarActividadesController;
 import giis.demo.Proyecto.Model.MostrarActividadesModel;
 import giis.demo.Proyecto.View.MostrarActividadesView;
@@ -116,6 +120,15 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnRealizarReserva);
+		
+		JButton boton_CrearActividad = new JButton("Crear Actividad");
+		boton_CrearActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearActividadController controller = new CrearActividadController(new CrearActividadModel(), new CrearActividadView());
+				controller.initController();
+			}
+		});
+		frame.getContentPane().add(boton_CrearActividad);
 	}
 
 	public JFrame getFrame() { return this.frame; }
