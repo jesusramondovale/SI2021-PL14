@@ -31,66 +31,81 @@ public class CrearActividadController {
 	 * de este controlador, encerrado en un manejador de excepciones generico para mostrar ventanas
 	 * emergentes cuando ocurra algun problema o excepcion controlada.
 	 */
-	public void initController() {
-
-		//Algo falla con view
-		view.getBoton_CrearActividad().addActionListener(e ->CrearActividad());
-
-	}
+	
 
 	public void initView() {
 
 		//Abre la ventana (sustituye al main generado por WindowBuilder)
-		view.getFrame().setVisible(true); 
+		this.view.getFrame().setVisible(true); 
 		muestraPeriodos();
+
+	}
+	
+	
+	public void initController() {	
+		
+		this.initView();
+		view.getFrame().setVisible(true);
+		System.out.println("OK1");
+
+		//Algo falla con view
+		view.getBoton_CrearActividad().addActionListener(e -> SwingUtil.exceptionWrapper(() -> CrearActividad()));
 
 	}
 
 
+
 	public void CrearActividad(){
+		
+		System.out.println("crearActividad()");
+
 		//Que las cuotas son correctas
 		try{
 
 			if(Integer.parseInt(view.getPrecioSocio().getText())<0){
 				SwingUtil.showMessage("La cuota  de socios es negativa ", "ERROR", JOptionPane.ERROR_MESSAGE);
-				return;
+				System.out.println("parseInt() 1 ...");
+		          new java.util.Scanner(System.in).nextLine();
 			}
 
 		}
 
 		catch (NumberFormatException e) {
 			SwingUtil.showMessage("La cuota  de socios no es un numero ", "ERROR", JOptionPane.ERROR_MESSAGE);
-			return;
+			System.out.println("NumberFormatException ...");
 		}
 
 		try{
 			if(Integer.parseInt(view.getPrecioNoSocio().getText())<0){
 				SwingUtil.showMessage("La cuota  de no socios es negativa ", "ERROR", JOptionPane.ERROR_MESSAGE);
-				return;
+				System.out.println("ParseInt() 2...");
 			}
 		}
 		catch (NumberFormatException e) {
 			SwingUtil.showMessage("La cuota de no socios no es un numero ", "ERROR", JOptionPane.ERROR_MESSAGE);
-			return;
+			System.out.println("NumberFormatException 2...");
 		}
 
 		//Que todo esta selaccioniado 
 		if(view.getTextArea_Nombre().getText().equals("")||view.getTipo_deporte().getText().equals("")||view.getFechaInicio().getDate()==null||view.getFechaFin().getDate()==null){
 			System.out.println("aaa");
 			SwingUtil.showMessage("Hay por los menos un campo vacio ", "ERROR", JOptionPane.ERROR_MESSAGE);
-			return;
+			System.out.println("Hay por los menos un campo vacio...");
 
 		}
 		else if(SwingUtil.getSelectedKey(view.getTableDias()).equals("")){
 			SwingUtil.showMessage("Hay que selccinar un dia ", "ERROR", JOptionPane.ERROR_MESSAGE);
+			System.out.println("Hay que selccinar un dia...");
 
 		}
 
 		else if(view.getFechaInicio().getDate().after(view.getFechaFin().getDate())){
 			SwingUtil.showMessage("la fecha de fin es antes que la de inicio ", "ERROR", JOptionPane.ERROR_MESSAGE);
-
+			System.out.println("la fecha de fin es antes que la de inicio...");
 		}
 		else{	
+
+			System.out.println("LINE 108");
 
 			//Se crea la actividad en la tabala ativadad y en activdad_horario
 			//int id= model.insertaActividad(view.gettFNombre().getText(),view.getsAforo().getValue().toString(),view.gettFSocios().getText(),view.gettFNosocios().getText(),view.gettFtipo().getText(),  view.getdCini().getDate(), view.getdCfin().getDate(),SwingUtil.getSelectedKey(view.gettPeriodo()));
@@ -100,15 +115,24 @@ public class CrearActividadController {
 			int id_PeriodoIncripcion=this.view.getComboBox_periodoIncripcion().getSelectedIndex();
 			String periodo_escogido;
 			if(id_PeriodoIncripcion ==-1) {
-				periodo_escogido=this.view.getComboBox_periodoIncripcion().getModel().getElementAt(0).toString();
+				periodo_escogido="1";
 			}
 			else {
-				periodo_escogido=this.view.getComboBox_periodoIncripcion().getModel().getElementAt(id_PeriodoIncripcion).toString();
+				periodo_escogido= String.valueOf(id_PeriodoIncripcion +1);
 			}
 			int idInstalacion=view.getComboBox_Instalacion().getSelectedIndex()+1;
-			model.insertaActividad(view.getTextArea_Nombre().getText(), view.getTipo_deporte().getText(), Integer.parseInt(view.getPrecioSocio().getText()), Integer.parseInt(view.getPrecioNoSocio().getText()),
+			
+			int numPlazas =  ( view.getComboBox_Plazas().getSelectedIndex() <=0         ?  
+					                5        : 
+					         ( view.getComboBox_Plazas().getSelectedIndex() + 1) * 5);
+			
+			model.insertaActividad(Integer.parseInt(view.getTextFieldIdActividad().getText()),
+					view.getTextArea_Nombre().getText(), 
+					view.getTipo_deporte().getText(), 
+					Integer.parseInt(view.getPrecioSocio().getText()), 
+					Integer.parseInt(view.getPrecioNoSocio().getText()),
 					view.getFechaInicio().getDate(), view.getFechaFin().getDate(),
-					periodo_escogido,1, (view.getComboBox_Plazas().getSelectedIndex()+1)*5, idInstalacion);
+					periodo_escogido,1, numPlazas, idInstalacion);
 
 			//llamar al otro model
 			String dias_selecccionados="";
@@ -120,6 +144,7 @@ public class CrearActividadController {
 			String sabado ="S";
 			String domingo ="D";
 
+			System.out.println("LINE 136");
 
 			for(int i=0; i<view.getTableDias().getSelectedRows().length;i++) {
 
@@ -188,7 +213,7 @@ public class CrearActividadController {
 			}
 			System.out.println(dias_selecccionados);
 
-			model.insertaHoras(dias_selecccionados, view.getILunes().getValue().toString(), view.getFLunes().getValue().toString());
+			model.insertaHoras(Integer.parseInt(view.getTextFieldIdActividad().getText()),dias_selecccionados, view.getILunes().getValue().toString(), view.getFLunes().getValue().toString());
 			System.out.println("Insert Actividad");
 		}
 	}

@@ -6,7 +6,7 @@ public class MostrarActividadesDTO {
 
 	
 	
-	//private int idActividad;
+	private int idActividad;
 	private String nombre;
 	//private String tipo;
 	private float precioSocio;
@@ -24,6 +24,18 @@ public class MostrarActividadesDTO {
 	
 	public float getHoraInicio() {
 		return horaInicio;
+	}
+
+
+
+	public int getIdActividad() {
+		return idActividad;
+	}
+
+
+
+	public void setIdActividad(int idActividad) {
+		this.idActividad = idActividad;
 	}
 
 

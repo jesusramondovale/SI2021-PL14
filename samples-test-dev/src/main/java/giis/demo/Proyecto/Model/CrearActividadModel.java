@@ -3,14 +3,15 @@ package giis.demo.Proyecto.Model;
 
 import java.util.*;
 
-import javax.swing.JOptionPane;
 
 import giis.demo.util.Util;
 import giis.demo.util.Database;
-import giis.demo.util.ApplicationException;
 
 import giis.demo.util.Dia;
+import giis.demo.util.SwingUtil;
 import giis.demo.util.UnexpectedException;
+
+
 /**
  * Acceso a los datos de carreras e inscripciones, 
  * utilizado como modelo para el ejemplo de swing y para las pruebas unitarias y de interfaz de usuario.
@@ -28,47 +29,42 @@ import giis.demo.util.UnexpectedException;
 public class CrearActividadModel {
 
 	private Database db=new Database();
-	private String sql= "Insert into actividades(nombre,tipo,precioSocio,precioNoSocio,fechaInicio,fechaFin,idPeriodoInscripcion,estado,plazas,idInstalacion) values (?,?,?,?,?,?,?,?,?,?)";
-	private String sql2= "Insert into horario_actividad(dia_sem,hora_ini,hora_fin) values (?,?,?)";
+	private String sql= "Insert into actividades(idActividad,nombre,tipo,"
+			+ "precioSocio,precioNoSocio,"
+			+ "fechaInicio,fechaFin,"
+			+ "idPeriodoInscripcion,estado,"
+			+ "plazas,idInstalacion) values (?,?,?,?,?,?,?,?,?,?,?)";
+	private String sql2= "Insert into horarioActividad(idActividad, dia,horaInicio,horaFin) values (?,?,?,?)";
 
 
 	//inserta la activdad en la base de  datos y returna el id de la actividad
-	public void insertaActividad(String nombre,String tipo, int precioSocio,int precioNoSocio,Date fechaInicio,Date fechaFin,
-			String string, int estado, int plazas, int idInstalacion){
+	public void insertaActividad(int idActividad , String nombre,String tipo, int precioSocio,int precioNoSocio,Date fechaInicio,Date fechaFin,
+			String periodo, int estado, int plazas, int idInstalacion){
 		System.out.println(Util.dateToIsoString(fechaInicio));
+		
+		
 		try {
-			db.executeUpdate(sql, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),string,estado, plazas, idInstalacion);
-			JOptionPane.showMessageDialog(
-					null, 
-					"Actividad creada con exito", 
-					"OK",
-					JOptionPane.INFORMATION_MESSAGE); 
+			db.executeUpdate(sql,idActividad, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),periodo,estado, plazas, idInstalacion);
+			SwingUtil.showMessage("Actividad creada con éxito!", "Éxito", 1);
+			
+			
+			
+			
 		}catch (UnexpectedException e) {
 			//Como el de arriba pero de error
-			JOptionPane.showMessageDialog(
-					null, 
-					"No se ha podido crear la actividad, problema con sql", 
-					"Error",
-					JOptionPane.ERROR_MESSAGE); 
+			SwingUtil.showMessage("Error SQL en INSERT into ACTIVIDADES!", "Error", 0);
+
 		}
+		
 
 
 	}
 
-	public void insertaHoras(String dia_sem, String string, String string2) {
+	public void insertaHoras(int idActividad , String dia_sem, String string, String string2) {
 
-		try {
-			db.executeUpdate(sql2,dia_sem,string,string2);
-		}catch (UnexpectedException e) {
-			//Como el de arriba pero de error
-			JOptionPane.showMessageDialog(
-					null, 
-					"No se ha podido crear la actividad, problema con la tabla horario_actividad", 
-					"Error",
-					JOptionPane.ERROR_MESSAGE); 
-
-		}
-
+		db.executeUpdate(sql2,idActividad , dia_sem,Float.parseFloat(string),Float.parseFloat(string2));
+		
+		
 	}
 
 	public List<Object[]> getPeriodos() {

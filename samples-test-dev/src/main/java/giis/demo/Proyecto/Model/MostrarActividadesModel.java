@@ -10,8 +10,8 @@ public class MostrarActividadesModel {
 
 	private Database db=new Database();
 
-	private static String SQL = "SELECT  a.nombre , a.precioSocio, a.precioNoSocio, a.fechaInicio , "
-			+ "a.horaInicio , a.horaFin , a.plazas "
+	private static String SQL = "SELECT  a.idActividad , a.precioSocio, a.precioNoSocio, a.fechaInicio , "
+			+ "p.nombre  , a.plazas "
 			+ "FROM actividades a "
 			+ "INNER JOIN periodos p "
 			+ "USING (idPeriodoInscripcion)"

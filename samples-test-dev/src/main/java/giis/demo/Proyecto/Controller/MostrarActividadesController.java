@@ -94,9 +94,9 @@ public class MostrarActividadesController {
 
 		//Generamos el modelo de tabla y lo cargamos con los datos de la BD
 		TableModel tmodel=SwingUtil.getTableModelFromPojos(listActividades, new String[] { 
-				"nombre", "fechaInicio" ,"horaInicio", "horaFin", "plazas", "precioSocio" , "precioNoSocio" },
+				"idActividad", "fechaInicio" ,"horaInicio", "horaFin", "plazas", "precioSocio" , "precioNoSocio" },
 				new String[] { 
-						"Nombre", "Fecha de Inicio" ,"Hora de Inicio", "Hora de Fin", "Nº Plazas", "Precio (Socios)" , "Precio (No Socios)" });
+						"Nº Actividad", "Fecha de Inicio" ,"Hora de Inicio", "Hora de Fin", "Nº Plazas", "Precio (Socios)" , "Precio (No Socios)" });
 
 
 		// Asigna a la tabla de la vista el modelo generado
