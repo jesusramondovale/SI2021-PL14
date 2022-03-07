@@ -133,7 +133,7 @@ public class SwingMain {
 		});
 		frame.getContentPane().add(boton_CrearActividad);
 		
-		JButton btnNewButton = new JButton("CrearPeriodo");
+		JButton btnNewButton = new JButton("Crear Periodo");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearPeriodoController controller = new CrearPeriodoController(new CrearPeriodoModel(), new CrearPeriodoView());
