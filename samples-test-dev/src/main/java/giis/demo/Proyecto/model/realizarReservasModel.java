@@ -2,12 +2,65 @@ package giis.demo.Proyecto.model;
 
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 import giis.demo.util.Util;
 import giis.demo.Proyecto.DTO.*;
 import giis.demo.util.Database;
+import giis.demo.util.SwingUtil;
+import giis.demo.util.UnexpectedException;
 public class realizarReservasModel {
 
 public Database db=new Database();
+
+private String sql = "INSERT INTO reservas VALUES (?,?,?,?,?,?,?,?)";
+private String sql2 = "SELECT idSocio FROM socios";
+private String sql3 = "SELECT precioHora FROM instalaciones";
+
+	public void insertaReserva(int idReserva,int idsocio, String fecha,float horaInicio,
+			float horaFin, int idInstalacion, int idActividad, int estado) {
+		try {
+		db.executeUpdate(sql,idReserva,idsocio, fecha,horaInicio,
+				horaFin, idInstalacion, idActividad, estado);
+		JOptionPane.showMessageDialog(null, "SQL correcto","Correcto",
+			    JOptionPane.INFORMATION_MESSAGE);
+		}catch(UnexpectedException e) {
+			JOptionPane.showMessageDialog(null, "SQL error de la reserva.","Error",
+				    JOptionPane.WARNING_MESSAGE);
+		}
+	}
+	
+	public List<SociosDisplayDTO> obtenerSocio() {
+		try {
+			List<SociosDisplayDTO> socios= db.executeQueryPojo(SociosDisplayDTO.class, sql2);
+			JOptionPane.showMessageDialog(null, "SQL correcto","Correcto",
+				    JOptionPane.INFORMATION_MESSAGE);
+			return socios;
+			
+		}catch(UnexpectedException e) {
+			JOptionPane.showMessageDialog(null, "SQL error en Obtener socio.","Error",
+				    JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+	}
+	
+	public List<InstalacionesDisplayDTO> obtenerInstalaciones() {
+		try {
+			List<InstalacionesDisplayDTO> precioInstalaciones=  db.executeQueryPojo(InstalacionesDisplayDTO.class, sql3);
+			
+			/*
+			JOptionPane.showMessageDialog(null, "SQL correcto","Correcto",
+				    JOptionPane.INFORMATION_MESSAGE);
+		    */
+			
+			return precioInstalaciones;
+			
+		}catch(UnexpectedException e) {
+			JOptionPane.showMessageDialog(null, "SQL error en obtenerInstalaciones().","Error",
+				    JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+	}
 
 	
 	public List<InstalacionesDisplayDTO> getListaInstalacionesArray(int numInst,Date fecha, float horaInicio,float horaFin) {
@@ -44,9 +97,9 @@ public Database db=new Database();
 	}
 
 	
-	public List<Object[]> getInfoSocio(int numSocio){
+	public List<SociosDisplayDTO> getInfoSocio(int numSocio){
 		String sql="SELECT nombre,apellido1, apellido2 from socios where idSocio=?";
-		return db.executeQueryArray(sql,numSocio);
+		return db.executeQueryPojo(SociosDisplayDTO.class,sql,numSocio);
 	}
 	
 	public List<Object[]>getInfoSocioDNI(String DNI){
@@ -97,17 +150,34 @@ public Database db=new Database();
 	}*/
 
 	
-	public void realizarReserva(int idUsuario, int idActividad, int idInstalacion, Date fechaInicioReserva,
+	public void realizarReserva(int idReserva, int idUsuario, int idActividad, int idInstalacion, String fecha,
 			float horaInicioReserva, float horaFinReserva, int estado) {
-		String sql="INSERT into reservas (idSocio,idActividad,idInstalacion,fecha,horaInicio,horaFin, estado)"
-				+ " values (?,?,?,?,?,?, ?)";
+		String sql="INSERT into reservas (idReserva, idSocio,idActividad,idInstalacion,fecha,horaInicio,horaFin, estado)"
+				+ " values (?,?,?,?,?,?,?, ?)";
 		//String fechaInicio=Util.dateToIsoString(fechaInicioReserva);
-		db.executeUpdate(sql, idUsuario,null,idInstalacion,fechaInicioReserva,horaInicioReserva,horaFinReserva, estado);
+
+		try{
+			db.executeUpdate(sql, idReserva, idUsuario,idActividad,idInstalacion,fecha,horaInicioReserva,horaFinReserva, estado);
+			SwingUtil.showMessage("Reserva realizada con éxito!", "Éxito", 3);
+
+		}
+		catch (UnexpectedException e){
+			SwingUtil.showMessage("Nº de reserva ya utilizado", "Error", 0);
+
+		}
+
 	}
 	
-	public List<Object[]> getInstalacion() {
+	public List<InstalacionesDisplayDTO> getInstalacion() {
 		// TODO Auto-generated method stub
-		String sql= "SELECT nombre from instalaciones";
+		String sql= "SELECT idInstalacion , precioHora from instalaciones ORDER BY (idInstalacion)";
+		return db.executeQueryPojo(InstalacionesDisplayDTO.class, sql);
+
+	}
+	
+	public List<Object[]> getInstalacion2() {
+		// TODO Auto-generated method stub
+		String sql= "SELECT nombre , idInstalacion from instalaciones ORDER BY (idInstalacion)";
 		return db.executeQueryArray(sql);
 
 	}

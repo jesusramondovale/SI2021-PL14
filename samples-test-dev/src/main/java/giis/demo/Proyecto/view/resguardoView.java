@@ -20,11 +20,22 @@ public class resguardoView {
 	private JTextField txtReservaR;
 	private JTextField txtInstalacionR;
 	private JTextField txtPagoR;
-	private JTextField txtPrecioR;
 	private JTextField txtHora1R;
 	private JTextField txtHora2R;
 	private JTextField txtFecha;
 	private JButton btnImprimir;
+	private JTextField textActividadR;
+	private JLabel lblNewLabel_9;
+	private JLabel lblPrecio;
+	private JLabel labelEuro;
+
+	public JLabel getLabel_1() {
+		return lblPrecio;
+	}
+
+	public void setLabel_1(JLabel label_1) {
+		this.lblPrecio = label_1;
+	}
 
 	/**
 	 * Launch the application.
@@ -54,8 +65,7 @@ public class resguardoView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 561, 374);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 775, 555);
 		
 		JLabel lblTitulo = new JLabel("RESGUARDO DE LA RESERVA DE LA INSTALACIÓN");
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -102,10 +112,6 @@ public class resguardoView {
 		txtPagoR.setEditable(false);
 		txtPagoR.setColumns(10);
 		
-		txtPrecioR = new JTextField();
-		txtPrecioR.setEditable(false);
-		txtPrecioR.setColumns(10);
-		
 		txtHora1R = new JTextField();
 		txtHora1R.setEditable(false);
 		txtHora1R.setColumns(10);
@@ -119,111 +125,147 @@ public class resguardoView {
 		txtFecha = new JTextField();
 		txtFecha.setEditable(false);
 		txtFecha.setColumns(10);
+		
+		textActividadR = new JTextField();
+		textActividadR.setEditable(false);
+		textActividadR.setColumns(10);
+		
+		lblNewLabel_9 = new JLabel("Nº Actividad");
+		
+		lblPrecio = new JLabel("AQUIIII");
+		
+		labelEuro = new JLabel("€");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_7)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblNewLabel_8)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(txtHora1R, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-											.addComponent(txtHora2R, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-											.addGap(77))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblNewLabel_5)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(txtPagoR, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-											.addGap(74)
-											.addComponent(lblNewLabel_6)))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(txtPrecioR, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnImprimir)))
-								.addComponent(lblTitulo))
-							.addGap(51))
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lblNewLabel)
-								.addGap(26)
-								.addComponent(txtSocioR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGroup(groupLayout.createSequentialGroup()
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addComponent(lblNewLabel_1)
-									.addComponent(lblNewLabel_2))
-								.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addComponent(txtNombreR, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-									.addComponent(txtApellidosR, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE))))
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addGroup(groupLayout.createSequentialGroup()
+													.addComponent(lblNewLabel_4)
+													.addPreferredGap(ComponentPlacement.UNRELATED)
+													.addComponent(txtInstalacionR, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+													.addGap(57)
+													.addComponent(lblNewLabel_9)
+													.addGap(18)
+													.addComponent(textActividadR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+												.addGroup(groupLayout.createSequentialGroup()
+													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+														.addGroup(groupLayout.createSequentialGroup()
+															.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+																.addGroup(groupLayout.createSequentialGroup()
+																	.addComponent(lblNewLabel_5)
+																	.addPreferredGap(ComponentPlacement.RELATED)
+																	.addComponent(txtPagoR, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
+																.addGroup(groupLayout.createSequentialGroup()
+																	.addComponent(lblNewLabel_7)
+																	.addPreferredGap(ComponentPlacement.UNRELATED)
+																	.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+																	.addGap(178)))
+															.addPreferredGap(ComponentPlacement.RELATED))
+														.addGroup(groupLayout.createSequentialGroup()
+															.addComponent(lblNewLabel_8)
+															.addPreferredGap(ComponentPlacement.UNRELATED)
+															.addComponent(txtHora1R, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+															.addPreferredGap(ComponentPlacement.RELATED)
+															.addComponent(txtHora2R, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+															.addGap(127)))
+													.addPreferredGap(ComponentPlacement.RELATED)
+													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+														.addComponent(lblNewLabel_6)
+														.addGroup(groupLayout.createSequentialGroup()
+															.addGap(10)
+															.addComponent(lblPrecio)
+															.addPreferredGap(ComponentPlacement.RELATED)
+															.addComponent(labelEuro)))
+													.addGap(27)))
+											.addGap(103))
+										.addComponent(lblTitulo))
+									.addGap(51))
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(lblNewLabel)
+										.addGap(26)
+										.addComponent(txtSocioR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addComponent(lblNewLabel_1)
+											.addComponent(lblNewLabel_2))
+										.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addComponent(txtNombreR, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+											.addComponent(txtApellidosR, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE))))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblNewLabel_3)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(txtReservaR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_4)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtInstalacionR, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_3)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtReservaR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
+							.addComponent(btnImprimir)
+							.addGap(436))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblTitulo)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
-						.addComponent(txtSocioR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1)
-						.addComponent(txtNombreR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_2)
-						.addComponent(txtApellidosR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(txtReservaR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_4)
-						.addComponent(txtInstalacionR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblTitulo)
+							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_5)
-								.addComponent(lblNewLabel_6)
-								.addComponent(txtPrecioR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(lblNewLabel)
+								.addComponent(txtSocioR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_7)
-								.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(txtPagoR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblNewLabel_1)
+								.addComponent(txtNombreR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_2)
+								.addComponent(txtApellidosR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_3)
+								.addComponent(txtReservaR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_4)
+								.addComponent(txtInstalacionR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_9)
+								.addComponent(textActividadR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblNewLabel_5)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblNewLabel_7)
+										.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(txtPagoR, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(287)
+							.addComponent(lblNewLabel_6)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewLabel_8)
 								.addComponent(txtHora1R, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtHora2R, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap(38, Short.MAX_VALUE))
+							.addGap(18)
+							.addComponent(btnImprimir))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnImprimir)
-							.addContainerGap())))
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblPrecio)
+								.addComponent(labelEuro))))
+					.addContainerGap(94, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 		
@@ -270,40 +312,38 @@ public class resguardoView {
 		this.txtReservaR = txtReservaR;
 	}
 
-	public String getTxtInstalacionR() {
-		return txtInstalacionR.getText();
+	public JTextField getTxtInstalacionR() {
+		return txtInstalacionR;
 	}
 
 	public void setTxtInstalacionR(String string) {
 		this.txtInstalacionR.setText(string);;
 	}
 
-	public String getTxtPagoR() {
-		return txtPagoR.getText();
+	public JTextField getTxtPagoR() {
+		return txtPagoR;
 	}
 
 	public void setTxtPagoR(String txtPagoR) {
 		this.txtPagoR.setText(txtPagoR);
 	}
 
-	public JTextField getTxtPrecioR() {
-		return txtPrecioR;
+	public JLabel getTxtPrecioR() {
+		return lblPrecio;
 	}
 
-	public void setTxtPrecioR(JTextField txtPrecioR) {
-		this.txtPrecioR = txtPrecioR;
-	}
+	
 
-	public String getTxtHora1R() {
-		return txtHora1R.getText();
+	public JTextField getTxtHora1R() {
+		return txtHora1R;
 	}
 
 	public void setTxtHora1R(String txtHora1R) {
 		this.txtHora1R.setText(txtHora1R);;
 	}
 
-	public String getTxtHora2R() {
-		return txtHora2R.getText();
+	public JTextField getTxtHora2R() {
+		return txtHora2R;
 	}
 
 	public void setTxtHora2R(String txtHora2R) {
@@ -326,4 +366,31 @@ public class resguardoView {
 		this.btnImprimir = btnImprimir;
 	}
 
+	public JTextField getTextActividadR() {
+		return textActividadR;
+	}
+
+	public void setTextActividadR(JTextField textActividadR) {
+		this.textActividadR = textActividadR;
+	}
+
+	public void setTxtInstalacionR(JTextField txtInstalacionR) {
+		this.txtInstalacionR = txtInstalacionR;
+	}
+
+	public void setTxtPagoR(JTextField txtPagoR) {
+		this.txtPagoR = txtPagoR;
+	}
+
+	public void setTxtHora1R(JTextField txtHora1R) {
+		this.txtHora1R = txtHora1R;
+	}
+
+	public void setTxtHora2R(JTextField txtHora2R) {
+		this.txtHora2R = txtHora2R;
+	}
+
+	public void setTxtFecha(JTextField txtFecha) {
+		this.txtFecha = txtFecha;
+	}
 }
