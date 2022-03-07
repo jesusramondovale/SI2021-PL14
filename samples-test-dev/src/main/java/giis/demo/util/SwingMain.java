@@ -10,6 +10,9 @@ import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 
+import giis.demo.Proyecto.Controller.CrearPeriodoController;
+import giis.demo.Proyecto.Model.CrearPeriodoModel;
+import giis.demo.Proyecto.View.CrearPeriodoView;
 import giis.demo.Proyecto.Controller.CrearActividadController;
 import giis.demo.Proyecto.Model.CrearActividadModel;
 import giis.demo.Proyecto.View.CrearActividadView;
@@ -129,6 +132,29 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(boton_CrearActividad);
+		
+		JButton btnNewButton = new JButton("CrearPeriodo");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearPeriodoController controller = new CrearPeriodoController(new CrearPeriodoModel(), new CrearPeriodoView());
+				controller.initController();
+			}
+		});
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton boton_CrearActividad = new JButton("Crear Actividad");
+		boton_CrearActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				  // Eso es lo que hay que modificar
+
+               // MostrarActividadesController controller=new MostrarActividadesController(new MostrarActividadesView() , new MostrarActividadesModel());
+               // controller.initController();
+
+                //
+				
+			}
+		});
 	}
 
 	public JFrame getFrame() { return this.frame; }

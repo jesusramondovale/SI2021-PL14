@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package giis.demo.util;
 
 import java.lang.reflect.InvocationTargetException;
@@ -303,4 +302,3 @@ public class SwingUtil {
 	
 
 }
->>>>>>> refs/remotes/origin/17293

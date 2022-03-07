@@ -547,6 +547,7 @@ public class CrearActividadView extends JFrame{
 
 		lblNewLabel_1 = new JLabel("CREAR ACTIVIDAD");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+<<<<<<< HEAD
 
 		lblFechaInicio = new JLabel("Fecha Inicio:");
 
@@ -565,9 +566,37 @@ public class CrearActividadView extends JFrame{
 		list = new JList();
 
 		comboBox_Plazas = new JComboBox();
+=======
+		
+		JLabel lblDescripcion = new JLabel("Descripcion:");
+		
+		JLabel lblFechaInicio = new JLabel("Fecha Inicio:");
+		
+		JLabel lblFechaFin = new JLabel("Fecha Fin:");
+		
+		JLabel lblPlazas = new JLabel("Plazas:");
+		
+		JLabel lblPrecioSocio = new JLabel("Precio Socio:");
+		
+		
+		JLabel lblNmeroDeSesiones = new JLabel("Número de sesiones:");
+		
+		JTextArea textArea_Nombre = new JTextArea();
+		
+		JTextArea textArea_Descripcion = new JTextArea();
+		
+		JTextArea textArea_Precio = new JTextArea();
+		
+		JLabel lblNewLabel_2 = new JLabel("€");
+		
+		JList list = new JList();
+		
+		JComboBox comboBox_Plazas = new JComboBox();
+>>>>>>> refs/remotes/origin/17294
 		comboBox_Plazas.setModel(new DefaultComboBoxModel(new String[] {"5", "10", "15", "20", "25", "30"}));
 
 		lblPeriodoIncripcin = new JLabel("Periodo Incripción");
+<<<<<<< HEAD
 
 
 
@@ -583,6 +612,34 @@ public class CrearActividadView extends JFrame{
 
 		lblNewLabel_3 = new JLabel("Días y horas de las sesiones");
 
+=======
+		
+		//AQUI
+		
+		JComboBox comboBox_periodoIncripcion = new JComboBox();
+		comboBox_periodoIncripcion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		
+		JLabel lblDeporte = new JLabel("Deporte");
+		
+		JLabel lblInstalacion = new JLabel("Instalacion");
+		
+		JComboBox comboBox_Deporte = new JComboBox();
+		comboBox_Deporte.setModel(new DefaultComboBoxModel(new String[] {"Tenis", "Padel", "Yoga", "Spinning", "Natación"}));
+		
+		JComboBox comboBox_Instalacion = new JComboBox();
+		comboBox_Instalacion.setModel(new DefaultComboBoxModel(new String[] {"Pista de Tenis 1", "Pista de Tenis 2", "Pista de Tenis 3", "Pista de Padel 1", "Pista de Padel 2", "Pista de Padel 3", "Piscina 1", "Piscina 2", "Sala de Spinning 1", "Sala de Spinning 2"}));
+		
+		JButton boton_LimpiarValores = new JButton("Limpiar valores");
+		
+		JButton boton_CrearActividad = new JButton("Crear Actividad");
+		
+		JLabel lblNewLabel_3 = new JLabel("Días y horas de las sesiones");
+		
+>>>>>>> refs/remotes/origin/17294
 		tableDias = new JTable();
 		tableDias.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tableDias.setModel(new DefaultTableModel(
