@@ -10,6 +10,9 @@ import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 
+import giis.demo.Proyecto.Controller.*;
+import giis.demo.Proyecto.model.*;
+import giis.demo.Proyecto.view.*;
 import giis.demo.Proyecto.Controller.CrearPeriodoController;
 import giis.demo.Proyecto.Model.CrearPeriodoModel;
 import giis.demo.Proyecto.View.CrearPeriodoView;
@@ -141,6 +144,19 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones");
+		btnVisualizarReservas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				visualizarReservasInstalacionesController controller = new visualizarReservasInstalacionesController(new visualizarReservasInstalacionesModel()
+						,new visualizaReservasInstalacionesView());
+				
+				controller.initController();
+			}
+		});
+		frame.getContentPane().add(btnVisualizarReservas);
+		
 		
 		JButton boton_CrearActividad = new JButton("Crear Actividad");
 		boton_CrearActividad.addActionListener(new ActionListener() {
