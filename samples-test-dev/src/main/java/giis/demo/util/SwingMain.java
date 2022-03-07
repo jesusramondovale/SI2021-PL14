@@ -5,11 +5,16 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+
 import java.awt.event.ActionEvent;
 
 import giis.demo.Proyecto.Controller.MostrarActividadesController;
 import giis.demo.Proyecto.Model.MostrarActividadesModel;
 import giis.demo.Proyecto.View.MostrarActividadesView;
+import giis.demo.Proyecto.Controller.RealizarReservasController;
+import giis.demo.Proyecto.Model.RealizarReservasModel;
+import giis.demo.Proyecto.View.RealizarReservasView;
 import giis.demo.tkrun.*;
 
 /**
@@ -94,6 +99,23 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnMostrarActividades);
+		
+		JButton btnRealizarReserva = new JButton("Realizar Reserva");
+		btnRealizarReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				RealizarReservasController controller=new RealizarReservasController(new RealizarReservasView() , new RealizarReservasModel());
+				try {
+					controller.initController();
+				} catch (ParseException e1) {
+					
+					e1.printStackTrace();
+				}
+				
+							
+			}
+		});
+		frame.getContentPane().add(btnRealizarReserva);
 	}
 
 	public JFrame getFrame() { return this.frame; }
