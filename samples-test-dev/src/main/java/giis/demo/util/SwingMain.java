@@ -13,18 +13,7 @@ import java.awt.event.ActionEvent;
 import giis.demo.Proyecto.Controller.*;
 import giis.demo.Proyecto.Model.*;
 import giis.demo.Proyecto.View.*;
-import giis.demo.Proyecto.Controller.CrearPeriodoController;
-import giis.demo.Proyecto.Model.CrearPeriodoModel;
-import giis.demo.Proyecto.View.CrearPeriodoView;
-import giis.demo.Proyecto.Controller.CrearActividadController;
-import giis.demo.Proyecto.Model.CrearActividadModel;
-import giis.demo.Proyecto.View.CrearActividadView;
-import giis.demo.Proyecto.Controller.MostrarActividadesController;
-import giis.demo.Proyecto.Model.MostrarActividadesModel;
-import giis.demo.Proyecto.View.MostrarActividadesView;
-import giis.demo.Proyecto.Controller.RealizarReservasController;
-import giis.demo.Proyecto.Model.RealizarReservasModel;
-import giis.demo.Proyecto.View.RealizarReservasView;
+
 import giis.demo.tkrun.*;
 
 /**
@@ -158,6 +147,16 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnVisualizarReservas);
+		
+		
+		JButton btnReservar = new JButton("Realizar reserva");
+		btnReservar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 realizarReservaController controller=new realizarReservaController(new RealizarReservasModel() , new realizarReservaView(), new resguardoView());
+	                controller.initController();
+			}
+		});
+		frame.getContentPane().add(btnReservar);
 
 	}
 

@@ -1,4 +1,5 @@
 package giis.demo.Proyecto.DTO;
+
 import java.util.Date;
 
 public class actividadesDisplayDTO {
