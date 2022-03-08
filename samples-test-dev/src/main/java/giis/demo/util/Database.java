@@ -1,10 +1,13 @@
 package giis.demo.util;
-import java.io.FileInputStream;
-import java.io.IOException;
 
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.commons.dbutils.DbUtils;
+import org.apache.commons.io.FileUtils;
 
 /**
  * Encapsula los datos de acceso JDBC, lectura de la configuracion
@@ -12,9 +15,9 @@ import org.apache.commons.dbutils.DbUtils;
  */
 public class Database extends DbUtil {
 	//Localizacion de ficheros de configuracion y carga de bases de datos
-	private static final String APP_PROPERTIES = "src/main/resources/application.properties";
-	private static final String SQL_SCHEMA = "src/main/resources/schema.sql";
-	private static final String SQL_LOAD = "src/main/resources/data.sql";
+	private static final String APP_PROPERTIES = "resources/application.properties";
+	private static final String SQL_SCHEMA = "resources/schema.sql";
+	private static final String SQL_LOAD = "resources/data.sql";
 	//parametros de la base de datos leidos de application.properties (base de datos local sin usuario/password)
 	private String driver;
 	private String url;
@@ -22,10 +25,16 @@ public class Database extends DbUtil {
 
 	/**
 	 * Crea una instancia, leyendo los parametros de driver y url de application.properties
-	 */
+	 */	
 	public Database() {
+
+	
 		Properties prop=new Properties();
-		try (FileInputStream fs=new FileInputStream(APP_PROPERTIES)) {
+		
+		
+		try (InputStream fs = this.getClass().getClassLoader().getResourceAsStream(APP_PROPERTIES)) {
+
+		//try (FileInputStream fs=new FileInputStream(APP_PROPERTIES)) {
 			prop.load(fs);
 		} catch (IOException e) {
 			throw new ApplicationException(e);
@@ -35,7 +44,10 @@ public class Database extends DbUtil {
 		if (driver==null || url==null)
 			throw new ApplicationException("Configuracion de driver y/o url no encontrada en application.properties");
 		DbUtils.loadDriver(driver);
+
 	}
+
+
 	public String getUrl() {
 		return url;
 	}
@@ -46,7 +58,16 @@ public class Database extends DbUtil {
 	public void createDatabase(boolean onlyOnce) {
 		//actua como singleton si onlyOnce=true: solo la primera vez que se instancia para mejorar rendimiento en pruebas
 		if (!databaseCreated || !onlyOnce) { 
-			executeScript(SQL_SCHEMA);
+			File f = new File("schema.sql");
+			
+			try {
+				FileUtils.copyInputStreamToFile(this.getClass().getClassLoader().getResourceAsStream(SQL_SCHEMA),f);
+			} 
+			catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+			executeScript("schema.sql");
 			databaseCreated=true; //NOSONAR
 		}
 	}
@@ -55,7 +76,19 @@ public class Database extends DbUtil {
 	 * (si onlyOnce=true solo ejecutara el script la primera vez
 	 */
 	public void loadDatabase() {
-		executeScript(SQL_LOAD);
+		
+		File f = new File("load.sql");
+		
+		try {
+			FileUtils.copyInputStreamToFile(this.getClass().getClassLoader().getResourceAsStream(SQL_LOAD),f);
+		} 
+		catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		executeScript("load.sql");
+		databaseCreated=true; //NOSONAR
+		
 	}
-	
+
 }

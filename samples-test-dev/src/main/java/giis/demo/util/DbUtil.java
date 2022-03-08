@@ -150,6 +150,9 @@ public abstract class DbUtil {
 		if (!batchUpdate.isEmpty())
 			this.executeBatch(batchUpdate);
 	}
+	
+	
+	
 	/**
 	 * Ejecuta un conjunto de sentencias sql de actualizacion en un unico batch
 	 */
