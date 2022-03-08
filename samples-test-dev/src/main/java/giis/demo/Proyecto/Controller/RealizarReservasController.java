@@ -8,19 +8,19 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import giis.demo.Proyecto.DTO.ReservaDTO;
-import giis.demo.Proyecto.Model.RealizarReservasModel;
-import giis.demo.Proyecto.View.RealizarReservasView;
+import giis.demo.Proyecto.DTO.*;
+import giis.demo.Proyecto.Model.*;
+import giis.demo.Proyecto.View.*;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.Util;
 
 public class RealizarReservasController {
 
 	private RealizarReservasView view;
-	private RealizarReservasModel model;
+	private RealizaReservaModel model;
 
 
-	public RealizarReservasController(RealizarReservasView view, RealizarReservasModel model) {
+	public RealizarReservasController(RealizarReservasView view, RealizaReservaModel model) {
 
 		this.view = view;
 		this.model = model;

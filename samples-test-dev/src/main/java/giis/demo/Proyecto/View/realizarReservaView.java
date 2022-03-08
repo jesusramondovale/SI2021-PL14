@@ -1,4 +1,4 @@
-package giis.demo.Proyecto.view;
+package giis.demo.Proyecto.View;
 
 import java.awt.EventQueue;
 
@@ -13,7 +13,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

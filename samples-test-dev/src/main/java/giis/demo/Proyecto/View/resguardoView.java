@@ -1,4 +1,4 @@
-package giis.demo.Proyecto.view;
+package giis.demo.Proyecto.View;
 
 import java.awt.EventQueue;
 

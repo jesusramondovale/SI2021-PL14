@@ -103,7 +103,7 @@ public class SwingMain {
 		btnRealizarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				RealizarReservasController controller=new RealizarReservasController(new RealizarReservasView() , new RealizarReservasModel());
+				RealizarReservasController controller=new RealizarReservasController(new RealizarReservasView() , new RealizaReservaModel());
 				try {
 					controller.initController();
 				} catch (ParseException e1) {

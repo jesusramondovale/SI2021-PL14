@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -44,9 +43,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-		  <groupId>io.github.javiertuya</groupId>
-		  <artifactId>visual-assert</artifactId>
-		  <version>2.1.3</version>
+			<groupId>io.github.javiertuya</groupId>
+			<artifactId>visual-assert</artifactId>
+			<version>2.1.3</version>
 		</dependency>
 
 		<!-- drivers de base de datos -->
@@ -57,23 +56,17 @@
 		</dependency>
 		<!-- Logs -->
 		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-api</artifactId>
-		    <version>1.7.35</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.35</version>
 		</dependency>
-		<!--
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+			<version>1.7.33</version> <scope>provided</scope> </dependency> -->
 		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-log4j12</artifactId>
-		    <version>1.7.33</version>
-			<scope>provided</scope>
-		</dependency>
-		 -->
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-slf4j-impl</artifactId>
-		    <version>2.17.1</version>
-		    <scope>test</scope>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.17.1</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- UI swing -->
 		<dependency>
@@ -92,10 +85,18 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.4</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.13.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+		<dependency>
+			<groupId>com.toedter</groupId>
+			<artifactId>jcalendar</artifactId>
+			<version>1.4</version>
 		</dependency>
 	</dependencies>
 
@@ -120,8 +121,8 @@
 					<!-- Sets the VM argument line used when unit tests are run under JaCoCo -->
 					<argLine>${surefireArgLine}</argLine>
 					<redirectTestOutputToFile>true</redirectTestOutputToFile>
-					<!--para evitar fallos con openjdk en linux-->
-                	<useSystemClassLoader>false</useSystemClassLoader>
+					<!--para evitar fallos con openjdk en linux -->
+					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
 			</plugin>
 			<!-- BEGINIT -->
@@ -273,8 +274,7 @@
 						<phase>install</phase>
 						<configuration>
 							<target>
-								<zip
-									destfile="${project.build.directory}/${project.build.finalName}.zip">
+								<zip destfile="${project.build.directory}/${project.build.finalName}.zip">
 									<zipfileset dir="src" prefix="src" />
 									<zipfileset dir=".settings" prefix=".settings" />
 									<zipfileset file="pom.xml" />
@@ -293,6 +293,7 @@
 					</execution>
 				</executions>
 				<dependencies>
+
 					<dependency>
 						<groupId>org.apache.ant</groupId>
 						<artifactId>ant-junit</artifactId>
@@ -330,35 +331,34 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- empaqueta en un zip documentacion, index y archivos jar que seran accesibles desde web -->
+			<!-- empaqueta en un zip documentacion, index y archivos jar que seran 
+				accesibles desde web -->
 			<plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <appendAssemblyId>false</appendAssemblyId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<appendAssemblyId>false</appendAssemblyId>
 							<finalName>assembly</finalName>
-                            <descriptors>
-                                <descriptor>assembly.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                    </execution>
-                </executions>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
-			<!-- Comprobacion de dependencias y plugins que se pueden actualizar Ejecutar:
-				mvn versions:display-dependency-updates
-				versions:display-plugin-updates 
-			-->
+			<!-- Comprobacion de dependencias y plugins que se pueden actualizar Ejecutar: 
+				mvn versions:display-dependency-updates versions:display-plugin-updates -->
 			<plugin>
-	            <groupId>org.codehaus.mojo</groupId>
-	            <artifactId>versions-maven-plugin</artifactId>
-	            <version>2.9.0</version>
-	        </plugin>
-			
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.9.0</version>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>
