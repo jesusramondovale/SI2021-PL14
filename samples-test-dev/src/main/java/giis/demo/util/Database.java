@@ -1,13 +1,14 @@
 package giis.demo.util;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import org.apache.commons.dbutils.DbUtils;
-import org.apache.commons.io.FileUtils;
+
+//import java.io.File;
+//import java.io.InputStream;
 
 /**
  * Encapsula los datos de acceso JDBC, lectura de la configuracion
@@ -15,9 +16,9 @@ import org.apache.commons.io.FileUtils;
  */
 public class Database extends DbUtil {
 	//Localizacion de ficheros de configuracion y carga de bases de datos
-	private static final String APP_PROPERTIES = "resources/application.properties";
-	private static final String SQL_SCHEMA = "resources/schema.sql";
-	private static final String SQL_LOAD = "resources/data.sql";
+	private static final String APP_PROPERTIES = "src/main/resources/application.properties";
+	private static final String SQL_SCHEMA = "src/main/resources/schema.sql";
+	private static final String SQL_LOAD = "src/main/resources/data.sql";
 	//parametros de la base de datos leidos de application.properties (base de datos local sin usuario/password)
 	private String driver;
 	private String url;
@@ -32,9 +33,9 @@ public class Database extends DbUtil {
 		Properties prop=new Properties();
 		
 		
-		try (InputStream fs = this.getClass().getClassLoader().getResourceAsStream(APP_PROPERTIES)) {
+		//try (InputStream fs = this.getClass().getClassLoader().getResourceAsStream(APP_PROPERTIES)) {
 
-		//try (FileInputStream fs=new FileInputStream(APP_PROPERTIES)) {
+		try (FileInputStream fs=new FileInputStream(APP_PROPERTIES)) {
 			prop.load(fs);
 		} catch (IOException e) {
 			throw new ApplicationException(e);
@@ -58,6 +59,8 @@ public class Database extends DbUtil {
 	public void createDatabase(boolean onlyOnce) {
 		//actua como singleton si onlyOnce=true: solo la primera vez que se instancia para mejorar rendimiento en pruebas
 		if (!databaseCreated || !onlyOnce) { 
+			
+			/*
 			File f = new File("schema.sql");
 			
 			try {
@@ -69,14 +72,27 @@ public class Database extends DbUtil {
 			}
 			executeScript("schema.sql");
 			databaseCreated=true; //NOSONAR
+			f.delete();
+			*/
+			
+			
+			executeScript(SQL_SCHEMA);
+			databaseCreated=true; //NOSONAR
+			
+					
+			
 		}
 	}
+	
+	
 	/** 
 	 * Carga de datos iniciales a partir del script data.sql en src/main/properties
 	 * (si onlyOnce=true solo ejecutara el script la primera vez
 	 */
 	public void loadDatabase() {
 		
+		
+		/*
 		File f = new File("load.sql");
 		
 		try {
@@ -87,6 +103,12 @@ public class Database extends DbUtil {
 			e.printStackTrace();
 		}
 		executeScript("load.sql");
+		databaseCreated=true; //NOSONAR
+		f.delete();
+
+		*/
+		
+		executeScript(SQL_LOAD);
 		databaseCreated=true; //NOSONAR
 		
 	}

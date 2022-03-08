@@ -65,7 +65,6 @@ public class CrearActividadController {
 			if(Integer.parseInt(view.getPrecioSocio().getText())<0){
 				SwingUtil.showMessage("La cuota  de socios es negativa ", "ERROR", JOptionPane.ERROR_MESSAGE);
 				System.out.println("parseInt() 1 ...");
-		          new java.util.Scanner(System.in).nextLine();
 			}
 
 		}
