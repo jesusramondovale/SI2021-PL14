@@ -32,11 +32,13 @@ INSERT INTO "actividades" VALUES (2,'Natación','Natación',12,16,'2021-05-02','
 INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12,16,'2021-05-03','2021-06-24',1,2,1,6);
 
 
-INSERT INTO "horarioActividad" VALUES (1,1,'L',10.0,12.0);
-INSERT INTO "horarioActividad" VALUES (2,2,'L',10.0,12.0);
-INSERT INTO "horarioActividad" VALUES (3,2,'X',9.0,11.0);
-INSERT INTO "horarioActividad" VALUES (4,3,'V',16.0,18.0);
+INSERT INTO "horarioActividad" VALUES (1 , 1 , 1);
+INSERT INTO "horarioActividad" VALUES (2 , 1 , 3);
+INSERT INTO "horarioActividad" VALUES (3 , 2 , 3);
 
+INSERT INTO "horarios" VALUES (1,'L',10,11);
+INSERT INTO "horarios" VALUES (2,'M',12,14);
+INSERT INTO "horarios" VALUES (3,'J',12,14);
 
 
 INSERT INTO "reservas" VALUES (1,'2022-03-10',10,11,1,NULL,1,0);

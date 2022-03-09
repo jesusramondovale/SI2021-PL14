@@ -134,11 +134,21 @@ DROP TABLE IF EXISTS "horarioActividad";
 CREATE TABLE IF NOT EXISTS "horarioActividad" (
 	"idHorario"	INTEGER NOT NULL,
 	"idActividad"	INTEGER NOT NULL,
-	"dia"	TEXT NOT NULL,
-	"horaInicio"	REAL NOT NULL,
-	"horaFin"	REAL NOT NULL,
+	"idHorarios"	INTEGER NOT NULL,
 	PRIMARY KEY("idHorario" AUTOINCREMENT),
-	FOREIGN KEY("idActividad") REFERENCES "actividades"("idActividad")
+	FOREIGN KEY("idActividad") REFERENCES "actividades"("idActividad"),
+	FOREIGN KEY("idHorarios") REFERENCES "horarios"("idHorarios")
+);
+
+
+DROP TABLE IF EXISTS "horarios";
+CREATE TABLE IF NOT EXISTS "horarios" (
+	"idHorarios"	INTEGER NOT NULL,
+	"dia"	TEXT NOT NULL,
+	"horaInicio"	INTEGER NOT NULL,
+	"horaFin" INTEGER NOT NULL,
+	PRIMARY KEY("idHorarios" AUTOINCREMENT)
+	
 );
 
 
