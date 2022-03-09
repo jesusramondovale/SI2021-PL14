@@ -35,6 +35,7 @@ INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12,16,'2021-05-03','2021-0
 INSERT INTO "horarioActividad" VALUES (1 , 1 , 1);
 INSERT INTO "horarioActividad" VALUES (2 , 1 , 3);
 INSERT INTO "horarioActividad" VALUES (3 , 2 , 3);
+INSERT INTO "horarioActividad" VALUES (4 , 3 , 2);
 
 INSERT INTO "horarios" VALUES (1,'L',10,11);
 INSERT INTO "horarios" VALUES (2,'M',12,14);
