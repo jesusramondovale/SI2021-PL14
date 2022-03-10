@@ -7,9 +7,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import giis.demo.Proyecto.Controller.CrearPeriodoController;
-import giis.demo.Proyecto.Model.CrearPeriodoModel;
-import giis.demo.Proyecto.View.CrearPeriodoView;
 import giis.demo.tkrun.*;
 
 /**
@@ -103,8 +100,7 @@ public class SwingMain {
 		JButton btnNewButton = new JButton("CrearPeriodo");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearPeriodoController controller = new CrearPeriodoController(new CrearPeriodoModel(), new CrearPeriodoView());
-				controller.initController();
+				
 			}
 		});
 		frame.getContentPane().add(btnNewButton);
