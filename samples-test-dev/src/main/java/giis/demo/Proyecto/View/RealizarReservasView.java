@@ -3,11 +3,9 @@ package giis.demo.Proyecto.View;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
@@ -16,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 
 public class RealizarReservasView {
 
@@ -37,28 +36,36 @@ public class RealizarReservasView {
 	private JButton btnActualizar;	
 	private JScrollPane scrollPaneAnteriores ;
 	private JScrollPane scrollPanePosteriores;
-	private JLabel lblSocio;
-	private JTextField textFieldSocio;
-	private JComboBox comboBoxActividad;
 	private JTextField textFieldActividad;
-	private JTextField textFieldHorasIni;
-	private JTextField textFieldHorasFin;
+	private JTextField textFieldHorasL;
 	private JLabel label;
-	private JTextField textFieldMinIni;
-	private JTextField textFieldMinFin;
+	private JTextField textFieldMinL;
+	private JTextField textFieldHorasM;
+	private JTextField textFieldMinM;
+	private JTextField textFieldHorasX;
+	private JTextField textFieldMinX;
+	private JTextField textFieldHorasJ;
+	private JTextField textFieldMinJ;
+	private JTextField textFieldHorasV;
+	private JTextField textFieldMinV;
+	private JTextField textFieldHorasS;
+	private JTextField textFieldMinS;
+	private JTextField textFieldHorasD;
+	private JTextField textFieldMinD;
+	private JLabel lblNewLabel;
+	private JLabel lblM;
+	private JLabel lblX;
+	private JLabel lblJ;
+	private JLabel lblV;
+	private JLabel lblS;
+	private JLabel lblD;
 	
 	
 	
 	
 	
 
-	public JComboBox getComboBoxActividad() {
-		return comboBoxActividad;
-	}
 
-	public void setComboBoxActividad(JComboBox comboBoxActividad) {
-		this.comboBoxActividad = comboBoxActividad;
-	}
 
 	public JTextField getTextFieldActividad() {
 		return textFieldActividad;
@@ -69,36 +76,24 @@ public class RealizarReservasView {
 	}
 
 	public JTextField getTextFieldHorasIni() {
-		return textFieldHorasIni;
+		return textFieldHorasL;
 	}
 
 	public void setTextFieldHorasIni(JTextField textFieldHorasIni) {
-		this.textFieldHorasIni = textFieldHorasIni;
+		this.textFieldHorasL = textFieldHorasIni;
 	}
 
-	public JTextField getTextFieldHorasFin() {
-		return textFieldHorasFin;
-	}
 
-	public void setTextFieldHorasFin(JTextField textFieldHorasFin) {
-		this.textFieldHorasFin = textFieldHorasFin;
-	}
 
 	public JTextField getTextFieldMinIni() {
-		return textFieldMinIni;
+		return textFieldMinL;
 	}
 
 	public void setTextFieldMinIni(JTextField textFieldMinIni) {
-		this.textFieldMinIni = textFieldMinIni;
+		this.textFieldMinL = textFieldMinIni;
 	}
 
-	public JTextField getTextFieldMinFin() {
-		return textFieldMinFin;
-	}
 
-	public void setTextFieldMinFin(JTextField textFieldMinFin) {
-		this.textFieldMinFin = textFieldMinFin;
-	}
 
 	public JButton getBtnActualizar() {
 		return btnActualizar;
@@ -214,16 +209,7 @@ public class RealizarReservasView {
 		this.scrollPanePosteriores = scrollPanePosteriores;
 	}
 
-	
-	
-	
-	public JTextField getTextFieldSocio() {
-		return textFieldSocio;
-	}
 
-	public void setTextFieldSocio(JTextField textFieldSocio) {
-		this.textFieldSocio = textFieldSocio;
-	}
 
 	/**
 	 * Launch the application.
@@ -254,226 +240,237 @@ public class RealizarReservasView {
 	private void initialize() {
 		frmRealizarReserva = new JFrame();
 		frmRealizarReserva.setTitle("Realizar Reserva");
-		frmRealizarReserva.setBounds(100, 100, 571, 397);
+		frmRealizarReserva.setBounds(100, 100, 656, 369);
 		
 		btnCrearReserva = new JButton("Crear Reserva");
+		btnCrearReserva.setBounds(509, 283, 103, 23);
 		btnCrearReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
 		btnBorrar = new JButton("Borrar");
+		btnBorrar.setBounds(411, 283, 63, 23);
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		
-		JLabel lblSeleccione = new JLabel("Seleccione la instalación");
-		lblSeleccione.setFont(new Font("Tahoma", Font.ITALIC, 15));
-		
-		JLabel lblInicioDeReserva = new JLabel("Inicio de reserva :");
-		lblInicioDeReserva.setFont(new Font("Tahoma", Font.ITALIC, 15));
-		
-		JLabel lblFinalDeReserva = new JLabel("Final de reserva :");
-		lblFinalDeReserva.setFont(new Font("Tahoma", Font.ITALIC, 15));
-		
-		 comboBoxInstalacion = new JComboBox();
-		 comboBoxInstalacion.setToolTipText("Seleccione la instalación a reservar.");
-		comboBoxInstalacion.setModel(new DefaultComboBoxModel(new String[] {"pista de pádel", "campo de futbito", "cancha de baloncesto", "salon de yoga", "cancha de balonmano", "piscina"}));
-		
-		 cbDiaIni = new JComboBox();
-		cbDiaIni.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		
-		 cbMesIni = new JComboBox();
-		cbMesIni.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
-		
-		 cbAnoIni = new JComboBox();
-		cbAnoIni.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025"}));
-		
 		 cbDiaFin = new JComboBox();
+		 cbDiaFin.setBounds(190, 65, 38, 20);
 		cbDiaFin.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 		
 		 cbMesFin = new JComboBox();
+		 cbMesFin.setBounds(238, 66, 82, 20);
 		cbMesFin.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
 		
 		cbAnoFin = new JComboBox();
+		cbAnoFin.setBounds(330, 67, 67, 20);
 		cbAnoFin.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025"}));
 		
 		JLabel lblActividad = new JLabel("Actividad:");
+		lblActividad.setBounds(249, 109, 71, 19);
 		lblActividad.setFont(new Font("Tahoma", Font.ITALIC, 15));
 		
 		JScrollPane scrollPaneAnteriores = new JScrollPane();
+		scrollPaneAnteriores.setBounds(407, 44, 205, 211);
 		
 		JLabel lblAntreiores = new JLabel("Reservas Anteriores");
+		lblAntreiores.setBounds(413, 24, 135, 14);
 		
-		lblSocio = new JLabel("Socio: ");
-		
-		textFieldSocio = new JTextField();
-		textFieldSocio.setToolTipText("Indique el número de carnet de socio. ");
-		textFieldSocio.setText("# ID de Socio");
-		textFieldSocio.setColumns(10);
-		
-		btnActualizar = new JButton("Actualizar");
-		
-		comboBoxActividad = new JComboBox();
-		comboBoxActividad.setModel(new DefaultComboBoxModel(new String[] {"Tenis ", "Natación", "Futbol"}));
+		btnActualizar = new JButton("Actualizar Tabla");
+		btnActualizar.setBounds(281, 141, 116, 23);
 		
 		textFieldActividad = new JTextField();
+		textFieldActividad.setBounds(327, 110, 53, 20);
 		textFieldActividad.setToolTipText("Indique el #ID de la nueva actividad a crear.");
 		textFieldActividad.setText("Nº");
 		textFieldActividad.setColumns(10);
 		
-		textFieldHorasIni = new JTextField();
-		textFieldHorasIni.setColumns(10);
-		
-		textFieldHorasFin = new JTextField();
-		textFieldHorasFin.setColumns(10);
-		
-		JLabel label_1 = new JLabel(":");
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 17));
+		textFieldHorasL = new JTextField();
+		textFieldHorasL.setBounds(71, 132, 32, 20);
+		textFieldHorasL.setColumns(10);
 		
 		label = new JLabel(":");
+		label.setBounds(113, 129, 16, 21);
 		label.setFont(new Font("Tahoma", Font.BOLD, 17));
 		
-		textFieldMinIni = new JTextField();
-		textFieldMinIni.setColumns(10);
-		
-		textFieldMinFin = new JTextField();
-		textFieldMinFin.setColumns(10);
+		textFieldMinL = new JTextField();
+		textFieldMinL.setBounds(124, 132, 32, 20);
+		textFieldMinL.setColumns(10);
 		
 		JLabel lblHorario = new JLabel("HORARIO");
-		GroupLayout groupLayout = new GroupLayout(frmRealizarReserva.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(31)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblAntreiores)
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(comboBoxInstalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-									.addComponent(lblHorario)
-									.addGap(11))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(lblFinalDeReserva, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-													.addGap(21)
-													.addComponent(cbDiaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addGap(18)
-													.addComponent(cbMesFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addPreferredGap(ComponentPlacement.UNRELATED)
-													.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(lblActividad, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(textFieldActividad, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-													.addGap(18)
-													.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-													.addPreferredGap(ComponentPlacement.UNRELATED)
-													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(btnActualizar)
-														.addGroup(groupLayout.createSequentialGroup()
-															.addComponent(lblSocio)
-															.addGap(3)
-															.addComponent(textFieldSocio, 0, 0, Short.MAX_VALUE))
-														.addComponent(btnBorrar)
-														.addComponent(btnCrearReserva))))
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textFieldHorasFin, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(lblInicioDeReserva, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-											.addGap(15)
-											.addComponent(cbDiaIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addGap(18)
-											.addComponent(cbMesIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addGap(15)
-											.addComponent(cbAnoIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textFieldHorasIni, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textFieldMinFin, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(label, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textFieldMinIni, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)))
-									.addPreferredGap(ComponentPlacement.RELATED)))
-							.addGap(190))
-						.addComponent(scrollPaneAnteriores, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(13)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblSeleccione, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBoxInstalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(10))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblHorario)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblInicioDeReserva, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-						.addComponent(cbDiaIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbMesIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(cbAnoIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textFieldHorasIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(label, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textFieldMinIni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblFinalDeReserva, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-						.addComponent(cbDiaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(cbMesFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(cbAnoFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textFieldHorasFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(label_1)
-							.addComponent(textFieldMinFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(13)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblActividad, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBoxActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSocio)
-						.addComponent(textFieldSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(lblAntreiores)
-					.addGap(8)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(scrollPaneAnteriores, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnActualizar)
-							.addGap(16)
-							.addComponent(btnBorrar)
-							.addGap(16)
-							.addComponent(btnCrearReserva)))
-					.addGap(35))
-		);
+		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblHorario.setBounds(81, 110, 103, 17);
 		
 		tableAnteriores = new JTable();
 		tableAnteriores.setSize(scrollPaneAnteriores.getSize());
 		
 		scrollPaneAnteriores.setViewportView(tableAnteriores);
-		frmRealizarReserva.getContentPane().setLayout(groupLayout);
+		frmRealizarReserva.getContentPane().setLayout(null);
+		
+		JLabel lblInicioDeReserva = new JLabel("Inicio de reserva :");
+		lblInicioDeReserva.setBounds(40, 35, 205, 19);
+		lblInicioDeReserva.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		frmRealizarReserva.getContentPane().add(lblInicioDeReserva);
+		
+		 cbDiaIni = new JComboBox();
+		 cbDiaIni.setBounds(190, 36, 38, 20);
+		 cbDiaIni.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+		 frmRealizarReserva.getContentPane().add(cbDiaIni);
+		
+		 cbMesIni = new JComboBox();
+		 cbMesIni.setBounds(238, 36, 82, 20);
+		 cbMesIni.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
+		 frmRealizarReserva.getContentPane().add(cbMesIni);
+		
+		 cbAnoIni = new JComboBox();
+		 cbAnoIni.setBounds(330, 36, 67, 20);
+		 cbAnoIni.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025"}));
+		 frmRealizarReserva.getContentPane().add(cbAnoIni);
+		
+		JLabel lblFinalDeReserva = new JLabel("Final de reserva :");
+		lblFinalDeReserva.setBounds(40, 65, 116, 19);
+		lblFinalDeReserva.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		frmRealizarReserva.getContentPane().add(lblFinalDeReserva);
+		frmRealizarReserva.getContentPane().add(lblAntreiores);
+		frmRealizarReserva.getContentPane().add(lblHorario);
+		frmRealizarReserva.getContentPane().add(lblActividad);
+		frmRealizarReserva.getContentPane().add(textFieldActividad);
+		frmRealizarReserva.getContentPane().add(scrollPaneAnteriores);
+		frmRealizarReserva.getContentPane().add(btnActualizar);
+		frmRealizarReserva.getContentPane().add(btnBorrar);
+		frmRealizarReserva.getContentPane().add(btnCrearReserva);
+		frmRealizarReserva.getContentPane().add(cbDiaFin);
+		frmRealizarReserva.getContentPane().add(cbMesFin);
+		frmRealizarReserva.getContentPane().add(cbAnoFin);
+		frmRealizarReserva.getContentPane().add(textFieldHorasL);
+		frmRealizarReserva.getContentPane().add(label);
+		frmRealizarReserva.getContentPane().add(textFieldMinL);
+		
+		textFieldHorasM = new JTextField();
+		textFieldHorasM.setColumns(10);
+		textFieldHorasM.setBounds(71, 158, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldHorasM);
+		
+		JLabel label_1 = new JLabel(":");
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 17));
+		label_1.setBounds(113, 155, 16, 21);
+		frmRealizarReserva.getContentPane().add(label_1);
+		
+		textFieldMinM = new JTextField();
+		textFieldMinM.setColumns(10);
+		textFieldMinM.setBounds(124, 158, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldMinM);
+		
+		textFieldHorasX = new JTextField();
+		textFieldHorasX.setColumns(10);
+		textFieldHorasX.setBounds(71, 186, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldHorasX);
+		
+		JLabel label_2 = new JLabel(":");
+		label_2.setFont(new Font("Tahoma", Font.BOLD, 17));
+		label_2.setBounds(113, 183, 16, 21);
+		frmRealizarReserva.getContentPane().add(label_2);
+		
+		textFieldMinX = new JTextField();
+		textFieldMinX.setColumns(10);
+		textFieldMinX.setBounds(124, 186, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldMinX);
+		
+		textFieldHorasJ = new JTextField();
+		textFieldHorasJ.setColumns(10);
+		textFieldHorasJ.setBounds(71, 210, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldHorasJ);
+		
+		JLabel label_2_1 = new JLabel(":");
+		label_2_1.setFont(new Font("Tahoma", Font.BOLD, 17));
+		label_2_1.setBounds(113, 207, 16, 21);
+		frmRealizarReserva.getContentPane().add(label_2_1);
+		
+		textFieldMinJ = new JTextField();
+		textFieldMinJ.setColumns(10);
+		textFieldMinJ.setBounds(124, 210, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldMinJ);
+		
+		textFieldHorasV = new JTextField();
+		textFieldHorasV.setColumns(10);
+		textFieldHorasV.setBounds(71, 235, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldHorasV);
+		
+		JLabel label_2_2 = new JLabel(":");
+		label_2_2.setFont(new Font("Tahoma", Font.BOLD, 17));
+		label_2_2.setBounds(113, 232, 16, 21);
+		frmRealizarReserva.getContentPane().add(label_2_2);
+		
+		textFieldMinV = new JTextField();
+		textFieldMinV.setColumns(10);
+		textFieldMinV.setBounds(124, 235, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldMinV);
+		
+		textFieldHorasS = new JTextField();
+		textFieldHorasS.setColumns(10);
+		textFieldHorasS.setBounds(71, 258, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldHorasS);
+		
+		JLabel label_2_3 = new JLabel(":");
+		label_2_3.setFont(new Font("Tahoma", Font.BOLD, 17));
+		label_2_3.setBounds(113, 255, 16, 21);
+		frmRealizarReserva.getContentPane().add(label_2_3);
+		
+		textFieldMinS = new JTextField();
+		textFieldMinS.setColumns(10);
+		textFieldMinS.setBounds(124, 258, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldMinS);
+		
+		textFieldHorasD = new JTextField();
+		textFieldHorasD.setColumns(10);
+		textFieldHorasD.setBounds(71, 284, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldHorasD);
+		
+		JLabel label_2_4 = new JLabel(":");
+		label_2_4.setFont(new Font("Tahoma", Font.BOLD, 17));
+		label_2_4.setBounds(113, 281, 16, 21);
+		frmRealizarReserva.getContentPane().add(label_2_4);
+		
+		textFieldMinD = new JTextField();
+		textFieldMinD.setColumns(10);
+		textFieldMinD.setBounds(124, 284, 32, 20);
+		frmRealizarReserva.getContentPane().add(textFieldMinD);
+		
+		lblNewLabel = new JLabel("L");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(39, 131, 32, 19);
+		frmRealizarReserva.getContentPane().add(lblNewLabel);
+		
+		lblM = new JLabel("M");
+		lblM.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblM.setBounds(40, 159, 32, 19);
+		frmRealizarReserva.getContentPane().add(lblM);
+		
+		lblX = new JLabel("X");
+		lblX.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblX.setBounds(39, 189, 32, 19);
+		frmRealizarReserva.getContentPane().add(lblX);
+		
+		lblJ = new JLabel("J");
+		lblJ.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblJ.setBounds(40, 213, 32, 19);
+		frmRealizarReserva.getContentPane().add(lblJ);
+		
+		lblV = new JLabel("V");
+		lblV.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblV.setBounds(40, 238, 32, 19);
+		frmRealizarReserva.getContentPane().add(lblV);
+		
+		lblS = new JLabel("S");
+		lblS.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblS.setBounds(39, 261, 32, 19);
+		frmRealizarReserva.getContentPane().add(lblS);
+		
+		lblD = new JLabel("D");
+		lblD.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblD.setBounds(39, 283, 32, 19);
+		frmRealizarReserva.getContentPane().add(lblD);
 	}
 }

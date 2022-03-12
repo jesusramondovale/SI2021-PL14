@@ -1,10 +1,8 @@
 package giis.demo.Proyecto.Controller;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -32,7 +30,7 @@ public class RealizarReservasController {
 
 	}
 
-	
+
 	public void initController() throws ParseException{
 
 		this.view.getFrmRealizarReserva().setVisible(true);
@@ -90,16 +88,12 @@ public class RealizarReservasController {
 		this.view.getCbMesIni().setSelectedIndex(0);
 		this.view.getCbDiaIni().setSelectedIndex(0);
 		this.view.getComboBoxInstalacion().setSelectedIndex(0);
-		this.view.getComboBoxActividad().setSelectedIndex(0);
 
 
 		this.view.getTextFieldHorasIni().setText("");
-		this.view.getTextFieldHorasFin().setText("");
 		this.view.getTextFieldMinIni().setText("");
-		this.view.getTextFieldMinFin().setText("");
 
 		this.view.getTextFieldActividad().setText("Nº");
-		this.view.getTextFieldSocio().setText("# ID de Socio");
 
 		DefaultTableModel dm = (DefaultTableModel) this.view.getTableAnteriores().getModel();
 		int rowCount = dm.getRowCount();
@@ -114,25 +108,12 @@ public class RealizarReservasController {
 
 		if((this.view.getTextFieldActividad().getText().isEmpty())
 
-				||
-				(this.view.getTextFieldActividad().getText().equals("Nº"))	
-
-				||
-
-				(this.view.getTextFieldSocio().getText().isEmpty())
-				||
-
-				(this.view.getTextFieldSocio().getText().contains("#"))
-
-				||
+				/*			
 
 				(this.view.getTextFieldHorasIni().getText().isEmpty())	
 
 				||
 
-				(this.view.getTextFieldHorasFin().getText().isEmpty())	
-
-				||
 
 				(this.view.getTextFieldMinIni().getText().isEmpty())	
 
@@ -140,6 +121,8 @@ public class RealizarReservasController {
 
 				(this.view.getTextFieldMinFin().getText().isEmpty())	
 
+
+				 */
 				){
 
 			return false;
@@ -179,6 +162,7 @@ public class RealizarReservasController {
 
 	public void generarReserva() {
 
+		/*
 		// Valida Campos
 		if(!camposLlenos()){
 
@@ -205,7 +189,6 @@ public class RealizarReservasController {
 			int idSocio;
 
 			instalacion = this.view.getComboBoxInstalacion().getSelectedIndex() +1;
-			deporte = this.view.getComboBoxActividad().getSelectedIndex() +1 ;
 			diaIni = this.view.getCbDiaIni().getSelectedIndex() +1;
 			diaFin = this.view.getCbDiaFin().getSelectedIndex()+1;
 			mesIni = this.view.getCbMesIni().getSelectedIndex()+1;
@@ -227,14 +210,11 @@ public class RealizarReservasController {
 
 				hIni1 = Float.parseFloat(this.view.getTextFieldHorasIni().getText());
 				hIni2 = Float.parseFloat(this.view.getTextFieldMinIni().getText());
-				hFin1 = Float.parseFloat(this.view.getTextFieldHorasFin().getText());
-				hFin2 = Float.parseFloat(this.view.getTextFieldMinFin().getText());
 
 				horaInicio = (hIni1 % 24) + (hIni2 / 100.00);
 				horaFinal = (hFin1 % 24) + (hFin2 / 100.00);
 
 				idReserva = Integer.parseInt(this.view.getTextFieldActividad().getText());
-				idSocio = Integer.parseInt(this.view.getTextFieldSocio().getText());
 
 				//Delega en el modelo
 
@@ -269,6 +249,8 @@ public class RealizarReservasController {
 
 
 	}//end generarReserva
+		 */
+	}
 }
 
 
