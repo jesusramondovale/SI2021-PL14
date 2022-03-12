@@ -1,6 +1,7 @@
 package giis.demo.Proyecto.Controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -53,17 +54,17 @@ public class RealizarReservasController {
 
 
 	private void actualizarTablaActividades() {
-	
+
 		List<ActividadDTO> listaActividades= null;
 		listaActividades = model.getListaActividades();
-		
+
 		if(listaActividades.isEmpty()) {
-			
+
 			SwingUtil.showMessage("No existen actividades en la BD todavía", "Error", 0);
 		}
-		
+
 		else {
-			
+
 			TableModel tmodel=SwingUtil.getTableModelFromPojos(listaActividades, new String[] { 
 					"nombre", "tipo", "fechaInicio",  "fechaFin" },
 					new String[] { 
@@ -73,12 +74,12 @@ public class RealizarReservasController {
 			// Asigna a la tabla de la vista el modelo generado
 			view.getTableActividades().setModel(tmodel);
 			SwingUtil.autoAdjustColumns(view.getTableActividades());
-			
-			
+
+
 		}
 
-		
-		
+
+
 	}
 
 	private void actualizarTabla() {
@@ -99,24 +100,24 @@ public class RealizarReservasController {
 		listReservas = model.getListaReservas(Util.dateToIsoString(Util.isoStringToDate(fecha)));
 
 		if(listReservas.isEmpty()) {
-			
-			SwingUtil.showMessage("No hay reservas para la fecha inicial indicada!", "Error", 0);
+
+			SwingUtil.showMessage("No hay reservas para la fecha inicial indicada!", "Error", 1);
 		}
 		else {
-			
+
 			//Generamos el modelo de tabla y lo cargamos con los datos de la BD
-		TableModel tmodel=SwingUtil.getTableModelFromPojos(listReservas, new String[] { 
-				"fecha"  , "horaInicio" , "horaFin" },
-				new String[] { 
-						"Fecha"  , "Hora de Inicio" , "Hora de Fin" });
+			TableModel tmodel=SwingUtil.getTableModelFromPojos(listReservas, new String[] { 
+					"fecha"  , "horaInicio" , "horaFin" },
+					new String[] { 
+							"Fecha"  , "Hora de Inicio" , "Hora de Fin" });
 
 
-		// Asigna a la tabla de la vista el modelo generado
-		view.getTableAnteriores().setModel(tmodel);
-		SwingUtil.autoAdjustColumns(view.getTableAnteriores());
+			// Asigna a la tabla de la vista el modelo generado
+			view.getTableAnteriores().setModel(tmodel);
+			SwingUtil.autoAdjustColumns(view.getTableAnteriores());
 		}
 
-		
+
 
 
 	}
@@ -309,63 +310,115 @@ public class RealizarReservasController {
 			Date fechaIniDate = Util.isoStringToDate(fechaIni);
 			Date fechaFinDate = Util.isoStringToDate(fechaFin);
 
+
+			List<Integer> dias = new ArrayList<Integer>();
 			
-			int [] dias = this.view.getTableSemanal().getSelectedRows();
 			
-			int [] diasArreglo = dias; 
+			// Insertar los índices de días seleccionados 
+			/*
+			 * Lunes = 2 
+			 * Martes = 3 
+			 *   .
+			 *   .
+			 *   .
+			 *  Domingo = 1
+			 */
+			if(!this.view.getTextFieldIniL().getText().isBlank()) {
 
-
-			for(int i = 0 ; i < dias.length ; i++){
-
-				if(dias[i] >= 2 && dias[i] <= 5) {
-					diasArreglo[i] = dias[i] + 2;
-				}
+				dias.add(2);
 
 			}
 
+			if(!this.view.getTextFieldIniM().getText().isBlank()) {
 
-			double [] horasIni = {0,0,0,0,0,0,0};
-			double [] horasFin = {0,0,0,0,0,0,0};
+				dias.add(3);
+
+			}
+
+			if(!this.view.getTextFieldIniX().getText().isBlank()) {
+				dias.add(4);
+
+			}
+
+			if(!this.view.getTextFieldIniJ().getText().isBlank()) {
+
+				dias.add(5);
+			}
+
+			if(!this.view.getTextFieldIniV().getText().isBlank()) {
+
+				dias.add(6);
+			}
+
+			if(!this.view.getTextFieldIniS().getText().isBlank()) {
+
+				dias.add(7);
+			}
+
+			if(!this.view.getTextFieldIniD().getText().isBlank()) {
+				dias.add(1);
+
+			}
+
+			List<Double> horasIni = new ArrayList<Double>();
+			List<Double> horasFin = new ArrayList<Double>();
+	
 			
-			for(int i=0 ; i<this.view.getTableSemanal().getSelectedRowCount() ; i++) {
+			//Insertar las horas indicadas en la estructura de datos
+			for(int i=0 ; i<dias.size() ; i++) {
 
-				switch(diasArreglo[i]) {
+				switch(dias.get(i)) {
 				case 2:
-					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniL().getText());
-					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinL().getText());
+					horasIni.add(i, Double.parseDouble(this.view.getTextFieldIniL().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextFieldFinL().getText()));
+					break;
+					
 
 				case 3:
-					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniM().getText());
-					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinM().getText());
+					horasIni.add(i, Double.parseDouble(this.view.getTextFieldIniM().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextFieldFinM().getText()));
+					break;
+					
 
 
 				case 4:
-					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniX().getText());
-					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinX().getText());
-
+					horasIni.add(i, Double.parseDouble(this.view.getTextFieldIniX().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextFieldFinX().getText()));
+					break;
+					
 
 				case 5:
-					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniJ().getText());
-					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinJ().getText());
+					horasIni.add(i, Double.parseDouble(this.view.getTextFieldIniJ().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextFieldFinJ().getText()));
+					break;
+					
 
 
 				case 6:
-					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniV().getText());
-					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinV().getText());
+					horasIni.add(i, Double.parseDouble(this.view.getTextFieldIniV().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextFieldFinV().getText()));
+					break;
+					
 
 
 				case 7:
-					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniS().getText());
-					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinS().getText());
+					horasIni.add(i, Double.parseDouble(this.view.getTextFieldIniS().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextFieldFinS().getText()));
+					break;
+					
 
 
 				case 1:
-					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniD().getText());
-					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinD().getText());
+					horasIni.add(i, Double.parseDouble(this.view.getTextFieldIniD().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextFieldFinD().getText()));
+					break;
+					
 
 
 				default:
 					System.err.println("Default en Switch (RealizarReservasController:340)");
+					break;
+
 				}
 
 
@@ -376,13 +429,13 @@ public class RealizarReservasController {
 			Calendar cal = Calendar.getInstance();
 			for( Date f = fechaIniDate   ; f.before(fechaFinDate) || f.equals(fechaFinDate)   ; f.setTime(f.getTime() + (1000 * 60 * 60 * 24))) {
 				cal.setTime(f);
-				for(int i = 0 ; i < diasArreglo.length ; i++) {
-					if(cal.get(Calendar.DAY_OF_WEEK) == diasArreglo[i]) {
+				for(int i = 0 ; i < dias.size() ; i++) {
+					if(cal.get(Calendar.DAY_OF_WEEK) == dias.get(i)) {
 
-						if(!alreadyReserved(idInstalacion , Util.dateToIsoString(f) , horasIni[i])) {
-							
+						if(!alreadyReserved(idInstalacion , Util.dateToIsoString(f) , horasIni.get(i))) {
+
 							model.crearReserva(getRandomNumberInRange(1000,10000) , Util.dateToIsoString(f) , 
-									     horasIni[i] , horasFin[i] , idInstalacion , idActividad, 0 ,1 );
+									horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad, 0 ,1 );
 
 						}
 						else {
@@ -390,7 +443,7 @@ public class RealizarReservasController {
 									null, 
 									"Instalación " + Integer.toString(idInstalacion) + " ya reservada!\n" + 
 											"Fecha: " + Util.dateToIsoString(f) + "\n" + 
-											"Hora: " + Double.toString(horasIni[i]) ,										
+											"Hora: " + Double.toString(horasIni.get(i)) ,										
 											"Error",
 											JOptionPane.ERROR_MESSAGE ); 	
 
@@ -400,12 +453,12 @@ public class RealizarReservasController {
 
 					}
 				} // end for - Recorre todas las filas de horarios que tenga la actividad
-				
+
 			} //end for - Recorre el tiempo dia a dia
 
 			JOptionPane.showMessageDialog(
 					null, 
-					"Reserva creada con éxito! ", 
+					"Reservas creada con éxito! ", 
 					"Éxito",
 					JOptionPane.INFORMATION_MESSAGE ); 	
 

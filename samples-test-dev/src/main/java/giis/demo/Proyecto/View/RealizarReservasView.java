@@ -14,8 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
 
 
 public class RealizarReservasView {
@@ -55,8 +53,6 @@ public class RealizarReservasView {
 	private JTextField textFieldFinD;
 	private JScrollPane scrollPaneActividades;
 	private JTable tableActividades;
-	private JScrollPane scrollPaneSemanal;
-	private JTable tableSemanal;
 	private JLabel lblNewLabel;
 	private JLabel lblM;
 	private JLabel lblX;
@@ -67,13 +63,8 @@ public class RealizarReservasView {
 	private JButton btnActualizaActividades;
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
+
 public JButton getBtnActualizaActividades() {
 		return btnActualizaActividades;
 	}
@@ -82,21 +73,6 @@ public JButton getBtnActualizaActividades() {
 		this.btnActualizaActividades = btnActualizaActividades;
 	}
 
-public JScrollPane getScrollPaneSemanal() {
-		return scrollPaneSemanal;
-	}
-
-	public void setScrollPaneSemanal(JScrollPane scrollPaneSemanal) {
-		this.scrollPaneSemanal = scrollPaneSemanal;
-	}
-
-	public JTable getTableSemanal() {
-		return tableSemanal;
-	}
-
-	public void setTableSemanal(JTable tableSemanal) {
-		this.tableSemanal = tableSemanal;
-	}
 
 	
 
@@ -417,20 +393,20 @@ public JScrollPane getScrollPaneSemanal() {
 		btnActualizar.setBounds(540, 35, 103, 23);
 		
 		textFieldIniL = new JTextField();
-		textFieldIniL.setBounds(71, 132, 32, 20);
+		textFieldIniL.setBounds(40, 116, 32, 20);
 		textFieldIniL.setColumns(10);
 		
 		lblA = new JLabel("a");
-		lblA.setBounds(110, 131, 16, 21);
+		lblA.setBounds(79, 115, 16, 21);
 		lblA.setFont(new Font("Tahoma", Font.BOLD, 17));
 		
 		textFieldFinL = new JTextField();
-		textFieldFinL.setBounds(124, 132, 32, 20);
+		textFieldFinL.setBounds(93, 116, 32, 20);
 		textFieldFinL.setColumns(10);
 		
 		JLabel lblHorario = new JLabel("HORARIO");
 		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblHorario.setBounds(81, 110, 103, 17);
+		lblHorario.setBounds(58, 100, 103, 17);
 		
 		tableAnteriores = new JTable();
 		tableAnteriores.setSize(scrollPaneAnteriores.getSize());
@@ -478,92 +454,92 @@ public JScrollPane getScrollPaneSemanal() {
 		
 		textFieldIniM = new JTextField();
 		textFieldIniM.setColumns(10);
-		textFieldIniM.setBounds(71, 158, 32, 20);
+		textFieldIniM.setBounds(40, 142, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldIniM);
 		
 		JLabel lblA_1 = new JLabel("a");
 		lblA_1.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblA_1.setBounds(110, 157, 16, 21);
+		lblA_1.setBounds(79, 141, 16, 21);
 		frmRealizarReserva.getContentPane().add(lblA_1);
 		
 		textFieldFinM = new JTextField();
 		textFieldFinM.setColumns(10);
-		textFieldFinM.setBounds(124, 158, 32, 20);
+		textFieldFinM.setBounds(93, 142, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldFinM);
 		
 		textFieldIniX = new JTextField();
 		textFieldIniX.setColumns(10);
-		textFieldIniX.setBounds(71, 186, 32, 20);
+		textFieldIniX.setBounds(40, 170, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldIniX);
 		
 		JLabel lblA_2 = new JLabel("a");
 		lblA_2.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblA_2.setBounds(110, 185, 16, 21);
+		lblA_2.setBounds(79, 169, 16, 21);
 		frmRealizarReserva.getContentPane().add(lblA_2);
 		
 		textFieldFinX = new JTextField();
 		textFieldFinX.setColumns(10);
-		textFieldFinX.setBounds(124, 186, 32, 20);
+		textFieldFinX.setBounds(93, 170, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldFinX);
 		
 		textFieldIniJ = new JTextField();
 		textFieldIniJ.setColumns(10);
-		textFieldIniJ.setBounds(71, 210, 32, 20);
+		textFieldIniJ.setBounds(40, 194, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldIniJ);
 		
 		JLabel lblA_3 = new JLabel("a");
 		lblA_3.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblA_3.setBounds(110, 209, 16, 21);
+		lblA_3.setBounds(79, 193, 16, 21);
 		frmRealizarReserva.getContentPane().add(lblA_3);
 		
 		textFieldFinJ = new JTextField();
 		textFieldFinJ.setColumns(10);
-		textFieldFinJ.setBounds(124, 210, 32, 20);
+		textFieldFinJ.setBounds(93, 194, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldFinJ);
 		
 		textFieldIniV = new JTextField();
 		textFieldIniV.setColumns(10);
-		textFieldIniV.setBounds(71, 235, 32, 20);
+		textFieldIniV.setBounds(40, 219, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldIniV);
 		
 		JLabel lblA_4 = new JLabel("a");
 		lblA_4.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblA_4.setBounds(110, 234, 16, 21);
+		lblA_4.setBounds(79, 218, 16, 21);
 		frmRealizarReserva.getContentPane().add(lblA_4);
 		
 		textFieldFinV = new JTextField();
 		textFieldFinV.setColumns(10);
-		textFieldFinV.setBounds(124, 235, 32, 20);
+		textFieldFinV.setBounds(93, 219, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldFinV);
 		
 		textFieldIniS = new JTextField();
 		textFieldIniS.setColumns(10);
-		textFieldIniS.setBounds(71, 258, 32, 20);
+		textFieldIniS.setBounds(40, 242, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldIniS);
 		
 		JLabel lblA_5 = new JLabel("a");
 		lblA_5.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblA_5.setBounds(110, 257, 16, 21);
+		lblA_5.setBounds(79, 241, 16, 21);
 		frmRealizarReserva.getContentPane().add(lblA_5);
 		
 		textFieldFinS = new JTextField();
 		textFieldFinS.setColumns(10);
-		textFieldFinS.setBounds(124, 258, 32, 20);
+		textFieldFinS.setBounds(93, 242, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldFinS);
 		
 		textFieldIniD = new JTextField();
 		textFieldIniD.setColumns(10);
-		textFieldIniD.setBounds(71, 284, 32, 20);
+		textFieldIniD.setBounds(40, 268, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldIniD);
 		
 		JLabel lblA_6 = new JLabel("a");
 		lblA_6.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblA_6.setBounds(110, 283, 16, 21);
+		lblA_6.setBounds(79, 267, 16, 21);
 		frmRealizarReserva.getContentPane().add(lblA_6);
 		
 		textFieldFinD = new JTextField();
 		textFieldFinD.setColumns(10);
-		textFieldFinD.setBounds(124, 284, 32, 20);
+		textFieldFinD.setBounds(93, 268, 32, 20);
 		frmRealizarReserva.getContentPane().add(textFieldFinD);
 		
 		scrollPaneActividades = new JScrollPane();
@@ -573,75 +549,39 @@ public JScrollPane getScrollPaneSemanal() {
 		tableActividades = new JTable();
 		scrollPaneActividades.setViewportView(tableActividades);
 		
-		scrollPaneSemanal = new JScrollPane();
-		scrollPaneSemanal.setBounds(23, 132, 38, 140);
-		frmRealizarReserva.getContentPane().add(scrollPaneSemanal);
-		
-		tableSemanal = new JTable();
-		tableSemanal.setToolTipText("Seleccione los días de la semana");
-		tableSemanal.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		tableSemanal.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"L"},
-				{"M"},
-				{"X"},
-				{"J"},
-				{"V"},
-				{"S"},
-				{"D"},
-			},
-			new String[] {
-				"D\u00EDas"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		scrollPaneSemanal.setViewportView(tableSemanal);
-		
 		lblNewLabel = new JLabel("L");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(166, 131, 26, 19);
+		lblNewLabel.setBounds(135, 115, 26, 19);
 		frmRealizarReserva.getContentPane().add(lblNewLabel);
 		
 		lblM = new JLabel("M");
 		lblM.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblM.setBounds(165, 158, 26, 19);
+		lblM.setBounds(134, 142, 26, 19);
 		frmRealizarReserva.getContentPane().add(lblM);
 		
 		lblX = new JLabel("X");
 		lblX.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblX.setBounds(166, 187, 26, 19);
+		lblX.setBounds(135, 171, 26, 19);
 		frmRealizarReserva.getContentPane().add(lblX);
 		
 		lblJ = new JLabel("J");
 		lblJ.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblJ.setBounds(165, 210, 26, 19);
+		lblJ.setBounds(134, 194, 26, 19);
 		frmRealizarReserva.getContentPane().add(lblJ);
 		
 		lblV = new JLabel("V");
 		lblV.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblV.setBounds(166, 234, 26, 19);
+		lblV.setBounds(135, 218, 26, 19);
 		frmRealizarReserva.getContentPane().add(lblV);
 		
 		lblS = new JLabel("S");
 		lblS.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblS.setBounds(166, 259, 26, 19);
+		lblS.setBounds(135, 243, 26, 19);
 		frmRealizarReserva.getContentPane().add(lblS);
 		
 		lblD = new JLabel("D");
 		lblD.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblD.setBounds(166, 283, 26, 19);
+		lblD.setBounds(135, 267, 26, 19);
 		frmRealizarReserva.getContentPane().add(lblD);
 		
 		btnActualizaActividades = new JButton("Actualizar");
