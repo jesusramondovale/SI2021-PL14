@@ -11,7 +11,7 @@ import giis.demo.Proyecto.DTO.SociosDTO;
 import giis.demo.util.Database;
 import giis.demo.util.UnexpectedException;
 
-public class RealizaReservaModel { 
+public class AutoReservaModel { 
 
 
 	public Database db = new Database();

@@ -16,7 +16,7 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class RealizarReservasView {
+public class AutoReservaView {
 
 	private JFrame frmRealizarReserva;
 	private JTable tableAnteriores;
@@ -112,7 +112,7 @@ public class RealizarReservasView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RealizarReservasView window = new RealizarReservasView();
+					AutoReservaView window = new AutoReservaView();
 					window.frmRealizarReserva.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -124,7 +124,7 @@ public class RealizarReservasView {
 	/**
 	 * Create the application.
 	 */
-	public RealizarReservasView() {
+	public AutoReservaView() {
 		initialize();
 	}
 
@@ -133,7 +133,7 @@ public class RealizarReservasView {
 	 */
 	private void initialize() {
 		frmRealizarReserva = new JFrame();
-		frmRealizarReserva.setTitle("Realizar Reserva");
+		frmRealizarReserva.setTitle("Realizar Reserva Automática");
 		frmRealizarReserva.setBounds(100, 100, 375, 273);
 		
 		btnCrearReserva = new JButton("Crear Reserva");

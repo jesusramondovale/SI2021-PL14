@@ -14,7 +14,7 @@ import giis.demo.Proyecto.Controller.*;
 import giis.demo.Proyecto.Model.*;
 import giis.demo.Proyecto.View.*;
 
-import giis.demo.tkrun.*;
+//import giis.demo.tkrun.*;
 
 /**
  * Punto de entrada principal que incluye botones para la ejecucion de las pantallas 
@@ -58,16 +58,7 @@ public class SwingMain {
 		frame.setTitle("Main");
 		frame.setBounds(0, 0, 415, 497);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		
-		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
-		btnEjecutarTkrun.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
-			public void actionPerformed(ActionEvent e) {
-				CarrerasController controller=new CarrerasController(new CarrerasModel(), new CarrerasView());
-				controller.initController();
-			}
-		});
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-		frame.getContentPane().add(btnEjecutarTkrun);
 		
 			
 		JButton btnInicializarBaseDeDatos = new JButton("Inicializar Base de Datos en Blanco");
@@ -89,21 +80,11 @@ public class SwingMain {
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
 		
-		JButton btnMostrarActividades = new JButton("Mostrar Actividades");
-		btnMostrarActividades.addActionListener(new ActionListener() {
+		JButton btnReservaAuto = new JButton("Realizar Reserva AUTO");
+		btnReservaAuto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MostrarActividadesController controller=new MostrarActividadesController(new MostrarActividadesView() , new MostrarActividadesModel());
-				controller.initController();
-			}
-		});
-		frame.getContentPane().add(btnMostrarActividades);
-		
-		JButton btnRealizarReserva = new JButton("Realizar Reserva");
-		btnRealizarReserva.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				RealizarReservasController controller=new RealizarReservasController(new RealizarReservasView() , new RealizaReservaModel());
+				AutoReservaController controller=new AutoReservaController(new AutoReservaView() , new AutoReservaModel());
 				try {
 					controller.initController();
 				} catch (ParseException e1) {
@@ -114,49 +95,7 @@ public class SwingMain {
 							
 			}
 		});
-		frame.getContentPane().add(btnRealizarReserva);
-		
-		JButton boton_CrearActividad = new JButton("Crear Actividad");
-		boton_CrearActividad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearActividadController controller = new CrearActividadController(new CrearActividadModel(), new CrearActividadView());
-				controller.initController();
-			}
-		});
-		frame.getContentPane().add(boton_CrearActividad);
-		
-		JButton btnNewButton = new JButton("Crear Periodo");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearPeriodoController controller = new CrearPeriodoController(new CrearPeriodoModel(), new CrearPeriodoView());
-				controller.initController();
-			}
-		});
-		frame.getContentPane().add(btnNewButton);
-		
-		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones");
-		btnVisualizarReservas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				visualizarReservasInstalacionesController controller = 
-						new visualizarReservasInstalacionesController(
-								 new visualizarReservasInstalacionesModel()
-								,new visualizaReservasInstalacionesView());
-				
-				controller.initController();
-			}
-		});
-		frame.getContentPane().add(btnVisualizarReservas);
-		
-		
-		JButton btnReservar = new JButton("Realizar reserva");
-		btnReservar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 realizarReservaController controller=new realizarReservaController(new RealizarReservasModel() , new realizarReservaView(), new resguardoView());
-	                controller.initController();
-			}
-		});
-		frame.getContentPane().add(btnReservar);
+		frame.getContentPane().add(btnReservaAuto);
 
 	}
 

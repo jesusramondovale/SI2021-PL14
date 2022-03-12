@@ -17,13 +17,13 @@ import giis.demo.Proyecto.View.*;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.Util;
 
-public class RealizarReservasController {
+public class AutoReservaController {
 
-	private RealizarReservasView view;
-	private RealizaReservaModel model;
+	private AutoReservaView view;
+	private AutoReservaModel model;
 
 
-	public RealizarReservasController(RealizarReservasView view, RealizaReservaModel model) {
+	public AutoReservaController(AutoReservaView view, AutoReservaModel model) {
 
 		this.view = view;
 		this.model = model;
