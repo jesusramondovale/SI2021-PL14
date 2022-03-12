@@ -13,18 +13,18 @@ import javax.swing.table.TableModel;
 
 import giis.demo.Proyecto.DTO.ActividadDTO;
 import giis.demo.Proyecto.DTO.ReservaDTO;
-import giis.demo.Proyecto.Model.RealizarReservasModel;
-import giis.demo.Proyecto.View.RealizarReservasView;
+import giis.demo.Proyecto.Model.ReservaPersonalizadaModel;
+import giis.demo.Proyecto.View.ReservaPersonalizadaView;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.Util;
 
-public class RealizarReservasController {
+public class ReservaPersonalizadaController {
 
-	private RealizarReservasView view;
-	private RealizarReservasModel model;
+	private ReservaPersonalizadaView view;
+	private ReservaPersonalizadaModel model;
 
 
-	public RealizarReservasController(RealizarReservasView view, RealizarReservasModel model) {
+	public ReservaPersonalizadaController(ReservaPersonalizadaView view, ReservaPersonalizadaModel model) {
 
 		this.view = view;
 		this.model = model;
@@ -55,8 +55,18 @@ public class RealizarReservasController {
 
 	private void actualizarTablaActividades() {
 
+		
+		int diaIni, mesIni, anoIni;
+		String fecha;
+		diaIni = this.view.getCbDiaIni().getSelectedIndex() +1;
+		mesIni = this.view.getCbMesIni().getSelectedIndex()+1;
+		anoIni = Integer.parseInt(this.view.getCbAnoIni().getModel().getElementAt(this.view.getCbAnoIni().getSelectedIndex()).toString());
+
+
+		fecha = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
+		
 		List<ActividadDTO> listaActividades= null;
-		listaActividades = model.getListaActividades();
+		listaActividades = model.getListaActividades(Util.dateToIsoString(Util.isoStringToDate(fecha)));
 
 		if(listaActividades.isEmpty()) {
 
@@ -131,16 +141,19 @@ public class RealizarReservasController {
 		this.view.getCbAnoIni().setSelectedIndex(0);
 		this.view.getCbMesIni().setSelectedIndex(0);
 		this.view.getCbDiaIni().setSelectedIndex(0);
-		this.view.getComboBoxInstalacion().setSelectedIndex(0);
 
 
-
-
-
-		DefaultTableModel dm = (DefaultTableModel) this.view.getTableAnteriores().getModel();
-		int rowCount = dm.getRowCount();
+		DefaultTableModel dm1 = (DefaultTableModel) this.view.getTableAnteriores().getModel();
+		int rowCount = dm1.getRowCount();
 		for (int i = rowCount - 1; i >= 0; i--) {
-			dm.removeRow(i);
+			dm1.removeRow(i);
+		}
+		
+
+		DefaultTableModel dm2 = (DefaultTableModel) this.view.getTableActividades().getModel();
+		int rowCount2 = dm2.getRowCount();
+		for (int i = rowCount2 - 1; i >= 0; i--) {
+			dm2.removeRow(i);
 		}
 
 	}

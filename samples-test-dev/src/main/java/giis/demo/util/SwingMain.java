@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
-import giis.demo.Proyecto.Controller.RealizarReservasController;
-import giis.demo.Proyecto.Model.RealizarReservasModel;
-import giis.demo.Proyecto.View.RealizarReservasView;
+import giis.demo.Proyecto.Controller.ReservaPersonalizadaController;
+import giis.demo.Proyecto.Model.ReservaPersonalizadaModel;
+import giis.demo.Proyecto.View.ReservaPersonalizadaView;
 import giis.demo.tkrun.*;
 
 /**
@@ -90,7 +90,7 @@ public class SwingMain {
 		btnRealizarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				RealizarReservasController controller=new RealizarReservasController(new RealizarReservasView() , new RealizarReservasModel());
+				ReservaPersonalizadaController controller=new ReservaPersonalizadaController(new ReservaPersonalizadaView() , new ReservaPersonalizadaModel());
 				try {
 					controller.initController();
 				} catch (ParseException e1) {

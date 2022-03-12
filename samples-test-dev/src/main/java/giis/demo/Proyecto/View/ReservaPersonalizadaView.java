@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class RealizarReservasView {
+public class ReservaPersonalizadaView {
 
 	private JFrame frmRealizarReserva;
 	private JTable tableAnteriores;
@@ -328,7 +328,7 @@ public JButton getBtnActualizaActividades() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RealizarReservasView window = new RealizarReservasView();
+					ReservaPersonalizadaView window = new ReservaPersonalizadaView();
 					window.frmRealizarReserva.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -340,7 +340,7 @@ public JButton getBtnActualizaActividades() {
 	/**
 	 * Create the application.
 	 */
-	public RealizarReservasView() {
+	public ReservaPersonalizadaView() {
 		initialize();
 	}
 
@@ -350,7 +350,7 @@ public JButton getBtnActualizaActividades() {
 	@SuppressWarnings("serial")
 	private void initialize() {
 		frmRealizarReserva = new JFrame();
-		frmRealizarReserva.setTitle("Realizar Reserva");
+		frmRealizarReserva.setTitle("Realizar Reserva Personalizada");
 		frmRealizarReserva.setBounds(100, 100, 692, 359);
 		
 		btnCrearReserva = new JButton("Crear Reserva");
@@ -406,7 +406,7 @@ public JButton getBtnActualizaActividades() {
 		
 		JLabel lblHorario = new JLabel("HORARIO");
 		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblHorario.setBounds(58, 100, 103, 17);
+		lblHorario.setBounds(58, 95, 103, 17);
 		
 		tableAnteriores = new JTable();
 		tableAnteriores.setSize(scrollPaneAnteriores.getSize());
@@ -589,7 +589,7 @@ public JButton getBtnActualizaActividades() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnActualizaActividades.setBounds(308, 279, 89, 23);
+		btnActualizaActividades.setBounds(283, 283, 114, 23);
 		frmRealizarReserva.getContentPane().add(btnActualizaActividades);
 	}
 }

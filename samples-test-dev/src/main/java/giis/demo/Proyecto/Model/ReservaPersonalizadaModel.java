@@ -11,7 +11,7 @@ import giis.demo.util.Database;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.UnexpectedException;
 
-public class RealizarReservasModel { 
+public class ReservaPersonalizadaModel { 
 
 
 	public Database db = new Database();
@@ -30,7 +30,8 @@ public class RealizarReservasModel {
 			+ "WHERE idActividad = ?";
 
 	private String SQL5 = "SELECT nombre, tipo, fechaInicio,  fechaFin "
-			+ "FROM actividades "; 
+			+ "FROM actividades "
+			+ "WHERE fechaInicio = ?"; 
 		
 
 	public boolean isSocio(int id){
@@ -105,11 +106,11 @@ public class RealizarReservasModel {
 		}
 	}
 
-	public List<ActividadDTO> getListaActividades(){
+	public List<ActividadDTO> getListaActividades(String fecha){
 		
 		try {
 		
-			return db.executeQueryPojo(ActividadDTO.class, SQL5);
+			return db.executeQueryPojo(ActividadDTO.class, SQL5, fecha);
 			
 		}
 		catch(UnexpectedException e) {
