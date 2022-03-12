@@ -1,11 +1,16 @@
 package giis.demo.Proyecto.Controller;
 
 import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import giis.demo.Proyecto.DTO.ActividadDTO;
 import giis.demo.Proyecto.DTO.ReservaDTO;
 import giis.demo.Proyecto.Model.RealizarReservasModel;
 import giis.demo.Proyecto.View.RealizarReservasView;
@@ -39,14 +44,44 @@ public class RealizarReservasController {
 
 
 		this.view.getBtnBorrar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> borrar()));
-		this.view.getBtnActualizar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarTablas()));
+		this.view.getBtnActualizar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarTabla()));
+		this.view.getBtnActualizaActividades().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarTablaActividades()));
 
 
 
 	}
 
 
-	private void actualizarTablas() {
+	private void actualizarTablaActividades() {
+	
+		List<ActividadDTO> listaActividades= null;
+		listaActividades = model.getListaActividades();
+		
+		if(listaActividades.isEmpty()) {
+			
+			SwingUtil.showMessage("No existen actividades en la BD todavía", "Error", 0);
+		}
+		
+		else {
+			
+			TableModel tmodel=SwingUtil.getTableModelFromPojos(listaActividades, new String[] { 
+					"nombre", "tipo", "fechaInicio",  "fechaFin" },
+					new String[] { 
+							"Nombre"  , "Tipo" , "Fecha (ini.)" , "Fecha (fin)" });
+
+
+			// Asigna a la tabla de la vista el modelo generado
+			view.getTableActividades().setModel(tmodel);
+			SwingUtil.autoAdjustColumns(view.getTableActividades());
+			
+			
+		}
+
+		
+		
+	}
+
+	private void actualizarTabla() {
 
 
 		int diaIni, mesIni, anoIni;
@@ -55,6 +90,7 @@ public class RealizarReservasController {
 		mesIni = this.view.getCbMesIni().getSelectedIndex()+1;
 		anoIni = Integer.parseInt(this.view.getCbAnoIni().getModel().getElementAt(this.view.getCbAnoIni().getSelectedIndex()).toString());
 
+
 		fecha = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
 
 
@@ -62,9 +98,13 @@ public class RealizarReservasController {
 
 		listReservas = model.getListaReservas(Util.dateToIsoString(Util.isoStringToDate(fecha)));
 
-
-
-		//Generamos el modelo de tabla y lo cargamos con los datos de la BD
+		if(listReservas.isEmpty()) {
+			
+			SwingUtil.showMessage("No hay reservas para la fecha inicial indicada!", "Error", 0);
+		}
+		else {
+			
+			//Generamos el modelo de tabla y lo cargamos con los datos de la BD
 		TableModel tmodel=SwingUtil.getTableModelFromPojos(listReservas, new String[] { 
 				"fecha"  , "horaInicio" , "horaFin" },
 				new String[] { 
@@ -74,6 +114,9 @@ public class RealizarReservasController {
 		// Asigna a la tabla de la vista el modelo generado
 		view.getTableAnteriores().setModel(tmodel);
 		SwingUtil.autoAdjustColumns(view.getTableAnteriores());
+		}
+
+		
 
 
 	}
@@ -90,10 +133,8 @@ public class RealizarReservasController {
 		this.view.getComboBoxInstalacion().setSelectedIndex(0);
 
 
-		this.view.getTextFieldHorasIni().setText("");
-		this.view.getTextFieldMinIni().setText("");
 
-		this.view.getTextFieldActividad().setText("Nº");
+
 
 		DefaultTableModel dm = (DefaultTableModel) this.view.getTableAnteriores().getModel();
 		int rowCount = dm.getRowCount();
@@ -106,27 +147,85 @@ public class RealizarReservasController {
 
 	public boolean camposLlenos(){
 
-		if((this.view.getTextFieldActividad().getText().isEmpty())
+		int diaFin, diaIni, mesFin, mesIni , anoFin , anoIni; 
+		String fechaIni,fechaFin; 
+		diaIni = this.view.getCbDiaIni().getSelectedIndex() +1;
+		mesIni = this.view.getCbMesIni().getSelectedIndex() +1;
+		anoIni = Integer.parseInt(this.view.getCbAnoIni().getModel().getElementAt(this.view.getCbAnoIni().getSelectedIndex()).toString());
 
-				/*			
+		diaFin = this.view.getCbDiaFin().getSelectedIndex() +1;
+		mesFin = this.view.getCbMesFin().getSelectedIndex()+1;
+		anoFin = Integer.parseInt(this.view.getCbAnoFin().getModel().getElementAt(this.view.getCbAnoFin().getSelectedIndex()).toString());
 
-				(this.view.getTextFieldHorasIni().getText().isEmpty())	
 
+		fechaIni = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni; 
+
+		fechaFin = Integer.toString(anoFin) + "-" + mesFin + "-" + diaFin; 
+
+		Date fechaIniD = Util.isoStringToDate(fechaIni);
+		Date fechaFinD = Util.isoStringToDate(fechaFin);
+
+
+
+		if( this.view.getTableActividades().getSelectedRowCount() <= 0
+				||
+				this.view.getTableActividades().getSelectedRowCount() >=2
+				||
+				fechaIniD.after(fechaFinD) 
 				||
 
+				(
 
-				(this.view.getTextFieldMinIni().getText().isEmpty())	
+						(this.view.getTextFieldIniL().getText().isBlank()
+								|| 
+								this.view.getTextFieldFinL().getText().isBlank())
 
-				||
+						&&
 
-				(this.view.getTextFieldMinFin().getText().isEmpty())	
+						(this.view.getTextFieldIniM().getText().isBlank()
+								||
+								this.view.getTextFieldFinM().getText().isBlank())
+
+						&&
 
 
-				 */
-				){
+
+						(this.view.getTextFieldIniX().getText().isBlank()
+								||
+								this.view.getTextFieldFinX().getText().isBlank())
+
+						&& 
+
+						(this.view.getTextFieldIniJ().getText().isBlank()
+								||
+								this.view.getTextFieldFinJ().getText().isBlank())
+
+						&&
+
+
+						(this.view.getTextFieldIniV().getText().isBlank()
+								||
+								this.view.getTextFieldFinV().getText().isBlank())
+
+						&&
+
+
+						(this.view.getTextFieldIniS().getText().isBlank()
+								||
+								this.view.getTextFieldFinS().getText().isBlank())
+
+						&&
+
+						(this.view.getTextFieldIniD().getText().isBlank()
+								|| 
+								this.view.getTextFieldFinD().getText().isBlank())
+
+						))
+		{
 
 			return false;
 		}
+
 		else{
 
 			return true;
@@ -160,15 +259,25 @@ public class RealizarReservasController {
 	}
 
 
+	private static int getRandomNumberInRange(int min, int max) {
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
+	}
+
+
+	@SuppressWarnings("null")
 	public void generarReserva() {
 
-		/*
+
 		// Valida Campos
 		if(!camposLlenos()){
 
 			JOptionPane.showMessageDialog(
 					null, 
-					"Rellene todos los campos primero.", 
+					"Hay algún error con los datos introducidos.", 
 					"Error",
 					JOptionPane.WARNING_MESSAGE);
 
@@ -180,15 +289,13 @@ public class RealizarReservasController {
 
 			//Toma los datos de la pantalla
 			@SuppressWarnings("unused")
-			int instalacion, deporte, diaIni, mesIni, anoIni, diaFin, mesFin, anoFin;
+			int diaIni, mesIni, anoIni, diaFin, mesFin, anoFin;
 			String fechaIni,fechaFin;
-			float hIni1,hIni2,hFin1,hFin2;
-			double horaInicio;
-			double horaFinal;
-			int idReserva;
-			int idSocio;
+			int idActividad, idInstalacion ;
 
-			instalacion = this.view.getComboBoxInstalacion().getSelectedIndex() +1;
+			idActividad = this.view.getTableActividades().getSelectedRow() +1 ;
+			idInstalacion = model.getInstalacion(idActividad).get(0).getIdInstalacion();
+
 			diaIni = this.view.getCbDiaIni().getSelectedIndex() +1;
 			diaFin = this.view.getCbDiaFin().getSelectedIndex()+1;
 			mesIni = this.view.getCbMesIni().getSelectedIndex()+1;
@@ -198,60 +305,121 @@ public class RealizarReservasController {
 
 			fechaIni = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
 			fechaFin = Integer.toString(anoFin) + "-" + mesFin + "-" + diaFin;
+
 			Date fechaIniDate = Util.isoStringToDate(fechaIni);
 			Date fechaFinDate = Util.isoStringToDate(fechaFin);
 
-			if(fechaIniDate.before(fechaFinDate) || fechaIniDate.equals(fechaFinDate)) {
+			
+			int [] dias = this.view.getTableSemanal().getSelectedRows();
+			
+			int [] diasArreglo = dias; 
 
 
-				//LAS FECHAS ESTÁN BIEN 
-				//System.out.println("fechaIniDate.before(fechaFinDate) = true");
+			for(int i = 0 ; i < dias.length ; i++){
+
+				if(dias[i] >= 2 && dias[i] <= 5) {
+					diasArreglo[i] = dias[i] + 2;
+				}
+
+			}
 
 
-				hIni1 = Float.parseFloat(this.view.getTextFieldHorasIni().getText());
-				hIni2 = Float.parseFloat(this.view.getTextFieldMinIni().getText());
+			double [] horasIni = {0,0,0,0,0,0,0};
+			double [] horasFin = {0,0,0,0,0,0,0};
+			
+			for(int i=0 ; i<this.view.getTableSemanal().getSelectedRowCount() ; i++) {
 
-				horaInicio = (hIni1 % 24) + (hIni2 / 100.00);
-				horaFinal = (hFin1 % 24) + (hFin2 / 100.00);
+				switch(diasArreglo[i]) {
+				case 2:
+					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniL().getText());
+					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinL().getText());
 
-				idReserva = Integer.parseInt(this.view.getTextFieldActividad().getText());
+				case 3:
+					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniM().getText());
+					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinM().getText());
 
-				//Delega en el modelo
 
-				if(model.isSocio(idSocio)){
+				case 4:
+					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniX().getText());
+					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinX().getText());
 
-					//Si el socio existe
-					if(!alreadyReserved(instalacion, fechaIni, horaInicio)){
 
-						System.out.println("alreadyReserved = false");
-						//SI no está reservado
-						model.crearReserva(idReserva, 
-								Util.dateToIsoString(Util.isoStringToDate(fechaIni)), 
-								horaInicio, horaFinal, instalacion, deporte, idSocio, 1);
+				case 5:
+					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniJ().getText());
+					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinJ().getText());
 
-					} //end no Reservado situation
 
-					else{ SwingUtil.showMessage("La instalación ya está reservada!", "Error", 0);
-					System.out.println("alreadyReserved = false");
+				case 6:
+					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniV().getText());
+					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinV().getText());
+
+
+				case 7:
+					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniS().getText());
+					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinS().getText());
+
+
+				case 1:
+					horasIni[i] = Integer.parseInt(this.view.getTextFieldIniD().getText());
+					horasFin[i] = Integer.parseInt(this.view.getTextFieldFinD().getText());
+
+
+				default:
+					System.err.println("Default en Switch (RealizarReservasController:340)");
+				}
+
+
+
+
+			}
+
+			Calendar cal = Calendar.getInstance();
+			for( Date f = fechaIniDate   ; f.before(fechaFinDate) || f.equals(fechaFinDate)   ; f.setTime(f.getTime() + (1000 * 60 * 60 * 24))) {
+				cal.setTime(f);
+				for(int i = 0 ; i < diasArreglo.length ; i++) {
+					if(cal.get(Calendar.DAY_OF_WEEK) == diasArreglo[i]) {
+
+						if(!alreadyReserved(idInstalacion , Util.dateToIsoString(f) , horasIni[i])) {
+							
+							model.crearReserva(getRandomNumberInRange(1000,10000) , Util.dateToIsoString(f) , 
+									     horasIni[i] , horasFin[i] , idInstalacion , idActividad, 0 ,1 );
+
+						}
+						else {
+							JOptionPane.showMessageDialog(
+									null, 
+									"Instalación " + Integer.toString(idInstalacion) + " ya reservada!\n" + 
+											"Fecha: " + Util.dateToIsoString(f) + "\n" + 
+											"Hora: " + Double.toString(horasIni[i]) ,										
+											"Error",
+											JOptionPane.ERROR_MESSAGE ); 	
+
+						}
+
+
+
 					}
+				} // end for - Recorre todas las filas de horarios que tenga la actividad
+				
+			} //end for - Recorre el tiempo dia a dia
 
-				} //end socio existe situation 
-
-				else { SwingUtil.showMessage("El socio no existe en la BBDD", "Error", 0);  }
-
-
-			}//end fechas Válidas Situation
-
-			else { SwingUtil.showMessage("Revise las fechas introducidas", "Error", 2); }
-
-
-		} //end camposLlenos situation
+			JOptionPane.showMessageDialog(
+					null, 
+					"Reserva creada con éxito! ", 
+					"Éxito",
+					JOptionPane.INFORMATION_MESSAGE ); 	
 
 
-	}//end generarReserva
-		 */
+		}
+
 	}
+
+
+
 }
+
+
+
 
 
 

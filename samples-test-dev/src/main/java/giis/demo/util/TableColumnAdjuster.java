@@ -144,6 +144,7 @@ public class TableColumnAdjuster implements PropertyChangeListener, TableModelLi
 	/*
 	 *  Update the TableColumn with the newly calculated width
 	 */
+	@SuppressWarnings("deprecation")
 	private void updateTableColumn(int column, int width)
 	{
 		final TableColumn tableColumn = table.getColumnModel().getColumn(column);
@@ -351,6 +352,7 @@ public class TableColumnAdjuster implements PropertyChangeListener, TableModelLi
 	/*
 	 *  Action to adjust or restore the width of a single column or all columns
 	 */
+	@SuppressWarnings("serial")
 	class ColumnAction extends AbstractAction
 	{
 		private boolean isSelectedColumn;
@@ -393,6 +395,7 @@ public class TableColumnAdjuster implements PropertyChangeListener, TableModelLi
 	 *  Toggle properties of the TableColumnAdjuster so the user can
 	 *  customize the functionality to their preferences
 	 */
+	@SuppressWarnings("serial")
 	class ToggleAction extends AbstractAction
 	{
 		private boolean isToggleDynamic;

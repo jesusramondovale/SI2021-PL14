@@ -27,12 +27,12 @@ INSERT INTO "periodos" VALUES (2,'Periodo2','2021-04-29','2021-06-03','2021-06-2
 INSERT INTO "periodos" VALUES (3,'Periodo3','2021-04-27','2021-06-04','2021-07-29');
 
 
-INSERT INTO "actividades" VALUES (1,'Tenis','Tenis',20,25, '2021-04-02' ,'2021-04-02', 23 ,24,1,1,25,1);
-INSERT INTO "actividades" VALUES (2,'Natación','Natación',12,16,'2021-04-02','2021-04-02' , 23 ,24,2,1,0,6);
-INSERT INTO "actividades" VALUES (4,'Esgrima','Natación',12,16,'2021-04-02','2021-04-02' , 23 ,24,2,1,0,6);
-INSERT INTO "actividades" VALUES (5,'Natación','Natación',12,16,'2021-04-02','2021-04-02' , 23 ,24,2,1,0,6);
-INSERT INTO "actividades" VALUES (6,'Natación','Natación',12,16,'2021-04-02','2021-04-02' , 23 ,24,2,1,0,6);
-INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12,16,'2021-04-02','2021-04-02',23,24,3,1,1,6);
+INSERT INTO "actividades" VALUES (1,'Tenis','Tenis',20,25, '2021-04-02' ,'2022-04-02', 23 ,24,1,1,25,1);
+INSERT INTO "actividades" VALUES (2,'Natación','Natación',12,16,'2022-04-02','2022-04-02' , 23 ,24,2,1,0,6);
+INSERT INTO "actividades" VALUES (4,'Esgrima','Natación',12,16,'2022-04-02','2022-04-02' , 23 ,24,2,1,0,6);
+INSERT INTO "actividades" VALUES (5,'Natación','Natación',12,16,'2022-04-02','2022-04-02' , 23 ,24,2,1,0,6);
+INSERT INTO "actividades" VALUES (6,'Natación','Natación',12,16,'2022-04-02','2022-04-02' , 23 ,24,2,1,0,6);
+INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12,16,'2022-04-02','2022-04-02',23,24,3,1,1,6);
 
 
 INSERT INTO "horarioActividad" VALUES (1,1,'L',10.0,12.0);
