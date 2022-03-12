@@ -10,13 +10,13 @@ public class ActividadDTO {
 	private Integer plazas, idInstalacion, idPeriodoInscripcion, estado;
 	
 	
-	public int getId() {
-		return id;
-	}
-
+	
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getId() {
+		return id;
 	}
 
 
