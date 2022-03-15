@@ -41,5 +41,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/UO269603/Desktop/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/UO269603/Desktop/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/UO269603/Desktop/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/UO269603/Desktop/junit-4.6.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
