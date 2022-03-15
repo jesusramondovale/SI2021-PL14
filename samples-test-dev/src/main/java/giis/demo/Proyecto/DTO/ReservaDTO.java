@@ -10,7 +10,7 @@ public class ReservaDTO {
 	private int idInstalacion;
 	private int idActividad;
 	private int idSocio;
-	
+	private String nombre, apellido1 , apellido2;
 	private boolean estado;
 
 	
@@ -18,6 +18,44 @@ public class ReservaDTO {
 	public ReservaDTO() {
 		super();
 	}
+
+	
+	
+	
+	
+	public ReservaDTO(String fecha, float horaInicio, int idInstalacion, int idSocio, String nombre, String apellido1,
+			String apellido2) {
+		super();
+		this.fecha = fecha;
+		this.horaInicio = horaInicio;
+		this.idInstalacion = idInstalacion;
+		this.idSocio = idSocio;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+	}
+
+
+
+
+
+	public ReservaDTO(int idReserva, String fecha, float horaInicio, float horaFin, int idInstalacion, int idActividad,
+			int idSocio, String nombre, String apellido1, String apellido2, boolean estado) {
+		super();
+		this.idReserva = idReserva;
+		this.fecha = fecha;
+		this.horaInicio = horaInicio;
+		this.horaFin = horaFin;
+		this.idInstalacion = idInstalacion;
+		this.idActividad = idActividad;
+		this.idSocio = idSocio;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.estado = estado;
+	}
+
+
 
 	public ReservaDTO(String fecha, float horaInicio, float horaFin) {
 		super();
@@ -46,6 +84,57 @@ public class ReservaDTO {
 		this.idSocio = idSocio;
 		this.estado = estado;
 	}
+
+	
+	
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+
+
+	public String getApellido1() {
+		return apellido1;
+	}
+
+
+
+
+
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+
+
+
+
+
+	public String getApellido2() {
+		return apellido2;
+	}
+
+
+
+
+
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
+	}
+
+
+
+
 
 	public int getIdReserva() {
 		return idReserva;
