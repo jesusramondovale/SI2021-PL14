@@ -116,7 +116,7 @@ public class CancelarReservasView {
 	private void initialize() {
 		frmCancelarReserva = new JFrame();
 		frmCancelarReserva.setTitle("Cancelar Reserva");
-		frmCancelarReserva.setBounds(100, 100, 451, 309);
+		frmCancelarReserva.setBounds(100, 100, 416, 291);
 		frmCancelarReserva.getContentPane().setLayout(null);
 		
 		lblNewLabel = new JLabel("Introduzca el #ID de Socio: ");
@@ -124,27 +124,27 @@ public class CancelarReservasView {
 		frmCancelarReserva.getContentPane().add(lblNewLabel);
 		
 		textFieldSocio = new JTextField();
-		textFieldSocio.setBounds(171, 12, 58, 20);
+		textFieldSocio.setBounds(171, 12, 42, 20);
 		frmCancelarReserva.getContentPane().add(textFieldSocio);
 		textFieldSocio.setColumns(10);
 		
 		btnActualizar = new JButton("Ver Reservas");
-		btnActualizar.setBounds(282, 11, 145, 23);
+		btnActualizar.setBounds(239, 11, 145, 23);
 		frmCancelarReserva.getContentPane().add(btnActualizar);
 		
 		scrollPaneReservas = new JScrollPane();
-		scrollPaneReservas.setBounds(14, 40, 413, 184);
+		scrollPaneReservas.setBounds(14, 40, 370, 165);
 		frmCancelarReserva.getContentPane().add(scrollPaneReservas);
 		
 		tableReservas = new JTable();
 		scrollPaneReservas.setViewportView(tableReservas);
 		
 		btnBorrar = new JButton("Limpiar");
-		btnBorrar.setBounds(14, 235, 89, 23);
+		btnBorrar.setBounds(24, 216, 89, 23);
 		frmCancelarReserva.getContentPane().add(btnBorrar);
 		
 		btnReservar = new JButton("Cancelar Reserva");
-		btnReservar.setBounds(298, 235, 129, 23);
+		btnReservar.setBounds(228, 216, 156, 23);
 		frmCancelarReserva.getContentPane().add(btnReservar);
 	}
 }

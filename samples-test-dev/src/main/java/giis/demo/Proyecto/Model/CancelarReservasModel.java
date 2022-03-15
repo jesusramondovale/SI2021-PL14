@@ -1,6 +1,7 @@
 package giis.demo.Proyecto.Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -9,12 +10,13 @@ import giis.demo.Proyecto.DTO.SociosDTO;
 import giis.demo.util.Database;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.UnexpectedException;
+import giis.demo.util.Util;
 
 public class CancelarReservasModel {
 
 	private Database db=new Database();
 	
-	private static String SQL1 = "SELECT s.idSocio , s.nombre , s.apellido1 , s.apellido2 , r.idInstalacion , r.fecha , r.horaInicio "
+	private static String SQL1 = "SELECT r.idReserva , s.nombre , s.apellido1 , r.idInstalacion , r.fecha , r.horaInicio , r.estado "
 			+ "FROM socios s "
 			+ "INNER JOIN reservas r "
 			+ "USING (idSocio) "
@@ -23,6 +25,11 @@ public class CancelarReservasModel {
 	private static String SQL2 = "SELECT idSocio , nombre "
 			+ "FROM socios "
 			+ "WHERE idSocio = ? ";
+	
+	private static String SQL3 = "UPDATE reservas SET estado = 'Cancelada' WHERE idReserva = ?";
+	private static String SQL4 = "SELECT estado FROM reservas WHERE idReserva = ? ";
+	private static String SQL5 = "SELECT fecha , horaInicio FROM reservas WHERE idReserva = ? ";
+
 	
 	public List<ReservaDTO> getReservas(int idSocio) {
 		
@@ -42,6 +49,36 @@ public class CancelarReservasModel {
 		
 	}
 	
+	
+	public boolean yaPagada(int idReserva) {
+		
+		
+		List<ReservaDTO> estado = db.executeQueryPojo(ReservaDTO.class, SQL4, idReserva);
+		return (estado.get(0).getEstado().equalsIgnoreCase("pagada"));
+		
+	}
+	
+	public boolean enFecha(int idReserva) {
+		
+		List<ReservaDTO> reserva = db.executeQueryPojo(ReservaDTO.class, SQL5, idReserva);
+		
+		Date hoy = new Date();	
+		Date fechaReserva = Util.isoStringToDate(reserva.get(0).getFecha());
+		Date fechaHoraReserva = new Date(fechaReserva.getTime() + 1000*3600*(int)(reserva.get(0).getHoraInicio()));
+		
+		return (fechaHoraReserva.after(hoy));
+		
+	}
+	
+	
+	
+	public void cancelarReserva(int idReserva) {
+			
+		// Marcamos la reserva como cancelada en BD
+		db.executeUpdate(SQL3, idReserva);
+			
+		
+	}
 	
 	public boolean isSocio(int idSocio) {
 		

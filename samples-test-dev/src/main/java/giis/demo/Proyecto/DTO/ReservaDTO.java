@@ -11,7 +11,7 @@ public class ReservaDTO {
 	private int idActividad;
 	private int idSocio;
 	private String nombre, apellido1 , apellido2;
-	private boolean estado;
+	private String estado;
 
 	
 
@@ -23,6 +23,46 @@ public class ReservaDTO {
 	
 	
 	
+	
+	public ReservaDTO(int idReserva, String fecha, float horaInicio, int idInstalacion, String nombre, String apellido1,
+			String estado) {
+		super();
+		this.idReserva = idReserva;
+		this.fecha = fecha;
+		this.horaInicio = horaInicio;
+		this.idInstalacion = idInstalacion;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.estado = estado;
+	}
+
+
+
+
+
+
+	public ReservaDTO(int idReserva, String fecha, float horaInicio) {
+		super();
+		this.idReserva = idReserva;
+		this.fecha = fecha;
+		this.horaInicio = horaInicio;
+	}
+
+
+
+
+
+
+	public ReservaDTO(int idReserva, String estado) {
+		super();
+		this.idReserva = idReserva;
+		this.estado = estado;
+	}
+
+
+
+
+
 	public ReservaDTO(String fecha, float horaInicio, int idInstalacion, int idSocio, String nombre, String apellido1,
 			String apellido2) {
 		super();
@@ -40,7 +80,7 @@ public class ReservaDTO {
 
 
 	public ReservaDTO(int idReserva, String fecha, float horaInicio, float horaFin, int idInstalacion, int idActividad,
-			int idSocio, String nombre, String apellido1, String apellido2, boolean estado) {
+			int idSocio, String nombre, String apellido1, String apellido2, String estado) {
 		super();
 		this.idReserva = idReserva;
 		this.fecha = fecha;
@@ -73,7 +113,7 @@ public class ReservaDTO {
 	}
 
 	public ReservaDTO(int idReserva, String fecha, float horaInicio, float horaFin, int idInstalacion, int idActividad,
-			int idSocio, boolean estado) {
+			int idSocio, String estado) {
 		super();
 		this.idReserva = idReserva;
 		this.fecha = fecha;
@@ -192,11 +232,11 @@ public class ReservaDTO {
 		this.idSocio = idSocio;
 	}
 
-	public boolean isEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(boolean estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	
