@@ -54,7 +54,12 @@ public class CancelarReservasController {
 	}
 
 
-
+	/*  Marca como Cancelada la reserva seleccionada de la tabla
+	 *  Recibe el #ID de socio del TextField, y el ID de Reserva de la Tabla
+	 *  Genera un fichero "recibos.csv" con el contenido de las cancelaciones 
+	 *  ya pagadas para hacerle llegar al departamento de contabilidad
+	 *  
+	 */
 	private void reservar() {
 
 		// Comprueba si hay 1 reserva seleccionada en la tabla
@@ -113,7 +118,7 @@ public class CancelarReservasController {
 					System.out.println("Fecha de la Reserva (AAAA-MM-DD): " + 
 							this.view.getTableReservas().getModel().getValueAt(
 									this.view.getTableReservas().getSelectedRow() , 4));
-					
+
 					System.out.println("Fecha de Cancelación (AAAA-MM-DD): " + Util.dateToIsoString(new Date()));
 					System.out.println("----------------------------------------------");
 
@@ -124,7 +129,7 @@ public class CancelarReservasController {
 
 
 						FileWriter fw = new FileWriter(recibosCSV);
-						
+
 
 
 						CSVWriter writer = new CSVWriter(fw, ';',
@@ -136,7 +141,7 @@ public class CancelarReservasController {
 						List<String[]> data = new ArrayList<String[]>();
 						String[] cabecera = {" #N Reserva " , " #ID Socio ", " Nombre " , "Instalacion" , "Fecha de reserva" , "Fecha de Cancelacion" , "Importe (euros)"};
 
-			
+
 						data.add(new String [] { Integer.toString(idReserva)  ,  
 								this.view.getTextFieldSocio().getText() , 
 
@@ -201,6 +206,10 @@ public class CancelarReservasController {
 
 
 
+	/*  
+	 * Limpia la tabla y el TextField de #ID de socios
+	 * 
+	 */
 	private void borrarReservas() {
 
 		this.view.getTextFieldSocio().setText("");
@@ -224,15 +233,21 @@ public class CancelarReservasController {
 
 
 
+	/*
+	 * Inserta en la tabla todas las reservas existentes 
+	 * en BD del socio indicado en el TextField
+	 * 
+	 */
 	private void actualizarReservas() {
 
-		//Obtiene el ID de socio introducido 
+		//Obtiene el ID de socio introducido en el TextField
 		int idSocio = 0;
 		if(this.view.getTextFieldSocio().getText().isBlank()) {
 
 			SwingUtil.showMessage("¡Introduzca un ID de socio primero!", "Error", 0);
 
 		}
+		
 		else {
 
 			try {
@@ -244,6 +259,7 @@ public class CancelarReservasController {
 				return;
 			}
 
+			
 			//Delega en el modelo 
 
 			// Comprueba si el socio introducido existe en la BD 
@@ -287,10 +303,5 @@ public class CancelarReservasController {
 
 
 	}
-
-
-
-
-
 
 }

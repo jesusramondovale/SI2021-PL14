@@ -36,10 +36,12 @@ public class CancelarReservasModel {
 						+ "USING (idInstalacion) "
 						+ "WHERE idReserva = ? ";
 
-	
-	
-	
-	
+
+	/*
+	 * Retorna el importe (coste instalacion/h x Nºhoras) 
+	 * de la reserva indicada como argumento
+	 * 
+	 */
 	public int getImporte(int idReserva) {
 
 		List<ReservaDTO> data = db.executeQueryPojo(ReservaDTO.class, SQL6, idReserva);
@@ -51,7 +53,12 @@ public class CancelarReservasModel {
 	}
 
 
-
+	/*
+	 * Retorna el listado de reservas existentes 
+	 * en BD realizadas por el socio con el 
+	 * ID indicado
+	 * 
+	 */
 	public List<ReservaDTO> getReservas(int idSocio) {
 
 
@@ -71,14 +78,25 @@ public class CancelarReservasModel {
 	}
 
 
+	/*
+	 * Retorna cierto si la reserva indicada ya
+	 * ha sido pagada 
+	 * Retorna falso en cualquier otro caso
+	 *  
+	 */
 	public boolean yaPagada(int idReserva) {
 
-
 		List<ReservaDTO> estado = db.executeQueryPojo(ReservaDTO.class, SQL4, idReserva);
-		return (estado.get(0).getEstado().equalsIgnoreCase("pagada"));
+		return (estado.get(0).getEstado().equalsIgnoreCase("PAGADA"));
 
 	}
 
+	/*
+	 * Retorna cierto si aún no ha pasado 
+	 * la  fecha de la reserva indicada
+	 * Retorna falso si la fecha ya ha pasado
+	 * 
+	 */
 	public boolean enFecha(int idReserva) {
 
 		List<ReservaDTO> reserva = db.executeQueryPojo(ReservaDTO.class, SQL5, idReserva);
@@ -91,8 +109,14 @@ public class CancelarReservasModel {
 
 	}
 
-
-
+	
+	/*
+	 * Marca como 'CANCELADA' en la tabla
+	 * 'resrvas' de la BD la
+	 * reserva indicada
+	 * No retorna nada
+	 * 
+	 */
 	public void cancelarReserva(int idReserva) {
 
 		// Marcamos la reserva como cancelada en BD
@@ -101,6 +125,13 @@ public class CancelarReservasModel {
 
 	}
 
+	
+	/*
+	 * Retorna cierto si el socio indicado
+	 * existe en la BD
+	 * Retorna falso en cualquier otro caso
+	 * 
+	 */
 	public boolean isSocio(int idSocio) {
 
 		List<SociosDTO> socios = new ArrayList<SociosDTO>();
