@@ -62,88 +62,91 @@ public class visualizaReservasInstalaciones2Controller {
 	}
 	
 	public boolean compruebaId() {
-		List <SociosDisplayDTO> socio = model.obtenerSocio();
-		if(!socio.isEmpty())
-			return true;
-		else {
-			SwingUtil.showMessage("El socio no existe en la BBDD", "Error", 0);
-			return false;
-		}
+		List<SociosDisplayDTO> idSocio = model.getInfoSocio(Integer.parseInt(view.getTxtDNI().getText()));
+			if(!idSocio.isEmpty())
+				return true;
+			else {
+				SwingUtil.showMessage("El socio no existe en la BBDD", "Error", 0);
+				return false;
+			}
 	}
 
 
 	public void getListaReservas() {
-		
-		if(compruebaId()) {
-		
-			String nombreInstalacion= view.getComboBox_instalacion().getSelectedItem().toString();
-			System.out.println("Instalacion " + nombreInstalacion);
-	
-	
-			Object[][] elementos= new Object[16][4];
-			double k;
-			int i,h;
-	
-			for( k=(double) 6.00,i=0,h=6;k < (double) 22.00;k++, i++, h++) {
-				List<estadoReservaDTO> estadoReserva = model.getEstadoReserva(nombreInstalacion, view.getTxtFecha(),k);
-				List<SociosDisplayDTO> dniSocioReserva = model.getDniSociosReserva(nombreInstalacion, k, view.getTxtFecha());
-				int hor=h+1;
-				String hora=(h+":00-"+hor+":00");
-	
-				if(!estadoReserva.isEmpty()) {
-					Object estado = estadoReserva.get(0).getEstadoReserva();
-	
-					if(!dniSocioReserva.isEmpty()) {//reserva para socio
-						for(int socio = 0; socio < dniSocioReserva.size(); socio++) {
-							Object dniSocio = dniSocioReserva.get(socio).getIdSocio();
-							if (dniSocio == view.getTxtDNI()) {
+		if(view.getTxtDNI().getText().isEmpty()) {
+			SwingUtil.showMessage("Tienes que introducir un identificador", "Error", 0);
+		}else {
+			if(compruebaId()) {
 			
+				String nombreInstalacion= view.getComboBox_instalacion().getSelectedItem().toString();
+				System.out.println("Instalacion " + nombreInstalacion);
+		
+		
+				Object[][] elementos= new Object[16][4];
+				double k;
+				int i,h;
+		
+				for( k=(double) 6.00,i=0,h=6;k < (double) 22.00;k++, i++, h++) {
+					List<estadoReservaDTO> estadoReserva = model.getEstadoReserva(nombreInstalacion, view.getTxtFecha(),k);
+					List<SociosDisplayDTO> dniSocioReserva = model.getDniSociosReserva(nombreInstalacion, k, view.getTxtFecha());
+					int hor=h+1;
+					String hora=(h+":00-"+hor+":00");
+		
+					if(!estadoReserva.isEmpty()) {
+						Object estado = estadoReserva.get(0).getEstadoReserva();
+		
+						if(!dniSocioReserva.isEmpty()) {//reserva para socio
+							for(int socio = 0; socio < dniSocioReserva.size(); socio++) {
+								Object dniSocio = dniSocioReserva.get(socio).getIdSocio();
+								if ((Integer)dniSocio == Integer.parseInt(view.getTxtDNI().getText())) {
+				
+									elementos[i][0]=hora;
+									elementos[i][1]="Ocupado";
+									elementos[i][2]=dniSocio;	
+									elementos[i][3]="---";
+			
+			
+									System.out.println(estado);
+									System.out.println("Estado dni: " + dniSocio);
+								}else {
+									elementos[i][0]=hora;
+									elementos[i][1]="Ocupado";
+									elementos[i][2]="Reservado";	
+									elementos[i][3]="---";
+			
+								}
+							}
+		
+						}else {//reserva para actividad
+		
+							if(dniSocioReserva.isEmpty() && !estadoReserva.isEmpty()) {
 								elementos[i][0]=hora;
 								elementos[i][1]="Ocupado";
-								elementos[i][2]=dniSocio;	
-								elementos[i][3]="---";
-		
-		
-								System.out.println(estado);
-								System.out.println("Estado dni: " + dniSocio);
+								elementos[i][2]="---";
+								elementos[i][3]=estado;
+								System.out.println("Estado dni vacío");
 							}else {
 								elementos[i][0]=hora;
 								elementos[i][1]="Ocupado";
-								elementos[i][2]="Reservado";	
+								elementos[i][2]="---";
 								elementos[i][3]="---";
-		
 							}
 						}
-	
-					}else {//reserva para actividad
-	
-						if(dniSocioReserva.isEmpty() && !estadoReserva.isEmpty()) {
-							elementos[i][0]=hora;
-							elementos[i][1]="Ocupado";
-							elementos[i][2]="---";
-							elementos[i][3]=estado;
-							System.out.println("Estado dni vacío");
-						}else {
-							elementos[i][0]=hora;
-							elementos[i][1]="Ocupado";
-							elementos[i][2]="---";
-							elementos[i][3]="---";
-						}
+						
+					}else {
+						elementos[i][0]=hora;
+						elementos[i][1]="Libre";
+						elementos[i][2]="---";
+						elementos[i][3]="---";
 					}
-					
-				}else {
-					elementos[i][0]=hora;
-					elementos[i][1]="Libre";
-					elementos[i][2]="---";
-					elementos[i][3]="---";
+		
+		
+					DefaultTableModel dmodel= new DefaultTableModel(elementos,new String [] {"Hora","Disponibilidad","Socio","Actividad"});
+					view.getTabla_disponibilidad().setModel(dmodel);
 				}
-	
-	
-				DefaultTableModel dmodel= new DefaultTableModel(elementos,new String [] {"Hora","Disponibilidad","Socio","Actividad"});
-				view.getTabla_disponibilidad().setModel(dmodel);
+			
+			
 			}
-		
-		
 		}
 		
 
@@ -235,18 +238,6 @@ public class visualizaReservasInstalaciones2Controller {
 		view.setTxtFecha(fecha(puntero));
 		getListaReservas();
 	}
-	
-	public boolean compruebaDNI() {
-		if(view.getTxtDNI().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Debes introducir un DNI","Error",JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		return true;
-	}
-	
-	
-
-
 
 
 }

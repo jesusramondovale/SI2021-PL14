@@ -28,7 +28,11 @@ public class visualizaReservasInstalaciones2Model {
 			return null;
 		}
 	}
-
+	
+	public List<SociosDisplayDTO> getInfoSocio(int numSocio){
+		String sql="SELECT nombre,apellido1, apellido2 from socios where idSocio=?";
+		return db.executeQueryPojo(SociosDisplayDTO.class,sql,numSocio);
+	}
 
 	public List<Object[]> getListaInstalaciones(){
 
@@ -37,13 +41,13 @@ public class visualizaReservasInstalaciones2Model {
 
 	}
 
-	public List<actividadReservaInstalacionDTO> getListaInstalacionParaActividades(double hora, String nombreInstalacion, Date fecha){
+	public List<actividadReservaInstalacionDTO> getListaInstalacionParaActividades(double hora, String nombreInstalacion, String fecha){
 
 		String sql = "SELECT a.nombre as Actividad, i.nombre as Instalacion, r.fecha as fechaReserva, r.horaInicio as hora " + 
 				"FROM actividades a " + 
 				"INNER JOIN instalaciones i USING(idInstalacion) " + 
 				"INNER JOIN reservas r USING(idActividad)" + 
-				"WHERE r.horaInicio=9 AND r.fecha='2021-05-12'";
+				"WHERE r.horaInicio=6 AND r.fecha='2022-03-03'";
 
 		return db.executeQueryPojo(actividadReservaInstalacionDTO.class, sql, hora, nombreInstalacion, fecha);
 
@@ -61,7 +65,7 @@ public class visualizaReservasInstalaciones2Model {
 
 
 	public List<SociosDisplayDTO> getDniSociosReserva(String nombreInstalacion, double hora, String fecha){
-		String sql = "SELECT dni " + 
+		String sql = "SELECT idSocio " + 
 				"	FROM reservas r " + 
 				"	INNER JOIN socios s USING(idSocio) " + 
 				"	INNER JOIN instalaciones i USING(idInstalacion) " + 
@@ -73,18 +77,17 @@ public class visualizaReservasInstalaciones2Model {
 
 	public List<estadoReservaDTO> getEstadoReserva(String nombreInstalacion, String fecha,double hora){
 		String sql = "SELECT " + 
-				"CASE WHEN (r.fecha=? AND r.horaInicio=? AND r.idActividad is NULL) THEN 'Por un socio' " + 
-				"WHEN (r.fecha=? AND r.horaInicio=? AND r.idSocio is NULL) THEN 'Por una actividad' " + 
-				"ELSE 'Libre' " + 
+				"CASE WHEN (r.fecha=? AND r.horaInicio=? AND r.idActividad is NULL) THEN TRUE " + 
+				"WHEN (r.fecha=? AND r.horaInicio=? AND r.idSocio is NULL) THEN a.nombre " + 
+				"ELSE FALSE " + 
 				"END EstadoReserva " + 
 				"FROM reservas r  " + 
-				"INNER JOIN instalaciones i USING(idInstalacion) " + 
+				"INNER JOIN instalaciones i USING(idInstalacion) " +
+				"INNER JOIN actividades a USING (idActividad) " +
 				"WHERE i.nombre=? AND r.horaInicio=? AND r.fecha=? ";
 		return db.executeQueryPojo(estadoReservaDTO.class, sql, fecha,hora,fecha,hora,nombreInstalacion,hora,fecha);
 	}
 
-
-
-
+	
 
 }

@@ -194,12 +194,13 @@ public class visualizaReservasInstalaciones2View {
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
-	public String getTxtDNI() {
-		return txtDNI.getText();
+
+	public JTextField getTxtDNI() {
+		return txtDNI;
 	}
 
-	public void setTxtDNI(String txtDNI) {
-		this.txtDNI.setText(txtDNI);
+	public void setTxtDNI(JTextField txtDNI) {
+		this.txtDNI = txtDNI;
 	}
 
 	public void setTxtFecha(JTextField txtFecha) {
