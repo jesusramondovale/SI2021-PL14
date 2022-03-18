@@ -42,7 +42,7 @@ public class visualizarReservasInstalacionesModel {
 
 
 	public List<SociosDisplayDTO> getDniSociosReserva(String nombreInstalacion, double hora, String fecha){
-		String sql = "SELECT dni " + 
+		String sql = "SELECT idSocio " + 
 				"	FROM reservas r " + 
 				"	INNER JOIN socios s USING(idSocio) " + 
 				"	INNER JOIN instalaciones i USING(idInstalacion) " + 

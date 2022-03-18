@@ -49,12 +49,10 @@ public class visualizarReservasInstalacionesController {
 		view.getComboBox_instalacion().setModel(lmodel);
 	}
 	
-	public boolean compruebaDNI() {
-		if(!view.getTxtFecha().isEmpty())
-			return true;
-		else
-			return false;
-	}
+	/*
+	 * public boolean compruebaDNI() { if(!view.getTxtFecha().isEmpty()) return
+	 * true; else return false; }
+	 */
 	
 	/*
 	 * private boolean numeros() { int i,j=0; String numero=""; String DNI="";
@@ -139,7 +137,6 @@ public class visualizarReservasInstalacionesController {
 	}
 	
 	public void getListaReservas() {
-		if(compruebaDNI()) {
 			
 			String nombreInstalacion= view.getComboBox_instalacion().getSelectedItem().toString();
 			System.out.println("Instalacion " + nombreInstalacion);
@@ -152,7 +149,6 @@ public class visualizarReservasInstalacionesController {
 			for( k=(double) 6.00,i=0,h=6;k < (double) 22.00;k++, i++, h++) {
 				List<estadoReservaDTO> estadoReserva = model.getEstadoReserva(nombreInstalacion, view.getTxtFecha(),k);
 				List<SociosDisplayDTO> dniSocioReserva = model.getDniSociosReserva(nombreInstalacion, k, view.getTxtFecha());
-				//List<actividadReservaInstalacionDTO> actividadReserva = model.getListaInstalacionParaActividades(k, nombreInstalacion, view.getTxtFecha());
 				int hor=h+1;
 				String hora=(h+":00-"+hor+":00");
 
@@ -160,21 +156,19 @@ public class visualizarReservasInstalacionesController {
 					Object estado = estadoReserva.get(0).getEstadoReserva();
 
 					if(!dniSocioReserva.isEmpty()) {//reserva para socio
-						Object dniSocio = dniSocioReserva.get(0).getIdSocio();
-						//String dniVista = view.getTxtDNI();
-
-
-						//if(dniSocio.equals(dniVista)) {
-							dniSocio = "Mi Reserva";
-						//}
-						elementos[i][0]=hora;
-						elementos[i][1]="Ocupado";
-						elementos[i][2]=dniSocio;	
-						elementos[i][3]="---";
-
-
-						System.out.println(estado);
-						System.out.println("Estado dni: " + dniSocio);
+						for(int socio = 0; socio < dniSocioReserva.size(); socio++) {
+							Object dniSocio = dniSocioReserva.get(socio).getIdSocio();
+							//socio++;
+			
+							elementos[i][0]=hora;
+							elementos[i][1]="Ocupado";
+							elementos[i][2]=dniSocio;	
+							elementos[i][3]="---";
+	
+	
+							System.out.println(estado);
+							System.out.println("Estado dni: " + dniSocio);
+						}
 
 					}else {//reserva para actividad
 
@@ -204,11 +198,6 @@ public class visualizarReservasInstalacionesController {
 				view.getTabla_disponibilidad().setModel(dmodel);
 			}
 			
-
-			
-		}
-
-
 	}
 
 }
