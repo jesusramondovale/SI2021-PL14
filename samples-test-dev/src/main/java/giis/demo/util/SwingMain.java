@@ -84,7 +84,7 @@ public class SwingMain {
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
 		
-		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones");
+		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones como administrador");
 		btnVisualizarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
