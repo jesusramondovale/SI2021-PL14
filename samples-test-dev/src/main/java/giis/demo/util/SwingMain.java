@@ -89,74 +89,22 @@ public class SwingMain {
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
 		
-		JButton btnMostrarActividades = new JButton("Mostrar Actividades");
-		btnMostrarActividades.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				MostrarActividadesController controller=new MostrarActividadesController(new MostrarActividadesView() , new MostrarActividadesModel());
-				controller.initController();
-			}
-		});
-		frame.getContentPane().add(btnMostrarActividades);
 		
-		JButton btnRealizarReserva = new JButton("Realizar Reserva");
-		btnRealizarReserva.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				RealizarReservasController controller=new RealizarReservasController(new RealizarReservasView() , new RealizaReservaModel());
-				try {
-					controller.initController();
-				} catch (ParseException e1) {
-					
-					e1.printStackTrace();
-				}
-				
-							
-			}
-		});
-		frame.getContentPane().add(btnRealizarReserva);
-		
-		JButton boton_CrearActividad = new JButton("Crear Actividad");
-		boton_CrearActividad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearActividadController controller = new CrearActividadController(new CrearActividadModel(), new CrearActividadView());
-				controller.initController();
-			}
-		});
-		frame.getContentPane().add(boton_CrearActividad);
-		
-		JButton btnNewButton = new JButton("Crear Periodo");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearPeriodoController controller = new CrearPeriodoController(new CrearPeriodoModel(), new CrearPeriodoView());
-				controller.initController();
-			}
-		});
-		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones");
 		btnVisualizarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				visualizarReservasInstalacionesController controller = 
-						new visualizarReservasInstalacionesController(
-								 new visualizarReservasInstalacionesModel()
-								,new visualizaReservasInstalacionesView());
+				visualizaReservasInstalaciones2Controller controller = 
+						new visualizaReservasInstalaciones2Controller(
+								 new visualizaReservasInstalaciones2Model()
+								,new visualizaReservasInstalaciones2View());
 				
 				controller.initController();
 			}
 		});
 		frame.getContentPane().add(btnVisualizarReservas);
 		
-		
-		JButton btnReservar = new JButton("Realizar reserva");
-		btnReservar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 realizarReservaController controller=new realizarReservaController(new RealizarReservasModel() , new realizarReservaView(), new resguardoView());
-	                controller.initController();
-			}
-		});
-		frame.getContentPane().add(btnReservar);
 
 	}
 

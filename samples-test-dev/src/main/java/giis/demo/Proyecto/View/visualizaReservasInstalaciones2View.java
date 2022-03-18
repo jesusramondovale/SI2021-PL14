@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class visualizaReservasInstalacionesView {
+public class visualizaReservasInstalaciones2View {
 
 	private JFrame frame;
 	private JTable tabla_disponibilidad;
@@ -38,7 +38,7 @@ public class visualizaReservasInstalacionesView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					visualizaReservasInstalacionesView window = new visualizaReservasInstalacionesView();
+					visualizaReservasInstalaciones2View window = new visualizaReservasInstalaciones2View();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class visualizaReservasInstalacionesView {
 	/**
 	 * Create the application.
 	 */
-	public visualizaReservasInstalacionesView() {
+	public visualizaReservasInstalaciones2View() {
 		initialize();
 	}
 
@@ -90,7 +90,7 @@ public class visualizaReservasInstalacionesView {
 		btnSiguiente = new JButton("->");
 		btnSiguiente.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		JLabel lblNewLabel = new JLabel("Introduzca su DNI");
+		JLabel lblNewLabel = new JLabel("Introduzca su identificador");
 		
 		txtDNI = new JTextField();
 		txtDNI.setColumns(10);
