@@ -91,7 +91,7 @@ public class SwingMain {
 		
 		
 		
-		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones");
+		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones como socio");
 		btnVisualizarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
