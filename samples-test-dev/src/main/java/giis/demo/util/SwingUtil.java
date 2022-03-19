@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -147,6 +149,34 @@ public class SwingUtil {
 		return cm;
 	}
 	
+	public static void bloqueaBoton(JButton boton) {
+		boton.setEnabled(false);
+	}
+
+	public static void activaBoton(JButton boton) {
+		boton.setEnabled(true);
+	}
 	
+	public static String getText(String fecha) {
+		// TODO Auto-generated method stub
+		return fecha;
+	}
+	public static int getNumSocio(int valor) {return valor;
+	
+	}
+
+	public static int getSelectedIndex(JComboBox<String> a) {
+
+		int periodo;
+		periodo= a.getSelectedIndex();
+		return periodo;
+	}
+	
+	public static String getSelectedItem(JComboBox<String> a) {
+		String select;
+		select=(String) a.getSelectedItem();
+		return select;
+
+	}
 
 }

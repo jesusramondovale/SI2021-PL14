@@ -34,10 +34,10 @@ public class realizarReservaView {
 	private final ButtonGroup grupo = new ButtonGroup();
 	private JButton btnReserva;
 	private JButton btnResguardo;
-	private JComboBox comboBox_dia;
-	private JComboBox comboBox_mes;
-	private JComboBox ComboBox_ano;
 	private JTextField textActividad;
+	private JTextField textFecha;
+	private JButton btnAnterior;
+	private JButton btnSiguiente;
 
 	/**
 	 * Launch the application.
@@ -71,7 +71,7 @@ public class realizarReservaView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 670, 493);
+		frame.setBounds(100, 100, 590, 493);
 		
 		JLabel lblTitulo = new JLabel("RESERVA DE INSTALACIONES");
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -147,26 +147,25 @@ public class realizarReservaView {
 		
 		btnResguardo = new JButton("Generar resguardo");
 		
-		comboBox_dia = new JComboBox();
-		comboBox_dia.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		
-		comboBox_mes = new JComboBox();
-		comboBox_mes.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
-		
-		ComboBox_ano = new JComboBox();
-		ComboBox_ano.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024"}));
-		
 		textActividad = new JTextField();
 		textActividad.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Nº Actividad");
+		
+		 btnAnterior = new JButton("<-");
+		
+		textFecha = new JTextField();
+		textFecha.setEditable(false);
+		textFecha.setColumns(10);
+		
+		 btnSiguiente = new JButton("->");
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(29)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblTitulo, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -185,41 +184,44 @@ public class realizarReservaView {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblFecha)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(comboBox_dia, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+									.addComponent(btnAnterior)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(comboBox_mes, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
-								.addComponent(comboBox_HoraF, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addComponent(ComboBox_ano, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-					.addContainerGap(41, Short.MAX_VALUE))
+									.addComponent(textFecha, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(btnSiguiente))
+								.addComponent(comboBox_HoraF, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(51, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(26)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
 							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblPrecio)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_1))
+							.addComponent(lblNewLabel_1)
+							.addGap(107)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(rdBtnFinal)
+								.addComponent(rdBtnEfectivo)
+								.addComponent(lblNewLabel_2))
+							.addGap(140))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblReserva)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtReserva, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(62)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_2)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(10)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(rdBtnFinal)
-										.addComponent(rdBtnEfectivo)))
+									.addGap(60)
+									.addComponent(btnReserva))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnReserva)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(btnResguardo))))
+									.addGap(189)
+									.addComponent(btnResguardo)))
+							.addGap(65))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblSocio)
@@ -247,10 +249,10 @@ public class realizarReservaView {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblInstalacion)
 						.addComponent(comboBox_instalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_mes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblFecha)
-						.addComponent(comboBox_dia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(ComboBox_ano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnAnterior)
+						.addComponent(textFecha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSiguiente))
 					.addGap(27)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblHoraC)
@@ -274,8 +276,7 @@ public class realizarReservaView {
 					.addGap(17)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblReserva)
-						.addComponent(txtReserva, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_2))
+						.addComponent(txtReserva, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(37)
@@ -284,14 +285,16 @@ public class realizarReservaView {
 								.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblNewLabel_1)))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(6)
+							.addComponent(lblNewLabel_2)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(rdBtnEfectivo)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(rdBtnFinal)))
-					.addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnReserva)
-						.addComponent(btnResguardo))
+						.addComponent(btnResguardo)
+						.addComponent(btnReserva))
 					.addGap(26))
 		);
 		frame.getContentPane().setLayout(groupLayout);
@@ -426,30 +429,6 @@ public class realizarReservaView {
 		this.txtPrecio.setText(txtPrecio);;
 	}
 
-	public JComboBox getComboBox_dia() {
-		return comboBox_dia;
-	}
-
-	public void setComboBox_dia(JComboBox comboBox_dia) {
-		this.comboBox_dia = comboBox_dia;
-	}
-
-	public JComboBox getComboBox_mes() {
-		return comboBox_mes;
-	}
-
-	public void setComboBox_mes(JComboBox comboBox_mes) {
-		this.comboBox_mes = comboBox_mes;
-	}
-
-	public JComboBox getComboBox_ano() {
-		return ComboBox_ano;
-	}
-
-	public void setComboBox_ano(JComboBox comboBox_ano) {
-		ComboBox_ano = comboBox_ano;
-	}
-
 	public JTextField getTextActividad() {
 		return textActividad;
 	}
@@ -457,6 +436,31 @@ public class realizarReservaView {
 	public void setTextActividad(JTextField textActividad) {
 		this.textActividad = textActividad;
 	}
+
+	public JTextField getTextFecha() {
+		return textFecha;
+	}
+
+	public void setTextFecha(JTextField textFecha) {
+		this.textFecha = textFecha;
+	}
+
+	public JButton getBtnAnterior() {
+		return btnAnterior;
+	}
+
+	public void setBtnAnterior(JButton btnAnterior) {
+		this.btnAnterior = btnAnterior;
+	}
+
+	public JButton getBtnSiguiente() {
+		return btnSiguiente;
+	}
+
+	public void setBtnSiguiente(JButton btnSiguiente) {
+		this.btnSiguiente = btnSiguiente;
+	}
+	
 	
 	
 }

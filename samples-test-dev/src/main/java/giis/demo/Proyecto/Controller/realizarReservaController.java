@@ -1,5 +1,6 @@
 package giis.demo.Proyecto.Controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -25,6 +26,7 @@ public class realizarReservaController {
 	private resguardoView viewResg;
 	private int select;
 	java.sql.Date sqlDate;
+	private int siguiente,anterior,pos;
 
 	public realizarReservaController(realizarReservasModel m, realizarReservaView reservaV, resguardoView resguardoV) {
 		this.model = m;
@@ -44,7 +46,8 @@ public class realizarReservaController {
 		view.getComboBox_instalacion().addActionListener(e -> actualizarPrecios());
 		view.getTxtSocio().addActionListener(e -> actualizarNombres());
 		//Boton para controlar que no hagan reservas con mas de 7 días de antelación
-
+		view.getBtnSiguiente().addActionListener(e -> SwingUtil.exceptionWrapper(() -> fechaSiguiente()));
+		view.getBtnAnterior().addActionListener(e -> SwingUtil.exceptionWrapper(() -> fechaAnterior()));
 		//Boton para rellenar los DATOS de una Reserva
 		view.getBtnReserva().addActionListener(e -> realizarReservaInstalacion());
 		//Boton para generar el resguardo
@@ -117,12 +120,9 @@ public class realizarReservaController {
 	public void getListaInstalaciones() {
 
 		this.select=getSelectedIndex(view.getComboBox_instalacion());
-		int diaIni = this.view.getComboBox_dia().getSelectedIndex() +1;
-		int mesIni = this.view.getComboBox_mes().getSelectedIndex()+1;
-		int anoIni = Integer.parseInt(this.view.getComboBox_ano().getModel().getElementAt(this.view.getComboBox_ano().getSelectedIndex()).toString());
 		float horaInicio= (float)Double.parseDouble(getSelectedItem(view.getComboBox_HoraC()));
 		float horaFin=(float)Double.parseDouble(getSelectedItem(view.getComboBox_HoraF()));
-		String fecha = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
+		String fecha = view.getTextFecha().getText();
 
 		List<InstalacionesDisplayDTO> instalacion = model.getListaInstalacionesArray(select,Util.isoStringToDate(fecha),horaInicio,horaFin);
 		TableModel tmodel=SwingUtil.getTableModelFromPojos(instalacion, new String[] {"idInstalacion", "nombreInstalacion", "fechaReserva","horaInicioReserva",
@@ -157,16 +157,12 @@ public class realizarReservaController {
 
 				int estado = 1;
 
-				int diaIni = this.view.getComboBox_dia().getSelectedIndex() +1;
-				int mesIni = this.view.getComboBox_mes().getSelectedIndex()+1;
-				int anoIni = Integer.parseInt(this.view.getComboBox_ano().getModel().getElementAt(this.view.getComboBox_ano().getSelectedIndex()).toString());
-				String fecha = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
 
 				model.realizarReserva(Integer.parseInt(view.getTxtReserva().getText()),
 						Integer.parseInt(view.getTxtSocio().getText()),
 						Integer.parseInt(view.getTextActividad().getText()),
 						getSelectedIndex(view.getComboBox_instalacion()) +1, 
-						Util.dateToIsoString(Util.isoStringToDate(fecha)),
+						Util.dateToIsoString(Util.isoStringToDate(view.getTextFecha().getText())),
 						(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())),
 						(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraF())), 
 						estado);
@@ -241,12 +237,6 @@ public class realizarReservaController {
 					view.getTxtNombre().setText(socios.get(0).getNombre());
 					view.getTxtApellidos().setText(socios.get(0).getApellido1() + " " + socios.get(0).getApellido2());
 
-
-					int diaIni = this.view.getComboBox_dia().getSelectedIndex() +1;
-					int mesIni = this.view.getComboBox_mes().getSelectedIndex()+1;
-					int anoIni = Integer.parseInt(this.view.getComboBox_ano().getModel().getElementAt(this.view.getComboBox_ano().getSelectedIndex()).toString());
-					String fecha = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
-					viewResg.getTxtFecha().setText(Util.dateToIsoString(Util.isoStringToDate(fecha)));	
 					viewResg.setTxtSocioR(view.getTxtSocio());
 					viewResg.getLabel_1().setText(view.getTxtPrecio().getText());
 
@@ -279,6 +269,62 @@ public class realizarReservaController {
 				}
 			}
 		}
+	}
+	
+	public static String fecha(int constante){
+
+		Calendar c1 = Calendar.getInstance();
+
+		c1.add(Calendar.DAY_OF_YEAR, constante);
+
+		int dia = (c1.get(Calendar.DATE));
+		int mes = (c1.get(Calendar.MONTH)+1);
+		int año = (c1.get(Calendar.YEAR));
+
+		String d=""+dia;
+		String m=""+mes;
+
+		if(dia<10) {
+			d="0"+dia;
+		}
+		if(mes<10) {
+			m="0"+mes;
+		}
+
+
+		String fechaHoy=año+"-"+m+"-"+d;
+
+		return fechaHoy;
+	}
+	
+	public void fechaSiguiente() {
+		pos++;
+		if(pos == 7) {
+			SwingUtil.bloqueaBoton(view.getBtnSiguiente());
+		}
+		if(fecha(0).equals(fecha(pos))) {
+			SwingUtil.bloqueaBoton(view.getBtnAnterior());
+		}
+		if(!fecha(0).equals(fecha(pos))) {
+			SwingUtil.activaBoton(view.getBtnAnterior());
+		}
+
+		view.getTextFecha().setText(fecha(pos));
+
+	}
+	
+	public void fechaAnterior() {
+		pos--;
+		if(pos == 7) {
+			SwingUtil.bloqueaBoton(view.getBtnSiguiente());
+		}
+		if(!(pos == 30)) {
+			SwingUtil.activaBoton(view.getBtnSiguiente());
+		}
+		if(fecha(0).equals(fecha(pos))) {
+			SwingUtil.bloqueaBoton(view.getBtnAnterior());
+		}
+		view.getTextFecha().setText(fecha(pos));
 	}
 
 }
