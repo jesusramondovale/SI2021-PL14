@@ -90,9 +90,25 @@ public class realizarReservaController {
 	private void actualizarPrecios() {
 
 		List<InstalacionesDisplayDTO> instalaciones=model.getInstalacion();
+		int horaC = (int) view.getComboBox_HoraC().getSelectedIndex();
+		int horaF = (int)view.getComboBox_HoraF().getSelectedIndex();
 
+		if((horaF -horaC) == 0)
 		view.getTxtPrecio().setText(
 				Float.toString(instalaciones.get(view.getComboBox_instalacion().getSelectedIndex()).getPrecioHora()));
+		else if((horaF -horaC) == 1) {
+			view.getTxtPrecio().setText(
+					Float.toString(instalaciones.get(view.getComboBox_instalacion().getSelectedIndex()).getPrecioHora() * 2));
+		}
+		else if((horaF -horaC) == 2) {
+			view.getTxtPrecio().setText(
+					Float.toString(instalaciones.get(view.getComboBox_instalacion().getSelectedIndex()).getPrecioHora() * 3));
+		}
+		else if(horaC > horaF) {
+			SwingUtil.showMessage("Introduzca un rango de horas válido", "Error", 1);
+		}
+		else
+			SwingUtil.showMessage("No se puede realizar una reserva de mas de 3 horas", "Error", 1);
 
 	}
 
