@@ -1,6 +1,7 @@
 package giis.demo.Proyecto.Controller;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -13,6 +14,7 @@ import javax.swing.table.TableModel;
 
 import giis.demo.Proyecto.DTO.InstalacionesDisplayDTO;
 import giis.demo.Proyecto.DTO.SociosDisplayDTO;
+import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.Proyecto.model.realizarReservasModel;
 import giis.demo.Proyecto.view.realizarReservaView;
 import giis.demo.Proyecto.view.resguardoView;
@@ -48,12 +50,33 @@ public class realizarReservaController {
 		//Boton para controlar que no hagan reservas con mas de 7 días de antelación
 		view.getBtnSiguiente().addActionListener(e -> SwingUtil.exceptionWrapper(() -> fechaSiguiente()));
 		view.getBtnAnterior().addActionListener(e -> SwingUtil.exceptionWrapper(() -> fechaAnterior()));
+		view.getBtnComprobar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> comprobarReservas()));
+		view.getBtnComprobar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarPrecios()));
 		//Boton para rellenar los DATOS de una Reserva
 		view.getBtnReserva().addActionListener(e -> realizarReservaInstalacion());
 		//Boton para generar el resguardo
 		view.getBtnResguardo().addActionListener(e -> generarResguardo());
 		viewResg.getBtnImprimir().addActionListener(e -> System.exit(0));
 	}  
+	
+	private void comprobarReservas() {
+		List<Object[]> reservas = model.getFechasReservas(Util.isoStringToDate(view.getTextFecha().getText()),
+				view.getComboBox_HoraC().getSelectedIndex(), view.getComboBox_HoraF().getSelectedIndex());
+		List <reservasDisplayDTO> idReserva = model.obtenerReserva();
+		int ultimo= 0;
+		for (int i =0; i <= idReserva.size();i++)
+			ultimo++;
+		
+		if(!reservas.isEmpty()) {
+			SwingUtil.showMessage("Ya se ha realizado una reserva con esos valores", "Error", 1);
+		}
+		else {
+			System.out.print("Se puede realizar la reserva.\n");
+			view.getTxtSocio().setEditable(true);
+			view.getTextActividad().setEditable(true);
+			view.getTxtReserva().setText(String.valueOf(ultimo));
+		}
+	}
 
 	private void actualizarNombres() {
 

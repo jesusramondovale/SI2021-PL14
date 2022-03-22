@@ -16,6 +16,7 @@ public Database db=new Database();
 private String sql = "INSERT INTO reservas VALUES (?,?,?,?,?,?,?,?)";
 private String sql2 = "SELECT idSocio FROM socios";
 private String sql3 = "SELECT precioHora FROM instalaciones";
+private String sql4 = "SELECT idReserva from reservas";
 
 	public void insertaReserva(int idReserva,int idsocio, String fecha,float horaInicio,
 			float horaFin, int idInstalacion, int idActividad, int estado) {
@@ -27,6 +28,22 @@ private String sql3 = "SELECT precioHora FROM instalaciones";
 		}catch(UnexpectedException e) {
 			JOptionPane.showMessageDialog(null, "SQL error de la reserva.","Error",
 				    JOptionPane.WARNING_MESSAGE);
+		}
+	}
+	
+	public List<reservasDisplayDTO> obtenerReserva(){
+		try {
+			List<reservasDisplayDTO> reserva= db.executeQueryPojo(reservasDisplayDTO.class, sql4);
+			/*
+			 * JOptionPane.showMessageDialog(null, "SQL correcto","Correcto",
+			 * JOptionPane.INFORMATION_MESSAGE);
+			 */
+			return reserva;
+			
+		}catch(UnexpectedException e) {
+			JOptionPane.showMessageDialog(null, "SQL error en Obtener ID reserva.","Error",
+				    JOptionPane.WARNING_MESSAGE);
+			return null;
 		}
 	}
 	

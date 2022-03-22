@@ -38,7 +38,8 @@ public class realizarReservaView {
 	private JTextField textFecha;
 	private JButton btnAnterior;
 	private JButton btnSiguiente;
-
+	private JButton btnComprobar;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -106,6 +107,7 @@ public class realizarReservaView {
 		JLabel lblSocio = new JLabel("Nº Socio");
 		
 		txtSocio = new JTextField();
+		txtSocio.setEditable(false);
 		txtSocio.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre");
@@ -123,6 +125,7 @@ public class realizarReservaView {
 		JLabel lblReserva = new JLabel("Nº Reserva");
 		
 		txtReserva = new JTextField();
+		txtReserva.setEditable(false);
 		txtReserva.setColumns(10);
 		
 		JLabel lblPrecio = new JLabel("Precio Reserva\r\n");
@@ -148,6 +151,7 @@ public class realizarReservaView {
 		btnResguardo = new JButton("Generar resguardo");
 		
 		textActividad = new JTextField();
+		textActividad.setEditable(false);
 		textActividad.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Nº Actividad");
@@ -159,6 +163,8 @@ public class realizarReservaView {
 		textFecha.setColumns(10);
 		
 		 btnSiguiente = new JButton("->");
+		
+		btnComprobar = new JButton("COMPROBAR");
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -184,18 +190,21 @@ public class realizarReservaView {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblFecha)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(btnAnterior)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(btnAnterior))
+								.addComponent(comboBox_HoraF, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(textFecha, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(btnSiguiente))
-								.addComponent(comboBox_HoraF, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(51, Short.MAX_VALUE))
+								.addComponent(btnComprobar))))
+					.addContainerGap(15, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(26)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
 							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblPrecio)
@@ -258,7 +267,8 @@ public class realizarReservaView {
 						.addComponent(lblHoraC)
 						.addComponent(comboBox_HoraC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblHoraF)
-						.addComponent(comboBox_HoraF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBox_HoraF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnComprobar))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblNewLabel)
 					.addGap(18)
@@ -460,7 +470,14 @@ public class realizarReservaView {
 	public void setBtnSiguiente(JButton btnSiguiente) {
 		this.btnSiguiente = btnSiguiente;
 	}
-	
+
+	public JButton getBtnComprobar() {
+		return btnComprobar;
+	}
+
+	public void setBtnComprobar(JButton btnComprobar) {
+		this.btnComprobar = btnComprobar;
+	}
 	
 	
 }
