@@ -12,7 +12,6 @@ public class reservasDisplayDTO {
 	private String estado;
 	
 	
-	
 	public reservasDisplayDTO() {}
 	public reservasDisplayDTO(String rowIdReserva, String rowIdUsuario,String rowFechaReserva, float rowHoraInicioReserva,float rowHoraFinReserva,String rowNombreInstalacion, 
 								String rowEstadoReserva,String rowNombreActividad) {
