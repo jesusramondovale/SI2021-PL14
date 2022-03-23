@@ -98,6 +98,7 @@ public class SwingMain {
 				visualizaReservasInstalaciones2Controller controller = 
 						new visualizaReservasInstalaciones2Controller(
 								 new visualizaReservasInstalaciones2Model()
+								 ,new introducirIdView()
 								,new visualizaReservasInstalaciones2View());
 				
 				controller.initController();
