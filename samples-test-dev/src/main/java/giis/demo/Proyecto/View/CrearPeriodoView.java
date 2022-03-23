@@ -14,10 +14,8 @@ import javax.swing.JButton;
 
 public class CrearPeriodoView {
 
-	private JFrame frame;
+	private JFrame frmCrearPeriodoIncripcin;
 	private JTextField nombrePeriodo;
-
-	private JLabel lblNewLabel;
 
 	private JLabel lblNewLabel_1 ;
 
@@ -32,11 +30,11 @@ public class CrearPeriodoView {
 	private JDateChooser fechaFinPeriodo ;
 
 	public JFrame getFrame() {
-		return frame;
+		return frmCrearPeriodoIncripcin;
 	}
 
 	public void setFrame(JFrame frame) {
-		this.frame = frame;
+		this.frmCrearPeriodoIncripcin = frame;
 	}
 
 	public JTextField getNombrePeriodo() {
@@ -47,13 +45,6 @@ public class CrearPeriodoView {
 		this.nombrePeriodo = nombrePeriodo;
 	}
 
-	public JLabel getLblNewLabel() {
-		return lblNewLabel;
-	}
-
-	public void setLblNewLabel(JLabel lblNewLabel) {
-		this.lblNewLabel = lblNewLabel;
-	}
 
 	public JLabel getLblNewLabel_1() {
 		return lblNewLabel_1;
@@ -131,7 +122,7 @@ public class CrearPeriodoView {
 			public void run() {
 				try {
 					CrearPeriodoView window = new CrearPeriodoView();
-					window.frame.setVisible(true);
+					window.frmCrearPeriodoIncripcin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -150,11 +141,9 @@ public class CrearPeriodoView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 608, 313);
-
-		lblNewLabel = new JLabel("CREAR PERIODO");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		frmCrearPeriodoIncripcin = new JFrame();
+		frmCrearPeriodoIncripcin.setTitle("Crear Periodo Incripción");
+		frmCrearPeriodoIncripcin.setBounds(100, 100, 608, 313);
 
 		lblNewLabel_1 = new JLabel("Nombre");
 
@@ -174,64 +163,57 @@ public class CrearPeriodoView {
 		nombrePeriodo.setColumns(10);
 
 		botonCrearPeriodo = new JButton("Crear Periodo");
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frmCrearPeriodoIncripcin.getContentPane());
 		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(221)
-						.addComponent(lblNewLabel)
-						.addGap(223))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-						.addContainerGap(249, Short.MAX_VALUE)
-						.addComponent(botonCrearPeriodo)
-						.addGap(244))
+					.addContainerGap(253, Short.MAX_VALUE)
+					.addComponent(botonCrearPeriodo)
+					.addGap(244))
 				.addGroup(groupLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_1)
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel_1)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
-										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-														.addGap(38))
-												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.UNRELATED)))
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(fechaInicioPeriodo, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-												.addComponent(fechaFinPeriodo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(nombrePeriodo, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-										.addGap(33)
-										.addComponent(lblNewLabel_1_3)))
-						.addGap(18)
-						.addComponent(fechaFinPeriodoNoSocio, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-						.addGap(62))
-				);
+									.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+									.addGap(38))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(fechaInicioPeriodo, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+								.addComponent(fechaFinPeriodo, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+								.addComponent(nombrePeriodo, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+							.addGap(33)
+							.addComponent(lblNewLabel_1_3)))
+					.addGap(18)
+					.addComponent(fechaFinPeriodoNoSocio, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+					.addGap(62))
+		);
 		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(lblNewLabel)
-						.addGap(58)
+					.addGap(94)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblNewLabel_1)
+						.addComponent(nombrePeriodo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel_1_1)
+						.addComponent(fechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(fechaFinPeriodo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel_1)
-								.addComponent(nombrePeriodo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_1_1)
-								.addComponent(fechaInicioPeriodo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(fechaFinPeriodo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(fechaFinPeriodoNoSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblNewLabel_1_3)))
-								.addComponent(lblNewLabel_1_2))
-						.addGap(37)
-						.addComponent(botonCrearPeriodo)
-						.addContainerGap(99, Short.MAX_VALUE))
-				);
-		frame.getContentPane().setLayout(groupLayout);
+							.addComponent(fechaFinPeriodoNoSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblNewLabel_1_3))
+						.addComponent(lblNewLabel_1_2))
+					.addGap(37)
+					.addComponent(botonCrearPeriodo)
+					.addContainerGap(28, Short.MAX_VALUE))
+		);
+		frmCrearPeriodoIncripcin.getContentPane().setLayout(groupLayout);
 	}
 }

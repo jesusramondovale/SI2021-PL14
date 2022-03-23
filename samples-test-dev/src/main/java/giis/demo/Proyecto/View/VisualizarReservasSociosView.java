@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class VisualizarReservasSociosView {
 
-	private JFrame frame;
+	private JFrame frmVisualizarReservasSocios;
 	private JTable table;
 
 	private JLabel lblNewLabel ;
@@ -46,7 +46,7 @@ public class VisualizarReservasSociosView {
 			public void run() {
 				try {
 					VisualizarReservasSociosView window = new VisualizarReservasSociosView();
-					window.frame.setVisible(true);
+					window.frmVisualizarReservasSocios.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,9 +65,10 @@ public class VisualizarReservasSociosView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 801, 398);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmVisualizarReservasSocios = new JFrame();
+		frmVisualizarReservasSocios.setTitle("Visualizar Reservas Socios");
+		frmVisualizarReservasSocios.setBounds(100, 100, 801, 398);
+		frmVisualizarReservasSocios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		lblNewLabel = new JLabel("Instalacion");
 
@@ -90,7 +91,7 @@ public class VisualizarReservasSociosView {
 		textField_Nombre_Completo = new JTextField();
 		textField_Nombre_Completo.setEditable(false);
 		textField_Nombre_Completo.setColumns(10);
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frmVisualizarReservasSocios.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -166,6 +167,6 @@ public class VisualizarReservasSociosView {
 			}
 		));
 		scrollPane.setViewportView(table);
-		frame.getContentPane().setLayout(groupLayout);
+		frmVisualizarReservasSocios.getContentPane().setLayout(groupLayout);
 	}
 }
