@@ -96,11 +96,11 @@ private String sql4 = "SELECT idReserva from reservas";
 		return db.executeQueryPojo(InstalacionesDisplayDTO.class,sql,f,horaInicio,horaFin,f,horaInicio,horaFin,f,horaInicio,horaFin,f,horaInicio,horaFin,numInst,f);
 	}
 
-	public List<Object[]>getFechasReservas(Date fecha, float horaInicio, float horaFin){
+	public List<Object[]>getFechasReservas(Date fecha, int horaInicio, int horaFin){
 		String sql="SELECT fecha, horaInicio, horaFin"
 				+ " from reservas where fecha=?";
 		String f=Util.dateToIsoString(fecha);
-		return db.executeQueryArray(sql, f);
+		return db.executeQueryArray(sql, f,horaInicio,horaFin);
 	}
 	
 	

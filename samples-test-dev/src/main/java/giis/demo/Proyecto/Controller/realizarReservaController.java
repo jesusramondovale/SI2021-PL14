@@ -51,7 +51,6 @@ public class realizarReservaController {
 		view.getBtnSiguiente().addActionListener(e -> SwingUtil.exceptionWrapper(() -> fechaSiguiente()));
 		view.getBtnAnterior().addActionListener(e -> SwingUtil.exceptionWrapper(() -> fechaAnterior()));
 		view.getBtnComprobar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> comprobarReservas()));
-		view.getBtnComprobar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarPrecios()));
 		//Boton para rellenar los DATOS de una Reserva
 		view.getBtnReserva().addActionListener(e -> realizarReservaInstalacion());
 		//Boton para generar el resguardo
@@ -61,7 +60,7 @@ public class realizarReservaController {
 	
 	private void comprobarReservas() {
 		List<Object[]> reservas = model.getFechasReservas(Util.isoStringToDate(view.getTextFecha().getText()),
-				view.getComboBox_HoraC().getSelectedIndex(), view.getComboBox_HoraF().getSelectedIndex());
+				(int)view.getComboBox_HoraC().getSelectedItem(), (int)view.getComboBox_HoraF().getSelectedItem());
 		List <reservasDisplayDTO> idReserva = model.obtenerReserva();
 		int ultimo= 0;
 		for (int i =0; i <= idReserva.size();i++)
@@ -71,10 +70,12 @@ public class realizarReservaController {
 			SwingUtil.showMessage("Ya se ha realizado una reserva con esos valores", "Error", 1);
 		}
 		else {
+			actualizarPrecios();
 			System.out.print("Se puede realizar la reserva.\n");
 			view.getTxtSocio().setEditable(true);
 			view.getTextActividad().setEditable(true);
 			view.getTxtReserva().setText(String.valueOf(ultimo));
+			view.getRdBtnFinal().setSelected(true);
 		}
 	}
 
@@ -99,6 +100,8 @@ public class realizarReservaController {
 		java.util.Date fecha= new java.util.Date();
 		long lnMilisegundos = fecha.getTime();
 		sqlDate = new java.sql.Date(lnMilisegundos);
+		view.getTextFecha().setText(fecha(0));
+		view.getBtnAnterior().setEnabled(false);
 
 		//Metodos para inicializar el contenido de los comboBox
 		añadeInstCB();
