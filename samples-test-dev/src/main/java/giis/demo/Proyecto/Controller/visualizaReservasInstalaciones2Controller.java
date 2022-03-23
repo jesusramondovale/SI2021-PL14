@@ -26,14 +26,17 @@ public class visualizaReservasInstalaciones2Controller {
 
 	private visualizaReservasInstalaciones2Model model;
 	private visualizaReservasInstalaciones2View view;
+	private introducirIdView viewIntro;
 	private int siguiente = 0;
 	private int anterior = 0;
 	private int puntero = 0;
 
 
 
-	public visualizaReservasInstalaciones2Controller(visualizaReservasInstalaciones2Model model, visualizaReservasInstalaciones2View view) {
+	public visualizaReservasInstalaciones2Controller(visualizaReservasInstalaciones2Model model,
+			introducirIdView view2,visualizaReservasInstalaciones2View view) {
 		this.model = model;
+		this.viewIntro = view2;
 		this.view = view;
 		this.initView();
 	}
@@ -41,6 +44,7 @@ public class visualizaReservasInstalaciones2Controller {
 
 	public void initController() {
 
+		viewIntro.getBtnLogear().addActionListener(e -> SwingUtil.exceptionWrapper(() -> mostrarPantalla()));
 		view.getBtnSiguiente().addActionListener(e -> SwingUtil.exceptionWrapper(() -> fechaSiguiente()));
 		view.getBtnAnterior().addActionListener(e -> SwingUtil.exceptionWrapper(() -> fechaAnterior()));
 		view.getBtnComprobarReservsa().addActionListener(e -> SwingUtil.exceptionWrapper(() -> getListaReservas()));
@@ -50,10 +54,23 @@ public class visualizaReservasInstalaciones2Controller {
 	public void initView() {
 		muestraInstalaciones();
 		view.setTxtFecha(fecha(0));
-		view.getFrame().setVisible(true);
+		view.getFrame().setVisible(false);
+		viewIntro.getFrame().setVisible(true);
+		view.getBtnAnterior().setEnabled(false);
 	}
 
 
+	public void mostrarPantalla() {
+		if(viewIntro.getTxtId().getText().isEmpty()) {
+			SwingUtil.showMessage("Tienes que introducir un socio", "Error", 0);
+		}else {
+
+			if(compruebaId()) {
+				viewIntro.getFrame().setVisible(false);
+				view.getFrame().setVisible(true);
+			}
+		}
+	}
 
 	public void muestraInstalaciones(){//Muestra las instalaciones en el comboBox
 		List<Object[]> instalaciones = model.getListaInstalaciones();
@@ -62,7 +79,7 @@ public class visualizaReservasInstalaciones2Controller {
 	}
 	
 	public boolean compruebaId() {
-		List<SociosDisplayDTO> idSocio = model.getInfoSocio(Integer.parseInt(view.getTxtDNI().getText()));
+		List<SociosDisplayDTO> idSocio = model.getInfoSocio(Integer.parseInt(viewIntro.getTxtId().getText()));
 			if(!idSocio.isEmpty())
 				return true;
 			else {
@@ -73,10 +90,6 @@ public class visualizaReservasInstalaciones2Controller {
 
 
 	public void getListaReservas() {
-		if(view.getTxtDNI().getText().isEmpty()) {
-			SwingUtil.showMessage("Tienes que introducir un identificador", "Error", 0);
-		}else {
-			if(compruebaId()) {
 			
 				String nombreInstalacion= view.getComboBox_instalacion().getSelectedItem().toString();
 				System.out.println("Instalacion " + nombreInstalacion);
@@ -98,7 +111,7 @@ public class visualizaReservasInstalaciones2Controller {
 						if(!dniSocioReserva.isEmpty()) {//reserva para socio
 							for(int socio = 0; socio < dniSocioReserva.size(); socio++) {
 								Object dniSocio = dniSocioReserva.get(socio).getIdSocio();
-								if ((Integer)dniSocio == Integer.parseInt(view.getTxtDNI().getText())) {
+								if ((Integer)dniSocio == Integer.parseInt(viewIntro.getTxtId().getText())) {
 				
 									elementos[i][0]=hora;
 									elementos[i][1]="Ocupado";
@@ -144,12 +157,6 @@ public class visualizaReservasInstalaciones2Controller {
 					DefaultTableModel dmodel= new DefaultTableModel(elementos,new String [] {"Hora","Disponibilidad","Socio","Actividad"});
 					view.getTabla_disponibilidad().setModel(dmodel);
 				}
-			
-			
-			}
-		}
-		
-
 
 	}
 
