@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import giis.demo.Proyecto.Controller.realizarReservaController;
 import giis.demo.Proyecto.model.realizarReservasModel;
 import giis.demo.Proyecto.view.realizarReservaView;
-import giis.demo.Proyecto.view.resguardoView;
 import giis.demo.tkrun.*;
 
 /**
@@ -89,7 +88,7 @@ public class SwingMain {
 		JButton btnReservar = new JButton("Realizar reserva");
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 realizarReservaController controller=new realizarReservaController(new realizarReservasModel() , new realizarReservaView(), new resguardoView());
+				 realizarReservaController controller=new realizarReservaController(new realizarReservasModel() , new realizarReservaView());
 	                controller.initController();
 			}
 		});

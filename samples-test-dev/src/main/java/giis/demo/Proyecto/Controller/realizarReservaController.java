@@ -3,7 +3,10 @@ package giis.demo.Proyecto.Controller;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
@@ -17,7 +20,6 @@ import giis.demo.Proyecto.DTO.SociosDisplayDTO;
 import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.Proyecto.model.realizarReservasModel;
 import giis.demo.Proyecto.view.realizarReservaView;
-import giis.demo.Proyecto.view.resguardoView;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.Util;
 
@@ -25,15 +27,14 @@ public class realizarReservaController {
 
 	private realizarReservasModel model;
 	private realizarReservaView view;
-	private resguardoView viewResg;
 	private int select;
 	java.sql.Date sqlDate;
 	private int siguiente,anterior,pos;
 
-	public realizarReservaController(realizarReservasModel m, realizarReservaView reservaV, resguardoView resguardoV) {
+	public realizarReservaController(realizarReservasModel m, realizarReservaView reservaV) {
 		this.model = m;
 		this.view = reservaV;
-		this.viewResg = resguardoV;
+		this.initView();
 
 	}
 
@@ -55,12 +56,11 @@ public class realizarReservaController {
 		view.getBtnReserva().addActionListener(e -> realizarReservaInstalacion());
 		//Boton para generar el resguardo
 		view.getBtnResguardo().addActionListener(e -> generarResguardo());
-		viewResg.getBtnImprimir().addActionListener(e -> System.exit(0));
 	}  
 	
 	private void comprobarReservas() {
 		List<Object[]> reservas = model.getFechasReservas(Util.isoStringToDate(view.getTextFecha().getText()),
-				(int)view.getComboBox_HoraC().getSelectedItem(), (int)view.getComboBox_HoraF().getSelectedItem());
+				(view.getComboBox_HoraC().getSelectedIndex()+9), view.getComboBox_HoraF().getSelectedIndex()+10);
 		List <reservasDisplayDTO> idReserva = model.obtenerReserva();
 		int ultimo= 0;
 		for (int i =0; i <= idReserva.size();i++)
@@ -76,6 +76,7 @@ public class realizarReservaController {
 			view.getTextActividad().setEditable(true);
 			view.getTxtReserva().setText(String.valueOf(ultimo));
 			view.getRdBtnFinal().setSelected(true);
+			view.getBtnReserva().setEnabled(true);
 		}
 	}
 
@@ -102,6 +103,8 @@ public class realizarReservaController {
 		sqlDate = new java.sql.Date(lnMilisegundos);
 		view.getTextFecha().setText(fecha(0));
 		view.getBtnAnterior().setEnabled(false);
+		view.getBtnReserva().setEnabled(false);
+		view.getBtnResguardo().setEnabled(false);
 
 		//Metodos para inicializar el contenido de los comboBox
 		añadeInstCB();
@@ -214,7 +217,7 @@ public class realizarReservaController {
 				view.getTxtNombre().setText(socio.get(0).getNombre());
 				view.getTxtApellidos().setText(socio.get(0).getApellido1() + " " + socio.get(0).getApellido2());
 				view.getBtnResguardo().setEnabled(true);
-				
+				view.getBtnResguardo().setEnabled(true);
 			}
 
 			else{
@@ -265,30 +268,30 @@ public class realizarReservaController {
 
 
 				try{
-
-					viewResg.getTxtSocioR().setText(view.getTxtSocio().getText());
-					viewResg.getTxtNombreR().setText(socios.get(0).getNombre());
-					viewResg.getTxtApellidosR().setText(socios.get(0).getApellido1() + " " + socios.get(0).getApellido2());
-					viewResg.getTxtReservaR().setText(view.getTxtReserva().getText());
-					viewResg.getTxtInstalacionR().setText(view.getComboBox_instalacion().getModel().getElementAt(view.getCbInstalacion().getSelectedIndex()).toString());
-					viewResg.getTextActividadR().setText(view.getTextActividad().getText());
-					viewResg.getTxtHora1R().setText(Integer.toString(view.getComboBox_HoraC().getSelectedIndex()+9));
-					viewResg.getTxtHora2R().setText(Integer.toString(view.getComboBox_HoraF().getSelectedIndex()+10));
-					viewResg.getTxtPrecioR().setText(view.getTxtPrecio().getText());
-
-					view.getTxtNombre().setText(socios.get(0).getNombre());
-					view.getTxtApellidos().setText(socios.get(0).getApellido1() + " " + socios.get(0).getApellido2());
-
-					viewResg.setTxtSocioR(view.getTxtSocio());
-					viewResg.getLabel_1().setText(view.getTxtPrecio().getText());
-
-
-					viewResg.getTxtPagoR().setText(
-							view.getRdBtnEfectivo().isSelected() ?
-									"En efectivo" : "A final de mes" );
-
-
-					viewResg.getFrame().setVisible(true);
+					String ruta = "./resguardo.txt";
+		            String contenido = "RESGUARDO DE LA RESERVA DE LA INSTALACIÓN\n";
+		            File file = new File(ruta);
+		            // Si el archivo no existe es creado
+		            if (!file.exists()) {
+		                file.createNewFile();
+		            }
+		            FileWriter fw = new FileWriter(file);
+		            BufferedWriter bw = new BufferedWriter(fw);
+		            bw.write(contenido);
+		            bw.write("\nNº Socio: " + view.getTxtSocio().getText());
+		            bw.write("\nNombre: " + view.getTxtNombre().getText() + "				" + "Apellidos: " + view.getTxtApellidos().getText());
+		            bw.write("\nNº Reserva: " + view.getTxtReserva().getText());
+		            bw.write("\nNº Socio: " + view.getTxtSocio().getText());
+		            bw.write("\nNº Instalación: " + view.getComboBox_instalacion().getModel().getElementAt(view.getCbInstalacion().getSelectedIndex()).toString()
+		            		+ "		Nº Actividad: "+ view.getTextActividad().getText());
+		            bw.write("\nForma de pago: " + (view.getRdBtnEfectivo().isSelected() ?
+									"En efectivo" : "A final de mes"));
+		            bw.write("           Fecha: " + view.getTextFecha().getText());
+		            bw.write("\nIntervalo de horas: " + (Integer.toString(view.getComboBox_HoraC().getSelectedIndex()+9)) + ":00 - " 
+		            		+ (Integer.toString(view.getComboBox_HoraF().getSelectedIndex()+10)) + ":00");
+		            bw.write("        Precio reserva: " + view.getTxtPrecio().getText() + "€");
+		            bw.close();
+			
 				}
 
 
@@ -308,6 +311,9 @@ public class realizarReservaController {
 					JDialog d = pane.createDialog(pane, "Reviselo");
 					d.setVisible(true);
 
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}
