@@ -29,7 +29,6 @@ public class visualizaReservasInstalaciones2View {
 	private JTextField txtFecha;
 	private JButton btnAnterior;
 	private JButton btnSiguiente;
-	private JTextField txtDNI;
 
 	/**
 	 * Launch the application.
@@ -59,7 +58,7 @@ public class visualizaReservasInstalaciones2View {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 546, 462);
+		frame.setBounds(100, 100, 546, 389);
 		
 		 Titulo = new JLabel("RESERVAS DE LAS INSTALACIONES EN LA ACTUALIDAD");
 		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -89,47 +88,34 @@ public class visualizaReservasInstalaciones2View {
 		
 		btnSiguiente = new JButton("->");
 		btnSiguiente.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		
-		JLabel lblNewLabel = new JLabel("Introduzca su identificador");
-		
-		txtDNI = new JTextField();
-		txtDNI.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(Titulo, GroupLayout.PREFERRED_SIZE, 520, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_instalacion, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+						.addComponent(Titulo, GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(comboBox_instalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-							.addComponent(btnAnterior)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnSiguiente, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnComprobarReservsa))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(32)
-							.addComponent(lblFecha)))
-					.addGap(27))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(318, Short.MAX_VALUE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(label_instalacion, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(comboBox_instalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+									.addComponent(btnAnterior)
+									.addPreferredGap(ComponentPlacement.RELATED)))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtFecha, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(btnSiguiente, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(btnComprobarReservsa))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(32)
+									.addComponent(lblFecha)))
+							.addGap(27))))
+				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -146,12 +132,9 @@ public class visualizaReservasInstalaciones2View {
 						.addComponent(btnComprobarReservsa)
 						.addComponent(btnSiguiente, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnAnterior))
-					.addGap(28)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
-						.addComponent(txtDNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
 		tabla_disponibilidad = new JTable();
@@ -194,14 +177,6 @@ public class visualizaReservasInstalaciones2View {
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
-
-	public JTextField getTxtDNI() {
-		return txtDNI;
-	}
-
-	public void setTxtDNI(JTextField txtDNI) {
-		this.txtDNI = txtDNI;
-	}
 
 	public void setTxtFecha(JTextField txtFecha) {
 		this.txtFecha = txtFecha;
