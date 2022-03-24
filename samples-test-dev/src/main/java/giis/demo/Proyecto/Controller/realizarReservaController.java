@@ -30,6 +30,7 @@ public class realizarReservaController {
 	private int select;
 	java.sql.Date sqlDate;
 	private int siguiente,anterior,pos;
+	private String actividadS,SocioS,instalacionS,horaInicioS,horaFinS,precioS;
 
 	public realizarReservaController(realizarReservasModel m, realizarReservaView reservaV) {
 		this.model = m;
@@ -59,24 +60,45 @@ public class realizarReservaController {
 	}  
 	
 	private void comprobarReservas() {
-		List<Object[]> reservas = model.getFechasReservas(Util.isoStringToDate(view.getTextFecha().getText()),
-				(view.getComboBox_HoraC().getSelectedIndex()+9), view.getComboBox_HoraF().getSelectedIndex()+10);
+		List<reservasDisplayDTO> reservas = model.obtenerHorarioReserva();
 		List <reservasDisplayDTO> idReserva = model.obtenerReserva();
+		boolean estaReservado = false;
+		float horaI = (float) view.getComboBox_HoraC().getSelectedIndex() +9;
+		float horaF = (float) view.getComboBox_HoraF().getSelectedIndex()+10;
+		String fecha = view.getTextFecha().getText();
+		int instalacion = view.getComboBox_instalacion().getSelectedIndex()+1;
 		int ultimo= 0;
 		for (int i =0; i <= idReserva.size();i++)
 			ultimo++;
-		
-		if(!reservas.isEmpty()) {
-			SwingUtil.showMessage("Ya se ha realizado una reserva con esos valores", "Error", 1);
-		}
-		else {
-			actualizarPrecios();
-			System.out.print("Se puede realizar la reserva.\n");
-			view.getTxtSocio().setEditable(true);
-			view.getTextActividad().setEditable(true);
-			view.getTxtReserva().setText(String.valueOf(ultimo));
-			view.getRdBtnFinal().setSelected(true);
-			view.getBtnReserva().setEnabled(true);
+		if(actualizarPrecios()) {
+			if(!reservas.isEmpty()) {
+				for (int i =0 ; i < reservas.size();i++){
+					if((reservas.get(i).getFecha().equals(fecha)) && 
+							((reservas.get(i).getHoraInicio() == horaI) || ((reservas.get(i).getHoraInicio() -1 )== horaF)) &&
+							((Integer.parseInt(reservas.get(i).getIdInstalacion())) == instalacion)) 
+						estaReservado = true;
+				}
+				if(estaReservado) {
+					SwingUtil.showMessage("Ya se ha realizado una reserva con esos valores", "Error", 1);
+					view.getTxtSocio().setEditable(false);
+					view.getActividadesCB().setEnabled(false);
+				}
+				else {
+					System.out.println("Se puede realizar la reserva.\n");
+					view.getTxtSocio().setEditable(true);
+					view.getActividadesCB().setEnabled(true);
+					view.getTxtReserva().setText(String.valueOf(ultimo));
+					view.getRdBtnFinal().setSelected(true);
+					view.getBtnReserva().setEnabled(true);
+				}
+			}else {
+				System.out.print("Se puede realizar la reserva.\n");
+				view.getTxtSocio().setEditable(true);
+				view.getActividadesCB().setEnabled(true);;
+				view.getTxtReserva().setText(String.valueOf(ultimo));
+				view.getRdBtnFinal().setSelected(true);
+				view.getBtnReserva().setEnabled(true);
+			}
 		}
 	}
 
@@ -108,76 +130,64 @@ public class realizarReservaController {
 
 		//Metodos para inicializar el contenido de los comboBox
 		añadeInstCB();
+		añadeActividadesCB();
 		//Inicializacion de ventana
 		view.getFrame().setVisible(true);
 
 	}
 
 
-
-
-	private void actualizarPrecios() {
+	private boolean actualizarPrecios() {
 
 		List<InstalacionesDisplayDTO> instalaciones=model.getInstalacion();
 		int horaC = (int) view.getComboBox_HoraC().getSelectedIndex();
 		int horaF = (int)view.getComboBox_HoraF().getSelectedIndex();
 
-		if((horaF -horaC) == 0)
+		if((horaF -horaC) == 0) {
 		view.getTxtPrecio().setText(
-				Float.toString(instalaciones.get(view.getComboBox_instalacion().getSelectedIndex()).getPrecioHora()));
+				Float.toString(instalaciones.get(view.getComboBox_instalacion().getSelectedIndex()).getPrecioHora())); 
+		return true;
+		}
 		else if((horaF -horaC) == 1) {
 			view.getTxtPrecio().setText(
 					Float.toString(instalaciones.get(view.getComboBox_instalacion().getSelectedIndex()).getPrecioHora() * 2));
+			return true;
 		}
 		else if((horaF -horaC) == 2) {
 			view.getTxtPrecio().setText(
 					Float.toString(instalaciones.get(view.getComboBox_instalacion().getSelectedIndex()).getPrecioHora() * 3));
+			return true;
 		}
 		else if(horaC > horaF) {
 			SwingUtil.showMessage("Introduzca un rango de horas válido", "Error", 1);
+			return false;
 		}
-		else
+		else {
 			SwingUtil.showMessage("No se puede realizar una reserva de mas de 3 horas", "Error", 1);
+			return false;
+		}
 
 	}
 
 
 	/**
-	 * Metodo para cargar de la BD las instalaciones en el ComboBox
+	 * Metodo para cargar de la BD en ComboBoxs
 	 */
 	public void añadeInstCB() {
 		List<Object[]> instalaciones=model.getInstalacion2();	
 		ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(instalaciones);
 		view.getComboBox_instalacion().setModel(l);
 	}
-
-
-
-	/**
-	 * Metodo que añade al comboBox los elemntos de busqueda sql
-	 * @param pojos
-	 * @param comboBox
-	 * @param nombre
-	 */
-
-
-	@SuppressWarnings({ "unchecked", "unused" })
-	public void getListaInstalaciones() {
-
-		this.select=getSelectedIndex(view.getComboBox_instalacion());
-		float horaInicio= (float)Double.parseDouble(getSelectedItem(view.getComboBox_HoraC()));
-		float horaFin=(float)Double.parseDouble(getSelectedItem(view.getComboBox_HoraF()));
-		String fecha = view.getTextFecha().getText();
-
-		List<InstalacionesDisplayDTO> instalacion = model.getListaInstalacionesArray(select,Util.isoStringToDate(fecha),horaInicio,horaFin);
-		TableModel tmodel=SwingUtil.getTableModelFromPojos(instalacion, new String[] {"idInstalacion", "nombreInstalacion", "fechaReserva","horaInicioReserva",
-				"horaFinReserva","estado"});
-
+	
+	public void añadeActividadesCB() {
+		List<Object[]> actividades = model.getActividad2();
+		ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(actividades);
+		view.getActividadesCB().setModel(l);
 	}
+
 
 	public boolean CamposLlenos() {
 		if(view.getTxtSocio().getText().isEmpty()||
-				view.getTextActividad().getText().isEmpty()||
 				view.getTxtReserva().getText().isEmpty()||
 				view.getTxtPrecio().getText().isEmpty())
 			return false;
@@ -188,14 +198,55 @@ public class realizarReservaController {
 
 	@SuppressWarnings("unchecked")
 	public void realizarReservaInstalacion() {
+		List <reservasDisplayDTO> idReserva = model.obtenerReserva();
+		boolean existeReserva= false;
 
 		if(!CamposLlenos()){
 			SwingUtil.showMessage("Rellene todos los campos", "Error", 1);
 		}
+		else if(!idReserva.isEmpty()) {
+			for(int i=0; i < idReserva.size();i++) {
+				if(view.getTxtReserva().getText().equals(idReserva.get(i).getIdReserva()))
+					existeReserva = true;
+			}
+			if(existeReserva)
+				SwingUtil.showMessage("Nº de reserva ya utilizado", "Error", 1);
+			else {
+				List <SociosDisplayDTO> socio = model.getInfoSocio(Integer.parseInt(view.getTxtSocio().getText()));
+
+				if(!socio.isEmpty()){
+
+					int estado = 1;
+
+
+					model.realizarReserva(Integer.parseInt(view.getTxtReserva().getText()),
+							Integer.parseInt(view.getTxtSocio().getText()),
+							(view.getActividadesCB().getSelectedIndex()+1),
+							getSelectedIndex(view.getComboBox_instalacion()) +1, 
+							Util.dateToIsoString(Util.isoStringToDate(view.getTextFecha().getText())),
+							(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())),
+							(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraF())), 
+							estado);
+
+
+
+					view.getTxtNombre().setText(socio.get(0).getNombre());
+					view.getTxtApellidos().setText(socio.get(0).getApellido1() + " " + socio.get(0).getApellido2());
+					this.actividadS = (String)view.getActividadesCB().getSelectedItem();
+					this.SocioS = view.getTxtSocio().getText();
+					this.horaInicioS =(String) view.getComboBox_HoraC().getSelectedItem();
+					this.horaFinS = (String) view.getComboBox_HoraF().getSelectedItem();
+					this.instalacionS = (String) view.getComboBox_instalacion().getSelectedItem();
+					this.precioS = (String) view.getTxtPrecio().getText();
+					view.getBtnResguardo().setEnabled(true);
+				}
+
+				else{
+					SwingUtil.showMessage("El socio no existe en la BBDD", "Error", 0);
+				}
+			}
+		}
 		else {
-
-
-
 			List <SociosDisplayDTO> socio = model.getInfoSocio(Integer.parseInt(view.getTxtSocio().getText()));
 
 			if(!socio.isEmpty()){
@@ -205,7 +256,7 @@ public class realizarReservaController {
 
 				model.realizarReserva(Integer.parseInt(view.getTxtReserva().getText()),
 						Integer.parseInt(view.getTxtSocio().getText()),
-						Integer.parseInt(view.getTextActividad().getText()),
+						(view.getActividadesCB().getSelectedIndex()+1),
 						getSelectedIndex(view.getComboBox_instalacion()) +1, 
 						Util.dateToIsoString(Util.isoStringToDate(view.getTextFecha().getText())),
 						(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())),
@@ -216,7 +267,12 @@ public class realizarReservaController {
 
 				view.getTxtNombre().setText(socio.get(0).getNombre());
 				view.getTxtApellidos().setText(socio.get(0).getApellido1() + " " + socio.get(0).getApellido2());
-				view.getBtnResguardo().setEnabled(true);
+				this.actividadS = (String)view.getActividadesCB().getSelectedItem();
+				this.SocioS = view.getTxtSocio().getText();
+				this.horaInicioS =(String) view.getComboBox_HoraC().getSelectedItem();
+				this.horaFinS = (String) view.getComboBox_HoraF().getSelectedItem();
+				this.instalacionS = (String) view.getComboBox_instalacion().getSelectedItem();
+				this.precioS = (String) view.getTxtPrecio().getText();
 				view.getBtnResguardo().setEnabled(true);
 			}
 
@@ -245,27 +301,7 @@ public class realizarReservaController {
 
 
 
-
-
-
 	public void generarResguardo() {
-
-		if(!CamposLlenos()){
-			SwingUtil.showMessage("Rellene todos los campos", "Error", 1);
-		}
-
-		else {
-
-
-
-			List<SociosDisplayDTO> socios = model.getInfoSocio(Integer.parseInt(view.getTxtSocio().getText()));
-			if(socios.isEmpty()){
-				SwingUtil.showMessage("El socio no existe en la BD", "Error", 0);
-			}
-			else{
-
-
-
 
 				try{
 					String ruta = "./resguardo.txt";
@@ -278,31 +314,26 @@ public class realizarReservaController {
 		            FileWriter fw = new FileWriter(file);
 		            BufferedWriter bw = new BufferedWriter(fw);
 		            bw.write(contenido);
-		            bw.write("\nNº Socio: " + view.getTxtSocio().getText());
 		            bw.write("\nNombre: " + view.getTxtNombre().getText() + "				" + "Apellidos: " + view.getTxtApellidos().getText());
 		            bw.write("\nNº Reserva: " + view.getTxtReserva().getText());
-		            bw.write("\nNº Socio: " + view.getTxtSocio().getText());
-		            bw.write("\nNº Instalación: " + view.getComboBox_instalacion().getModel().getElementAt(view.getCbInstalacion().getSelectedIndex()).toString()
-		            		+ "		Nº Actividad: "+ view.getTextActividad().getText());
+		            bw.write("\nNº Socio: " + this.SocioS);
+		            bw.write("\nNº Instalación: " + this.instalacionS
+		            		+ "		Nº Actividad: "+ this.actividadS);
 		            bw.write("\nForma de pago: " + (view.getRdBtnEfectivo().isSelected() ?
 									"En efectivo" : "A final de mes"));
 		            bw.write("           Fecha: " + view.getTextFecha().getText());
-		            bw.write("\nIntervalo de horas: " + (Integer.toString(view.getComboBox_HoraC().getSelectedIndex()+9)) + ":00 - " 
-		            		+ (Integer.toString(view.getComboBox_HoraF().getSelectedIndex()+10)) + ":00");
-		            bw.write("        Precio reserva: " + view.getTxtPrecio().getText() + "€");
+		            bw.write("\nIntervalo de horas: " + this.horaInicioS + ":00 - " 
+		            		+ this.horaFinS + ":00");
+		            bw.write("        Precio reserva: " + this.precioS + "€");
 		            bw.close();
 			
 				}
-
-
 				catch(NullPointerException e)
 				{
 					JOptionPane pane = new JOptionPane("Hay algun campo vacio.",JOptionPane.INFORMATION_MESSAGE);
 					pane.setOptions(new Object[] {"ACEPTAR"}); 
 					JDialog d = pane.createDialog(pane, "Reviselo");
 					d.setVisible(true);
-
-
 				}
 				catch(NumberFormatException e){
 
@@ -312,11 +343,8 @@ public class realizarReservaController {
 					d.setVisible(true);
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-		}
 	}
 	
 	public static String fecha(int constante){

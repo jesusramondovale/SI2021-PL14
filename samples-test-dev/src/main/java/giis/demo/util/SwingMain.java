@@ -85,7 +85,7 @@ public class SwingMain {
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
 		
-		JButton btnReservar = new JButton("Realizar reserva");
+		JButton btnReservar = new JButton("Realizar reserva como administrador");
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 realizarReservaController controller=new realizarReservaController(new realizarReservasModel() , new realizarReservaView());

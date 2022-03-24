@@ -29,12 +29,12 @@ public class realizarReservaView {
 	private JComboBox comboBox_HoraC;
 	private JComboBox comboBox_HoraF;
 	private JComboBox <Object> comboBox_instalacion;
+	private JComboBox <Object> actividadesCB;
 	private JRadioButton rdBtnEfectivo;
 	private JRadioButton rdBtnFinal;
 	private final ButtonGroup grupo = new ButtonGroup();
 	private JButton btnReserva;
 	private JButton btnResguardo;
-	private JTextField textActividad;
 	private JTextField textFecha;
 	private JButton btnAnterior;
 	private JButton btnSiguiente;
@@ -150,10 +150,6 @@ public class realizarReservaView {
 		
 		btnResguardo = new JButton("Generar resguardo");
 		
-		textActividad = new JTextField();
-		textActividad.setEditable(false);
-		textActividad.setColumns(10);
-		
 		JLabel lblNewLabel_3 = new JLabel("Nº Actividad");
 		
 		 btnAnterior = new JButton("<-");
@@ -165,6 +161,9 @@ public class realizarReservaView {
 		 btnSiguiente = new JButton("->");
 		
 		btnComprobar = new JButton("COMPROBAR");
+		
+		actividadesCB = new JComboBox();
+		actividadesCB.setEnabled(false);
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -236,18 +235,17 @@ public class realizarReservaView {
 								.addComponent(lblSocio)
 								.addComponent(lblNewLabel_3))
 							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(txtSocio, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-									.addGap(29)
-									.addComponent(lblNombre)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(lblApellidos)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtApellidos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(textActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(actividadesCB, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(txtSocio, GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+							.addGap(29)
+							.addComponent(lblNombre)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(lblApellidos)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtApellidos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -282,7 +280,7 @@ public class realizarReservaView {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_3)
-						.addComponent(textActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(actividadesCB, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(17)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblReserva)
@@ -301,7 +299,7 @@ public class realizarReservaView {
 							.addComponent(rdBtnEfectivo)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(rdBtnFinal)))
-					.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnResguardo)
 						.addComponent(btnReserva))
@@ -439,14 +437,6 @@ public class realizarReservaView {
 		this.txtPrecio.setText(txtPrecio);;
 	}
 
-	public JTextField getTextActividad() {
-		return textActividad;
-	}
-
-	public void setTextActividad(JTextField textActividad) {
-		this.textActividad = textActividad;
-	}
-
 	public JTextField getTextFecha() {
 		return textFecha;
 	}
@@ -477,6 +467,14 @@ public class realizarReservaView {
 
 	public void setBtnComprobar(JButton btnComprobar) {
 		this.btnComprobar = btnComprobar;
+	}
+
+	public JComboBox<Object> getActividadesCB() {
+		return actividadesCB;
+	}
+
+	public void setActividadesCB(JComboBox<Object> actividadesCB) {
+		this.actividadesCB = actividadesCB;
 	}
 	
 	

@@ -17,6 +17,8 @@ private String sql = "INSERT INTO reservas VALUES (?,?,?,?,?,?,?,?)";
 private String sql2 = "SELECT idSocio FROM socios";
 private String sql3 = "SELECT precioHora FROM instalaciones";
 private String sql4 = "SELECT idReserva from reservas";
+private String sql5 = "SELECT fecha,horaInicio,horaFin,idInstalacion from reservas"; 
+private String sql6 = "SELECT nombre from actividades";
 
 	public void insertaReserva(int idReserva,int idsocio, String fecha,float horaInicio,
 			float horaFin, int idInstalacion, int idActividad, int estado) {
@@ -28,6 +30,30 @@ private String sql4 = "SELECT idReserva from reservas";
 		}catch(UnexpectedException e) {
 			JOptionPane.showMessageDialog(null, "SQL error de la reserva.","Error",
 				    JOptionPane.WARNING_MESSAGE);
+		}
+	}
+	
+	public List<actividadesDisplayDTO> obtenerActividad(){
+		try {
+			List<actividadesDisplayDTO> actividad= db.executeQueryPojo(actividadesDisplayDTO.class, sql6);
+			return actividad;
+			
+		}catch(UnexpectedException e) {
+			JOptionPane.showMessageDialog(null, "SQL error en Obtener la fecha de la reserva reserva.","Error",
+				    JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+	}
+	
+	public List<reservasDisplayDTO> obtenerHorarioReserva(){
+		try {
+			List<reservasDisplayDTO> reserva= db.executeQueryPojo(reservasDisplayDTO.class, sql5);
+			return reserva;
+			
+		}catch(UnexpectedException e) {
+			JOptionPane.showMessageDialog(null, "SQL error en Obtener la fecha de la reserva reserva.","Error",
+				    JOptionPane.WARNING_MESSAGE);
+			return null;
 		}
 	}
 	
@@ -94,13 +120,6 @@ private String sql4 = "SELECT idReserva from reservas";
 		numInst++;
 		String f=Util.dateToIsoString(fecha);
 		return db.executeQueryPojo(InstalacionesDisplayDTO.class,sql,f,horaInicio,horaFin,f,horaInicio,horaFin,f,horaInicio,horaFin,f,horaInicio,horaFin,numInst,f);
-	}
-
-	public List<Object[]>getFechasReservas(Date fecha, float horaInicio, float horaFin){
-		String sql="SELECT fecha, horaInicio, horaFin"
-				+ " from reservas where fecha=?";
-		String f=Util.dateToIsoString(fecha);
-		return db.executeQueryArray(sql, f);
 	}
 	
 	
@@ -195,6 +214,13 @@ private String sql4 = "SELECT idReserva from reservas";
 	public List<Object[]> getInstalacion2() {
 		// TODO Auto-generated method stub
 		String sql= "SELECT nombre , idInstalacion from instalaciones ORDER BY (idInstalacion)";
+		return db.executeQueryArray(sql);
+
+	}
+	
+	public List<Object[]> getActividad2() {
+		// TODO Auto-generated method stub
+		String sql= "SELECT nombre , idActividad from actividades ORDER BY (idInstalacion)";
 		return db.executeQueryArray(sql);
 
 	}
