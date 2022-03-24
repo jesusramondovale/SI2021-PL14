@@ -7,9 +7,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import giis.demo.Proyecto.Controller.realizarReservaController;
-import giis.demo.Proyecto.model.realizarReservasModel;
-import giis.demo.Proyecto.view.realizarReservaView;
+import giis.demo.Proyecto.Controller.realizarReservaAdministradorController;
+import giis.demo.Proyecto.model.realizarReservasAdministradorModel;
+import giis.demo.Proyecto.view.realizarReservaAdministradorView;
 import giis.demo.tkrun.*;
 
 /**
@@ -88,7 +88,7 @@ public class SwingMain {
 		JButton btnReservar = new JButton("Realizar reserva como administrador");
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 realizarReservaController controller=new realizarReservaController(new realizarReservasModel() , new realizarReservaView());
+				 realizarReservaAdministradorController controller=new realizarReservaAdministradorController(new realizarReservasAdministradorModel() , new realizarReservaAdministradorView());
 	                controller.initController();
 			}
 		});

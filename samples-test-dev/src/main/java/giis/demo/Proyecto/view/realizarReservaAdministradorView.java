@@ -18,7 +18,7 @@ import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class realizarReservaView {
+public class realizarReservaAdministradorView {
 
 	private JFrame frame;
 	private JTextField txtSocio;
@@ -47,7 +47,7 @@ public class realizarReservaView {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					realizarReservaView window = new realizarReservaView();
+					realizarReservaAdministradorView window = new realizarReservaAdministradorView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +59,7 @@ public class realizarReservaView {
 	/**
 	 * Create the application.
 	 */
-	public realizarReservaView() {
+	public realizarReservaAdministradorView() {
 		initialize();
 	}
 

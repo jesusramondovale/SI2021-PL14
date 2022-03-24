@@ -18,21 +18,21 @@ import javax.swing.table.TableModel;
 import giis.demo.Proyecto.DTO.InstalacionesDisplayDTO;
 import giis.demo.Proyecto.DTO.SociosDisplayDTO;
 import giis.demo.Proyecto.DTO.reservasDisplayDTO;
-import giis.demo.Proyecto.model.realizarReservasModel;
-import giis.demo.Proyecto.view.realizarReservaView;
+import giis.demo.Proyecto.model.realizarReservasAdministradorModel;
+import giis.demo.Proyecto.view.realizarReservaAdministradorView;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.Util;
 
-public class realizarReservaController {
+public class realizarReservaAdministradorController {
 
-	private realizarReservasModel model;
-	private realizarReservaView view;
+	private realizarReservasAdministradorModel model;
+	private realizarReservaAdministradorView view;
 	private int select;
 	java.sql.Date sqlDate;
 	private int siguiente,anterior,pos;
 	private String actividadS,SocioS,instalacionS,horaInicioS,horaFinS,precioS;
 
-	public realizarReservaController(realizarReservasModel m, realizarReservaView reservaV) {
+	public realizarReservaAdministradorController(realizarReservasAdministradorModel m, realizarReservaAdministradorView reservaV) {
 		this.model = m;
 		this.view = reservaV;
 		this.initView();
