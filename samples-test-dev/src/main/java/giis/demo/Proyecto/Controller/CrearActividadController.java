@@ -11,6 +11,7 @@ import giis.demo.Proyecto.Model.CrearActividadModel;
 import giis.demo.Proyecto.View.CrearActividadView;
 import giis.demo.util.Dia;
 import giis.demo.util.SwingUtil;
+import giis.demo.util.Util;
 
 public class CrearActividadController {
 
@@ -246,8 +247,14 @@ public class CrearActividadController {
 			}
 		}
 		
-		//model.insertaHorariosActividad(Integer.parseInt(view.getTextFieldIdActividad().getText()), idHorarios);
-		//model.insertaHorarios(Integer.parseInt(view.getTextFieldIdActividad().getText()), dia, horaInicio, horaFin);
+		for (int i=0 ; i<dias.size() ; i++) {
+			model.crearReserva(getRandomNumberInRange(1000,10000) , Util.dateToIsoString(f) , 
+					horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad, 0 ,1 );
+			model.insertaHorarios(Integer.parseInt(view.getTextFieldIdActividad().getText()), dia, horaInicio, horaFin);
+			model.insertaHorariosActividad(Integer.parseInt(view.getTextFieldIdActividad().getText()), idHorarios);
+			
+		
+		}
 	}
 
 
