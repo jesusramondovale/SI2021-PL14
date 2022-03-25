@@ -1,5 +1,6 @@
 package giis.demo.Proyecto.Controller;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class CrearActividadController {
 	 * de este controlador, encerrado en un manejador de excepciones generico para mostrar ventanas
 	 * emergentes cuando ocurra algun problema o excepcion controlada.
 	 */
-	
+
 
 	public void initView() {
 
@@ -40,10 +41,10 @@ public class CrearActividadController {
 		muestraPeriodos();
 
 	}
-	
-	
+
+
 	public void initController() {	
-		
+
 		this.initView();
 		view.getFrame().setVisible(true);
 		System.out.println("OK1");
@@ -56,7 +57,7 @@ public class CrearActividadController {
 
 
 	public void CrearActividad(){
-		
+
 		System.out.println("crearActividad()");
 
 		//Que las cuotas son correctas
@@ -120,11 +121,11 @@ public class CrearActividadController {
 				periodo_escogido= String.valueOf(id_PeriodoIncripcion +1);
 			}
 			int idInstalacion=view.getComboBox_Instalacion().getSelectedIndex()+1;
-			
+
 			int numPlazas =  ( view.getComboBox_Plazas().getSelectedIndex() <=0         ?  
-					                5        : 
-					         ( view.getComboBox_Plazas().getSelectedIndex() + 1) * 5);
-			
+					5        : 
+						( view.getComboBox_Plazas().getSelectedIndex() + 1) * 5);
+
 			model.insertaActividad(Integer.parseInt(view.getTextFieldIdActividad().getText()),
 					view.getTextArea_Nombre().getText(), 
 					view.getTipo_deporte().getText(), 
@@ -133,7 +134,119 @@ public class CrearActividadController {
 					view.getFechaInicio().getDate(), view.getFechaFin().getDate(),
 					periodo_escogido,1, numPlazas, idInstalacion);
 
+
+			List<String> dias = new ArrayList<String>();
+
+
+			// Insertar los índices de días seleccionados 
 			/*
+			 * Lunes = 2 
+			 * Martes = 3 
+			 *   .
+			 *   .
+			 *   .
+			 *  Domingo = 1
+			 */
+			if(!this.view.getTextField_ILunes().getText().isBlank()) {
+
+				dias.add("L");
+
+			}
+
+			if(!this.view.getTextField_IMartes().getText().isBlank()) {
+
+				dias.add("M");
+
+			}
+
+			if(!this.view.getTextField_IMiercoles().getText().isBlank()) {
+				dias.add("X");
+
+			}
+
+			if(!this.view.getTextField_IJueves().getText().isBlank()) {
+
+				dias.add("J");
+			}
+
+			if(!this.view.getTextField_IViernes().getText().isBlank()) {
+
+				dias.add("V");
+			}
+
+			if(!this.view.getTextField_ISabado().getText().isBlank()) {
+
+				dias.add("S");
+			}
+
+			if(!this.view.getTextField_IDomingo().getText().isBlank()) {
+				dias.add("D");
+
+			}
+
+			List<Double> horasIni = new ArrayList<Double>();
+			List<Double> horasFin = new ArrayList<Double>();
+
+
+			//Insertar las horas indicadas en la estructura de datos
+			for(int i=0 ; i<dias.size() ; i++) {
+
+				switch(dias.get(i)) {
+				case "L":
+					horasIni.add(i, Double.parseDouble(this.view.getTextField_ILunes().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextField_FLunes().getText()));
+					break;
+
+
+				case "M":
+					horasIni.add(i, Double.parseDouble(this.view.getTextField_IMartes().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextField_FMartes().getText()));
+					break;
+
+
+
+				case "X":
+					horasIni.add(i, Double.parseDouble(this.view.getTextField_IMiercoles().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextField_FMiercoles().getText()));
+					break;
+
+
+				case "J":
+					horasIni.add(i, Double.parseDouble(this.view.getTextField_IJueves().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextField_FJueves().getText()));
+					break;
+
+
+
+				case "V":
+					horasIni.add(i, Double.parseDouble(this.view.getTextField_IViernes().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextField_FViernes().getText()));
+					break;
+
+
+
+				case "S":
+					horasIni.add(i, Double.parseDouble(this.view.getTextField_ISabado().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextField_FSabado().getText()));
+					break;
+
+
+
+				case "D":
+					horasIni.add(i, Double.parseDouble(this.view.getTextField_IDomingo().getText()));
+					horasFin.add(i, Double.parseDouble(this.view.getTextField_FDomingo().getText()));
+					break;
+
+				default:
+					System.err.println("Default en Switch (RealizarReservasController:340)");
+					break;
+
+				}
+
+			}
+
+
+				/*
 			//llamar al otro model
 			String dias_selecccionados="";
 			String lunes ="L";
@@ -148,7 +261,7 @@ public class CrearActividadController {
 
 			for(int i=0; i<view.getTableDias().getSelectedRows().length;i++) {
 
-				
+
 
 				switch (view.getTableDias().getSelectedRows()[i]) {
 				case 1:
@@ -193,22 +306,22 @@ public class CrearActividadController {
 
 			model.insertaHoras(Integer.parseInt(view.getTextFieldIdActividad().getText()),dias_selecccionados, view.getILunes().getValue().toString(), view.getFLunes().getValue().toString());
 			System.out.println("Insert Actividad");
-			*/
+				 */
+			}
 		}
-	}
-	
 
 
-	/**
-	 * Metodo para cargar de la BD los periodos en el ComboBox
-	 */
-	@SuppressWarnings("unchecked")
-	public void muestraPeriodos() {
-		List<Object []> periodos=model.getPeriodos();
-		ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(periodos);
-		view.getComboBox_periodoIncripcion().setModel(l);
-	}
-	/*
+
+		/**
+		 * Metodo para cargar de la BD los periodos en el ComboBox
+		 */
+		@SuppressWarnings("unchecked")
+		public void muestraPeriodos() {
+			List<Object []> periodos=model.getPeriodos();
+			ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(periodos);
+			view.getComboBox_periodoIncripcion().setModel(l);
+		}
+		/*
 	  public void añadePeriodos() {
 	        List<Object[]> periodos =model.getPeriodos();
 	        ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(periodos);
@@ -216,4 +329,4 @@ public class CrearActividadController {
 	    }*/
 
 
-}
+	}
