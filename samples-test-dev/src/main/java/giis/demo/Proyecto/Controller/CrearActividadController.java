@@ -92,11 +92,11 @@ public class CrearActividadController {
 			System.out.println("Hay por los menos un campo vacio...");
 
 		}
+		/*
 		else if(SwingUtil.getSelectedKey(view.getTableDias()).equals("")){
 			SwingUtil.showMessage("Hay que selccinar un dia ", "ERROR", JOptionPane.ERROR_MESSAGE);
 			System.out.println("Hay que selccinar un dia...");
-
-		}
+		}*/
 
 		else if(view.getFechaInicio().getDate().after(view.getFechaFin().getDate())){
 			SwingUtil.showMessage("la fecha de fin es antes que la de inicio ", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -133,6 +133,7 @@ public class CrearActividadController {
 					view.getFechaInicio().getDate(), view.getFechaFin().getDate(),
 					periodo_escogido,1, numPlazas, idInstalacion);
 
+			/*
 			//llamar al otro model
 			String dias_selecccionados="";
 			String lunes ="L";
@@ -147,29 +148,7 @@ public class CrearActividadController {
 
 			for(int i=0; i<view.getTableDias().getSelectedRows().length;i++) {
 
-				/*
-				if(view.getTableDias().getSelectedRows()[i]==1) {
-					dias_selecccionados+=lunes;
-				}
-				else if(view.getTableDias().getSelectedRows()[i]==2) {
-					dias_selecccionados+=martes;
-				}
-				else if(view.getTableDias().getSelectedRows()[i]==3) {
-					dias_selecccionados+=miercoles;
-				}
-				else if(view.getTableDias().getSelectedRows()[i]==4) {
-					dias_selecccionados.concat(jueves);
-				}
-				else if(view.getTableDias().getSelectedRows()[i]==5) {
-					dias_selecccionados.concat(viernes);
-				}
-				else if(view.getTableDias().getSelectedRows()[i]==6) {
-					dias_selecccionados.concat(sabado);
-				}
-				else if(view.getTableDias().getSelectedRows()[i]==7) {
-					dias_selecccionados.concat(domingo);
-				}
-				 */
+				
 
 				switch (view.getTableDias().getSelectedRows()[i]) {
 				case 1:
@@ -214,8 +193,10 @@ public class CrearActividadController {
 
 			model.insertaHoras(Integer.parseInt(view.getTextFieldIdActividad().getText()),dias_selecccionados, view.getILunes().getValue().toString(), view.getFLunes().getValue().toString());
 			System.out.println("Insert Actividad");
+			*/
 		}
 	}
+	
 
 
 	/**

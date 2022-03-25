@@ -56,9 +56,6 @@ public class CrearActividadModel {
 			SwingUtil.showMessage("Error SQL en INSERT into ACTIVIDADES!", "Error", 0);
 
 		}
-		
-
-
 	}
 	public void insertaHorariosActividad (int idActividad, int idHorarios) {
 		db.executeUpdate(sql2,idActividad, idHorarios);

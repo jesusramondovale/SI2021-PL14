@@ -35,7 +35,6 @@ public class CrearActividadView extends JFrame{
 
 	private String [] periodos;
 	private JFrame frame;
-	private JTable tableDias;
 	private JLabel lblNewLabel;
 
 	private JLabel lblDescripcion; 
@@ -95,13 +94,32 @@ public class CrearActividadView extends JFrame{
 	private JDateChooser FechaInicio ;
 
 	private JDateChooser FechaFin ;
-
-	private JSpinner ILunes ;
-	private JSpinner FLunes ;
 	private JTextField Tipo_deporte;
 	private JTextArea textArea_Precio;
 	private JTextField textFieldIdActividad;
 	private JLabel lblHorario;
+	private JTextField textField_ILunes;
+	private JTextField textField_FLunes;
+	private JTextField textField_IMartes;
+	private JTextField textField_FMartes;
+	private JTextField textField_IMiercoles;
+	private JTextField textField_FMiercoles;
+	private JTextField textField_IJueves;
+	private JLabel lblNewLabel_5;
+	private JTextField textField_FJueves;
+	private JLabel lblNewLabel_6;
+	private JTextField textField_IViernes;
+	private JLabel lblNewLabel_7;
+	private JTextField textField_FViernes;
+	private JLabel lblNewLabel_8;
+	private JTextField textField_ISabado;
+	private JLabel lblNewLabel_9;
+	private JTextField textField_FSabado;
+	private JLabel lblNewLabel_10;
+	private JTextField textField_IDomingo;
+	private JLabel lblNewLabel_11;
+	private JTextField textField_FDomingo;
+	private JLabel lblNewLabel_12;
 
 	/**
 	 * Launch the application.
@@ -136,13 +154,6 @@ public class CrearActividadView extends JFrame{
 		this.frame = frame;
 	}
 
-	public JTable getTableDias() {
-		return tableDias;
-	}
-
-	public void setTableDias(JTable tableDias) {
-		this.tableDias = tableDias;
-	}
 
 	public JLabel getLblNewLabel() {
 		return lblNewLabel;
@@ -405,14 +416,6 @@ public class CrearActividadView extends JFrame{
 		FechaFin = fechaFin;
 	}
 
-	public JSpinner getILunes() {
-		return ILunes;
-	}
-
-	public void setILunes(JSpinner iLunes) {
-		ILunes = iLunes;
-	}
-
 	
 	public JTextField getTextFieldIdActividad() {
 		return textFieldIdActividad;
@@ -423,17 +426,6 @@ public class CrearActividadView extends JFrame{
 	}
 
 
-
-
-
-
-	public JSpinner getFLunes() {
-		return FLunes;
-	}
-
-	public void setFLunes(JSpinner fLunes) {
-		FLunes = fLunes;
-	}
 
 	
 
@@ -450,6 +442,7 @@ public class CrearActividadView extends JFrame{
 		frame.setBounds(100, 100, 800, 511);
 
 		lblNewLabel = new JLabel("Nombre:");
+		lblNewLabel.setBounds(85, 67, 43, 14);
 
 
 		lblFechaInicio = new JLabel("Fecha Inicio:");
@@ -463,6 +456,7 @@ public class CrearActividadView extends JFrame{
 		textArea_Nombre = new JTextArea();
 
 		PrecioSocio = new JTextArea();
+		PrecioSocio.setBounds(535, 89, 93, 22);
 
 		lblNewLabel_2 = new JLabel("€");
 
@@ -474,30 +468,39 @@ public class CrearActividadView extends JFrame{
 		JLabel lblDescripcion = new JLabel("Descripcion:");
 		
 		JLabel lblFechaInicio = new JLabel("Fecha Inicio:");
+		lblFechaInicio.setBounds(433, 233, 83, 14);
 		
 		JLabel lblFechaFin = new JLabel("Fecha Fin:");
+		lblFechaFin.setBounds(433, 279, 51, 14);
 		
 		JLabel lblPlazas = new JLabel("Plazas:");
+		lblPlazas.setBounds(85, 139, 58, 14);
 		
 		JLabel lblPrecioSocio = new JLabel("Precio Socio:");
+		lblPrecioSocio.setBounds(433, 94, 91, 14);
 		
 		
 		JLabel lblNmeroDeSesiones = new JLabel("Número de sesiones:");
 		
 		textArea_Nombre_1 = new JTextArea();
+		textArea_Nombre_1.setBounds(149, 62, 148, 22);
 		
 		textArea_Descripcion = new JTextArea();
 		
 		textArea_Precio = new JTextArea();
 		
 		JLabel lblNewLabel_2 = new JLabel("€");
+		lblNewLabel_2.setBounds(640, 94, 48, 14);
 		
 		JList list = new JList();
+		list.setBounds(127, 308, 1, 1);
 		
 		comboBox_Plazas_1 = new JComboBox();
+		comboBox_Plazas_1.setBounds(175, 133, 47, 26);
 		comboBox_Plazas_1.setModel(new DefaultComboBoxModel(new String[] {"5", "10", "15", "20", "25", "30"}));
 
 		lblPeriodoIncripcin = new JLabel("Periodo Incripción");
+		lblPeriodoIncripcin.setBounds(85, 187, 90, 14);
 
 
 
@@ -517,6 +520,7 @@ public class CrearActividadView extends JFrame{
 		//AQUI
 		
 		comboBox_periodoIncripcion_1 = new JComboBox();
+		comboBox_periodoIncripcion_1.setBounds(210, 181, 86, 26);
 		comboBox_periodoIncripcion_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -526,221 +530,442 @@ public class CrearActividadView extends JFrame{
 		JLabel lblDeporte = new JLabel("Deporte");
 		
 		JLabel lblInstalacion = new JLabel("Instalacion");
+		lblInstalacion.setBounds(433, 162, 80, 14);
 		
 		comboBox_Deporte = new JComboBox();
 		comboBox_Deporte.setModel(new DefaultComboBoxModel(new String[] {"Tenis", "Padel", "Yoga", "Spinning", "Natación"}));
 		
 		comboBox_Instalacion_1 = new JComboBox();
+		comboBox_Instalacion_1.setBounds(534, 156, 148, 26);
 		comboBox_Instalacion_1.setModel(new DefaultComboBoxModel(new String[] {"pista de pádel", "campo de futbito", "cancha de baloncesto", "salon de yoga", "cancha de balonmano", "piscina"}));
 		
 		boton_LimpiarValores = new JButton("Limpiar valores");
 		
 		boton_CrearActividad_1 = new JButton("Crear Actividad");
-			
-		
-		
-		JLabel lblNewLabel_3 = new JLabel("Días y horas de las sesiones");
-		
-		tableDias = new JTable();
-		tableDias.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tableDias.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null},
-				{"Lunes"},
-				{"Martes"},
-				{"Mi\u00E9rcoles"},
-				{"Jueves"},
-				{"Viernes"},
-				{"Sabado"},
-				{"Domingo"},
-			},
-			new String[] {
-				"New column"
-			}
-		));
-
-		ILunes = new JSpinner();
-		ILunes.setPreferredSize(new Dimension(26, 18));
-		ILunes.setMinimumSize(new Dimension(26, 18));
-		ILunes.setModel(new SpinnerListModel(new String[] {"9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"}));
-
-		FLunes = new JSpinner();
-		FLunes.setModel(new SpinnerListModel(new String[] {"9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"}));
-		FLunes.setPreferredSize(new Dimension(26, 18));
-		FLunes.setMinimumSize(new Dimension(26, 18));
+		boton_CrearActividad_1.setBounds(571, 365, 107, 23);
 
 		FechaInicio = new JDateChooser();
+		FechaInicio.setBounds(534, 233, 139, 20);
 
 		FechaFin = new JDateChooser();
+		FechaFin.setBounds(534, 299, 144, 20);
 
 		lblPrecioNoSocio = new JLabel("Precio No Socio:");
+		lblPrecioNoSocio.setBounds(433, 42, 91, 14);
 
 		PrecioNoSocio = new JTextArea();
+		PrecioNoSocio.setBounds(534, 37, 94, 22);
 
 		lblNewLabel_2_1 = new JLabel("€");
+		lblNewLabel_2_1.setBounds(642, 44, 21, 14);
 
 		Tipo = new JLabel("Tipo");
+		Tipo.setBounds(85, 98, 33, 14);
 
 		Tipo_deporte = new JTextField();
+		Tipo_deporte.setBounds(149, 95, 96, 20);
 
 		Tipo_deporte.setColumns(10);
 		
 		JLabel lblId = new JLabel("ID: ");
+		lblId.setBounds(85, 34, 19, 14);
 		
 		textFieldIdActividad = new JTextField();
+		textFieldIdActividad.setBounds(149, 31, 96, 20);
 		textFieldIdActividad.setColumns(10);
 		
 		lblHorario = new JLabel("HORARIO");
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(127)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(650, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(69)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblPeriodoIncripcin)
-							.addGap(36)
-							.addComponent(comboBox_periodoIncripcion_1, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_3)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(12)
-									.addComponent(tableDias, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(ILunes, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-											.addGap(18)
-											.addComponent(FLunes, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblHorario)))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblId)
-										.addComponent(lblPlazas, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(Tipo, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-											.addGap(10))
-										.addComponent(lblNewLabel))
-									.addGap(32)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(textArea_Nombre_1, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-										.addComponent(textFieldIdActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-											.addComponent(Tipo_deporte)
-											.addComponent(comboBox_Plazas_1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)))))
-							.addPreferredGap(ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-											.addComponent(lblFechaInicio, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-											.addComponent(lblPrecioNoSocio, GroupLayout.PREFERRED_SIZE, 91, Short.MAX_VALUE)
-											.addComponent(lblPrecioSocio, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addComponent(lblInstalacion, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblFechaFin))
-									.addGap(10)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(FechaFin, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(PrecioNoSocio, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(PrecioSocio, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-													.addPreferredGap(ComponentPlacement.RELATED)))
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addGroup(groupLayout.createSequentialGroup()
-													.addGap(12)
-													.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
-												.addGroup(groupLayout.createSequentialGroup()
-													.addGap(14)
-													.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))))
-										.addComponent(comboBox_Instalacion_1, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
-										.addComponent(FechaInicio, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(boton_CrearActividad_1)
-									.addGap(65)))))
-					.addGap(100))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblId)
-								.addComponent(textFieldIdActividad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPrecioNoSocio)
-								.addComponent(PrecioNoSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(3))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(lblNewLabel_2_1)
-							.addGap(4)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textArea_Nombre_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(Tipo_deporte, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(comboBox_Plazas_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblPlazas))
-							.addGap(39)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPeriodoIncripcin)
-								.addComponent(comboBox_periodoIncripcion_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-							.addComponent(lblNewLabel_3))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(27)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPrecioSocio)
-								.addComponent(Tipo)
-								.addComponent(PrecioSocio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_2))
-							.addGap(45)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblInstalacion)
-								.addComponent(comboBox_Instalacion_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-							.addGap(51)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblFechaInicio)
-								.addComponent(FechaInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(6)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(tableDias, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblHorario)
-									.addGap(6)
-									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(ILunes, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-										.addComponent(FLunes, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblFechaFin))
-									.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-									.addComponent(boton_CrearActividad_1)
-									.addGap(20))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(40)
-							.addComponent(FechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addGap(240))
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		lblHorario.setBounds(85, 222, 48, 14);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(list);
+		frame.getContentPane().add(lblPeriodoIncripcin);
+		frame.getContentPane().add(comboBox_periodoIncripcion_1);
+		frame.getContentPane().add(lblHorario);
+		frame.getContentPane().add(lblId);
+		frame.getContentPane().add(lblPlazas);
+		frame.getContentPane().add(Tipo);
+		frame.getContentPane().add(lblNewLabel);
+		frame.getContentPane().add(textArea_Nombre_1);
+		frame.getContentPane().add(textFieldIdActividad);
+		frame.getContentPane().add(Tipo_deporte);
+		frame.getContentPane().add(comboBox_Plazas_1);
+		frame.getContentPane().add(lblFechaInicio);
+		frame.getContentPane().add(lblPrecioNoSocio);
+		frame.getContentPane().add(lblPrecioSocio);
+		frame.getContentPane().add(lblInstalacion);
+		frame.getContentPane().add(lblFechaFin);
+		frame.getContentPane().add(PrecioNoSocio);
+		frame.getContentPane().add(PrecioSocio);
+		frame.getContentPane().add(lblNewLabel_2);
+		frame.getContentPane().add(lblNewLabel_2_1);
+		frame.getContentPane().add(comboBox_Instalacion_1);
+		frame.getContentPane().add(FechaInicio);
+		frame.getContentPane().add(boton_CrearActividad_1);
+		frame.getContentPane().add(FechaFin);
+		
+		textField_ILunes = new JTextField();
+		textField_ILunes.setBounds(85, 259, 27, 20);
+		frame.getContentPane().add(textField_ILunes);
+		textField_ILunes.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("a");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(127, 262, 19, 14);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		textField_FLunes = new JTextField();
+		textField_FLunes.setColumns(10);
+		textField_FLunes.setBounds(148, 259, 27, 20);
+		frame.getContentPane().add(textField_FLunes);
+		
+		JLabel lblNewLabel_4 = new JLabel("L");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_4.setBounds(192, 262, 19, 14);
+		frame.getContentPane().add(lblNewLabel_4);
+		
+		textField_IMartes = new JTextField();
+		textField_IMartes.setColumns(10);
+		textField_IMartes.setBounds(85, 289, 27, 20);
+		frame.getContentPane().add(textField_IMartes);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("a");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1_1.setBounds(127, 292, 19, 14);
+		frame.getContentPane().add(lblNewLabel_1_1);
+		
+		textField_FMartes = new JTextField();
+		textField_FMartes.setColumns(10);
+		textField_FMartes.setBounds(148, 289, 27, 20);
+		frame.getContentPane().add(textField_FMartes);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("M");
+		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_4_1.setBounds(192, 292, 19, 14);
+		frame.getContentPane().add(lblNewLabel_4_1);
+		
+		textField_IMiercoles = new JTextField();
+		textField_IMiercoles.setColumns(10);
+		textField_IMiercoles.setBounds(85, 322, 27, 20);
+		frame.getContentPane().add(textField_IMiercoles);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("a");
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1_2.setBounds(127, 325, 19, 14);
+		frame.getContentPane().add(lblNewLabel_1_2);
+		
+		textField_FMiercoles = new JTextField();
+		textField_FMiercoles.setColumns(10);
+		textField_FMiercoles.setBounds(148, 322, 27, 20);
+		frame.getContentPane().add(textField_FMiercoles);
+		
+		JLabel lblNewLabel_4_2 = new JLabel("X");
+		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_4_2.setBounds(192, 325, 19, 14);
+		frame.getContentPane().add(lblNewLabel_4_2);
+		
+		textField_IJueves = new JTextField();
+		textField_IJueves.setColumns(10);
+		textField_IJueves.setBounds(85, 353, 27, 20);
+		frame.getContentPane().add(textField_IJueves);
+		
+		lblNewLabel_5 = new JLabel("a");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_5.setBounds(127, 356, 19, 14);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		textField_FJueves = new JTextField();
+		textField_FJueves.setColumns(10);
+		textField_FJueves.setBounds(148, 353, 27, 20);
+		frame.getContentPane().add(textField_FJueves);
+		
+		lblNewLabel_6 = new JLabel("J");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_6.setBounds(192, 356, 19, 14);
+		frame.getContentPane().add(lblNewLabel_6);
+		
+		textField_IViernes = new JTextField();
+		textField_IViernes.setColumns(10);
+		textField_IViernes.setBounds(85, 384, 27, 20);
+		frame.getContentPane().add(textField_IViernes);
+		
+		lblNewLabel_7 = new JLabel("a");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_7.setBounds(127, 387, 19, 14);
+		frame.getContentPane().add(lblNewLabel_7);
+		
+		textField_FViernes = new JTextField();
+		textField_FViernes.setColumns(10);
+		textField_FViernes.setBounds(148, 384, 27, 20);
+		frame.getContentPane().add(textField_FViernes);
+		
+		lblNewLabel_8 = new JLabel("V");
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_8.setBounds(192, 387, 19, 14);
+		frame.getContentPane().add(lblNewLabel_8);
+		
+		textField_ISabado = new JTextField();
+		textField_ISabado.setColumns(10);
+		textField_ISabado.setBounds(85, 411, 27, 20);
+		frame.getContentPane().add(textField_ISabado);
+		
+		lblNewLabel_9 = new JLabel("a");
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_9.setBounds(127, 414, 19, 14);
+		frame.getContentPane().add(lblNewLabel_9);
+		
+		textField_FSabado = new JTextField();
+		textField_FSabado.setColumns(10);
+		textField_FSabado.setBounds(148, 411, 27, 20);
+		frame.getContentPane().add(textField_FSabado);
+		
+		lblNewLabel_10 = new JLabel("S");
+		lblNewLabel_10.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_10.setBounds(192, 414, 19, 14);
+		frame.getContentPane().add(lblNewLabel_10);
+		
+		textField_IDomingo = new JTextField();
+		textField_IDomingo.setColumns(10);
+		textField_IDomingo.setBounds(85, 442, 27, 20);
+		frame.getContentPane().add(textField_IDomingo);
+		
+		lblNewLabel_11 = new JLabel("a");
+		lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_11.setBounds(127, 445, 19, 14);
+		frame.getContentPane().add(lblNewLabel_11);
+		
+		textField_FDomingo = new JTextField();
+		textField_FDomingo.setColumns(10);
+		textField_FDomingo.setBounds(148, 442, 27, 20);
+		frame.getContentPane().add(textField_FDomingo);
+		
+		lblNewLabel_12 = new JLabel("D");
+		lblNewLabel_12.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_12.setBounds(192, 445, 19, 14);
+		frame.getContentPane().add(lblNewLabel_12);
+	}
+
+	public JTextArea getTextArea_Nombre_1() {
+		return textArea_Nombre_1;
+	}
+
+	public void setTextArea_Nombre_1(JTextArea textArea_Nombre_1) {
+		this.textArea_Nombre_1 = textArea_Nombre_1;
+	}
+
+	public JComboBox getComboBox_Plazas_1() {
+		return comboBox_Plazas_1;
+	}
+
+	public void setComboBox_Plazas_1(JComboBox comboBox_Plazas_1) {
+		this.comboBox_Plazas_1 = comboBox_Plazas_1;
+	}
+
+	public JComboBox getComboBox_periodoIncripcion_1() {
+		return comboBox_periodoIncripcion_1;
+	}
+
+	public void setComboBox_periodoIncripcion_1(JComboBox comboBox_periodoIncripcion_1) {
+		this.comboBox_periodoIncripcion_1 = comboBox_periodoIncripcion_1;
+	}
+
+	public JComboBox getComboBox_Instalacion_1() {
+		return comboBox_Instalacion_1;
+	}
+
+	public void setComboBox_Instalacion_1(JComboBox comboBox_Instalacion_1) {
+		this.comboBox_Instalacion_1 = comboBox_Instalacion_1;
+	}
+
+	public JButton getBoton_CrearActividad_1() {
+		return boton_CrearActividad_1;
+	}
+
+	public void setBoton_CrearActividad_1(JButton boton_CrearActividad_1) {
+		this.boton_CrearActividad_1 = boton_CrearActividad_1;
+	}
+
+	public JLabel getLblHorario() {
+		return lblHorario;
+	}
+
+	public void setLblHorario(JLabel lblHorario) {
+		this.lblHorario = lblHorario;
+	}
+
+	public JTextField getTextField_ILunes() {
+		return textField_ILunes;
+	}
+
+	public void setTextField_ILunes(JTextField textField_ILunes) {
+		this.textField_ILunes = textField_ILunes;
+	}
+
+	public JTextField getTextField_FLunes() {
+		return textField_FLunes;
+	}
+
+	public void setTextField_FLunes(JTextField textField_FLunes) {
+		this.textField_FLunes = textField_FLunes;
+	}
+
+	public JTextField getTextField_IMartes() {
+		return textField_IMartes;
+	}
+
+	public void setTextField_IMartes(JTextField textField_IMartes) {
+		this.textField_IMartes = textField_IMartes;
+	}
+
+	public JTextField getTextField_FMartes() {
+		return textField_FMartes;
+	}
+
+	public void setTextField_FMartes(JTextField textField_FMartes) {
+		this.textField_FMartes = textField_FMartes;
+	}
+
+	public JTextField getTextField_IMiercoles() {
+		return textField_IMiercoles;
+	}
+
+	public void setTextField_IMiercoles(JTextField textField_IMiercoles) {
+		this.textField_IMiercoles = textField_IMiercoles;
+	}
+
+	public JTextField getTextField_FMiercoles() {
+		return textField_FMiercoles;
+	}
+
+	public void setTextField_FMiercoles(JTextField textField_FMiercoles) {
+		this.textField_FMiercoles = textField_FMiercoles;
+	}
+
+	public JTextField getTextField_IJueves() {
+		return textField_IJueves;
+	}
+
+	public void setTextField_IJueves(JTextField textField_IJueves) {
+		this.textField_IJueves = textField_IJueves;
+	}
+
+	public JLabel getLblNewLabel_5() {
+		return lblNewLabel_5;
+	}
+
+	public void setLblNewLabel_5(JLabel lblNewLabel_5) {
+		this.lblNewLabel_5 = lblNewLabel_5;
+	}
+
+	public JTextField getTextField_FJueves() {
+		return textField_FJueves;
+	}
+
+	public void setTextField_FJueves(JTextField textField_FJueves) {
+		this.textField_FJueves = textField_FJueves;
+	}
+
+	public JLabel getLblNewLabel_6() {
+		return lblNewLabel_6;
+	}
+
+	public void setLblNewLabel_6(JLabel lblNewLabel_6) {
+		this.lblNewLabel_6 = lblNewLabel_6;
+	}
+
+	public JTextField getTextField_IViernes() {
+		return textField_IViernes;
+	}
+
+	public void setTextField_IViernes(JTextField textField_IViernes) {
+		this.textField_IViernes = textField_IViernes;
+	}
+
+	public JLabel getLblNewLabel_7() {
+		return lblNewLabel_7;
+	}
+
+	public void setLblNewLabel_7(JLabel lblNewLabel_7) {
+		this.lblNewLabel_7 = lblNewLabel_7;
+	}
+
+	public JTextField getTextField_FViernes() {
+		return textField_FViernes;
+	}
+
+	public void setTextField_FViernes(JTextField textField_FViernes) {
+		this.textField_FViernes = textField_FViernes;
+	}
+
+	public JLabel getLblNewLabel_8() {
+		return lblNewLabel_8;
+	}
+
+	public void setLblNewLabel_8(JLabel lblNewLabel_8) {
+		this.lblNewLabel_8 = lblNewLabel_8;
+	}
+
+	public JTextField getTextField_ISabado() {
+		return textField_ISabado;
+	}
+
+	public void setTextField_ISabado(JTextField textField_ISabado) {
+		this.textField_ISabado = textField_ISabado;
+	}
+
+	public JLabel getLblNewLabel_9() {
+		return lblNewLabel_9;
+	}
+
+	public void setLblNewLabel_9(JLabel lblNewLabel_9) {
+		this.lblNewLabel_9 = lblNewLabel_9;
+	}
+
+	public JTextField getTextField_FSabado() {
+		return textField_FSabado;
+	}
+
+	public void setTextField_FSabado(JTextField textField_FSabado) {
+		this.textField_FSabado = textField_FSabado;
+	}
+
+	public JLabel getLblNewLabel_10() {
+		return lblNewLabel_10;
+	}
+
+	public void setLblNewLabel_10(JLabel lblNewLabel_10) {
+		this.lblNewLabel_10 = lblNewLabel_10;
+	}
+
+	public JTextField getTextField_IDomingo() {
+		return textField_IDomingo;
+	}
+
+	public void setTextField_IDomingo(JTextField textField_IDomingo) {
+		this.textField_IDomingo = textField_IDomingo;
+	}
+
+	public JLabel getLblNewLabel_11() {
+		return lblNewLabel_11;
+	}
+
+	public void setLblNewLabel_11(JLabel lblNewLabel_11) {
+		this.lblNewLabel_11 = lblNewLabel_11;
+	}
+
+	public JTextField getTextField_FDomingo() {
+		return textField_FDomingo;
+	}
+
+	public void setTextField_FDomingo(JTextField textField_FDomingo) {
+		this.textField_FDomingo = textField_FDomingo;
+	}
+
+	public JLabel getLblNewLabel_12() {
+		return lblNewLabel_12;
+	}
+
+	public void setLblNewLabel_12(JLabel lblNewLabel_12) {
+		this.lblNewLabel_12 = lblNewLabel_12;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
