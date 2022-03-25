@@ -29,7 +29,6 @@ public class realizarReservaAdministradorView {
 	private JComboBox comboBox_HoraC;
 	private JComboBox comboBox_HoraF;
 	private JComboBox <Object> comboBox_instalacion;
-	private JComboBox <Object> actividadesCB;
 	private JRadioButton rdBtnEfectivo;
 	private JRadioButton rdBtnFinal;
 	private final ButtonGroup grupo = new ButtonGroup();
@@ -72,7 +71,7 @@ public class realizarReservaAdministradorView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 590, 493);
+		frame.setBounds(100, 100, 698, 458);
 		
 		JLabel lblTitulo = new JLabel("RESERVA DE INSTALACIONES");
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -150,8 +149,6 @@ public class realizarReservaAdministradorView {
 		
 		btnResguardo = new JButton("Generar resguardo");
 		
-		JLabel lblNewLabel_3 = new JLabel("Nº Actividad");
-		
 		 btnAnterior = new JButton("<-");
 		
 		textFecha = new JTextField();
@@ -161,9 +158,6 @@ public class realizarReservaAdministradorView {
 		 btnSiguiente = new JButton("->");
 		
 		btnComprobar = new JButton("COMPROBAR");
-		
-		actividadesCB = new JComboBox();
-		actividadesCB.setEnabled(false);
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -198,54 +192,49 @@ public class realizarReservaAdministradorView {
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(btnSiguiente))
 								.addComponent(btnComprobar))))
-					.addContainerGap(15, Short.MAX_VALUE))
+					.addContainerGap(53, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(26)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblPrecio)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_1)
-							.addGap(107)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(rdBtnFinal)
-								.addComponent(rdBtnEfectivo)
-								.addComponent(lblNewLabel_2))
-							.addGap(140))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblReserva)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtReserva, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(62)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(60)
-									.addComponent(btnReserva))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(189)
-									.addComponent(btnResguardo)))
-							.addGap(65))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGap(614))
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+								.addContainerGap())
+							.addGroup(groupLayout.createSequentialGroup()
 								.addComponent(lblSocio)
-								.addComponent(lblNewLabel_3))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(actividadesCB, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(txtSocio, GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
-							.addGap(29)
-							.addComponent(lblNombre)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(lblApellidos)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtApellidos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+								.addGap(45)
+								.addComponent(txtSocio, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+								.addGap(29)
+								.addComponent(lblNombre)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+								.addGap(18)
+								.addComponent(lblApellidos)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(txtApellidos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblPrecio)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(lblNewLabel_1)
+								.addGap(107)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblNewLabel_2)
+									.addComponent(rdBtnEfectivo)
+									.addComponent(rdBtnFinal))
+								.addGap(65)))))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(353)
+					.addComponent(btnReserva)
+					.addGap(37)
+					.addComponent(btnResguardo)
+					.addContainerGap(223, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -277,33 +266,29 @@ public class realizarReservaAdministradorView {
 						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblApellidos)
 						.addComponent(txtApellidos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(actividadesCB, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(17)
+					.addGap(27)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblReserva)
-						.addComponent(txtReserva, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtReserva, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_2))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(37)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPrecio)
-								.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_1)))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(txtPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblNewLabel_1))
+								.addComponent(lblPrecio)))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(6)
-							.addComponent(lblNewLabel_2)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGap(2)
 							.addComponent(rdBtnEfectivo)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(rdBtnFinal)))
-					.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnResguardo)
-						.addComponent(btnReserva))
-					.addGap(26))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnReserva)
+						.addComponent(btnResguardo))
+					.addContainerGap(80, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
@@ -467,14 +452,6 @@ public class realizarReservaAdministradorView {
 
 	public void setBtnComprobar(JButton btnComprobar) {
 		this.btnComprobar = btnComprobar;
-	}
-
-	public JComboBox<Object> getActividadesCB() {
-		return actividadesCB;
-	}
-
-	public void setActividadesCB(JComboBox<Object> actividadesCB) {
-		this.actividadesCB = actividadesCB;
 	}
 	
 	

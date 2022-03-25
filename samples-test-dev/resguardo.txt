@@ -1,8 +1,8 @@
 RESGUARDO DE LA RESERVA DE LA INSTALACIÓN
 
-Nombre: Javier				Apellidos: Santos Menendez
+Nombre: Pepe 				Apellidos: Del Arco  Rosa
 Nº Reserva: 7
-Nº Socio: 1
-Nº Instalación: pista de pádel		    Nº Actividad: Tenis
-Forma de pago: A final de mes           Fecha: 2022-03-27
+Nº Socio: 2
+Nº Instalación: pista de pádel
+Forma de pago: A final de mes           Fecha: 2022-04-09
 Intervalo de horas: 9:00 - 10:00       Precio reserva: 10.0€

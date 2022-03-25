@@ -30,7 +30,7 @@ public class realizarReservaAdministradorController {
 	private int select;
 	java.sql.Date sqlDate;
 	private int siguiente,anterior,pos;
-	private String actividadS,SocioS,instalacionS,horaInicioS,horaFinS,precioS;
+	private String SocioS,instalacionS,horaInicioS,horaFinS,precioS;
 
 	public realizarReservaAdministradorController(realizarReservasAdministradorModel m, realizarReservaAdministradorView reservaV) {
 		this.model = m;
@@ -81,14 +81,12 @@ public class realizarReservaAdministradorController {
 				if(estaReservado) {
 					SwingUtil.showMessage("Ya se ha realizado una reserva con esos valores", "Error", 1);
 					view.getTxtSocio().setEditable(false);
-					view.getActividadesCB().setEnabled(false);
 					view.getBtnReserva().setEnabled(false);
 					view.getBtnResguardo().setEnabled(false);
 				}
 				else {
 					System.out.println("Se puede realizar la reserva.\n");
 					view.getTxtSocio().setEditable(true);
-					view.getActividadesCB().setEnabled(true);
 					view.getTxtReserva().setText(String.valueOf(ultimo));
 					view.getRdBtnFinal().setSelected(true);
 					view.getBtnReserva().setEnabled(true);
@@ -96,7 +94,6 @@ public class realizarReservaAdministradorController {
 			}else {
 				System.out.print("Se puede realizar la reserva.\n");
 				view.getTxtSocio().setEditable(true);
-				view.getActividadesCB().setEnabled(true);;
 				view.getTxtReserva().setText(String.valueOf(ultimo));
 				view.getRdBtnFinal().setSelected(true);
 				view.getBtnReserva().setEnabled(true);
@@ -132,7 +129,6 @@ public class realizarReservaAdministradorController {
 
 		//Metodos para inicializar el contenido de los comboBox
 		añadeInstCB();
-		añadeActividadesCB();
 		//Inicializacion de ventana
 		view.getFrame().setVisible(true);
 
@@ -180,12 +176,6 @@ public class realizarReservaAdministradorController {
 		ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(instalaciones);
 		view.getComboBox_instalacion().setModel(l);
 	}
-	
-	public void añadeActividadesCB() {
-		List<Object[]> actividades = model.getActividad2();
-		ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(actividades);
-		view.getActividadesCB().setModel(l);
-	}
 
 
 	public boolean CamposLlenos() {
@@ -223,7 +213,7 @@ public class realizarReservaAdministradorController {
 
 					model.realizarReserva(Integer.parseInt(view.getTxtReserva().getText()),
 							Integer.parseInt(view.getTxtSocio().getText()),
-							(view.getActividadesCB().getSelectedIndex()+1),
+							1,
 							getSelectedIndex(view.getComboBox_instalacion()) +1, 
 							Util.dateToIsoString(Util.isoStringToDate(view.getTextFecha().getText())),
 							(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())),
@@ -234,7 +224,6 @@ public class realizarReservaAdministradorController {
 
 					view.getTxtNombre().setText(socio.get(0).getNombre());
 					view.getTxtApellidos().setText(socio.get(0).getApellido1() + " " + socio.get(0).getApellido2());
-					this.actividadS = (String)view.getActividadesCB().getSelectedItem();
 					this.SocioS = view.getTxtSocio().getText();
 					this.horaInicioS =(String) view.getComboBox_HoraC().getSelectedItem();
 					this.horaFinS = (String) view.getComboBox_HoraF().getSelectedItem();
@@ -259,7 +248,7 @@ public class realizarReservaAdministradorController {
 
 				model.realizarReserva(Integer.parseInt(view.getTxtReserva().getText()),
 						Integer.parseInt(view.getTxtSocio().getText()),
-						(view.getActividadesCB().getSelectedIndex()+1),
+						1,
 						getSelectedIndex(view.getComboBox_instalacion()) +1, 
 						Util.dateToIsoString(Util.isoStringToDate(view.getTextFecha().getText())),
 						(float) Double.parseDouble(getSelectedItem(view.getComboBox_HoraC())),
@@ -270,7 +259,6 @@ public class realizarReservaAdministradorController {
 
 				view.getTxtNombre().setText(socio.get(0).getNombre());
 				view.getTxtApellidos().setText(socio.get(0).getApellido1() + " " + socio.get(0).getApellido2());
-				this.actividadS = (String)view.getActividadesCB().getSelectedItem();
 				this.SocioS = view.getTxtSocio().getText();
 				this.horaInicioS =(String) view.getComboBox_HoraC().getSelectedItem();
 				this.horaFinS = (String) view.getComboBox_HoraF().getSelectedItem();
@@ -321,8 +309,7 @@ public class realizarReservaAdministradorController {
 		            bw.write("\nNombre: " + view.getTxtNombre().getText() + "				" + "Apellidos: " + view.getTxtApellidos().getText());
 		            bw.write("\nNº Reserva: " + view.getTxtReserva().getText());
 		            bw.write("\nNº Socio: " + this.SocioS);
-		            bw.write("\nNº Instalación: " + this.instalacionS
-		            		+ "		    Nº Actividad: "+ this.actividadS);
+		            bw.write("\nNº Instalación: " + this.instalacionS);
 		            bw.write("\nForma de pago: " + (view.getRdBtnEfectivo().isSelected() ?
 									"En efectivo" : "A final de mes"));
 		            bw.write("           Fecha: " + view.getTextFecha().getText());
@@ -380,7 +367,7 @@ public class realizarReservaAdministradorController {
 	
 	public void fechaSiguiente() {
 		pos++;
-		if(pos == 7) {
+		if(pos == 15) {
 			SwingUtil.bloqueaBoton(view.getBtnSiguiente());
 		}
 		if(fecha(0).equals(fecha(pos))) {
@@ -396,7 +383,7 @@ public class realizarReservaAdministradorController {
 	
 	public void fechaAnterior() {
 		pos--;
-		if(pos == 7) {
+		if(pos == 15) {
 			SwingUtil.bloqueaBoton(view.getBtnSiguiente());
 		}
 		if(!(pos == 30)) {
