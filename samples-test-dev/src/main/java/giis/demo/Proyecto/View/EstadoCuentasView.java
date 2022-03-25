@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Font;
 
 public class EstadoCuentasView {
 
@@ -110,15 +111,17 @@ public class EstadoCuentasView {
 	private void initialize() {
 		frmEstadoDeLas = new JFrame();
 		frmEstadoDeLas.setTitle("Estado de las Cuentas");
-		frmEstadoDeLas.setBounds(100, 100, 480, 410);
+		frmEstadoDeLas.setBounds(100, 100, 492, 497);
 		frmEstadoDeLas.getContentPane().setLayout(null);
 		
 		lblNewLabel = new JLabel("Lista de Actividades ");
-		lblNewLabel.setBounds(25, 22, 113, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(25, 22, 166, 14);
 		frmEstadoDeLas.getContentPane().add(lblNewLabel);
 		
 		lblListaDeReservas = new JLabel("Lista de Reservas ");
-		lblListaDeReservas.setBounds(25, 193, 113, 14);
+		lblListaDeReservas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblListaDeReservas.setBounds(25, 245, 147, 14);
 		frmEstadoDeLas.getContentPane().add(lblListaDeReservas);
 		
 		btnActualizarActividades = new JButton("Actualizar");
@@ -126,18 +129,18 @@ public class EstadoCuentasView {
 		frmEstadoDeLas.getContentPane().add(btnActualizarActividades);
 		
 		btnActualizarInstalaciones = new JButton("Actualizar");
-		btnActualizarInstalaciones.setBounds(356, 189, 89, 23);
+		btnActualizarInstalaciones.setBounds(356, 241, 89, 23);
 		frmEstadoDeLas.getContentPane().add(btnActualizarInstalaciones);
 		
 		scrollPaneActividades = new JScrollPane();
-		scrollPaneActividades.setBounds(25, 47, 420, 118);
+		scrollPaneActividades.setBounds(25, 52, 420, 159);
 		frmEstadoDeLas.getContentPane().add(scrollPaneActividades);
 		
 		tableActividades = new JTable();
 		scrollPaneActividades.setViewportView(tableActividades);
 		
 		scrollPaneInstalaciones = new JScrollPane();
-		scrollPaneInstalaciones.setBounds(25, 218, 420, 136);
+		scrollPaneInstalaciones.setBounds(25, 270, 420, 159);
 		frmEstadoDeLas.getContentPane().add(scrollPaneInstalaciones);
 		
 		tableInstalaciones = new JTable();
