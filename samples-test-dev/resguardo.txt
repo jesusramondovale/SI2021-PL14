@@ -1,8 +1,8 @@
 RESGUARDO DE LA RESERVA DE LA INSTALACIÓN
 
-Nombre: Maria				Apellidos: Perez Alarcon
-Nº Reserva: 8
-Nº Socio: 3
-Nº Instalación: salon de yoga		Nº Actividad: Natación
-Forma de pago: A final de mes           Fecha: 2022-03-25
-Intervalo de horas: 12:00 - 13:00        Precio reserva: 9.0€
+Nombre: Javier				Apellidos: Santos Menendez
+Nº Reserva: 7
+Nº Socio: 1
+Nº Instalación: pista de pádel		    Nº Actividad: Tenis
+Forma de pago: A final de mes           Fecha: 2022-03-27
+Intervalo de horas: 9:00 - 10:00       Precio reserva: 10.0€

@@ -82,6 +82,8 @@ public class realizarReservaAdministradorController {
 					SwingUtil.showMessage("Ya se ha realizado una reserva con esos valores", "Error", 1);
 					view.getTxtSocio().setEditable(false);
 					view.getActividadesCB().setEnabled(false);
+					view.getBtnReserva().setEnabled(false);
+					view.getBtnResguardo().setEnabled(false);
 				}
 				else {
 					System.out.println("Se puede realizar la reserva.\n");
@@ -239,6 +241,7 @@ public class realizarReservaAdministradorController {
 					this.instalacionS = (String) view.getComboBox_instalacion().getSelectedItem();
 					this.precioS = (String) view.getTxtPrecio().getText();
 					view.getBtnResguardo().setEnabled(true);
+					view.getBtnReserva().setEnabled(false);
 				}
 
 				else{
@@ -274,6 +277,7 @@ public class realizarReservaAdministradorController {
 				this.instalacionS = (String) view.getComboBox_instalacion().getSelectedItem();
 				this.precioS = (String) view.getTxtPrecio().getText();
 				view.getBtnResguardo().setEnabled(true);
+				view.getBtnReserva().setEnabled(false);
 			}
 
 			else{
@@ -318,14 +322,15 @@ public class realizarReservaAdministradorController {
 		            bw.write("\nNº Reserva: " + view.getTxtReserva().getText());
 		            bw.write("\nNº Socio: " + this.SocioS);
 		            bw.write("\nNº Instalación: " + this.instalacionS
-		            		+ "		Nº Actividad: "+ this.actividadS);
+		            		+ "		    Nº Actividad: "+ this.actividadS);
 		            bw.write("\nForma de pago: " + (view.getRdBtnEfectivo().isSelected() ?
 									"En efectivo" : "A final de mes"));
 		            bw.write("           Fecha: " + view.getTextFecha().getText());
 		            bw.write("\nIntervalo de horas: " + this.horaInicioS + ":00 - " 
 		            		+ this.horaFinS + ":00");
-		            bw.write("        Precio reserva: " + this.precioS + "€");
+		            bw.write("       Precio reserva: " + this.precioS + "€");
 		            bw.close();
+		            view.getBtnResguardo().setEnabled(false);
 			
 				}
 				catch(NullPointerException e)
