@@ -5,9 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
+import giis.demo.Proyecto.Controller.EstadoCuentasController;
+import giis.demo.Proyecto.Model.EstadoCuentasModel;
+import giis.demo.Proyecto.View.EstadoCuentasView;
+import giis.demo.Proyecto.View.LoginView;
 /*
 import giis.demo.Proyecto.Controller.*;
 import giis.demo.Proyecto.Model.*;
@@ -87,6 +91,23 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
+		
+		JButton btnContabilidad = new JButton("Contabilidad");
+		btnContabilidad.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+			public void actionPerformed(ActionEvent e) {
+				EstadoCuentasController controller = new EstadoCuentasController (new LoginView() , new EstadoCuentasView() , new EstadoCuentasModel());
+				try {
+					controller.initController();
+				} catch (ParseException e1) {
+					
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		
+		
+		frame.getContentPane().add(btnContabilidad);
 		
 		
 

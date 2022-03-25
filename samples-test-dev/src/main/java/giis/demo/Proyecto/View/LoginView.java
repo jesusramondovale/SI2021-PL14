@@ -48,7 +48,7 @@ public class LoginView {
 		
 		btnLogear = new JButton("LOGIN");
 		btnLogear.setBounds(129, 100, 85, 31);
-		btnLogear.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnLogear.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel lblNewLabel = new JLabel("Introduzca su #ID de Socio");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));

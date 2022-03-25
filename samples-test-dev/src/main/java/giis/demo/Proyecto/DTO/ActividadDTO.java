@@ -9,7 +9,22 @@ public class ActividadDTO {
 	private String fechaInicio,fechaFin;
 	private Integer plazas, idInstalacion, idPeriodoInscripcion, estado;
 	
+	public ActividadDTO() {
+		super();
+	}
+
 	
+	
+	public ActividadDTO(String nombre, Integer precioSocio, String fechaInicio, Integer estado) {
+		super();
+		this.nombre = nombre;
+		this.precioSocio = precioSocio;
+		this.fechaInicio = fechaInicio;
+		this.estado = estado;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
