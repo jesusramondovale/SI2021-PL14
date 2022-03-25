@@ -19,7 +19,7 @@ import giis.demo.Proyecto.DTO.InstalacionesDisplayDTO;
 import giis.demo.Proyecto.DTO.SociosDisplayDTO;
 import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.Proyecto.Model.realizarReservasSocioFechaConcretaModel;
-import giis.demo.Proyecto.View.realizarReservaSocioFechaConcretaView;
+import giis.demo.Proyecto.View.*;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.Util;
 
@@ -27,12 +27,16 @@ public class realizarReservaSocioFechaConcretaController {
 
 	private realizarReservasSocioFechaConcretaModel model;
 	private realizarReservaSocioFechaConcretaView view;
+	private introducirIdSocioRealizaReservaView introView;
 	private int select;
 	java.sql.Date sqlDate;
 	private int siguiente,anterior,pos;
 	private String actividadS,SocioS,instalacionS,horaInicioS,horaFinS,precioS;
 
-	public realizarReservaSocioFechaConcretaController(realizarReservaSocioFechaConcretaView reservaV, realizarReservasSocioFechaConcretaModel m) {
+	public realizarReservaSocioFechaConcretaController( introducirIdSocioRealizaReservaView intro,
+			realizarReservaSocioFechaConcretaView reservaV,
+			realizarReservasSocioFechaConcretaModel m) {
+		this.introView = intro;
 		this.model = m;
 		this.view = reservaV;
 		this.initView();
@@ -47,6 +51,7 @@ public class realizarReservaSocioFechaConcretaController {
 	 */
 	public void initController() {
 		this.initView();
+		introView.getBtnLogear().addActionListener(e -> SwingUtil.exceptionWrapper(() -> mostrarPantalla()));
 		view.getComboBox_instalacion().addActionListener(e -> actualizarPrecios());
 		view.getTxtSocio().addActionListener(e -> actualizarNombres());
 		//Boton para controlar que no hagan reservas con mas de 7 días de antelación
@@ -57,7 +62,32 @@ public class realizarReservaSocioFechaConcretaController {
 		view.getBtnReserva().addActionListener(e -> realizarReservaInstalacion());
 		//Boton para generar el resguardo
 		view.getBtnResguardo().addActionListener(e -> generarResguardo());
-	}  
+	} 
+	
+	public void mostrarPantalla() {
+		if(introView.getTxtId().getText().isEmpty()) {
+			SwingUtil.showMessage("Tienes que introducir un socio", "Error", 0);
+		}else {
+
+			if(compruebaId()) {
+				introView.getFrame().setVisible(false);
+				view.getFrame().setVisible(true);
+			}
+		}
+	}
+	
+	public boolean compruebaId() {
+		List<SociosDisplayDTO> idSocio = model.getInfoSocio(Integer.parseInt(introView.getTxtId().getText()));
+			if(!idSocio.isEmpty()) {
+				view.getTxtSocio().setText(introView.getTxtId().getText());
+				actualizarNombres();
+				return true;
+			}
+			else {
+				SwingUtil.showMessage("El socio no existe en la BBDD", "Error", 0);
+				return false;
+			}
+	}
 	
 	private void comprobarReservas() {
 		List<reservasDisplayDTO> reservas = model.obtenerHorarioReserva();
@@ -82,10 +112,11 @@ public class realizarReservaSocioFechaConcretaController {
 					SwingUtil.showMessage("Ya se ha realizado una reserva con esos valores", "Error", 1);
 					view.getTxtSocio().setEditable(false);
 					view.getActividadesCB().setEnabled(false);
+					view.getBtnReserva().setEnabled(false);
+					view.getBtnResguardo().setEnabled(false);
 				}
 				else {
 					System.out.println("Se puede realizar la reserva.\n");
-					view.getTxtSocio().setEditable(true);
 					view.getActividadesCB().setEnabled(true);
 					view.getTxtReserva().setText(String.valueOf(ultimo));
 					view.getRdBtnFinal().setSelected(true);
@@ -93,7 +124,6 @@ public class realizarReservaSocioFechaConcretaController {
 				}
 			}else {
 				System.out.print("Se puede realizar la reserva.\n");
-				view.getTxtSocio().setEditable(true);
 				view.getActividadesCB().setEnabled(true);;
 				view.getTxtReserva().setText(String.valueOf(ultimo));
 				view.getRdBtnFinal().setSelected(true);
@@ -132,7 +162,7 @@ public class realizarReservaSocioFechaConcretaController {
 		añadeInstCB();
 		añadeActividadesCB();
 		//Inicializacion de ventana
-		view.getFrame().setVisible(true);
+		introView.getFrame().setVisible(true);
 
 	}
 
@@ -239,10 +269,6 @@ public class realizarReservaSocioFechaConcretaController {
 					this.instalacionS = (String) view.getComboBox_instalacion().getSelectedItem();
 					this.precioS = (String) view.getTxtPrecio().getText();
 					view.getBtnResguardo().setEnabled(true);
-				}
-
-				else{
-					SwingUtil.showMessage("El socio no existe en la BBDD", "Error", 0);
 				}
 			}
 		}

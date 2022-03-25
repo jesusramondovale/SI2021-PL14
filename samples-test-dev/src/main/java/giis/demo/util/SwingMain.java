@@ -94,7 +94,9 @@ public class SwingMain {
 		btnRealizarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				realizarReservaSocioFechaConcretaController controller=new realizarReservaSocioFechaConcretaController(new realizarReservaSocioFechaConcretaView() , new realizarReservasSocioFechaConcretaModel());
+				realizarReservaSocioFechaConcretaController controller=new realizarReservaSocioFechaConcretaController(
+						new introducirIdSocioRealizaReservaView(),
+						new realizarReservaSocioFechaConcretaView() , new realizarReservasSocioFechaConcretaModel());
 				controller.initController();
 					
 			}
