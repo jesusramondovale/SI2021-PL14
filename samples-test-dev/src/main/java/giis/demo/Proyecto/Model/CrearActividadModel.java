@@ -34,7 +34,8 @@ public class CrearActividadModel {
 			+ "fechaInicio,fechaFin,"
 			+ "idPeriodoInscripcion,estado,"
 			+ "plazas,idInstalacion) values (?,?,?,?,?,?,?,?,?,?,?)";
-	private String sql2= "Insert into horarioActividad(idActividad, dia,horaInicio,horaFin) values (?,?,?,?)";
+	private String sql2= "Insert into horarioActividad(idActividad,idHorarios) values (?,?)";
+	private String sql3 = "Insert into horarios(idHorarios,dia,horaInicio,horaFin) values (?,?,?,?)";
 
 
 	//inserta la activdad en la base de  datos y returna el id de la actividad
@@ -59,20 +60,29 @@ public class CrearActividadModel {
 
 
 	}
-
+	public void insertaHorariosActividad (int idActividad, int idHorarios) {
+		db.executeUpdate(sql2,idActividad, idHorarios);
+	}
+	
+	public void insertHorarios(int idActividad, String dia, String horaInicio, String horaFin) {
+		db.executeUpdate(sql3, idActividad,dia,horaInicio,horaFin);
+	}
+	
+	
+/*
 	public void insertaHoras(int idActividad , String dia_sem, String string, String string2) {
 
 		db.executeUpdate(sql2,idActividad , dia_sem,Float.parseFloat(string),Float.parseFloat(string2));
 		
 		
-	}
+	}*/
 
 	public List<Object[]> getPeriodos() {
 		String sql= "SELECT nombre from periodos";
 		return db.executeQueryArray(sql);
 
 	}
-
+/*
 	//inserta los dias y hora en ela activada con el id especificado  
 	public void inserta_hora(List<Dia> a,int id){
 
@@ -80,6 +90,6 @@ public class CrearActividadModel {
 		for(Dia i:a){
 			db.executeUpdate(insert,id,i.getDia(),i.getIni(),i.getFin());
 		}
-	}
+	}*/
 
 }
