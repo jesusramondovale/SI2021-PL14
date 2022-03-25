@@ -244,84 +244,24 @@ public class CrearActividadController {
 				}
 
 			}
-
-
-				/*
-			//llamar al otro model
-			String dias_selecccionados="";
-			String lunes ="L";
-			String martes ="M";
-			String miercoles="X";
-			String jueves ="J";
-			String viernes ="V";
-			String sabado ="S";
-			String domingo ="D";
-
-			System.out.println("LINE 136");
-
-			for(int i=0; i<view.getTableDias().getSelectedRows().length;i++) {
-
-
-
-				switch (view.getTableDias().getSelectedRows()[i]) {
-				case 1:
-					dias_selecccionados+=lunes;
-					break;
-				case 2:
-
-					dias_selecccionados+=martes;
-					break;
-				case 3:
-
-					dias_selecccionados+=miercoles;
-					break;
-				case 4:
-
-					dias_selecccionados+=jueves;
-					break;
-				case 5:
-
-					dias_selecccionados+=viernes;
-					break;
-				case 6:
-
-					dias_selecccionados+=sabado;
-					break;
-				case 7:
-					dias_selecccionados+=domingo;
-					break;
-
-				default:
-					break;
-
-
-				}
-			}
-
-
-			for(int i2=0; i2<view.getTableDias().getSelectedRows().length;i2++) {
-				System.out.println(view.getTableDias().getSelectedRows()[i2]);
-			}
-			System.out.println(dias_selecccionados);
-
-			model.insertaHoras(Integer.parseInt(view.getTextFieldIdActividad().getText()),dias_selecccionados, view.getILunes().getValue().toString(), view.getFLunes().getValue().toString());
-			System.out.println("Insert Actividad");
-				 */
-			}
 		}
+		
+		//model.insertaHorariosActividad(Integer.parseInt(view.getTextFieldIdActividad().getText()), idHorarios);
+		//model.insertaHorarios(Integer.parseInt(view.getTextFieldIdActividad().getText()), dia, horaInicio, horaFin);
+	}
 
 
 
-		/**
-		 * Metodo para cargar de la BD los periodos en el ComboBox
-		 */
-		@SuppressWarnings("unchecked")
-		public void muestraPeriodos() {
-			List<Object []> periodos=model.getPeriodos();
-			ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(periodos);
-			view.getComboBox_periodoIncripcion().setModel(l);
-		}
-		/*
+	/**
+	 * Metodo para cargar de la BD los periodos en el ComboBox
+	 */
+	@SuppressWarnings("unchecked")
+	public void muestraPeriodos() {
+		List<Object []> periodos=model.getPeriodos();
+		ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(periodos);
+		view.getComboBox_periodoIncripcion().setModel(l);
+	}
+	/*
 	  public void añadePeriodos() {
 	        List<Object[]> periodos =model.getPeriodos();
 	        ComboBoxModel<Object> l=SwingUtil.getComboModelFromList(periodos);
@@ -329,4 +269,4 @@ public class CrearActividadController {
 	    }*/
 
 
-	}
+}

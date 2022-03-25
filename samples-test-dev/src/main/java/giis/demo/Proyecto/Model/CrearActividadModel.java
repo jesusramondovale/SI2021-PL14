@@ -61,7 +61,7 @@ public class CrearActividadModel {
 		db.executeUpdate(sql2,idActividad, idHorarios);
 	}
 	
-	public void insertHorarios(int idActividad, String dia, String horaInicio, String horaFin) {
+	public void insertaHorarios(int idActividad, String dia, String horaInicio, String horaFin) {
 		db.executeUpdate(sql3, idActividad,dia,horaInicio,horaFin);
 	}
 	
