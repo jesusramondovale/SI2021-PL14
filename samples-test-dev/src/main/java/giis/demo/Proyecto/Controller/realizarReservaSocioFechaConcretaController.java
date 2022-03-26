@@ -338,6 +338,9 @@ public class realizarReservaSocioFechaConcretaController {
 		            		+ this.horaFinS + ":00");
 		            bw.write("        Precio reserva: " + this.precioS + "€");
 		            bw.close();
+		            
+		            view.getBtnReserva().setEnabled(false);
+					view.getBtnResguardo().setEnabled(false);
 			
 				}
 				catch(NullPointerException e)
