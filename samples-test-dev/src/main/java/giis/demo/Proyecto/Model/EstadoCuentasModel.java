@@ -35,6 +35,9 @@ public class EstadoCuentasModel {
 
 
 
+	
+	// Función para comprobar si el ID de socio existe
+	// Returns true si existe, false si no
 	public boolean isSocio(int idSocio) {
 
 		List<SociosDTO> socios = new ArrayList<SociosDTO>();
@@ -52,7 +55,6 @@ public class EstadoCuentasModel {
 
 
 	}
-
 
 
 
