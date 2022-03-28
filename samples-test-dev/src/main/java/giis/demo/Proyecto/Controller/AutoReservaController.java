@@ -108,6 +108,7 @@ public class AutoReservaController {
 
 
 
+	@SuppressWarnings("deprecation")
 	public void generarReserva() {
 
 
@@ -120,6 +121,7 @@ public class AutoReservaController {
 
 		else {
 
+			boolean ok = true;
 			int idActividad = actividadSelecc[0] + 1;
 
 			List <ActividadHorariosDTO> actividadHorariosDTO = model.getActividad(idActividad);
@@ -177,7 +179,7 @@ public class AutoReservaController {
 					diasINT.add(1);
 					break;
 
-				
+
 				default:
 					System.err.println("ERROR: default case en Switch (RealizarReservasController: 159)");
 					break;
@@ -194,8 +196,18 @@ public class AutoReservaController {
 
 					if(cal.get(Calendar.DAY_OF_WEEK) == diasINT.get(i)) {
 
-						model.crearReserva(getRandomNumberInRange(100,10000) , Util.dateToIsoString(f) , horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad );
-						
+						if(!alreadyReserved(idInstalacion , Util.dateToIsoString(f) , horasIni.get(i))) {
+
+
+							model.crearReserva(getRandomNumberInRange(100000,1000000) , Util.dateToIsoString(f) , horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad );
+
+
+						}
+						else {
+							SwingUtil.showMessage("La instalación #"+ idInstalacion +" ya se encuentra reservada (" +f.getDate()+"/"+(f.getMonth()+1)+"/"+(1900+f.getYear())+ ") - (" +horasIni.get(i)+"h00)", "Vaya..", 1);
+							ok = false;
+						}
+
 
 					}
 
@@ -203,16 +215,43 @@ public class AutoReservaController {
 
 			} //end for - Recorre el tiempo dia a dia
 
-			JOptionPane.showMessageDialog(
-					null, 
-					"Reserva creada con éxito! ", 
-					"Éxito",
-					JOptionPane.INFORMATION_MESSAGE ); 	
+			if(ok) {
+				JOptionPane.showMessageDialog(
+						null, 
+						"Reserva creada con éxito! ", 
+						"Éxito",
+						JOptionPane.INFORMATION_MESSAGE ); 	
+			}
+			else {
+				JOptionPane.showMessageDialog(
+						null, 
+						"Finalizado! "
+						+ "Algunas Reservas no fueron creadas", 
+						"Aviso",
+						JOptionPane.INFORMATION_MESSAGE ); 	
+			}
 
 		}
 
 
 	}
+
+
+	/*
+	 * Comprueba si una instalación se encuentra reservada para una fecha y horas concretas
+	 * Retorna true/false
+	 */
+	public boolean alreadyReserved(int idInstalacion, String fecha, int horaInicio ){
+
+
+		List<ReservaDTO> reservas = model.getListaReservas(Util.dateToIsoString(Util.isoStringToDate(fecha)) , 
+				idInstalacion ,  horaInicio  );
+		if(reservas.size() == 0) { return false ;}
+		else return true;
+
+
+	}
+
 }
 
 

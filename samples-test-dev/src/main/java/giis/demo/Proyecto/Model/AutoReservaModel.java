@@ -24,6 +24,16 @@ public class AutoReservaModel {
 			+ "INNER JOIN horarioActividad USING (idActividad) "
 			+ "INNER JOIN horarios USING (idHorarios) "
 			+ "WHERE idActividad = ? ";
+	
+	private static String SQL4 = "SELECT a.idActividad , a.fechaInicio, a.fechaFin , a.idInstalacion , h.dia , h.horaInicio , h.horaFin "
+			+ "FROM actividades a "
+			+ "INNER JOIN reservas r USING (idActividad) "
+			+ "INNER JOIN horarioActividad hA USING (idActividad) "
+			+ "INNER JOIN horarios h USING (idHorarios) "
+			+ "WHERE r.fecha = ? AND r.idInstalacion = ? AND r.horaInicio = ?" ;
+			
+			 
+			
 
 	private static String SQL = "INSERT INTO reservas VALUES (?,?,?,?,?,?,?,?)" ;
 
@@ -121,9 +131,11 @@ public class AutoReservaModel {
 
 
 
-	public List<ReservaDTO> getListaReservas(String fecha) {
+	public List<ReservaDTO> getListaReservas(String fecha, int idInstalacion, int horaInicio) {
 
-		return db.executeQueryPojo(ReservaDTO.class, SQL2, fecha);
+		
+		
+		return db.executeQueryPojo(ReservaDTO.class, SQL4, fecha , idInstalacion , horaInicio);
 
 	}
 
