@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS "reservas" (
 	"idInstalacion"	INTEGER NOT NULL,
 	"idActividad"	INTEGER,
 	"idSocio"	INTEGER,
-	"estado"	INTEGER,
+	"estado"	TEXT,
 	PRIMARY KEY("idReserva" AUTOINCREMENT),
 	FOREIGN KEY("idSocio") REFERENCES "socios"("idSocio"),
 	FOREIGN KEY("idInstalacion") REFERENCES "instalaciones"("idInstalacion"),
@@ -175,4 +175,3 @@ CREATE TABLE IF NOT EXISTS "listaEsperaNoSocios" (
 	FOREIGN KEY("idActividad") REFERENCES "actividades"("idActividad")
 );
 COMMIT;
-

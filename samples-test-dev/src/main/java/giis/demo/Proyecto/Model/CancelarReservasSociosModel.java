@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import giis.demo.Proyecto.DTO.ReservaDTO;
 import giis.demo.Proyecto.DTO.SociosDTO;
 import giis.demo.Proyecto.DTO.SociosDisplayDTO;
 import giis.demo.Proyecto.DTO.actividadReservaInstalacionDTO;
@@ -12,6 +13,7 @@ import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.util.Database;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.UnexpectedException;
+import giis.demo.util.Util;
 
 public class CancelarReservasSociosModel {
 
@@ -20,6 +22,13 @@ public class CancelarReservasSociosModel {
 	private static String SQL3 = "SELECT idSocio , nombre "
 			+ "FROM socios "
 			+ "WHERE idSocio = ? ";
+	private static String SQL4 = "SELECT estado FROM reservas WHERE idReserva = ? ";
+	private static String SQL5 = "SELECT fecha , horaInicio FROM reservas WHERE idReserva = ? ";
+	private static String SQL6 = "SELECT r.idReserva , r.horaInicio , r.horaFin , i.precioHora "
+			+ "FROM instalaciones i "
+			+ "INNER JOIN reservas r "
+			+ "USING (idInstalacion) "
+			+ "WHERE idReserva = ? ";
 	
 	// Función para comprobar si el ID de socio existe
 	// Returns true si existe, false si no
@@ -65,6 +74,42 @@ public class CancelarReservasSociosModel {
 	public void CancelarReserva (int idReserva) {
 		//Falta borrar la reserva como tal
 		db.executeUpdate("update reserva set estado=2 where id=?", idReserva);
+	}
+	
+	public boolean yaPagada(int idReserva) {
+
+		List<reservasDisplayDTO> estado = db.executeQueryPojo(reservasDisplayDTO.class, SQL4, idReserva);
+		return (estado.get(0).getEstado().equalsIgnoreCase("PAGADA"));
+
+	}
+	
+	public int getImporte(int idReserva) {
+
+		List<ReservaDTO> data = db.executeQueryPojo(ReservaDTO.class, SQL6, idReserva);
+		
+		int precio = data.get(0).getPrecioHora();
+		int horas = (int) (data.get(0).getHoraFin() - data.get(0).getHoraInicio());
+		
+		return horas*precio;	
+	}
+
+	/*
+	 * Retorna cierto si aún no ha pasado 
+	 * la  fecha de la reserva indicada
+	 * Retorna falso si la fecha ya ha pasado
+	 * 
+	 */
+	public boolean enFecha(int idReserva) {
+
+		List<reservasDisplayDTO> reserva = db.executeQueryPojo(reservasDisplayDTO.class, SQL5, idReserva);
+
+		Date hoy = new Date();	
+		Date fechaReserva = Util.isoStringToDate(reserva.get(0).getFecha());
+		Date fechaHoraReserva = new Date(fechaReserva.getTime() + 1000*3600*(int)(reserva.get(0).getHoraInicio()));
+
+		Date fechaHoraTope = new Date(fechaHoraReserva.getTime() - 1000*3600);
+		return (fechaHoraTope.after(hoy));
+
 	}
 
 }

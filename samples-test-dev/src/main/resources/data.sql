@@ -1,7 +1,7 @@
 --Datos para carga inicial de la base de datos
 
 BEGIN TRANSACTION;
-INSERT INTO "instalaciones" VALUES (1,'pista de p√°del',10);
+INSERT INTO "instalaciones" VALUES (1,'pista de p·del',10);
 INSERT INTO "instalaciones" VALUES (2,'campo de futbito',12);
 INSERT INTO "instalaciones" VALUES (3,'cancha de baloncesto',12);
 INSERT INTO "instalaciones" VALUES (4,'salon de yoga',9);
@@ -28,7 +28,7 @@ INSERT INTO "periodos" VALUES (3,'Junio','2021-04-27','2021-06-04','2021-07-29')
 
 
 INSERT INTO "actividades" VALUES (1,'Tenis','Tenis',20,25,'2021-05-01','2021-06-18',1,1,25,1);
-INSERT INTO "actividades" VALUES (2,'Nataci√≥n','Nataci√≥n',12,16,'2021-05-02','2021-06-24',2,1,0,6);
+INSERT INTO "actividades" VALUES (2,'NataciÛn','NataciÛn',12,16,'2021-05-02','2021-06-24',2,1,0,6);
 INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12,16,'2021-05-03','2021-06-24',1,2,1,6);
 
 
@@ -42,12 +42,12 @@ INSERT INTO "horarios" VALUES (2,'M',12,14);
 INSERT INTO "horarios" VALUES (3,'J',12,14);
 
 
-INSERT INTO "reservas" VALUES (1,'2022-03-10',10,11,1,NULL,1,0);
-INSERT INTO "reservas" VALUES (2,'2022-03-10',10,11,2,1,NULL,0);
-INSERT INTO "reservas" VALUES (3,'2022-03-10',9,10,1,1,1,0);
-INSERT INTO "reservas" VALUES (4,'2022-03-11',10,11,2,2,2,1);
-INSERT INTO "reservas" VALUES (5,'2022-03-12',12,13,2,1,2,1);
-INSERT INTO "reservas" VALUES (6,'2022-03-10',9,10,1,2,1,0);
+INSERT INTO "reservas" VALUES (1,'2022-03-10',10,11,1,NULL,1,'Pagada');
+INSERT INTO "reservas" VALUES (2,'2022-03-10',10,11,2,1,NULL,'Sin Pagar');
+INSERT INTO "reservas" VALUES (3,'2022-04-10',9,10,1,1,1,'Pagada');
+INSERT INTO "reservas" VALUES (4,'2022-04-11',10,11,2,2,2,'Pagada');
+INSERT INTO "reservas" VALUES (5,'2022-04-12',12,13,2,1,2,'Cancelada');
+INSERT INTO "reservas" VALUES (6,'2022-03-10',9,10,1,2,1,'Sin Pagar');
 
 
 

@@ -124,7 +124,7 @@ public class CancelarReservasSociosController {
 
 		else { // Hay exactamente 1 fila seleccionada en la tabla
 
-			int idReserva = (int) this.view.getTableReservas().getModel().getValueAt(this.view.getTableReservas().getSelectedRow(), 0);
+			int idReserva = (int) this.view.getTable().getModel().getValueAt(this.view.getTable().getSelectedRow(), 0);
 
 			boolean yaPagada =  model.yaPagada(idReserva);
 
@@ -142,7 +142,7 @@ public class CancelarReservasSociosController {
 
 
 				try {
-					model.cancelarReserva(idReserva);
+					model.CancelarReserva(idReserva);
 					SwingUtil.showMessage("La reserva " + idReserva +" fue cancelada con éxito!", "Éxito", 1);
 
 				}
@@ -157,19 +157,19 @@ public class CancelarReservasSociosController {
 
 					System.out.println("------------------- RECIBO --------------------");
 					System.out.println("#Número de reserva: " + idReserva);
-					System.out.print("#Número de socio: " + this.view.getTextFieldSocio().getText());
+					System.out.print("#Número de socio: " + this.login.getTxtId().getText());
 
 					System.out.print(" (" + 
 
-						this.view.getTableReservas().getModel().getValueAt(
-								this.view.getTableReservas().getSelectedRow() , 1) + " " +
+						this.view.getTable().getModel().getValueAt(
+								this.view.getTable().getSelectedRow() , 1) + " " +
 
-						this.view.getTableReservas().getModel().getValueAt(
-								this.view.getTableReservas().getSelectedRow() , 2) + ")\n");
+						this.view.getTable().getModel().getValueAt(
+								this.view.getTable().getSelectedRow() , 2) + ")\n");
 
 					System.out.println("Fecha de la Reserva (AAAA-MM-DD): " + 
-							this.view.getTableReservas().getModel().getValueAt(
-									this.view.getTableReservas().getSelectedRow() , 4));
+							this.view.getTable().getModel().getValueAt(
+									this.view.getTable().getSelectedRow() , 4));
 
 					System.out.println("Fecha de Cancelación (AAAA-MM-DD): " + Util.dateToIsoString(new Date()));
 					System.out.println("----------------------------------------------");
@@ -195,20 +195,20 @@ public class CancelarReservasSociosController {
 
 
 						data.add(new String [] { Integer.toString(idReserva)  ,  
-								this.view.getTextFieldSocio().getText() , 
+								this.login.getTxtId().getText() , 
 
-								(String) this.view.getTableReservas().getModel().getValueAt(
-										this.view.getTableReservas().getSelectedRow() , 1) + " " + 
-										this.view.getTableReservas().getModel().getValueAt(
-												this.view.getTableReservas().getSelectedRow() , 2) 
+								(String) this.view.getTable().getModel().getValueAt(
+										this.view.getTable().getSelectedRow() , 1) + " " + 
+										this.view.getTable().getModel().getValueAt(
+												this.view.getTable().getSelectedRow() , 2) 
 										,
 
-										this.view.getTableReservas().getModel().getValueAt(
-												this.view.getTableReservas().getSelectedRow() , 3).toString()
+										this.view.getTable().getModel().getValueAt(
+												this.view.getTable().getSelectedRow() , 3).toString()
 										,
 
-										this.view.getTableReservas().getModel().getValueAt(
-												this.view.getTableReservas().getSelectedRow() , 4).toString()
+										this.view.getTable().getModel().getValueAt(
+												this.view.getTable().getSelectedRow() , 4).toString()
 										,
 
 										Util.dateToIsoString(new Date())
