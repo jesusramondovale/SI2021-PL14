@@ -45,7 +45,6 @@ public class ReservaPersonalizadaController {
 
 
 		this.view.getBtnBorrar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> borrar()));
-		this.view.getBtnActualizar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarTabla()));
 		this.view.getBtnActualizaActividades().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarTablaActividades()));
 
 
@@ -53,6 +52,12 @@ public class ReservaPersonalizadaController {
 	}
 
 
+	/*
+	 * Rellena la tabla con las actividades 
+	 * para la fecha introducida 
+	 * en la vista
+	 * 
+	 */
 	private void actualizarTablaActividades() {
 
 		
@@ -76,9 +81,9 @@ public class ReservaPersonalizadaController {
 		else {
 
 			TableModel tmodel=SwingUtil.getTableModelFromPojos(listaActividades, new String[] { 
-					"nombre", "tipo", "fechaInicio",  "fechaFin" },
+					"idActividad" , "nombre", "tipo", "fechaInicio",  "fechaFin" },
 					new String[] { 
-							"Nombre"  , "Tipo" , "Fecha (ini.)" , "Fecha (fin)" });
+							"#" , "Nombre"  , "Tipo" , "Fecha (ini.)" , "Fecha (fin)" });
 
 
 			// Asigna a la tabla de la vista el modelo generado
@@ -92,47 +97,12 @@ public class ReservaPersonalizadaController {
 
 	}
 
-	private void actualizarTabla() {
 
-
-		int diaIni, mesIni, anoIni;
-		String fecha;
-		diaIni = this.view.getCbDiaIni().getSelectedIndex() +1;
-		mesIni = this.view.getCbMesIni().getSelectedIndex()+1;
-		anoIni = Integer.parseInt(this.view.getCbAnoIni().getModel().getElementAt(this.view.getCbAnoIni().getSelectedIndex()).toString());
-
-
-		fecha = Integer.toString(anoIni) + "-" + mesIni + "-" + diaIni;
-
-
-		List<ReservaDTO> listReservas= null;
-
-		listReservas = model.getListaReservas(Util.dateToIsoString(Util.isoStringToDate(fecha)));
-
-		if(listReservas.isEmpty()) {
-
-			SwingUtil.showMessage("No hay reservas para la fecha inicial indicada!", "Error", 1);
-		}
-		else {
-
-			//Generamos el modelo de tabla y lo cargamos con los datos de la BD
-			TableModel tmodel=SwingUtil.getTableModelFromPojos(listReservas, new String[] { 
-					"fecha"  , "horaInicio" , "horaFin" },
-					new String[] { 
-							"Fecha"  , "Hora de Inicio" , "Hora de Fin" });
-
-
-			// Asigna a la tabla de la vista el modelo generado
-			view.getTableAnteriores().setModel(tmodel);
-			SwingUtil.autoAdjustColumns(view.getTableAnteriores());
-		}
-
-
-
-
-	}
-
-
+	/*
+	 * Borra la tabla de las actividades y
+	 * resetea el selector de fechas
+	 * 
+	 */
 	private void borrar() {
 
 		this.view.getCbAnoFin().setSelectedIndex(0);
@@ -143,12 +113,6 @@ public class ReservaPersonalizadaController {
 		this.view.getCbDiaIni().setSelectedIndex(0);
 
 
-		DefaultTableModel dm1 = (DefaultTableModel) this.view.getTableAnteriores().getModel();
-		int rowCount = dm1.getRowCount();
-		for (int i = rowCount - 1; i >= 0; i--) {
-			dm1.removeRow(i);
-		}
-		
 
 		DefaultTableModel dm2 = (DefaultTableModel) this.view.getTableActividades().getModel();
 		int rowCount2 = dm2.getRowCount();
@@ -159,6 +123,11 @@ public class ReservaPersonalizadaController {
 	}
 
 
+	/*
+	 * Comprueba si todos los campos 
+	 * han sido correctamente completados
+	 * Retorna true o false
+	 */
 	public boolean camposLlenos(){
 
 		int diaFin, diaIni, mesFin, mesIni , anoFin , anoIni; 
@@ -180,6 +149,9 @@ public class ReservaPersonalizadaController {
 		Date fechaFinD = Util.isoStringToDate(fechaFin);
 
 
+		/*
+		 * Comprueba que las horas se introducen por parejas correctamente
+		 */
 
 		if( this.view.getTableActividades().getSelectedRowCount() <= 0
 				||
@@ -248,27 +220,18 @@ public class ReservaPersonalizadaController {
 	}
 
 
+	/*
+	 * Comprueba si una instalación se encuentra reservada para una fecha y horas concretas
+	 * Retorna true/false
+	 */
 	public boolean alreadyReserved(int idInstalacion, String fecha, double horaInicio ){
 
-
-		List<ReservaDTO> reservas = model.getListaReservas(Util.dateToIsoString(Util.isoStringToDate(fecha)));
-		boolean reserved = false;
-
-		for(int i = 0; i<reservas.size(); i++){
-
-
-			if(     Util.isoStringToDate(reservas.get(i).getFecha()).equals(Util.isoStringToDate(fecha)) && 
-					reservas.get(i).getIdInstalacion() == idInstalacion &&
-					reservas.get(i).getHoraInicio() == (float) horaInicio
-					){
-
-				reserved = true;
-			}
-
-
-		}
-
-		return reserved;
+		
+		List<ReservaDTO> reservas = model.getListaReservas(Util.dateToIsoString(Util.isoStringToDate(fecha)) , 
+				                                           idInstalacion ,  horaInicio  );
+		if(reservas.size() == 0) { return false ;}
+		else return true;
+		
 
 	}
 
@@ -307,7 +270,7 @@ public class ReservaPersonalizadaController {
 			String fechaIni,fechaFin;
 			int idActividad, idInstalacion ;
 
-			idActividad = this.view.getTableActividades().getSelectedRow() +1 ;
+			idActividad = (int) this.view.getTableActividades().getValueAt(this.view.getTableActividades().getSelectedRow(), 0);
 			idInstalacion = model.getInstalacion(idActividad).get(0).getIdInstalacion();
 
 			diaIni = this.view.getCbDiaIni().getSelectedIndex() +1;
@@ -445,9 +408,10 @@ public class ReservaPersonalizadaController {
 				for(int i = 0 ; i < dias.size() ; i++) {
 					if(cal.get(Calendar.DAY_OF_WEEK) == dias.get(i)) {
 
+						
 						if(!alreadyReserved(idInstalacion , Util.dateToIsoString(f) , horasIni.get(i))) {
 
-							model.crearReserva(getRandomNumberInRange(1000,10000) , Util.dateToIsoString(f) , 
+							model.crearReserva(getRandomNumberInRange(100000,1000000) , Util.dateToIsoString(f) , 
 									horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad, 0 ,1 );
 
 						}

@@ -3,7 +3,7 @@ package giis.demo.Proyecto.DTO;
 
 public class ActividadDTO {
 
-	private int id;
+	private Integer idActividad;
 	private String nombre,tipo; //tipo=descripcion
 	private Integer precioSocio, precioNoSocio;
 	private String fechaInicio,fechaFin;
@@ -12,13 +12,13 @@ public class ActividadDTO {
 	
 	
 
-	public void setId(int id) {
-		this.id = id;
+	public Integer getIdActividad() {
+		return idActividad;
 	}
-	public int getId() {
-		return id;
+	public void setIdActividad(Integer idActividad) {
+		this.idActividad = idActividad;
 	}
-
+	
 
 	public String getNombre() {
 		return nombre;
@@ -121,7 +121,7 @@ public class ActividadDTO {
 
 
 	public String toString() {
-		return "ActividadDTO [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", precio="
+		return "ActividadDTO [id=" + idActividad + ", nombre=" + nombre + ", tipo=" + tipo + ", precio="
 				+ precioSocio + ", precio_ns=" + precioNoSocio + ", fecha_ini=" + fechaInicio + ", fecha_fin=" + fechaFin 
 				+ ", plazas=" + plazas  + ", id_instalacion="+ idInstalacion + ", periodoIns_id=" + idPeriodoInscripcion 
 				+ ", estado=" + estado + "]";

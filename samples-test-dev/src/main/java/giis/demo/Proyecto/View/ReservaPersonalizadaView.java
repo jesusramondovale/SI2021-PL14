@@ -19,7 +19,6 @@ import java.awt.event.ActionEvent;
 public class ReservaPersonalizadaView {
 
 	private JFrame frmRealizarReserva;
-	private JTable tableAnteriores;
 	
 
 	@SuppressWarnings("rawtypes")
@@ -33,7 +32,6 @@ public class ReservaPersonalizadaView {
 	
 	private JButton btnBorrar;
 	private JButton btnCrearReserva;
-	private JButton btnActualizar;	
 	private JScrollPane scrollPaneAnteriores ;
 	private JScrollPane scrollPanePosteriores;
 	private JTextField textFieldIniL;
@@ -205,13 +203,9 @@ public JButton getBtnActualizaActividades() {
 	}
 
 
-	public JButton getBtnActualizar() {
-		return btnActualizar;
-	}
+	
 
-	public void setBtnActualizar(JButton btnActualizar) {
-		this.btnActualizar = btnActualizar;
-	}
+	
 
 	public JFrame getFrmRealizarReserva() {
 		return frmRealizarReserva;
@@ -223,13 +217,9 @@ public JButton getBtnActualizaActividades() {
 
 	
 
-	public JTable getTableAnteriores() {
-		return tableAnteriores;
-	}
+	
 
-	public void setTableAnteriores(JTable tableAnteriores) {
-		this.tableAnteriores = tableAnteriores;
-	}
+	
 
 	public JComboBox getComboBoxInstalacion() {
 		return comboBoxInstalacion;
@@ -351,17 +341,17 @@ public JButton getBtnActualizaActividades() {
 	private void initialize() {
 		frmRealizarReserva = new JFrame();
 		frmRealizarReserva.setTitle("Realizar Reserva Personalizada");
-		frmRealizarReserva.setBounds(100, 100, 692, 359);
+		frmRealizarReserva.setBounds(100, 100, 493, 359);
 		
 		btnCrearReserva = new JButton("Crear Reserva");
-		btnCrearReserva.setBounds(511, 283, 130, 23);
+		btnCrearReserva.setBounds(330, 280, 130, 23);
 		btnCrearReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(411, 283, 82, 23);
+		btnBorrar.setBounds(190, 283, 82, 23);
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -380,17 +370,8 @@ public JButton getBtnActualizaActividades() {
 		cbAnoFin.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025"}));
 		
 		JLabel lblActividad = new JLabel("Seleccione la Actividad:");
-		lblActividad.setBounds(201, 120, 168, 19);
+		lblActividad.setBounds(163, 97, 168, 40);
 		lblActividad.setFont(new Font("Tahoma", Font.ITALIC, 15));
-		
-		JScrollPane scrollPaneAnteriores = new JScrollPane();
-		scrollPaneAnteriores.setBounds(413, 61, 228, 211);
-		
-		JLabel lblAntreiores = new JLabel("Reservas Anteriores");
-		lblAntreiores.setBounds(415, 39, 135, 14);
-		
-		btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(540, 35, 103, 23);
 		
 		textFieldIniL = new JTextField();
 		textFieldIniL.setBounds(40, 116, 32, 20);
@@ -407,11 +388,6 @@ public JButton getBtnActualizaActividades() {
 		JLabel lblHorario = new JLabel("HORARIO");
 		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblHorario.setBounds(58, 95, 103, 17);
-		
-		tableAnteriores = new JTable();
-		tableAnteriores.setSize(scrollPaneAnteriores.getSize());
-		
-		scrollPaneAnteriores.setViewportView(tableAnteriores);
 		frmRealizarReserva.getContentPane().setLayout(null);
 		
 		JLabel lblInicioDeReserva = new JLabel("Inicio de reserva :");
@@ -438,11 +414,8 @@ public JButton getBtnActualizaActividades() {
 		lblFinalDeReserva.setBounds(40, 65, 116, 19);
 		lblFinalDeReserva.setFont(new Font("Tahoma", Font.ITALIC, 15));
 		frmRealizarReserva.getContentPane().add(lblFinalDeReserva);
-		frmRealizarReserva.getContentPane().add(lblAntreiores);
 		frmRealizarReserva.getContentPane().add(lblHorario);
 		frmRealizarReserva.getContentPane().add(lblActividad);
-		frmRealizarReserva.getContentPane().add(scrollPaneAnteriores);
-		frmRealizarReserva.getContentPane().add(btnActualizar);
 		frmRealizarReserva.getContentPane().add(btnBorrar);
 		frmRealizarReserva.getContentPane().add(btnCrearReserva);
 		frmRealizarReserva.getContentPane().add(cbDiaFin);
@@ -543,7 +516,7 @@ public JButton getBtnActualizaActividades() {
 		frmRealizarReserva.getContentPane().add(textFieldFinD);
 		
 		scrollPaneActividades = new JScrollPane();
-		scrollPaneActividades.setBounds(201, 139, 196, 129);
+		scrollPaneActividades.setBounds(170, 139, 291, 129);
 		frmRealizarReserva.getContentPane().add(scrollPaneActividades);
 		
 		tableActividades = new JTable();
@@ -589,7 +562,7 @@ public JButton getBtnActualizaActividades() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnActualizaActividades.setBounds(283, 283, 114, 23);
+		btnActualizaActividades.setBounds(351, 109, 114, 23);
 		frmRealizarReserva.getContentPane().add(btnActualizaActividades);
 	}
 }

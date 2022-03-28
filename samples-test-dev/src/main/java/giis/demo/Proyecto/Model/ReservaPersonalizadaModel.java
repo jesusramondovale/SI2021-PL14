@@ -21,7 +21,7 @@ public class ReservaPersonalizadaModel {
 
 	private static String SQL2 = "SELECT fecha , idInstalacion , horaInicio , horaFin "
 			+ "FROM reservas "		
-			+ "WHERE fecha = ?";
+			+ "WHERE fecha = ? AND idInstalacion = ? AND horaInicio = ? ";
 
 
 	private static String SQL3 = "SELECT idSocio FROM socios";
@@ -29,7 +29,7 @@ public class ReservaPersonalizadaModel {
 	private String SQL4 = "SELECT idInstalacion FROM actividades "
 			+ "WHERE idActividad = ?";
 
-	private String SQL5 = "SELECT nombre, tipo, fechaInicio,  fechaFin "
+	private String SQL5 = "SELECT idActividad , nombre, tipo, fechaInicio,  fechaFin "
 			+ "FROM actividades "
 			+ "WHERE fechaInicio = ?"; 
 		
@@ -82,9 +82,9 @@ public class ReservaPersonalizadaModel {
 	}
 
 
-	public List<ReservaDTO> getListaReservas(String fecha) {
+	public List<ReservaDTO> getListaReservas(String fecha, int idInstalacion , double hora) {
 
-		return db.executeQueryPojo(ReservaDTO.class, SQL2, fecha);
+		return db.executeQueryPojo(ReservaDTO.class, SQL2, fecha , idInstalacion , hora);
 
 	}
 

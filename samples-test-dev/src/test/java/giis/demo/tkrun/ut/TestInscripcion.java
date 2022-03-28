@@ -160,6 +160,7 @@ public class TestInscripcion {
 	/**
 	 * Utilizacion de reglas, para comprobar tambien los mensajes de las excepciones
 	 */
+	@SuppressWarnings("deprecation")
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 	@Test
