@@ -38,6 +38,9 @@ public class CancelarReservasSociosModel {
 
 	}
 	
-	
+	public void CancelarReserva (int idReserva) {
+		//Falta borrar la reserva como tal
+		db.executeUpdate("update reserva set estado=0 where id=?", idReserva);
+	}
 
 }

@@ -19,7 +19,8 @@ public class CancelarReservasSociosController {
 
 	public void initView() {
 		view.getframe().setVisible(true);
-
 	}
+	
+	
 
 }

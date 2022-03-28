@@ -154,6 +154,10 @@ public class RealizarReservasView {
 		JScrollPane scrollPaneAnteriores = new JScrollPane();
 		
 		btnActualizar = new JButton("Actualizar");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(frmRealizarReserva.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
