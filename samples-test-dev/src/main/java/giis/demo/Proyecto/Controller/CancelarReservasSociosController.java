@@ -1,5 +1,10 @@
 package giis.demo.Proyecto.Controller;
 
+import java.util.List;
+
+import javax.swing.table.TableModel;
+
+import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.Proyecto.Model.CancelarReservasSociosModel;
 import giis.demo.Proyecto.View.CancelarReservasSociosView;
 import giis.demo.Proyecto.View.LoginView;
@@ -12,7 +17,7 @@ public class CancelarReservasSociosController {
 	private LoginView login;
 	private String idSocio;
 
-	public CancelarReservasSociosController(CancelarReservasSociosModel model, CancelarReservasSociosView view) {
+	public CancelarReservasSociosController(CancelarReservasSociosModel model, CancelarReservasSociosView view, LoginView login) {
 		this.login = login;
 		this.model = model;
 		this.view = view;
@@ -26,7 +31,10 @@ public class CancelarReservasSociosController {
 
 	public void initController() {
 		
-
+		login.getBtnLogear().addActionListener(e -> SwingUtil.exceptionWrapper(() -> login()));
+		view.getBtnComprobarReservas().addActionListener(e -> SwingUtil.exceptionWrapper(() -> getReservas()));
+		view.getBtnCancelarReservas().addActionListener(e -> SwingUtil.exceptionWrapper(() -> CancelarReservas()));
+		
 	}
 
 	// Código que se ejecuta al pulsar en el botón Login en LoginView
@@ -44,9 +52,17 @@ public class CancelarReservasSociosController {
 				this.idSocio = idSocio;
 				this.login.getFrame().setVisible(false);
 				this.view.getframe().setVisible(true);
-				
+
 				//Coge el DNI del Socio y le muestra su nombre en la pantalla
-				this.view.setTextFieldNombre(this.model.getSocio(idSocio));
+				String nombrecompleto="";
+				nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getNombre());
+				nombrecompleto.concat(" ");
+				nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido1());
+				nombrecompleto.concat(" ");
+				nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido2());
+
+				this.view.getTextFieldNombre().setText(nombrecompleto);
+
 				SwingUtil.showMessage("Bienvenido! Socio #" + idSocio, "Saludos de nuevo", 2);
 
 			}
@@ -62,14 +78,11 @@ public class CancelarReservasSociosController {
 			SwingUtil.showMessage("Error! Introduzca un #ID de Socio válido (numérico)", "Vaya...", 0);
 		}
 	}
-	
-	private void actualizarInstalaciones() {
 
+	private void getReservas() {
+		List<reservasDisplayDTO> list= null;
 
-		List<ReservaDTO> list= null;
-
-
-		list = model.getInstalaciones(Integer.parseInt(idSocio));
+		list = model.getReservas(idSocio);
 
 		if(list.isEmpty()) {
 			SwingUtil.showMessage("No existen reservas en la BD todavía!", "Error", 0);
@@ -77,18 +90,26 @@ public class CancelarReservasSociosController {
 		else {
 			//Generamos el modelo de tabla y lo cargamos con los datos de la BD
 			TableModel tmodel=SwingUtil.getTableModelFromPojos(list, new String[] { 
-					"idInstalacion", "fecha", "precioHora", "estado" },
+					"idReserva" , "nombre" , "fecha" , "horaInicio" , "horaFin" , "estado" },
 					new String[] { 
-							"Instalación"  , "Fecha" , "Precio (€)" , "Estado" });
+							"Id Reserva"  , "Instalacion" , "Fecha" , "Hora Inicio" ,"HoraFin", "Pagado" });
 
 
 			// Asigna a la tabla de la vista el modelo generado
-			view.getTableInstalaciones().setModel(tmodel);
-			SwingUtil.autoAdjustColumns(view.getTableInstalaciones());
-
+			view.getTable().setModel(tmodel);
+			SwingUtil.autoAdjustColumns(view.getTable());
 
 		}
 
 	}
-
+	
+	public void CancelarReservas () {
+		
+		
+	}
+	
+	
+	
+	
+	
 }

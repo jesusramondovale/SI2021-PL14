@@ -8,6 +8,7 @@ import giis.demo.Proyecto.DTO.SociosDTO;
 import giis.demo.Proyecto.DTO.SociosDisplayDTO;
 import giis.demo.Proyecto.DTO.actividadReservaInstalacionDTO;
 import giis.demo.Proyecto.DTO.estadoReservaDTO;
+import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.util.Database;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.UnexpectedException;
@@ -45,26 +46,25 @@ public class CancelarReservasSociosModel {
 	}
 	public List<SociosDisplayDTO> getSocio(String dni) {
 
-		String sql="SELECT nombre "
+		String sql="SELECT nombre , apellido1 , apellido2 "
 				+" from socios"
 				+ " where dni=? ";
 		return db.executeQueryPojo(SociosDisplayDTO.class, sql,dni);
 	}
 
 
-	public List<SociosDisplayDTO> getDniSociosReserva(String nombreInstalacion, Date fecha, double horaInicio, double horaFin, String estado ){
-		String sql = "SELECT dni " + 
-				"	FROM reservas r " + 
-				"	INNER JOIN socios s USING(idSocio) " + 
+	public List<reservasDisplayDTO> getReservas(String dni){
+		String sql = "SELECT r.idReserva , i.nombre , r.fecha , r.horaInicio , r.horaFin , r.estado  " + 
+				"	FROM reservas r " +  
 				"	INNER JOIN instalaciones i USING(idInstalacion) " + 
-				"	WHERE i.nombre=?  AND fecha=? AND horaInicio=? AND horaInicio=? AND horaFin=?";
-		return db.executeQueryPojo(SociosDisplayDTO.class, sql,nombreInstalacion,fecha,horaInicio, horaFin, estado);
+				"	WHERE idSocio= ? AND fecha= ?";
+		return db.executeQueryPojo(reservasDisplayDTO.class, sql,dni);
 
 	}
 	
 	public void CancelarReserva (int idReserva) {
 		//Falta borrar la reserva como tal
-		db.executeUpdate("update reserva set estado=0 where id=?", idReserva);
+		db.executeUpdate("update reserva set estado=2 where id=?", idReserva);
 	}
 
 }

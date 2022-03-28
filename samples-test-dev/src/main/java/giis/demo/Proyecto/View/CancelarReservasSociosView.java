@@ -148,7 +148,7 @@ public class CancelarReservasSociosView {
 		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(111)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
@@ -156,15 +156,15 @@ public class CancelarReservasSociosView {
 					.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
 					.addGap(77)
 					.addComponent(btnComprobarReservas)
-					.addContainerGap(139, Short.MAX_VALUE))
+					.addContainerGap(175, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(103)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 525, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(139, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(587, Short.MAX_VALUE)
+					.addContainerGap(555, Short.MAX_VALUE)
 					.addComponent(btnCancelarReservas)
 					.addGap(63))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(103)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 525, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(107, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -176,10 +176,10 @@ public class CancelarReservasSociosView {
 							.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(btnComprobarReservas))
 					.addGap(26)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-					.addGap(35)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+					.addGap(47)
 					.addComponent(btnCancelarReservas)
-					.addContainerGap(84, Short.MAX_VALUE))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		
 		table = new JTable();
@@ -197,7 +197,7 @@ public class CancelarReservasSociosView {
 				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"Id", "Instalacion", "Fecha", "Hora Inicio", "Hora Fin", "Pagado"
+				"", "", "", "", "", ""
 			}
 		));
 		scrollPane.setViewportView(table);

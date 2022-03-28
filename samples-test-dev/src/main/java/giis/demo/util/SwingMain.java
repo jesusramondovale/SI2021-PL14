@@ -92,7 +92,7 @@ public class SwingMain {
 		JButton btnCancelarReservasSocio = new JButton("Cancelar Reservas Socio");
 		btnCancelarReservasSocio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CancelarReservasSociosController controller = new CancelarReservasSociosController(new CancelarReservasSociosModel(),new CancelarReservasSociosView());
+				CancelarReservasSociosController controller = new CancelarReservasSociosController(new CancelarReservasSociosModel(),new CancelarReservasSociosView(), new LoginView());
 				
 				controller.initController();
 			}
