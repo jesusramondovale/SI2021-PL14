@@ -34,10 +34,7 @@ public class CancelarReservasSociosModel {
 			SwingUtil.showMessage("Error SQL -> EstadoCuentasModel", "Error", 0);
 
 		}
-
 		return (!socios.isEmpty());
-
-
 	}
 
 	public List<Object[]> getListaInstalaciones(){
@@ -46,9 +43,9 @@ public class CancelarReservasSociosModel {
 		return db.executeQueryArray(sql);
 
 	}
-	public List<SociosDisplayDTO> getNumeroSocio(String dni) {
+	public List<SociosDisplayDTO> getSocio(String dni) {
 
-		String sql="SELECT * "
+		String sql="SELECT nombre "
 				+" from socios"
 				+ " where dni=? ";
 		return db.executeQueryPojo(SociosDisplayDTO.class, sql,dni);

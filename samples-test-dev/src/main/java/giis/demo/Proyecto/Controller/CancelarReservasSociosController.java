@@ -10,6 +10,7 @@ public class CancelarReservasSociosController {
 	private CancelarReservasSociosModel model;
 	private CancelarReservasSociosView view;
 	private LoginView login;
+	private String idSocio;
 
 	public CancelarReservasSociosController(CancelarReservasSociosModel model, CancelarReservasSociosView view) {
 		this.login = login;
@@ -24,10 +25,9 @@ public class CancelarReservasSociosController {
 	}
 
 	public void initController() {
-		// TODO Auto-generated method stub
+		
 
 	}
-
 
 	// Código que se ejecuta al pulsar en el botón Login en LoginView
 
@@ -44,6 +44,9 @@ public class CancelarReservasSociosController {
 				this.idSocio = idSocio;
 				this.login.getFrame().setVisible(false);
 				this.view.getframe().setVisible(true);
+				
+				//Coge el DNI del Socio y le muestra su nombre en la pantalla
+				this.view.setTextFieldNombre(this.model.getSocio(idSocio));
 				SwingUtil.showMessage("Bienvenido! Socio #" + idSocio, "Saludos de nuevo", 2);
 
 			}
@@ -57,10 +60,34 @@ public class CancelarReservasSociosController {
 		catch (NumberFormatException e){
 
 			SwingUtil.showMessage("Error! Introduzca un #ID de Socio válido (numérico)", "Vaya...", 0);
+		}
+	}
+	
+	private void actualizarInstalaciones() {
+
+
+		List<ReservaDTO> list= null;
+
+
+		list = model.getInstalaciones(Integer.parseInt(idSocio));
+
+		if(list.isEmpty()) {
+			SwingUtil.showMessage("No existen reservas en la BD todavía!", "Error", 0);
+		}
+		else {
+			//Generamos el modelo de tabla y lo cargamos con los datos de la BD
+			TableModel tmodel=SwingUtil.getTableModelFromPojos(list, new String[] { 
+					"idInstalacion", "fecha", "precioHora", "estado" },
+					new String[] { 
+							"Instalación"  , "Fecha" , "Precio (€)" , "Estado" });
+
+
+			// Asigna a la tabla de la vista el modelo generado
+			view.getTableInstalaciones().setModel(tmodel);
+			SwingUtil.autoAdjustColumns(view.getTableInstalaciones());
 
 
 		}
-
 
 	}
 

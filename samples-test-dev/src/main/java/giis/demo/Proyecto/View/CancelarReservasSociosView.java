@@ -18,7 +18,15 @@ import java.awt.event.ActionEvent;
 public class CancelarReservasSociosView {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField textFieldNombre;
+	public JTextField getTextFieldNombre() {
+		return textFieldNombre;
+	}
+
+	public void setTextFieldNombre(JTextField textFieldNombre) {
+		this.textFieldNombre = textFieldNombre;
+	}
+
 	private JTable table;
 	
 	//private JButton btnNewButton;
@@ -34,11 +42,11 @@ public class CancelarReservasSociosView {
 	}
 
 	public JTextField getTextField() {
-		return textField;
+		return textFieldNombre;
 	}
 
 	public void setTextField(JTextField textField) {
-		this.textField = textField;
+		this.textFieldNombre = textField;
 	}
 
 	public JTable getTable() {
@@ -121,9 +129,9 @@ public class CancelarReservasSociosView {
 		
 		 lblNewLabel = new JLabel("Nombre");
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setColumns(10);
+		textFieldNombre = new JTextField();
+		textFieldNombre.setEditable(false);
+		textFieldNombre.setColumns(10);
 		
 		btnComprobarReservas = new JButton("Comprobar reserva");
 		btnComprobarReservas.addActionListener(new ActionListener() {
@@ -145,7 +153,7 @@ public class CancelarReservasSociosView {
 					.addGap(111)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+					.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
 					.addGap(77)
 					.addComponent(btnComprobarReservas)
 					.addContainerGap(139, Short.MAX_VALUE))
@@ -165,7 +173,7 @@ public class CancelarReservasSociosView {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 							.addComponent(lblNewLabel)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(btnComprobarReservas))
 					.addGap(26)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
