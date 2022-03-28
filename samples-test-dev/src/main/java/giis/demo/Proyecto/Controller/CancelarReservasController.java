@@ -123,7 +123,7 @@ public class CancelarReservasController {
 					System.out.println("----------------------------------------------");
 
 
-					File recibosCSV = new File("C://Users/Usuario/Desktop/recibos.csv");
+					File recibosCSV = new File("./recibos.csv");
 					try {
 
 
