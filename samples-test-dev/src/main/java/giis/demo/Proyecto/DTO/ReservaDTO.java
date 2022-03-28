@@ -11,7 +11,7 @@ public class ReservaDTO {
 	private int idActividad;
 	private int idSocio;
 	
-	private boolean estado;
+	private String estado;
 	private float precioHora;
 	
 
@@ -33,7 +33,7 @@ public class ReservaDTO {
 
 
 
-	public ReservaDTO(String fecha, int idInstalacion, boolean estado, int precio) {
+	public ReservaDTO(String fecha, int idInstalacion, String estado, int precio) {
 		super();
 		this.fecha = fecha;
 		this.idInstalacion = idInstalacion;
@@ -43,7 +43,7 @@ public class ReservaDTO {
 
 
 
-	public ReservaDTO(String fecha, float horaInicio, float horaFin, int idInstalacion, boolean estado, int precio) {
+	public ReservaDTO(String fecha, float horaInicio, float horaFin, int idInstalacion, String estado, int precio) {
 		super();
 		this.fecha = fecha;
 		this.horaInicio = horaInicio;
@@ -71,7 +71,7 @@ public class ReservaDTO {
 	}
 
 	public ReservaDTO(int idReserva, String fecha, float horaInicio, float horaFin, int idInstalacion, int idActividad,
-			int idSocio, boolean estado) {
+			int idSocio, String estado) {
 		super();
 		this.idReserva = idReserva;
 		this.fecha = fecha;
@@ -153,11 +153,11 @@ public class ReservaDTO {
 		this.idSocio = idSocio;
 	}
 
-	public boolean getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(boolean estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	

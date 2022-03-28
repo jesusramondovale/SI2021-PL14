@@ -7,15 +7,15 @@ public class ActividadDTO {
 	private String nombre,tipo; //tipo=descripcion
 	private Integer precioSocio, precioNoSocio;
 	private String fechaInicio,fechaFin;
-	private Integer plazas, idInstalacion, idPeriodoInscripcion, estado;
-	
+	private Integer plazas, idInstalacion, idPeriodoInscripcion;
+	private String estado;
 	public ActividadDTO() {
 		super();
 	}
 
 	
 	
-	public ActividadDTO(String nombre, Integer precioSocio, String fechaInicio, Integer estado) {
+	public ActividadDTO(String nombre, Integer precioSocio, String fechaInicio, String estado) {
 		super();
 		this.nombre = nombre;
 		this.precioSocio = precioSocio;
@@ -125,12 +125,12 @@ public class ActividadDTO {
 	}
 
 
-	public Integer getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
 
-	public void setEstado(Integer estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 

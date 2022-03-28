@@ -16,7 +16,7 @@ public class EstadoCuentasModel {
 
 
 
-	private String SQL1 = "SELECT a.nombre , a.fechaInicio , a.precioSocio , a.estado "
+	private String SQL1 = "SELECT a.nombre , a.fechaInicio , a.precioSocio , r.estado "
 			+ "FROM reservas r "
 			+ "INNER JOIN actividades a "
 			+ "USING (idActividad) "
