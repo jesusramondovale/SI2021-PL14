@@ -15,6 +15,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class visualizaReservasInstalacionesView {
 
@@ -77,6 +79,10 @@ public class visualizaReservasInstalacionesView {
 		JScrollPane scrollPane = new JScrollPane();
 		
 		btnComprobarReservsa = new JButton("Comprobar");
+		btnComprobarReservsa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		
 		txtFecha = new JTextField();
 		txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));

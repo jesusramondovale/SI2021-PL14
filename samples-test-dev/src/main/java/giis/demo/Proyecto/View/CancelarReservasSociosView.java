@@ -25,6 +25,62 @@ public class CancelarReservasSociosView {
 	
 	private JScrollPane scrollPane;
 	
+	public JFrame getframe() {
+		return frame;
+	}
+
+	public void setframe(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JTextField getTextField() {
+		return textField;
+	}
+
+	public void setTextField(JTextField textField) {
+		this.textField = textField;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
+
+	public JLabel getLblNewLabel() {
+		return lblNewLabel;
+	}
+
+	public void setLblNewLabel(JLabel lblNewLabel) {
+		this.lblNewLabel = lblNewLabel;
+	}
+
+	public JButton getBtnComprobarReservas() {
+		return btnComprobarReservas;
+	}
+
+	public void setBtnComprobarReservas(JButton btnComprobarReservas) {
+		this.btnComprobarReservas = btnComprobarReservas;
+	}
+
+	public JButton getBtnCancelarReservas() {
+		return btnCancelarReservas;
+	}
+
+	public void setBtnCancelarReservas(JButton btnCancelarReservas) {
+		this.btnCancelarReservas = btnCancelarReservas;
+	}
+
 	private JLabel lblNewLabel;
 	
 	private  JButton btnComprobarReservas;
@@ -59,6 +115,7 @@ public class CancelarReservasSociosView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Cancelar Reservas Socios");
 		frame.setBounds(100, 100, 751, 375);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -132,17 +189,9 @@ public class CancelarReservasSociosView {
 				{null, null, null, null, null},
 			},
 			new String[] {
-				"ID", "Instalacion", "Hora Inicio", "Hora Fin", "Pagado"
+				"Instalacion", "Fecha", "Hora Inicio", "Hora Fin", "Pagado"
 			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, true, true, true, true
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(0).setResizable(false);
+		));
 		scrollPane.setViewportView(table);
 		frame.getContentPane().setLayout(groupLayout);
 	}
