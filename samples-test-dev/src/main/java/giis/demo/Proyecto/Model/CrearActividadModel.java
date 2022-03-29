@@ -34,7 +34,7 @@ public class CrearActividadModel {
 			+ "fechaInicio,fechaFin,"
 			+ "idPeriodoInscripcion,estado,"
 			+ "plazas,idInstalacion) values (?,?,?,?,?,?,?,?,?,?,?)";
-	private String sql2= "Insert into horarioActividad(idActividad,idHorarios) values (?,?)";
+	private String sql2= "Insert into horarioActividad(idHorario,idActividad,idHorarios) values (?,?,?)";
 	private String sql3 = "Insert into horarios(idHorarios,dia,horaInicio,horaFin) values (?,?,?,?)";
 
 
@@ -57,12 +57,12 @@ public class CrearActividadModel {
 
 		}
 	}
-	public void insertaHorariosActividad (int idActividad, int idHorarios) {
-		db.executeUpdate(sql2,idActividad, idHorarios);
+	public void insertaHorariosActividad (int idHorario, int idActividad, int idHorarios) {
+		db.executeUpdate(sql2,idHorario,idActividad, idHorarios);
 	}
 	
-	public void insertaHorarios(int idActividad, String dia, String horaInicio, String horaFin) {
-		db.executeUpdate(sql3, idActividad,dia,horaInicio,horaFin);
+	public void insertaHorarios(int idHorarios ,String dia, Double horaInicio, Double horaFin) {
+		db.executeUpdate(sql3,idHorarios,dia,horaInicio,horaFin);
 	}
 	
 	

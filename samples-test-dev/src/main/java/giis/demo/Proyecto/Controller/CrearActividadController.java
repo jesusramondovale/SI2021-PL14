@@ -3,6 +3,7 @@ package giis.demo.Proyecto.Controller;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
@@ -137,6 +138,9 @@ public class CrearActividadController {
 
 
 			List<String> dias = new ArrayList<String>();
+			List<Double> horasIni = new ArrayList<Double>();
+			List<Double> horasFin = new ArrayList<Double>();
+
 
 
 			// Insertar los índices de días seleccionados 
@@ -185,9 +189,7 @@ public class CrearActividadController {
 
 			}
 
-			List<Double> horasIni = new ArrayList<Double>();
-			List<Double> horasFin = new ArrayList<Double>();
-
+		
 
 			//Insertar las horas indicadas en la estructura de datos
 			for(int i=0 ; i<dias.size() ; i++) {
@@ -245,21 +247,30 @@ public class CrearActividadController {
 				}
 
 			}
+			
+			int x=getRandomNumberInRange(1000,100000);
+			
+			for (int i=0 ; i<dias.size() ; i++) {
+
+				model.insertaHorarios(x, dias.get(i),horasIni.get(i),horasFin.get(i));
+				model.insertaHorariosActividad(getRandomNumberInRange(1000,100000),Integer.parseInt(view.getTextFieldIdActividad().getText()), x);
+				x++;
+			}
 		}
+
 		
-		for (int i=0 ; i<dias.size() ; i++) {
-			
-			//model.crearReserva(getRandomNumberInRange(1000,10000) , Util.dateToIsoString(f) , 
-				//	horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad, 0 ,1 );
-			
-			model.insertaHorarios(Integer.parseInt(view.getTextFieldIdActividad().getText()), dia, horasIni.get(i), horasFin.get(i) );
-			model.insertaHorariosActividad(Integer.parseInt(view.getTextFieldIdActividad().getText()), idHorarios);
-			
-		}
 	}
 
 
+	private static int getRandomNumberInRange(int min, int max) {
 
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
+	}
 	/**
 	 * Metodo para cargar de la BD los periodos en el ComboBox
 	 */
