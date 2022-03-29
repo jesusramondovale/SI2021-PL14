@@ -10,6 +10,7 @@ import giis.demo.Proyecto.Model.VisualizarReservasSociosModel;
 import giis.demo.Proyecto.View.LoginView;
 import giis.demo.Proyecto.View.VisualizarReservasSociosView;
 import giis.demo.util.SwingUtil;
+import giis.demo.util.Util;
 
 public class VisualizarReservasSociosController {
 
@@ -79,43 +80,49 @@ public class VisualizarReservasSociosController {
 
 		}
 	}
-	
-	
+
+
 	@SuppressWarnings("unused")
 	private void getReservas() {
-		List<reservasDisplayDTO> list= null;
 
-		//Coge el DNI del Socio y le muestra su nombre en la pantalla
-		String nombrecompleto = new String();
-		
-		nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getNombre());
-		nombrecompleto = nombrecompleto.concat(" ");
-		nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido1());
-		nombrecompleto = nombrecompleto.concat(" ");
-		nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido2());
+		if (this.view.getDateChooser_FechaInicio().getDate().before(this.view.getDateChooser_FechaFin().getDate())) {
 
-		this.view.getTextField_Nombre_Completo().setText(nombrecompleto);
-		list = model.getReservas(idSocio);
-		if(list.isEmpty()) {
-			SwingUtil.showMessage("No existen reservas en la BD todavía!", "Error", 0);
+
+			List<reservasDisplayDTO> list= null;
+
+			//Coge el DNI del Socio y le muestra su nombre en la pantalla
+			String nombrecompleto = new String();
+
+			nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getNombre());
+			nombrecompleto = nombrecompleto.concat(" ");
+			nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido1());
+			nombrecompleto = nombrecompleto.concat(" ");
+			nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido2());
+
+			this.view.getTextField_Nombre_Completo().setText(nombrecompleto);
+			list = model.getReservas(idSocio,Util.dateToIsoString(view.getDateChooser_FechaInicio().getDate()) ,Util.dateToIsoString(view.getDateChooser_FechaFin().getDate()));
+			if(list.isEmpty()) {
+				SwingUtil.showMessage("No existen reservas en la BD todavía!", "Error", 0);
+			}
+
+			else {
+				//Generamos el modelo de tabla y lo cargamos con los datos de la BD
+				TableModel tmodel=SwingUtil.getTableModelFromPojos(list, new String[] { 
+						"idReserva" , "nombre" , "fecha" , "horaInicio" , "horaFin" , "estado" },
+						new String[] { 
+								"Id Reserva"  , "Instalacion" , "Fecha" , "Hora Inicio" ,"HoraFin", "Pagado" });
+
+
+				// Asigna a la tabla de la vista el modelo generado
+				view.getTable().setModel(tmodel);
+				SwingUtil.autoAdjustColumns(view.getTable());
+
+			}
 		}
 		else {
-			//Generamos el modelo de tabla y lo cargamos con los datos de la BD
-			TableModel tmodel=SwingUtil.getTableModelFromPojos(list, new String[] { 
-					"idReserva" , "nombre" , "fecha" , "horaInicio" , "horaFin" , "estado" },
-					new String[] { 
-							"Id Reserva"  , "Instalacion" , "Fecha" , "Hora Inicio" ,"HoraFin", "Pagado" });
-
-
-			// Asigna a la tabla de la vista el modelo generado
-			view.getTable().setModel(tmodel);
-			SwingUtil.autoAdjustColumns(view.getTable());
-
+			SwingUtil.showMessage("La Fecha de Fin es anterior a la de Inicio", "Error", 0);
 		}
 
 	}
-	
-	
-	
-	
+
 }

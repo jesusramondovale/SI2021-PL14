@@ -159,7 +159,7 @@ public class VisualizarReservasSociosView {
 		dateChooser_FechaFin.setBounds(100, 180, 106, 20);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(263, 45, 396, 172);
+		scrollPane.setBounds(263, 47, 396, 170);
 
 		btnNewButton_MostrarReservas = new JButton("Mostrar Reservas");
 		btnNewButton_MostrarReservas.setBounds(70, 237, 117, 23);

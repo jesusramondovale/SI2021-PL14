@@ -31,12 +31,12 @@ public class VisualizarReservasSociosModel {
 		return db.executeQueryPojo(SociosDisplayDTO.class, sql,id);
 	}
 
-	public List<reservasDisplayDTO> getReservas(String dni){
+	public List<reservasDisplayDTO> getReservas(String dni, String InicioFecha, String FinFecha){
 		String sql = "SELECT r.idReserva , i.nombre , r.fecha , r.horaInicio , r.horaFin , r.estado  " + 
 				"	FROM reservas r " +  
 				"	INNER JOIN instalaciones i USING(idInstalacion) " + 
-				"	WHERE idSocio= ? ";
-		return db.executeQueryPojo(reservasDisplayDTO.class, sql,dni);
+				"	WHERE idSocio= ? AND fecha>= ? AND fecha <= ?  ";
+		return db.executeQueryPojo(reservasDisplayDTO.class, sql,dni,InicioFecha,FinFecha);
 
 	}
 
@@ -58,7 +58,6 @@ public class VisualizarReservasSociosModel {
 		return (!socios.isEmpty());
 
 	}
-
 
 	public List<SociosDisplayDTO> getFecha (Date fecha) {
 
