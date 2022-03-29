@@ -13,6 +13,9 @@ import giis.demo.util.UnexpectedException;
 public class VisualizarReservasSociosModel {
 
 	public Database db=new Database();
+	private static String SQL3 = "SELECT idSocio , nombre "
+			+ "FROM socios "
+			+ "WHERE idSocio = ? ";
 
 	public List<Object[]> getListaInstalaciones(){
 
@@ -20,33 +23,43 @@ public class VisualizarReservasSociosModel {
 		return db.executeQueryArray(sql);
 
 	}
-	public List<SociosDisplayDTO> getNombreSocio (String dni) {
+	public List<SociosDisplayDTO> getSocio(String id) {
 
-		String sql="SELECT nombre "
-				+" from socios"
-				+ " where dni=? ";
-
-		return db.executeQueryPojo(SociosDisplayDTO.class, sql,dni);
+		String sql="SELECT nombre , apellido1 , apellido2 "
+				+"FROM socios "
+				+ "WHERE idSocio = ? ";
+		return db.executeQueryPojo(SociosDisplayDTO.class, sql,id);
 	}
-	
-	public List<SociosDisplayDTO> getApellido1Socio (String dni) {
 
-		String sql="SELECT apellido1 "
-				+" from socios"
-				+ " where dni=? ";
+	public List<reservasDisplayDTO> getReservas(String dni){
+		String sql = "SELECT r.idReserva , i.nombre , r.fecha , r.horaInicio , r.horaFin , r.estado  " + 
+				"	FROM reservas r " +  
+				"	INNER JOIN instalaciones i USING(idInstalacion) " + 
+				"	WHERE idSocio= ? ";
+		return db.executeQueryPojo(reservasDisplayDTO.class, sql,dni);
 
-		return db.executeQueryPojo(SociosDisplayDTO.class, sql,dni);
 	}
-	
-	public List<SociosDisplayDTO> getApellido2Socio (String dni) {
 
-		String sql="SELECT apellido2 "
-				+" from socios"
-				+ " where dni=? ";
+	// Función para comprobar si el ID de socio existe
+	// Returns true si existe, false si no
+	public boolean isSocio(int idSocio) {
 
-		return db.executeQueryPojo(SociosDisplayDTO.class, sql,dni);
+		List<SociosDTO> socios = new ArrayList<SociosDTO>();
+
+		try {
+			socios = db.executeQueryPojo(SociosDTO.class, SQL3, idSocio);
+		}
+		catch(UnexpectedException e) {
+
+			SwingUtil.showMessage("Error SQL -> EstadoCuentasModel", "Error", 0);
+
+		}
+
+		return (!socios.isEmpty());
+
 	}
-	
+
+
 	public List<SociosDisplayDTO> getFecha (Date fecha) {
 
 		String sql="SELECT fecha "
@@ -55,7 +68,7 @@ public class VisualizarReservasSociosModel {
 
 		return db.executeQueryPojo(SociosDisplayDTO.class, sql,fecha);
 	}
-	
+
 	public List<actividadReservaInstalacionDTO> getListaInstalacionParaReservar(double hora, String nombreInstalacion, String fecha){
 
 		String sql = "SELECT a.nombre as Actividad, i.nombre as Instalacion, r.fecha as fechaReserva, r.horaInicio as hora " + 

@@ -21,6 +21,102 @@ public class VisualizarReservasSociosView {
 	private JFrame frmVisualizarReservasSocios;
 	private JTable table;
 
+	public JFrame getFrmVisualizarReservasSocios() {
+		return frmVisualizarReservasSocios;
+	}
+
+	public void setFrmVisualizarReservasSocios(JFrame frmVisualizarReservasSocios) {
+		this.frmVisualizarReservasSocios = frmVisualizarReservasSocios;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public JLabel getLblNewLabel() {
+		return lblNewLabel;
+	}
+
+	public void setLblNewLabel(JLabel lblNewLabel) {
+		this.lblNewLabel = lblNewLabel;
+	}
+
+	public JComboBox getComboBox_Instalacion() {
+		return comboBox_Instalacion;
+	}
+
+	public void setComboBox_Instalacion(JComboBox comboBox_Instalacion) {
+		this.comboBox_Instalacion = comboBox_Instalacion;
+	}
+
+	public JDateChooser getDateChooser_FechaInicio() {
+		return dateChooser_FechaInicio;
+	}
+
+	public void setDateChooser_FechaInicio(JDateChooser dateChooser_FechaInicio) {
+		this.dateChooser_FechaInicio = dateChooser_FechaInicio;
+	}
+
+	public JLabel getLblNewLabel_1() {
+		return lblNewLabel_1;
+	}
+
+	public void setLblNewLabel_1(JLabel lblNewLabel_1) {
+		this.lblNewLabel_1 = lblNewLabel_1;
+	}
+
+	public JLabel getLblNewLabel_2() {
+		return lblNewLabel_2;
+	}
+
+	public void setLblNewLabel_2(JLabel lblNewLabel_2) {
+		this.lblNewLabel_2 = lblNewLabel_2;
+	}
+
+	public JDateChooser getDateChooser_FechaFin() {
+		return dateChooser_FechaFin;
+	}
+
+	public void setDateChooser_FechaFin(JDateChooser dateChooser_FechaFin) {
+		this.dateChooser_FechaFin = dateChooser_FechaFin;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
+
+	public JButton getBtnNewButton_MostrarReservas() {
+		return btnNewButton_MostrarReservas;
+	}
+
+	public void setBtnNewButton_MostrarReservas(JButton btnNewButton_MostrarReservas) {
+		this.btnNewButton_MostrarReservas = btnNewButton_MostrarReservas;
+	}
+
+	public JTextField getTextField_Nombre_Completo() {
+		return textField_Nombre_Completo;
+	}
+
+	public void setTextField_Nombre_Completo(JTextField textField_Nombre_Completo) {
+		this.textField_Nombre_Completo = textField_Nombre_Completo;
+	}
+
+	public JLabel getLblNewLabel_3() {
+		return lblNewLabel_3;
+	}
+
+	public void setLblNewLabel_3(JLabel lblNewLabel_3) {
+		this.lblNewLabel_3 = lblNewLabel_3;
+	}
+
 	private JLabel lblNewLabel ;
 
 	private JComboBox comboBox_Instalacion ;
