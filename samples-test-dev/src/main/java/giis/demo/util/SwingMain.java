@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 
 import java.awt.event.ActionEvent;
 
@@ -89,16 +88,14 @@ public class SwingMain {
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
 		
-		JButton btnCancelarReservasSocio = new JButton("Cancelar Reservas Socio");
-		btnCancelarReservasSocio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				CancelarReservasSociosController controller = new CancelarReservasSociosController(new CancelarReservasSociosModel(),new CancelarReservasSociosView(), new LoginView());
-				
+		JButton btnCancelarReservas = new JButton("Cancelar Reservas Socios");
+		btnCancelarReservas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CancelarReservasSociosController controller = new CancelarReservasSociosController(new CancelarReservasSociosModel() , new CancelarReservasSociosView(), new LoginView());
 				controller.initController();
 			}
 		});
-		frame.getContentPane().add(btnCancelarReservasSocio);
-		
+		frame.getContentPane().add(btnCancelarReservas);
 
 	}
 
