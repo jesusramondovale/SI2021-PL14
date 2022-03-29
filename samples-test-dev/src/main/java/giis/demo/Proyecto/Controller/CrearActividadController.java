@@ -248,12 +248,13 @@ public class CrearActividadController {
 		}
 		
 		for (int i=0 ; i<dias.size() ; i++) {
-			model.crearReserva(getRandomNumberInRange(1000,10000) , Util.dateToIsoString(f) , 
-					horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad, 0 ,1 );
-			model.insertaHorarios(Integer.parseInt(view.getTextFieldIdActividad().getText()), dia, horaInicio, horaFin);
+			
+			//model.crearReserva(getRandomNumberInRange(1000,10000) , Util.dateToIsoString(f) , 
+				//	horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad, 0 ,1 );
+			
+			model.insertaHorarios(Integer.parseInt(view.getTextFieldIdActividad().getText()), dia, horasIni.get(i), horasFin.get(i) );
 			model.insertaHorariosActividad(Integer.parseInt(view.getTextFieldIdActividad().getText()), idHorarios);
 			
-		
 		}
 	}
 
