@@ -37,22 +37,6 @@ public class VisualizarReservasSociosView {
 		this.table = table;
 	}
 
-	public JLabel getLblNewLabel() {
-		return lblNewLabel;
-	}
-
-	public void setLblNewLabel(JLabel lblNewLabel) {
-		this.lblNewLabel = lblNewLabel;
-	}
-
-	public JComboBox getComboBox_Instalacion() {
-		return comboBox_Instalacion;
-	}
-
-	public void setComboBox_Instalacion(JComboBox comboBox_Instalacion) {
-		this.comboBox_Instalacion = comboBox_Instalacion;
-	}
-
 	public JDateChooser getDateChooser_FechaInicio() {
 		return dateChooser_FechaInicio;
 	}
