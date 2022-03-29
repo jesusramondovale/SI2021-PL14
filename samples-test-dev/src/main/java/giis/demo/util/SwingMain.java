@@ -88,25 +88,6 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnCargarDatosIniciales);
-
-
-
-
-
-
-		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones");
-		btnVisualizarReservas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				visualizarReservasInstalacionesController controller = 
-						new visualizarReservasInstalacionesController(
-								new visualizarReservasInstalacionesModel()
-								,new visualizaReservasInstalacionesView());
-
-				controller.initController();
-			}
-		});
-		frame.getContentPane().add(btnVisualizarReservas);
 		
 		JButton btnVisualizarReservasSocios = new JButton("Visualizar Reservas Socios");
 		btnVisualizarReservasSocios.addActionListener(new ActionListener() {
