@@ -22,6 +22,13 @@ public class SociosDisplayDTO {
 	this.setCuota(rowCuota);
 	}
 	
+	public SociosDisplayDTO(int idSocio, String nombre, String apellido1, String apellido2) {
+		super();
+		this.idSocio = idSocio;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+	}
 	
 	public int getIdSocio() {
 		return idSocio;

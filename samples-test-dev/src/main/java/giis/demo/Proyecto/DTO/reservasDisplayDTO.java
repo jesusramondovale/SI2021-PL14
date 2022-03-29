@@ -11,8 +11,27 @@ public class reservasDisplayDTO {
 	private String idSocio;
 	private String estado;
 	private String nombreInstalacion;
+	private String nombre;
 	
 	
+	
+	
+	public reservasDisplayDTO(String idReserva, String fecha, float horaInicio, float horaFin, String estado,
+			String nombre) {
+		super();
+		this.idReserva = idReserva;
+		this.fecha = fecha;
+		this.horaInicio = horaInicio;
+		this.horaFin = horaFin;
+		this.estado = estado;
+		this.nombre = nombre;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	public String getNombreInstalacion() {
 		return nombreInstalacion;
 	}

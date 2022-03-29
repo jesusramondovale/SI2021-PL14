@@ -3,22 +3,21 @@ package giis.demo.Proyecto.View;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class CancelarReservasSociosView {
 
 	private JFrame frame;
 	private JTextField textFieldNombre;
+	
 	public JTextField getTextFieldNombre() {
 		return textFieldNombre;
 	}
@@ -26,8 +25,6 @@ public class CancelarReservasSociosView {
 	public void setTextFieldNombre(JTextField textFieldNombre) {
 		this.textFieldNombre = textFieldNombre;
 	}
-
-	private JTable table;
 	
 	//private JButton btnNewButton;
 	
@@ -91,9 +88,9 @@ public class CancelarReservasSociosView {
 
 	private JLabel lblNewLabel;
 	
-	private  JButton btnComprobarReservas;
-	
 	private JButton btnCancelarReservas ;
+	private JTable table;
+	private JButton btnComprobarReservas;
 
 	/**
 	 * Launch the application.
@@ -124,83 +121,37 @@ public class CancelarReservasSociosView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Cancelar Reservas Socios");
-		frame.setBounds(100, 100, 751, 375);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 483, 311);
 		
-		 lblNewLabel = new JLabel("Nombre");
+		 lblNewLabel = new JLabel("Socio");
+		 lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		 lblNewLabel.setBounds(22, 14, 65, 14);
 		
 		textFieldNombre = new JTextField();
+		textFieldNombre.setBounds(85, 12, 181, 20);
 		textFieldNombre.setEditable(false);
 		textFieldNombre.setColumns(10);
 		
-		btnComprobarReservas = new JButton("Comprobar reserva");
-		btnComprobarReservas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		
 		 scrollPane = new JScrollPane();
+		 scrollPane.setBounds(32, 45, 412, 179);
 		
 		btnCancelarReservas = new JButton("Cancelar Reserva");
+		btnCancelarReservas.setBounds(304, 235, 140, 23);
 		btnCancelarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(111)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
-					.addGap(77)
-					.addComponent(btnComprobarReservas)
-					.addContainerGap(175, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(555, Short.MAX_VALUE)
-					.addComponent(btnCancelarReservas)
-					.addGap(63))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addGap(103)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 525, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(107, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(23)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblNewLabel)
-							.addComponent(textFieldNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnComprobarReservas))
-					.addGap(26)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-					.addGap(47)
-					.addComponent(btnCancelarReservas)
-					.addContainerGap(21, Short.MAX_VALUE))
-		);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"", "", "", "", "", ""
-			}
-		));
 		scrollPane.setViewportView(table);
-		frame.getContentPane().setLayout(groupLayout);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(lblNewLabel);
+		frame.getContentPane().add(textFieldNombre);
+		frame.getContentPane().add(btnCancelarReservas);
+		frame.getContentPane().add(scrollPane);
+		
+		btnComprobarReservas = new JButton("Comprobar Reservas");
+		btnComprobarReservas.setBounds(276, 11, 168, 23);
+		frame.getContentPane().add(btnComprobarReservas);
 	}
 }

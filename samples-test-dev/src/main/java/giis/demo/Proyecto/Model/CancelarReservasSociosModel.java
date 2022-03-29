@@ -7,8 +7,7 @@ import java.util.List;
 import giis.demo.Proyecto.DTO.ReservaDTO;
 import giis.demo.Proyecto.DTO.SociosDTO;
 import giis.demo.Proyecto.DTO.SociosDisplayDTO;
-import giis.demo.Proyecto.DTO.actividadReservaInstalacionDTO;
-import giis.demo.Proyecto.DTO.estadoReservaDTO;
+
 import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.util.Database;
 import giis.demo.util.SwingUtil;
@@ -19,7 +18,7 @@ public class CancelarReservasSociosModel {
 
 	private Database db = new Database();
 
-	private static String SQL3 = "SELECT idSocio , nombre "
+	private static String SQL3 = "SELECT idSocio , nombre , apellido1 , apellido2 "
 			+ "FROM socios "
 			+ "WHERE idSocio = ? ";
 	private static String SQL4 = "SELECT estado FROM reservas WHERE idReserva = ? ";
@@ -41,7 +40,7 @@ public class CancelarReservasSociosModel {
 		}
 		catch(UnexpectedException e) {
 
-			SwingUtil.showMessage("Error SQL -> EstadoCuentasModel", "Error", 0);
+			SwingUtil.showMessage("Error SQL -> Model", "Error", 0);
 
 		}
 		return (!socios.isEmpty());
@@ -53,12 +52,12 @@ public class CancelarReservasSociosModel {
 		return db.executeQueryArray(sql);
 
 	}
-	public List<SociosDisplayDTO> getSocio(String dni) {
+	public List<SociosDisplayDTO> getSocio(String id) {
 
 		String sql="SELECT nombre , apellido1 , apellido2 "
-				+" from socios"
-				+ " where dni=? ";
-		return db.executeQueryPojo(SociosDisplayDTO.class, sql,dni);
+				+"FROM socios "
+				+ "WHERE idSocio = ? ";
+		return db.executeQueryPojo(SociosDisplayDTO.class, sql,id);
 	}
 
 
@@ -66,14 +65,16 @@ public class CancelarReservasSociosModel {
 		String sql = "SELECT r.idReserva , i.nombre , r.fecha , r.horaInicio , r.horaFin , r.estado  " + 
 				"	FROM reservas r " +  
 				"	INNER JOIN instalaciones i USING(idInstalacion) " + 
-				"	WHERE idSocio= ? AND fecha= ?";
+				"	WHERE idSocio= ? ";
 		return db.executeQueryPojo(reservasDisplayDTO.class, sql,dni);
 
 	}
 	
 	public void CancelarReserva (int idReserva) {
 		//Falta borrar la reserva como tal
-		db.executeUpdate("update reserva set estado=2 where id=?", idReserva);
+		db.executeUpdate("UPDATE reservas "
+				+ "SET estado = 'Cancelada' "
+				+ "WHERE idReserva = ? ", idReserva);
 	}
 	
 	public boolean yaPagada(int idReserva) {

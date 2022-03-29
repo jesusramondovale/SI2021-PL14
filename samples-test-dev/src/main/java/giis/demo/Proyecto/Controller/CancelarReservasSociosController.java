@@ -61,15 +61,7 @@ public class CancelarReservasSociosController {
 				this.login.getFrame().setVisible(false);
 				this.view.getframe().setVisible(true);
 
-				//Coge el DNI del Socio y le muestra su nombre en la pantalla
-				String nombrecompleto="";
-				nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getNombre());
-				nombrecompleto.concat(" ");
-				nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido1());
-				nombrecompleto.concat(" ");
-				nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido2());
-
-				this.view.getTextFieldNombre().setText(nombrecompleto);
+				
 
 				SwingUtil.showMessage("Bienvenido! Socio #" + idSocio, "Saludos de nuevo", 2);
 
@@ -90,8 +82,17 @@ public class CancelarReservasSociosController {
 	private void getReservas() {
 		List<reservasDisplayDTO> list= null;
 
-		list = model.getReservas(idSocio);
+		//Coge el DNI del Socio y le muestra su nombre en la pantalla
+		String nombrecompleto = new String();
+		
+		nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getNombre());
+		nombrecompleto = nombrecompleto.concat(" ");
+		nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido1());
+		nombrecompleto = nombrecompleto.concat(" ");
+		nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido2());
 
+		this.view.getTextFieldNombre().setText(nombrecompleto);
+		list = model.getReservas(idSocio);
 		if(list.isEmpty()) {
 			SwingUtil.showMessage("No existen reservas en la BD todavía!", "Error", 0);
 		}
@@ -124,14 +125,14 @@ public class CancelarReservasSociosController {
 
 		else { // Hay exactamente 1 fila seleccionada en la tabla
 
-			int idReserva = (int) this.view.getTable().getModel().getValueAt(this.view.getTable().getSelectedRow(), 0);
+			int idReserva = Integer.parseInt( this.view.getTable().getModel().getValueAt(this.view.getTable().getSelectedRow(), 0).toString());
 
 			boolean yaPagada =  model.yaPagada(idReserva);
 
 
 			if(!model.enFecha(idReserva)) {
 
-				SwingUtil.showMessage("La reserva seleccionada ya ha pasado o se encuentra en uso!", "Error", 0);			
+				SwingUtil.showMessage("No puede cancelarse la reserva dado que esta ya ha pasado, o queda menos de 1h para su comienzo!", "Error", 0);			
 
 			} // end fecha ya pasada 
 
@@ -159,23 +160,17 @@ public class CancelarReservasSociosController {
 					System.out.println("#Número de reserva: " + idReserva);
 					System.out.print("#Número de socio: " + this.login.getTxtId().getText());
 
-					System.out.print(" (" + 
-
-						this.view.getTable().getModel().getValueAt(
-								this.view.getTable().getSelectedRow() , 1) + " " +
-
-						this.view.getTable().getModel().getValueAt(
-								this.view.getTable().getSelectedRow() , 2) + ")\n");
+					System.out.print(" (" + this.view.getTextFieldNombre().getText() + ")\n");
 
 					System.out.println("Fecha de la Reserva (AAAA-MM-DD): " + 
 							this.view.getTable().getModel().getValueAt(
-									this.view.getTable().getSelectedRow() , 4));
+									this.view.getTable().getSelectedRow() , 2));
 
 					System.out.println("Fecha de Cancelación (AAAA-MM-DD): " + Util.dateToIsoString(new Date()));
 					System.out.println("----------------------------------------------");
 
 
-					File recibosCSV = new File("C://Users/Usuario/Desktop/recibos.csv");
+					File recibosCSV = new File("./recibo.csv");
 					try {
 
 
@@ -194,27 +189,31 @@ public class CancelarReservasSociosController {
 						String[] cabecera = {" #N Reserva " , " #ID Socio ", " Nombre " , "Instalacion" , "Fecha de reserva" , "Fecha de Cancelacion" , "Importe (euros)"};
 
 
-						data.add(new String [] { Integer.toString(idReserva)  ,  
+						data.add(new String [] { 
+
+								//ID reserva
+								Integer.toString(idReserva)  , 
+
+								//ID de socio
 								this.login.getTxtId().getText() , 
 
-								(String) this.view.getTable().getModel().getValueAt(
-										this.view.getTable().getSelectedRow() , 1) + " " + 
-										this.view.getTable().getModel().getValueAt(
-												this.view.getTable().getSelectedRow() , 2) 
-										,
+								// Nombre de Socio
+								this.view.getTextFieldNombre().getText()
+								,
 
-										this.view.getTable().getModel().getValueAt(
-												this.view.getTable().getSelectedRow() , 3).toString()
-										,
+								
+								this.view.getTable().getModel().getValueAt(
+										this.view.getTable().getSelectedRow() , 1).toString()
+								,
 
-										this.view.getTable().getModel().getValueAt(
-												this.view.getTable().getSelectedRow() , 4).toString()
-										,
+								this.view.getTable().getModel().getValueAt(
+										this.view.getTable().getSelectedRow() , 2).toString()
+								,
 
-										Util.dateToIsoString(new Date())
-										,
+								Util.dateToIsoString(new Date())
+								,
 
-										Integer.toString(model.getImporte(idReserva)) +" euros"
+								Integer.toString(model.getImporte(idReserva)) +" euros"
 
 						});
 
@@ -229,19 +228,6 @@ public class CancelarReservasSociosController {
 						e.printStackTrace();
 						SwingUtil.showMessage("Error creando el fichero CSV", "Error", 0);
 					}
-
-
-
-
-
-					/*
-					 *  POR IMPLEMENTAR 
-					 * 
-					 *  Código para generar el output a 
-					 *  envíar al departamento de contabilidad 
-					 *  para que efectúen el reembolso correspondiente
-					 * 
-					 */
 
 
 				} // end yaPagada situation 
