@@ -117,10 +117,6 @@ public class VisualizarReservasSociosView {
 		this.lblNewLabel_3 = lblNewLabel_3;
 	}
 
-	private JLabel lblNewLabel ;
-
-	private JComboBox comboBox_Instalacion ;
-
 	private JDateChooser dateChooser_FechaInicio;
 
 	private JLabel lblNewLabel_1 ;
@@ -166,10 +162,6 @@ public class VisualizarReservasSociosView {
 		frmVisualizarReservasSocios.setBounds(100, 100, 801, 398);
 		frmVisualizarReservasSocios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		lblNewLabel = new JLabel("Instalacion");
-
-		comboBox_Instalacion = new JComboBox();
-
 		dateChooser_FechaInicio = new JDateChooser();
 
 		lblNewLabel_1 = new JLabel("Fecha Inicio");
@@ -205,61 +197,53 @@ public class VisualizarReservasSociosView {
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 											.addComponent(dateChooser_FechaFin, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
 											.addComponent(dateChooser_FechaInicio, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-									.addComponent(textField_Nombre_Completo, Alignment.TRAILING)
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblNewLabel)
-										.addGap(18)
-										.addComponent(comboBox_Instalacion, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(textField_Nombre_Completo, Alignment.TRAILING))
 								.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
 							.addGap(49)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 436, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(87, Short.MAX_VALUE))
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 496, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(26, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGap(45)
+							.addComponent(scrollPane, 0, 0, Short.MAX_VALUE))
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 							.addGap(47)
 							.addComponent(lblNewLabel_3)
 							.addGap(18)
 							.addComponent(textField_Nombre_Completo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(31)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel)
-								.addComponent(comboBox_Instalacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(42)
+							.addGap(87)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(lblNewLabel_1)
-								.addComponent(dateChooser_FechaInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(39)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel_2)
-								.addComponent(dateChooser_FechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(34)
-							.addComponent(btnNewButton_MostrarReservas))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(45)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(33, Short.MAX_VALUE))
+								.addComponent(dateChooser_FechaInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addGap(39)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblNewLabel_2)
+						.addComponent(dateChooser_FechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(34)
+					.addComponent(btnNewButton_MostrarReservas)
+					.addContainerGap(29, Short.MAX_VALUE))
 		);
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"ID Reserva", "Instalacion", "Precio por Hora", "Pagado"
+				"", "", "", "", "", ""
 			}
 		));
 		scrollPane.setViewportView(table);

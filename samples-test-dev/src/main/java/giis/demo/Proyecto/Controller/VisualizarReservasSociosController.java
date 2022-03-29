@@ -1,7 +1,11 @@
 package giis.demo.Proyecto.Controller;
 
 import java.text.ParseException;
+import java.util.List;
 
+import javax.swing.table.TableModel;
+
+import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.Proyecto.Model.VisualizarReservasSociosModel;
 import giis.demo.Proyecto.View.LoginView;
 import giis.demo.Proyecto.View.VisualizarReservasSociosView;
@@ -17,7 +21,7 @@ public class VisualizarReservasSociosController {
 
 
 	//En el constructor, necesitaremos pasar como argumento una ventana de Login
-	public VisualizarReservasSociosController(LoginView login , VisualizarReservasSociosView view, VisualizarReservasSociosModel model) {
+	public VisualizarReservasSociosController(VisualizarReservasSociosModel model, VisualizarReservasSociosView view, LoginView login) {
 
 		this.login = login;
 		this.view = view;
@@ -75,9 +79,45 @@ public class VisualizarReservasSociosController {
 
 			SwingUtil.showMessage("Error! Introduzca un #ID de Socio válido (numérico)", "Vaya...", 0);
 
+		}
+	}
+	
+	
+	@SuppressWarnings("unused")
+	private void getReservas() {
+		List<reservasDisplayDTO> list= null;
+
+		//Coge el DNI del Socio y le muestra su nombre en la pantalla
+		String nombrecompleto = new String();
+		
+		nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getNombre());
+		nombrecompleto = nombrecompleto.concat(" ");
+		nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido1());
+		nombrecompleto = nombrecompleto.concat(" ");
+		nombrecompleto = nombrecompleto.concat(this.model.getSocio(idSocio).get(0).getApellido2());
+
+		this.view.getTextField_Nombre_Completo().setText(nombrecompleto);
+		list = model.getReservas(idSocio);
+		if(list.isEmpty()) {
+			SwingUtil.showMessage("No existen reservas en la BD todavía!", "Error", 0);
+		}
+		else {
+			//Generamos el modelo de tabla y lo cargamos con los datos de la BD
+			TableModel tmodel=SwingUtil.getTableModelFromPojos(list, new String[] { 
+					"idReserva" , "nombre" , "fecha" , "horaInicio" , "horaFin" , "estado" },
+					new String[] { 
+							"Id Reserva"  , "Instalacion" , "Fecha" , "Hora Inicio" ,"HoraFin", "Pagado" });
+
+
+			// Asigna a la tabla de la vista el modelo generado
+			view.getTable().setModel(tmodel);
+			SwingUtil.autoAdjustColumns(view.getTable());
 
 		}
 
-
 	}
+	
+	
+	
+	
 }

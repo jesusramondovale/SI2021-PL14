@@ -107,6 +107,21 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnVisualizarReservas);
+		
+		JButton btnVisualizarReservasSocios = new JButton("Visualizar Reservas Socios");
+		btnVisualizarReservasSocios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VisualizarReservasSociosController controller = new VisualizarReservasSociosController(new VisualizarReservasSociosModel() , new VisualizarReservasSociosView(), new LoginView());
+				try {
+					controller.initController();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		frame.getContentPane().add(btnVisualizarReservasSocios);
 
 
 
