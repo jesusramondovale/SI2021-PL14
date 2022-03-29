@@ -1,7 +1,7 @@
 --Datos para carga inicial de la base de datos
 
 BEGIN TRANSACTION;
-INSERT INTO "instalaciones" VALUES (1,'pista de p·del',10);
+INSERT INTO "instalaciones" VALUES (1,'pista de p√°del',10);
 INSERT INTO "instalaciones" VALUES (2,'campo de futbito',12);
 INSERT INTO "instalaciones" VALUES (3,'cancha de baloncesto',12);
 INSERT INTO "instalaciones" VALUES (4,'salon de yoga',9);
@@ -28,7 +28,7 @@ INSERT INTO "periodos" VALUES (3,'Junio','2021-04-27','2021-06-04','2021-07-29')
 
 
 INSERT INTO "actividades" VALUES (1,'Tenis','Tenis',20,25,'2021-05-01','2021-06-18',1,1,25,1);
-INSERT INTO "actividades" VALUES (2,'NataciÛn','NataciÛn',12,16,'2021-05-02','2021-06-24',2,1,0,6);
+INSERT INTO "actividades" VALUES (2,'Nataci√≥n','Nataci√≥n',12,16,'2021-05-02','2021-06-24',2,1,0,6);
 INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12,16,'2021-05-03','2021-06-24',1,2,1,6);
 
 
