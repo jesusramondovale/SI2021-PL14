@@ -143,74 +143,34 @@ public class VisualizarReservasSociosView {
 	private void initialize() {
 		frmVisualizarReservasSocios = new JFrame();
 		frmVisualizarReservasSocios.setTitle("Visualizar Reservas Socios");
-		frmVisualizarReservasSocios.setBounds(100, 100, 801, 398);
+		frmVisualizarReservasSocios.setBounds(100, 100, 719, 354);
 		frmVisualizarReservasSocios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		dateChooser_FechaInicio = new JDateChooser();
+		dateChooser_FechaInicio.setBounds(100, 128, 106, 20);
 
 		lblNewLabel_1 = new JLabel("Fecha Inicio");
+		lblNewLabel_1.setBounds(33, 128, 57, 14);
 
 		lblNewLabel_2 = new JLabel("Fecha Fin");
+		lblNewLabel_2.setBounds(33, 180, 46, 14);
 
 		dateChooser_FechaFin = new JDateChooser();
+		dateChooser_FechaFin.setBounds(100, 180, 106, 20);
 
 		scrollPane = new JScrollPane();
+		scrollPane.setBounds(263, 45, 413, 172);
 
 		btnNewButton_MostrarReservas = new JButton("Mostrar Reservas");
+		btnNewButton_MostrarReservas.setBounds(70, 237, 117, 23);
 		
 		JLabel lblNewLabel_3 = new JLabel("Nombre:");
+		lblNewLabel_3.setBounds(33, 47, 48, 14);
 		
 		textField_Nombre_Completo = new JTextField();
+		textField_Nombre_Completo.setBounds(33, 79, 181, 20);
 		textField_Nombre_Completo.setEditable(false);
 		textField_Nombre_Completo.setColumns(10);
-		GroupLayout groupLayout = new GroupLayout(frmVisualizarReservasSocios.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(33)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_MostrarReservas)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-									.addGroup(groupLayout.createSequentialGroup()
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addComponent(lblNewLabel_1)
-											.addComponent(lblNewLabel_2))
-										.addGap(18)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addComponent(dateChooser_FechaFin, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-											.addComponent(dateChooser_FechaInicio, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-									.addComponent(textField_Nombre_Completo, Alignment.TRAILING))
-								.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
-							.addGap(49)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 496, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(26, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addGap(45)
-							.addComponent(scrollPane, 0, 0, Short.MAX_VALUE))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addGap(47)
-							.addComponent(lblNewLabel_3)
-							.addGap(18)
-							.addComponent(textField_Nombre_Completo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(87)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel_1)
-								.addComponent(dateChooser_FechaInicio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addGap(39)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblNewLabel_2)
-						.addComponent(dateChooser_FechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(34)
-					.addComponent(btnNewButton_MostrarReservas)
-					.addContainerGap(29, Short.MAX_VALUE))
-		);
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -231,6 +191,14 @@ public class VisualizarReservasSociosView {
 			}
 		));
 		scrollPane.setViewportView(table);
-		frmVisualizarReservasSocios.getContentPane().setLayout(groupLayout);
+		frmVisualizarReservasSocios.getContentPane().setLayout(null);
+		frmVisualizarReservasSocios.getContentPane().add(btnNewButton_MostrarReservas);
+		frmVisualizarReservasSocios.getContentPane().add(lblNewLabel_1);
+		frmVisualizarReservasSocios.getContentPane().add(lblNewLabel_2);
+		frmVisualizarReservasSocios.getContentPane().add(dateChooser_FechaFin);
+		frmVisualizarReservasSocios.getContentPane().add(dateChooser_FechaInicio);
+		frmVisualizarReservasSocios.getContentPane().add(textField_Nombre_Completo);
+		frmVisualizarReservasSocios.getContentPane().add(lblNewLabel_3);
+		frmVisualizarReservasSocios.getContentPane().add(scrollPane);
 	}
 }

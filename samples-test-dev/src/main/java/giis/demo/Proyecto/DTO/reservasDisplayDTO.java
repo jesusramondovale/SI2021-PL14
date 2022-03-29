@@ -10,9 +10,34 @@ public class reservasDisplayDTO {
 	private String idActividad;
 	private String idSocio;
 	private String estado;
+	private String nombreInstalacion;
+	private String nombre;
 	
 	
 	
+	
+	public reservasDisplayDTO(String idReserva, String fecha, float horaInicio, float horaFin, String estado,
+			String nombre) {
+		super();
+		this.idReserva = idReserva;
+		this.fecha = fecha;
+		this.horaInicio = horaInicio;
+		this.horaFin = horaFin;
+		this.estado = estado;
+		this.nombre = nombre;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getNombreInstalacion() {
+		return nombreInstalacion;
+	}
+	public void setNombreInstalacion(String nombreInstalacion) {
+		this.nombreInstalacion = nombreInstalacion;
+	}
 	public reservasDisplayDTO() {}
 	public reservasDisplayDTO(String rowIdReserva, String rowIdUsuario,String rowFechaReserva, float rowHoraInicioReserva,float rowHoraFinReserva,String rowNombreInstalacion, 
 								String rowEstadoReserva,String rowNombreActividad) {
@@ -24,6 +49,19 @@ public class reservasDisplayDTO {
 		this.idActividad = rowNombreActividad;
 		this.idSocio=rowIdUsuario;
 		this.estado=rowEstadoReserva;
+	}
+	
+	public reservasDisplayDTO(String idReserva, String fecha, float horaInicio, float horaFin, String idInstalacion,
+			String idSocio, String estado, String nombreInstalacion) {
+		super();
+		this.idReserva = idReserva;
+		this.fecha = fecha;
+		this.horaInicio = horaInicio;
+		this.horaFin = horaFin;
+		this.idInstalacion = idInstalacion;
+		this.idSocio = idSocio;
+		this.estado = estado;
+		this.nombreInstalacion = nombreInstalacion;
 	}
 	public String getIdReserva() {
 		return idReserva;

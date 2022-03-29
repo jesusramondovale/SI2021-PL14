@@ -43,9 +43,7 @@ public class VisualizarReservasSociosController {
 		//Aquí se asigna la función del método login() al botón de login del LoginView
 		this.login.getBtnLogear().addActionListener(e -> SwingUtil.exceptionWrapper(() -> login()));
 
-
-		//this.view.getBtnActualizarActividades().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarActividades()));
-		//this.view.getBtnActualizarInstalaciones().addActionListener(e -> SwingUtil.exceptionWrapper(() -> actualizarInstalaciones()));
+		this.view.getBtnNewButton_MostrarReservas().addActionListener(e -> SwingUtil.exceptionWrapper(() -> getReservas()));
 
 	}
 
