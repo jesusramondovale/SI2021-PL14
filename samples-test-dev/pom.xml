@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -106,7 +107,12 @@
 			<version>1.7</version>
 		</dependency>
 
-
+		<!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+		<dependency>
+			<groupId>com.toedter</groupId>
+			<artifactId>jcalendar</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 
 	</dependencies>
@@ -281,7 +287,8 @@
 										<include name="**/*.xml" />
 									</fileset>
 									<report format="frames" todir="target/site/junit-frames" />
-									<report format="noframes" todir="target/site/junit-noframes" />
+									<report format="noframes"
+										todir="target/site/junit-noframes" />
 								</junitreport>
 							</target>
 						</configuration>
@@ -295,7 +302,8 @@
 						<phase>install</phase>
 						<configuration>
 							<target>
-								<zip destfile="${project.build.directory}/${project.build.finalName}.zip">
+								<zip
+									destfile="${project.build.directory}/${project.build.finalName}.zip">
 									<zipfileset dir="src" prefix="src" />
 									<zipfileset dir=".settings" prefix=".settings" />
 									<zipfileset file="pom.xml" />
