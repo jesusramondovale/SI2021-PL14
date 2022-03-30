@@ -1,6 +1,7 @@
 package giis.demo.Proyecto.Controller;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.table.TableModel;
@@ -37,6 +38,10 @@ public class VisualizarReservasSociosController {
 
 	}
 
+	public void IniciaFechas () {
+		view.getDateChooser_FechaInicio().setDate(new Date());
+		view.getDateChooser_FechaFin().setDate(new Date());
+	}
 
 	public void initController() throws ParseException{
 
@@ -64,6 +69,7 @@ public class VisualizarReservasSociosController {
 				this.idSocio = idSocio;
 				this.login.getFrame().setVisible(false);
 				this.view.getFrmVisualizarReservasSocios().setVisible(true);
+				IniciaFechas();
 				SwingUtil.showMessage("Bienvenido! Socio #" + idSocio, "Saludos de nuevo", 2);
 
 			}
@@ -79,6 +85,7 @@ public class VisualizarReservasSociosController {
 			SwingUtil.showMessage("Error! Introduzca un #ID de Socio válido (numérico)", "Vaya...", 0);
 
 		}
+		
 	}
 
 

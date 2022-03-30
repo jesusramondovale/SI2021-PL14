@@ -144,7 +144,6 @@ public class VisualizarReservasSociosView {
 		frmVisualizarReservasSocios = new JFrame();
 		frmVisualizarReservasSocios.setTitle("Visualizar Reservas Socios");
 		frmVisualizarReservasSocios.setBounds(100, 100, 719, 354);
-		frmVisualizarReservasSocios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		dateChooser_FechaInicio = new JDateChooser();
 		dateChooser_FechaInicio.setBounds(100, 128, 106, 20);
