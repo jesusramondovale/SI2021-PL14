@@ -15,6 +15,7 @@ import giis.demo.Proyecto.Model.*;
 import giis.demo.Proyecto.View.*;
 
 import giis.demo.tkrun.*;
+import java.awt.FlowLayout;
 
 /**
  * Punto de entrada principal que incluye botones para la ejecucion de las pantallas 
@@ -25,7 +26,7 @@ import giis.demo.tkrun.*;
  */
 public class SwingMain {
 
-	private JFrame frame;
+	private JFrame frmGestr;
 
 	/**
 	 * Launch the application.
@@ -35,7 +36,7 @@ public class SwingMain {
 			public void run() {
 				try {
 					SwingMain window = new SwingMain();
-					window.frame.setVisible(true);
+					window.frmGestr.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace(); //NOSONAR codigo autogenerado
 				}
@@ -54,10 +55,10 @@ public class SwingMain {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setTitle("Main");
-		frame.setBounds(0, 0, 415, 497);
-		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		frmGestr = new JFrame();
+		frmGestr.setTitle("Gestión Centro Deportivo");
+		frmGestr.setBounds(0, 0, 417, 257);
+		frmGestr.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
 		btnEjecutarTkrun.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
@@ -66,8 +67,8 @@ public class SwingMain {
 				controller.initController();
 			}
 		});
-		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-		frame.getContentPane().add(btnEjecutarTkrun);
+		frmGestr.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		frmGestr.getContentPane().add(btnEjecutarTkrun);
 		
 			
 		JButton btnInicializarBaseDeDatos = new JButton("Inicializar Base de Datos en Blanco");
@@ -77,7 +78,7 @@ public class SwingMain {
 				db.createDatabase(false);
 			}
 		});
-		frame.getContentPane().add(btnInicializarBaseDeDatos);
+		frmGestr.getContentPane().add(btnInicializarBaseDeDatos);
 			
 		JButton btnCargarDatosIniciales = new JButton("Cargar Datos Iniciales para Pruebas");
 		btnCargarDatosIniciales.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
@@ -87,7 +88,7 @@ public class SwingMain {
 				db.loadDatabase();
 			}
 		});
-		frame.getContentPane().add(btnCargarDatosIniciales);
+		frmGestr.getContentPane().add(btnCargarDatosIniciales);
 		
 		JButton btnMostrarActividades = new JButton("Mostrar Actividades");
 		btnMostrarActividades.addActionListener(new ActionListener() {
@@ -97,7 +98,7 @@ public class SwingMain {
 				controller.initController();
 			}
 		});
-		frame.getContentPane().add(btnMostrarActividades);
+		frmGestr.getContentPane().add(btnMostrarActividades);
 		
 		
 		JButton boton_CrearActividad = new JButton("Crear Actividad");
@@ -107,7 +108,7 @@ public class SwingMain {
 				controller.initController();
 			}
 		});
-		frame.getContentPane().add(boton_CrearActividad);
+		frmGestr.getContentPane().add(boton_CrearActividad);
 		
 		JButton btnNewButton = new JButton("Crear Periodo");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -116,7 +117,7 @@ public class SwingMain {
 				controller.initController();
 			}
 		});
-		frame.getContentPane().add(btnNewButton);
+		frmGestr.getContentPane().add(btnNewButton);
 		
 		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones");
 		btnVisualizarReservas.addActionListener(new ActionListener() {
@@ -130,7 +131,7 @@ public class SwingMain {
 				controller.initController();
 			}
 		});
-		frame.getContentPane().add(btnVisualizarReservas);
+		frmGestr.getContentPane().add(btnVisualizarReservas);
 		
 		
 		JButton btnReservar = new JButton("Realizar reserva");
@@ -140,7 +141,7 @@ public class SwingMain {
 	                controller.initController();
 			}
 		});
-		frame.getContentPane().add(btnReservar);
+		frmGestr.getContentPane().add(btnReservar);
 		
 		JButton btnRealizarReservaPersonalizada = new JButton("Realizar Reserva Personalizada");
 		btnRealizarReservaPersonalizada.addActionListener(new ActionListener() {
@@ -157,7 +158,7 @@ public class SwingMain {
 							
 			}
 		});
-		frame.getContentPane().add(btnRealizarReservaPersonalizada);
+		frmGestr.getContentPane().add(btnRealizarReservaPersonalizada);
 		
 		JButton btnReservaAuto = new JButton("Realizar Reserva AUTO");
 		btnReservaAuto.addActionListener(new ActionListener() {
@@ -174,7 +175,7 @@ public class SwingMain {
 							
 			}
 		});
-		frame.getContentPane().add(btnReservaAuto);
+		frmGestr.getContentPane().add(btnReservaAuto);
 		
 		JButton btnCancelarReservas = new JButton("Cancelar Reservas");
 		btnCancelarReservas.addActionListener(new ActionListener() {
@@ -183,7 +184,7 @@ public class SwingMain {
 				controller.initController();
 			}
 		});
-		frame.getContentPane().add(btnCancelarReservas);
+		frmGestr.getContentPane().add(btnCancelarReservas);
 		
 		JButton btnContabilidad = new JButton("Contabilidad");
 		btnContabilidad.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
@@ -200,10 +201,10 @@ public class SwingMain {
 		
 		
 		
-		frame.getContentPane().add(btnContabilidad);
+		frmGestr.getContentPane().add(btnContabilidad);
 
 	}
 
-	public JFrame getFrame() { return this.frame; }
+	public JFrame getFrame() { return this.frmGestr; }
 	
 }
