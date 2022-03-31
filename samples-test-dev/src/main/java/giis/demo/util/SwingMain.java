@@ -158,6 +158,23 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnRealizarReservaPersonalizada);
+		
+		JButton btnReservaAuto = new JButton("Realizar Reserva AUTO");
+		btnReservaAuto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AutoReservaController controller=new AutoReservaController(new AutoReservaView() , new AutoReservaModel());
+				try {
+					controller.initController();
+				} catch (ParseException e1) {
+					
+					e1.printStackTrace();
+				}
+				
+							
+			}
+		});
+		frame.getContentPane().add(btnReservaAuto);
 
 	}
 
