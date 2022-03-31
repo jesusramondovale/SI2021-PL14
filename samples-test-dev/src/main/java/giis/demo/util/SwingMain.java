@@ -184,6 +184,23 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnCancelarReservas);
+		
+		JButton btnContabilidad = new JButton("Contabilidad");
+		btnContabilidad.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+			public void actionPerformed(ActionEvent e) {
+				EstadoCuentasController controller = new EstadoCuentasController (new LoginView() , new EstadoCuentasView() , new EstadoCuentasModel());
+				try {
+					controller.initController();
+				} catch (ParseException e1) {
+					
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		
+		
+		frame.getContentPane().add(btnContabilidad);
 
 	}
 

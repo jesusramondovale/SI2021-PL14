@@ -46,7 +46,7 @@ public class CancelarReservasModel {
 
 		List<ReservaDTO> data = db.executeQueryPojo(ReservaDTO.class, SQL6, idReserva);
 		
-		int precio = data.get(0).getPrecioHora();
+		int precio = (int) data.get(0).getPrecioHora();
 		int horas = (int) (data.get(0).getHoraFin() - data.get(0).getHoraInicio());
 		
 		return horas*precio;	

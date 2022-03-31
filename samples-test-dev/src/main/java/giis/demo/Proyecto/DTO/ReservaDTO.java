@@ -10,149 +10,47 @@ public class ReservaDTO {
 	private int idInstalacion;
 	private int idActividad;
 	private int idSocio;
-	private String nombre, apellido1 , apellido2;
-	private String estado;
-	private int precioHora; 
 	
+	private String estado;
+	private float precioHora;
 	
 
 	public ReservaDTO() {
-		
+		super();
 	}
 
 	
 	
-	
-	
-	
-	
-
-
-
-
-
-
-	public ReservaDTO(int idReserva, float horaInicio, float horaFin, int idInstalacion, int precio) {
-		super();
-		this.idReserva = idReserva;
-		this.horaInicio = horaInicio;
-		this.horaFin = horaFin;
-		this.idInstalacion = idInstalacion;
-		this.precioHora = precio;
+	public float getPrecioHora() {
+		return precioHora;
 	}
 
 
 
-
-
-
-
-	public ReservaDTO(int idReserva, String fecha, float horaInicio, float horaFin, int idInstalacion, int idActividad,
-			int idSocio, String nombre, String apellido1, String apellido2, String estado, int precio) {
-		super();
-		this.idReserva = idReserva;
-		this.fecha = fecha;
-		this.horaInicio = horaInicio;
-		this.horaFin = horaFin;
-		this.idInstalacion = idInstalacion;
-		this.idActividad = idActividad;
-		this.idSocio = idSocio;
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
-		this.estado = estado;
-		this.precioHora = precio;
-	}
-
-
-
-
-
-
-
-	public ReservaDTO(int idReserva, String fecha, float horaInicio, int idInstalacion, String nombre, String apellido1,
-			String estado) {
-		super();
-		this.idReserva = idReserva;
-		this.fecha = fecha;
-		this.horaInicio = horaInicio;
-		this.idInstalacion = idInstalacion;
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.estado = estado;
-	}
-
-
-
-
-
-
-	public ReservaDTO(int idReserva, String fecha, float horaInicio) {
-		super();
-		this.idReserva = idReserva;
-		this.fecha = fecha;
-		this.horaInicio = horaInicio;
-	}
-
-
-
-
-
-
-	public ReservaDTO(int idReserva, String estado) {
-		super();
-		this.idReserva = idReserva;
-		this.estado = estado;
-	}
-
-
-
-
-
-	public ReservaDTO(String fecha, float horaInicio, int idInstalacion, int idSocio, String nombre, String apellido1,
-			String apellido2) {
-		super();
-		this.fecha = fecha;
-		this.horaInicio = horaInicio;
-		this.idInstalacion = idInstalacion;
-		this.idSocio = idSocio;
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
-	}
-
-
-
-
-
-	public ReservaDTO(int idReserva, float horaInicio, float horaFin, int precioHora) {
-		super();
-		this.idReserva = idReserva;
-		this.horaInicio = horaInicio;
-		this.horaFin = horaFin;
+	public void setPrecioHora(float precioHora) {
 		this.precioHora = precioHora;
 	}
 
 
 
-
-
-
-
-	public ReservaDTO(int idReserva, String fecha, float horaInicio, float horaFin, int idInstalacion, int idActividad,
-			int idSocio, String nombre, String apellido1, String apellido2, String estado) {
+	public ReservaDTO(String fecha, int idInstalacion, String estado, int precio) {
 		super();
-		this.idReserva = idReserva;
+		this.fecha = fecha;
+		this.idInstalacion = idInstalacion;
+		this.estado = estado;
+		this.precioHora = precio;
+	}
+
+
+
+	public ReservaDTO(String fecha, float horaInicio, float horaFin, int idInstalacion, String estado, int precio) {
+		super();
 		this.fecha = fecha;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
 		this.idInstalacion = idInstalacion;
-		this.idActividad = idActividad;
-		this.idSocio = idSocio;
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
 		this.estado = estado;
+		this.precioHora = precio;
 	}
 
 
@@ -185,77 +83,6 @@ public class ReservaDTO {
 		this.estado = estado;
 	}
 
-	
-	
-	
-	public String getNombre() {
-		return nombre;
-	}
-
-
-
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-
-
-
-
-	public String getApellido1() {
-		return apellido1;
-	}
-
-
-
-
-
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
-	}
-
-
-
-
-
-	public String getApellido2() {
-		return apellido2;
-	}
-
-
-
-
-
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
-	}
-
-
-
-
-
-	public int getPrecioHora() {
-		return precioHora;
-	}
-
-
-
-
-
-
-
-	public void setPrecioHora(int precio) {
-		this.precioHora = precio;
-	}
-
-
-
-
-
-
-
 	public int getIdReserva() {
 		return idReserva;
 	}
@@ -267,6 +94,20 @@ public class ReservaDTO {
 	public String getFecha() {
 		return fecha;
 	}
+	
+	
+
+	public float getPrecioSocio() {
+		return precioHora;
+	}
+
+
+
+	public void setPrecioSocio(int precio) {
+		this.precioHora = precio;
+	}
+
+
 
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
