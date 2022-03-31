@@ -352,12 +352,9 @@ public class TableColumnAdjuster implements PropertyChangeListener, TableModelLi
 	/*
 	 *  Action to adjust or restore the width of a single column or all columns
 	 */
+	@SuppressWarnings("serial")
 	class ColumnAction extends AbstractAction
 	{
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
 		private boolean isSelectedColumn;
 		private boolean isAdjust;
 
@@ -398,12 +395,9 @@ public class TableColumnAdjuster implements PropertyChangeListener, TableModelLi
 	 *  Toggle properties of the TableColumnAdjuster so the user can
 	 *  customize the functionality to their preferences
 	 */
+	@SuppressWarnings("serial")
 	class ToggleAction extends AbstractAction
 	{
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
 		private boolean isToggleDynamic;
 		private boolean isToggleLarger;
 

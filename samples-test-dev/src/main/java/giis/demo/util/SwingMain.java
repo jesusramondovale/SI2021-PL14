@@ -99,22 +99,6 @@ public class SwingMain {
 		});
 		frame.getContentPane().add(btnMostrarActividades);
 		
-		JButton btnRealizarReserva = new JButton("Realizar Reserva");
-		btnRealizarReserva.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				RealizarReservasController controller=new RealizarReservasController(new RealizarReservasView() , new RealizaReservaModel());
-				try {
-					controller.initController();
-				} catch (ParseException e1) {
-					
-					e1.printStackTrace();
-				}
-				
-							
-			}
-		});
-		frame.getContentPane().add(btnRealizarReserva);
 		
 		JButton boton_CrearActividad = new JButton("Crear Actividad");
 		boton_CrearActividad.addActionListener(new ActionListener() {
@@ -157,6 +141,23 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnReservar);
+		
+		JButton btnRealizarReservaPersonalizada = new JButton("Realizar Reserva Personalizada");
+		btnRealizarReservaPersonalizada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ReservaPersonalizadaController controller=new ReservaPersonalizadaController(new ReservaPersonalizadaView() , new ReservaPersonalizadaModel());
+				try {
+					controller.initController();
+				} catch (ParseException e1) {
+					
+					e1.printStackTrace();
+				}
+				
+							
+			}
+		});
+		frame.getContentPane().add(btnRealizarReservaPersonalizada);
 
 	}
 
