@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS "reservas" (
 	"idInstalacion"	INTEGER NOT NULL,
 	"idActividad"	INTEGER,
 	"idSocio"	INTEGER,
-	"estado"	INTEGER,
+	"estado"	TEXT,
 	PRIMARY KEY("idReserva" AUTOINCREMENT),
 	FOREIGN KEY("idSocio") REFERENCES "socios"("idSocio"),
 	FOREIGN KEY("idInstalacion") REFERENCES "instalaciones"("idInstalacion"),
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS "pagos" (
 	"idPago"	INTEGER,
 	"importe"	NUMERIC,
 	"fecha"	TEXT,
-	"estado"	INTEGER,
+	"estado"	TEXT,
 	"idSocio"	INTEGER,
 	"idNoSocio"	INTEGER,
 	"idActividad"	INTEGER,
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS "actividades" (
 	"fechaInicio"	TEXT NOT NULL,
 	"fechaFin"	TEXT NOT NULL,
 	"idPeriodoInscripcion"	INTEGER NOT NULL,
-	"estado"	INTEGER NOT NULL,
+	"estado"	TEXT NOT NULL,
 	"plazas"	INTEGER,
 	"idInstalacion"	INTEGER,
 	PRIMARY KEY("idActividad" AUTOINCREMENT),
@@ -175,4 +175,3 @@ CREATE TABLE IF NOT EXISTS "listaEsperaNoSocios" (
 	FOREIGN KEY("idActividad") REFERENCES "actividades"("idActividad")
 );
 COMMIT;
-

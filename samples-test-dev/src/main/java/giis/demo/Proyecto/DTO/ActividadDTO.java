@@ -7,7 +7,9 @@ public class ActividadDTO {
 	private String nombre,tipo; //tipo=descripcion
 	private Integer precioSocio, precioNoSocio;
 	private String fechaInicio,fechaFin;
-	private Integer plazas, idInstalacion, idPeriodoInscripcion, estado;
+	private Integer plazas, idInstalacion, idPeriodoInscripcion;
+	private String estado;
+	
 	
 	
 	
@@ -110,12 +112,12 @@ public class ActividadDTO {
 	}
 
 
-	public Integer getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
 
-	public void setEstado(Integer estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
