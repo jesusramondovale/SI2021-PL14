@@ -175,6 +175,15 @@ public class SwingMain {
 			}
 		});
 		frame.getContentPane().add(btnReservaAuto);
+		
+		JButton btnCancelarReservas = new JButton("Cancelar Reservas");
+		btnCancelarReservas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CancelarReservasController controller = new CancelarReservasController(new CancelarReservasModel() , new CancelarReservasView());
+				controller.initController();
+			}
+		});
+		frame.getContentPane().add(btnCancelarReservas);
 
 	}
 
