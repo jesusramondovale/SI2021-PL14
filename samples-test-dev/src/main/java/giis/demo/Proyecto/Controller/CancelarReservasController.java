@@ -242,9 +242,36 @@ public class CancelarReservasController {
 
 		//Obtiene el ID de socio introducido en el TextField
 		int idSocio = 0;
+		
+		// Si no hay ID de socio, se buscará como Socio = ANY (todas)
 		if(this.view.getTextFieldSocio().getText().isBlank()) {
 
-			SwingUtil.showMessage("¡Introduzca un ID de socio primero!", "Error", 0);
+			
+			// Delega en el modelo 
+			
+			List<ReservaDTO> reservas = model.getAllReservas();
+
+			if (reservas.isEmpty()) {
+
+				SwingUtil.showMessage("Todavía no existen reservas en la base de datos!", "Vaya!", 1);
+
+			} // end no hay reservas
+
+			else { 
+
+				TableModel tmodel=SwingUtil.getTableModelFromPojos(reservas, new String[] { 
+
+						"idReserva" , "nombre" , "apellido1" ,  "idInstalacion" , "fecha" , "horaInicio" , "estado" },
+						new String[] { 
+
+								"#", "Nombre" ,"Apellido", "Instalación", "Fecha" , "Hora" , "Estado" });
+
+				view.getTableReservas().setModel(tmodel);
+				SwingUtil.autoAdjustColumns(view.getTableReservas());
+			}
+
+			
+
 
 		}
 		

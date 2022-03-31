@@ -2,7 +2,6 @@ package giis.demo.util;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -57,7 +56,7 @@ public class SwingMain {
 	private void initialize() {
 		frmGestr = new JFrame();
 		frmGestr.setTitle("Gestión Centro Deportivo");
-		frmGestr.setBounds(0, 0, 417, 257);
+		frmGestr.setBounds(0, 0, 470, 255);
 		frmGestr.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
@@ -119,7 +118,7 @@ public class SwingMain {
 		});
 		frmGestr.getContentPane().add(btnNewButton);
 		
-		JButton btnVisualizarReservas = new JButton("Visualizar reservas de las instalaciones");
+		JButton btnVisualizarReservas = new JButton("Visualizar Reservas");
 		btnVisualizarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -134,7 +133,7 @@ public class SwingMain {
 		frmGestr.getContentPane().add(btnVisualizarReservas);
 		
 		
-		JButton btnReservar = new JButton("Realizar reserva");
+		JButton btnReservar = new JButton("Realizar Reserva (Socio)");
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 realizarReservaController controller=new realizarReservaController(new RealizarReservasModel() , new realizarReservaView(), new resguardoView());
@@ -143,7 +142,7 @@ public class SwingMain {
 		});
 		frmGestr.getContentPane().add(btnReservar);
 		
-		JButton btnRealizarReservaPersonalizada = new JButton("Realizar Reserva Personalizada");
+		JButton btnRealizarReservaPersonalizada = new JButton("Realizar Reserva (Actividad)");
 		btnRealizarReservaPersonalizada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -160,7 +159,7 @@ public class SwingMain {
 		});
 		frmGestr.getContentPane().add(btnRealizarReservaPersonalizada);
 		
-		JButton btnReservaAuto = new JButton("Realizar Reserva AUTO");
+		JButton btnReservaAuto = new JButton("Reserva de Actividades AUTO");
 		btnReservaAuto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -177,7 +176,7 @@ public class SwingMain {
 		});
 		frmGestr.getContentPane().add(btnReservaAuto);
 		
-		JButton btnCancelarReservas = new JButton("Cancelar Reservas");
+		JButton btnCancelarReservas = new JButton("Cancelar Reserva (Admin)");
 		btnCancelarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CancelarReservasController controller = new CancelarReservasController(new CancelarReservasModel() , new CancelarReservasView());
@@ -186,7 +185,7 @@ public class SwingMain {
 		});
 		frmGestr.getContentPane().add(btnCancelarReservas);
 		
-		JButton btnContabilidad = new JButton("Contabilidad");
+		JButton btnContabilidad = new JButton("Estado Cuentas");
 		btnContabilidad.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
 			public void actionPerformed(ActionEvent e) {
 				EstadoCuentasController controller = new EstadoCuentasController (new LoginView() , new EstadoCuentasView() , new EstadoCuentasModel());
@@ -202,6 +201,15 @@ public class SwingMain {
 		
 		
 		frmGestr.getContentPane().add(btnContabilidad);
+		
+		JButton btnCancelarReservasSocios = new JButton("Cancelar Reservas (Socio)");
+		btnCancelarReservasSocios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CancelarReservasSociosController controller = new CancelarReservasSociosController(new CancelarReservasSociosModel() , new CancelarReservasSociosView(), new LoginView());
+				controller.initController();
+			}
+		});
+		frmGestr.getContentPane().add(btnCancelarReservasSocios);
 
 	}
 

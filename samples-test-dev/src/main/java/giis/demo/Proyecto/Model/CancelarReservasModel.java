@@ -21,6 +21,11 @@ public class CancelarReservasModel {
 			+ "INNER JOIN reservas r "
 			+ "USING (idSocio) "
 			+ "WHERE idSocio = ?";
+	
+	private static String SQL11 = "SELECT r.idReserva , s.nombre , s.apellido1 , r.idInstalacion , r.fecha , r.horaInicio , r.estado "
+			+ "FROM socios s "
+			+ "INNER JOIN reservas r "
+			+ "USING (idSocio) ";
 
 	private static String SQL2 = "SELECT idSocio , nombre "
 			+ "FROM socios "
@@ -65,6 +70,30 @@ public class CancelarReservasModel {
 		try {
 
 			return db.executeQueryPojo(ReservaDTO.class, SQL1, idSocio);
+
+		}
+
+		catch(UnexpectedException e) {
+
+			SwingUtil.showMessage("Error SQL" + e.toString(), "Error", 0);
+			return new ArrayList<ReservaDTO>();
+		}
+
+
+	}
+	
+	
+	/*
+	 * Retorna el listado de todas las 
+	 * reservas existentes en BD 
+	 * 
+	 */
+	public List<ReservaDTO> getAllReservas() {
+
+
+		try {
+
+			return db.executeQueryPojo(ReservaDTO.class, SQL11);
 
 		}
 
