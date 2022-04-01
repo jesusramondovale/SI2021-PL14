@@ -1,7 +1,7 @@
 package giis.demo.Proyecto.Controller;
 import giis.demo.Proyecto.DTO.*;
-import giis.demo.Proyecto.model.*;
-import giis.demo.Proyecto.view.*;
+import giis.demo.Proyecto.Model.*;
+import giis.demo.Proyecto.View.*;
 import giis.demo.util.SwingUtil;
 
 import java.awt.event.ItemEvent;

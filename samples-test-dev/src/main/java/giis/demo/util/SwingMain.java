@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import giis.demo.tkrun.*;
 import giis.demo.Proyecto.Controller.*;
-import giis.demo.Proyecto.model.*;
-import giis.demo.Proyecto.view.*;
+import giis.demo.Proyecto.Model.*;
+import giis.demo.Proyecto.View.*;
 
 /**
  * Punto de entrada principal que incluye botones para la ejecucion de las pantallas 

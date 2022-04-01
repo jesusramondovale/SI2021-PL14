@@ -1,4 +1,4 @@
-package giis.demo.Proyecto.view;
+package giis.demo.Proyecto.View;
 
 import java.awt.EventQueue;
 
@@ -23,8 +23,10 @@ public class visualizaReservasInstalacionesView {
 	private JFrame frame;
 	private JTable tabla_disponibilidad;
 	private JLabel Titulo;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_instalacion;
 	private JLabel label_instalacion;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_fecha;
 	private JButton btnComprobarReservsa;
 	private JLabel lblFecha;	
@@ -58,6 +60,7 @@ public class visualizaReservasInstalacionesView {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("serial")
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 546, 462);
