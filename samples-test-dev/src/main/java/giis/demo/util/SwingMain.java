@@ -56,7 +56,7 @@ public class SwingMain {
 	private void initialize() {
 		frmGestr = new JFrame();
 		frmGestr.setTitle("Gestión Centro Deportivo");
-		frmGestr.setBounds(0, 0, 470, 255);
+		frmGestr.setBounds(0, 0, 467, 277);
 		frmGestr.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
@@ -208,6 +208,21 @@ public class SwingMain {
 			}
 		});
 		frmGestr.getContentPane().add(btnCancelarReservasSocios);
+		
+		JButton btnVisualizarReservas2 = new JButton("Visualizar Disponibilidad (Socio)");
+		btnVisualizarReservas2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				visualizaReservasInstalaciones2Controller controller = 
+						new visualizaReservasInstalaciones2Controller(
+								 new visualizaReservasInstalaciones2Model()
+								 ,new LoginView()
+								,new visualizaReservasInstalaciones2View());
+				
+				controller.initController();
+			}
+		});
+		frmGestr.getContentPane().add(btnVisualizarReservas2);
 
 	}
 
