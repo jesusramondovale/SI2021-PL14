@@ -223,6 +223,19 @@ public class SwingMain {
 			}
 		});
 		frmGestr.getContentPane().add(btnVisualizarReservas2);
+		
+		JButton btnRealizarReserva = new JButton("Realizar Reserva (Socio)");
+		btnRealizarReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				realizarReservaSocioFechaConcretaController controller=new realizarReservaSocioFechaConcretaController(
+						new LoginView(),
+						new realizarReservaSocioFechaConcretaView() , new realizarReservasSocioFechaConcretaModel());
+				controller.initController();
+					
+			}
+		});
+		frmGestr.getContentPane().add(btnRealizarReserva);
 
 	}
 
