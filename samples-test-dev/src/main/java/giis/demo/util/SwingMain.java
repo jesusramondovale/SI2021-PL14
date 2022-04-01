@@ -131,10 +131,10 @@ public class SwingMain {
 		frmGestr.getContentPane().add(btnVisualizarReservas);
 		
 		
-		JButton btnReservar = new JButton("Realizar Reserva (Socio)");
+		JButton btnReservar = new JButton("Realizar Reserva (Admin)");
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 realizarReservaController controller=new realizarReservaController(new RealizarReservasModel() , new realizarReservaView(), new resguardoView());
+				 realizarReservaAdministradorController controller=new realizarReservaAdministradorController(new realizarReservasAdministradorModel() , new realizarReservaAdministradorView());
 	                controller.initController();
 			}
 		});

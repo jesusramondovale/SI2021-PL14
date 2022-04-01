@@ -154,6 +154,7 @@ public class SwingUtil {
 		boton.setEnabled(false);
 	}
 
+	
 	public static void activaBoton(JButton boton) {
 		boton.setEnabled(true);
 	}
