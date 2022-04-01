@@ -118,14 +118,12 @@ public class SwingMain {
 		});
 		frmGestr.getContentPane().add(btnNewButton);
 		
-		JButton btnVisualizarReservas = new JButton("Visualizar Reservas");
+		JButton btnVisualizarReservas = new JButton("Visualizar Reservas (Admin)");
 		btnVisualizarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				visualizarReservasInstalacionesController controller = 
-						new visualizarReservasInstalacionesController(
-								 new visualizarReservasInstalacionesModel()
-								,new visualizaReservasInstalacionesView());
+				visualizarReservasInstalacionesController controller = new visualizarReservasInstalacionesController(new visualizarReservasInstalacionesModel()
+						,new visualizaReservasInstalacionesView());
 				
 				controller.initController();
 			}

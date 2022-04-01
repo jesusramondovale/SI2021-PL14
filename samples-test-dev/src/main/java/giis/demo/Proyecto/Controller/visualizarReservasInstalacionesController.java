@@ -5,12 +5,10 @@ import giis.demo.Proyecto.View.*;
 import giis.demo.util.SwingUtil;
 
 
-
 import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.ComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -45,40 +43,22 @@ public class visualizarReservasInstalacionesController {
 		view.getComboBox_instalacion().setModel(lmodel);
 	}
 	
-	public boolean compruebaDNI() {
-		if(view.getTxtDNI().length() != 9 || Character.isLetter(view.getTxtDNI().charAt(8)) == false) {
-			JOptionPane.showMessageDialog(null, "Debes introducir un DNI","Error",JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		
-		if(numeros())
-			return true;
-		else{
-			JOptionPane.showMessageDialog(null, "Formato mal introducido","Error",JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-	}
+	/*
+	 * public boolean compruebaDNI() { if(!view.getTxtFecha().isEmpty()) return
+	 * true; else return false; }
+	 */
 	
-	private boolean numeros() {
-		int i,j=0;
-		String numero="";
-		String DNI="";
-		String[] nums = {"0","1","2","3","4","5","6","7","8","9"};
-		
-		for(i = 0;i < view.getTxtDNI().length() -1;i++) {
-			numero = view.getTxtDNI().substring(i,i+1);
-			
-			for(j=0; j < nums.length;j++) {
-				if(numero.equals(nums[j]))
-					DNI+=nums[j];
-			}
-		}
-		
-		if(DNI.length() !=8)
-			return false;
-		else
-			return true;
-	}
+	/*
+	 * private boolean numeros() { int i,j=0; String numero=""; String DNI="";
+	 * String[] nums = {"0","1","2","3","4","5","6","7","8","9"};
+	 * 
+	 * for(i = 0;i < view.getTxtDNI().length() -1;i++) { numero =
+	 * view.getTxtDNI().substring(i,i+1);
+	 * 
+	 * for(j=0; j < nums.length;j++) { if(numero.equals(nums[j])) DNI+=nums[j]; } }
+	 * 
+	 * if(DNI.length() !=8) return false; else return true; }
+	 */
 	
 	/*
 	 * private String letra() { int DNI =
@@ -151,7 +131,6 @@ public class visualizarReservasInstalacionesController {
 	}
 	
 	public void getListaReservas() {
-		if(compruebaDNI()) {
 			
 			String nombreInstalacion= view.getComboBox_instalacion().getSelectedItem().toString();
 			System.out.println("Instalacion " + nombreInstalacion);
@@ -164,7 +143,6 @@ public class visualizarReservasInstalacionesController {
 			for( k=(double) 6.00,i=0,h=6;k < (double) 22.00;k++, i++, h++) {
 				List<estadoReservaDTO> estadoReserva = model.getEstadoReserva(nombreInstalacion, view.getTxtFecha(),k);
 				List<SociosDisplayDTO> dniSocioReserva = model.getDniSociosReserva(nombreInstalacion, k, view.getTxtFecha());
-				//List<actividadReservaInstalacionDTO> actividadReserva = model.getListaInstalacionParaActividades(k, nombreInstalacion, view.getTxtFecha());
 				int hor=h+1;
 				String hora=(h+":00-"+hor+":00");
 
@@ -172,21 +150,19 @@ public class visualizarReservasInstalacionesController {
 					Object estado = estadoReserva.get(0).getEstadoReserva();
 
 					if(!dniSocioReserva.isEmpty()) {//reserva para socio
-						Object dniSocio = dniSocioReserva.get(0).getIdSocio();
-						String dniVista = view.getTxtDNI();
-
-
-						if(dniSocio.equals(dniVista)) {
-							dniSocio = "Mi Reserva";
+						for(int socio = 0; socio < dniSocioReserva.size(); socio++) {
+							Object dniSocio = dniSocioReserva.get(socio).getIdSocio();
+							//socio++;
+			
+							elementos[i][0]=hora;
+							elementos[i][1]="Ocupado";
+							elementos[i][2]=dniSocio;	
+							elementos[i][3]="---";
+	
+	
+							System.out.println(estado);
+							System.out.println("Estado dni: " + dniSocio);
 						}
-						elementos[i][0]=hora;
-						elementos[i][1]="Ocupado";
-						elementos[i][2]=dniSocio;	
-						elementos[i][3]="---";
-
-
-						System.out.println(estado);
-						System.out.println("Estado dni: " + dniSocio);
 
 					}else {//reserva para actividad
 
@@ -196,6 +172,11 @@ public class visualizarReservasInstalacionesController {
 							elementos[i][2]="---";
 							elementos[i][3]=estado;
 							System.out.println("Estado dni vacío");
+						}else {
+							elementos[i][0]=hora;
+							elementos[i][1]="Ocupado";
+							elementos[i][2]="---";
+							elementos[i][3]="---";
 						}
 					}
 					
@@ -211,11 +192,6 @@ public class visualizarReservasInstalacionesController {
 				view.getTabla_disponibilidad().setModel(dmodel);
 			}
 			
-
-			
-		}
-
-
 	}
 
 }
