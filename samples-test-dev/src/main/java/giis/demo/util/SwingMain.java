@@ -183,7 +183,7 @@ public class SwingMain {
 		});
 		frmGestr.getContentPane().add(btnCancelarReservas);
 		
-		JButton btnContabilidad = new JButton("Estado Cuentas");
+		JButton btnContabilidad = new JButton("Estado Cuentas (Socio)");
 		btnContabilidad.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
 			public void actionPerformed(ActionEvent e) {
 				EstadoCuentasController controller = new EstadoCuentasController (new LoginView() , new EstadoCuentasView() , new EstadoCuentasModel());
