@@ -7,7 +7,6 @@ import java.util.*;
 import giis.demo.util.Util;
 import giis.demo.util.Database;
 
-import giis.demo.util.Dia;
 import giis.demo.util.SwingUtil;
 import giis.demo.util.UnexpectedException;
 
@@ -34,7 +33,8 @@ public class CrearActividadModel {
 			+ "fechaInicio,fechaFin,"
 			+ "idPeriodoInscripcion,estado,"
 			+ "plazas,idInstalacion) values (?,?,?,?,?,?,?,?,?,?,?)";
-	private String sql2= "Insert into horarioActividad(idActividad, dia,horaInicio,horaFin) values (?,?,?,?)";
+	private String sql2= "Insert into horarioActividad(idHorario,idActividad,idHorarios) values (?,?,?)";
+	private String sql3 = "Insert into horarios(idHorarios,dia,horaInicio,horaFin) values (?,?,?,?)";
 
 
 	//inserta la activdad en la base de  datos y returna el id de la actividad
@@ -55,24 +55,30 @@ public class CrearActividadModel {
 			SwingUtil.showMessage("Error SQL en INSERT into ACTIVIDADES!", "Error", 0);
 
 		}
-		
-
-
 	}
-
+	public void insertaHorariosActividad (int idHorario, int idActividad, int idHorarios) {
+		db.executeUpdate(sql2,idHorario,idActividad, idHorarios);
+	}
+	
+	public void insertaHorarios(int idHorarios ,String dia, Double horaInicio, Double horaFin) {
+		db.executeUpdate(sql3,idHorarios,dia,horaInicio,horaFin);
+	}
+	
+	
+/*
 	public void insertaHoras(int idActividad , String dia_sem, String string, String string2) {
 
 		db.executeUpdate(sql2,idActividad , dia_sem,Float.parseFloat(string),Float.parseFloat(string2));
 		
 		
-	}
+	}*/
 
 	public List<Object[]> getPeriodos() {
 		String sql= "SELECT nombre from periodos";
 		return db.executeQueryArray(sql);
 
 	}
-
+/*
 	//inserta los dias y hora en ela activada con el id especificado  
 	public void inserta_hora(List<Dia> a,int id){
 
@@ -80,6 +86,6 @@ public class CrearActividadModel {
 		for(Dia i:a){
 			db.executeUpdate(insert,id,i.getDia(),i.getIni(),i.getFin());
 		}
-	}
+	}*/
 
 }
