@@ -16,7 +16,7 @@ public class AutoReservaModel {
 
 	public Database db = new Database();
 
-	private static String SQL1 = "SELECT nombre, tipo, fechaInicio, fechaFin "
+	private static String SQL1 = "SELECT idActividad , nombre, tipo, fechaInicio, fechaFin "
 			+ "FROM actividades";
 
 	private static String SQL2 = "SELECT idActividad , fechaInicio, fechaFin , idInstalacion , dia , horaInicio , horaFin "

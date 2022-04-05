@@ -67,9 +67,9 @@ public class AutoReservaController {
 		else {
 			//Generamos el modelo de tabla y lo cargamos con los datos de la BD
 			TableModel tmodel=SwingUtil.getTableModelFromPojos(list, new String[] { 
-					"nombre", "tipo", "fechaInicio", "fechaFin" },
+					"idActividad" , "nombre", "tipo", "fechaInicio", "fechaFin" },
 					new String[] { 
-							"Actividad"  , "Tipo" , "Fecha (ini.)" , "Fecha (fin)" });
+							"#ID" , "Actividad"  , "Tipo" , "Fecha (ini.)" , "Fecha (fin)" });
 
 
 			// Asigna a la tabla de la vista el modelo generado
@@ -122,7 +122,8 @@ public class AutoReservaController {
 		else {
 
 			boolean ok = true;
-			int idActividad = actividadSelecc[0] + 1;
+			int idActividad =  (int) this.view.getTableAnteriores().getModel().getValueAt(
+					this.view.getTableAnteriores().getSelectedRow() , 0);
 
 			List <ActividadHorariosDTO> actividadHorariosDTO = model.getActividad(idActividad);
 

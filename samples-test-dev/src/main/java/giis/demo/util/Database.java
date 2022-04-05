@@ -85,7 +85,7 @@ public class Database extends DbUtil {
 			databaseCreated=true; //NOSONAR
 			
 
-			/*			 
+			/*		 
 			// PARA EXTRAER EL JAR (COMENTAR TODO LO ANTERIOR)
 				
 			File f = new File("schema.sql");
@@ -120,7 +120,7 @@ public class Database extends DbUtil {
 		databaseCreated=true; //NOSONAR
 		
 		
-		/*			 
+			/*		 
 		// PARA EXTRAER EL JAR (COMENTAR TODO LO ANTERIOR)
 		File f = new File("load.sql");
 		

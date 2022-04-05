@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.table.TableModel;
 
@@ -51,6 +52,17 @@ public class CancelarReservasController {
 
 
 
+	}
+	
+	
+	private int getRandomNumberInRange(int min, int max) {
+
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
 	}
 
 
@@ -122,8 +134,14 @@ public class CancelarReservasController {
 					System.out.println("Fecha de Cancelación (AAAA-MM-DD): " + Util.dateToIsoString(new Date()));
 					System.out.println("----------------------------------------------");
 
-
-					File recibosCSV = new File("./recibos.csv");
+					
+					
+					
+					
+					
+					
+					int code = this.getRandomNumberInRange(100000, 999999);
+					File recibosCSV = new File("Recibo_" + code + ".csv");
 					try {
 
 
