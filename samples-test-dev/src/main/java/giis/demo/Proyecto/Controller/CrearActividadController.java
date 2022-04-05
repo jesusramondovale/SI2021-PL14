@@ -133,7 +133,7 @@ public class CrearActividadController {
 					Integer.parseInt(view.getPrecioSocio().getText()), 
 					Integer.parseInt(view.getPrecioNoSocio().getText()),
 					view.getFechaInicio().getDate(), view.getFechaFin().getDate(),
-					periodo_escogido,1, numPlazas, idInstalacion);
+					periodo_escogido,"Vigente", numPlazas, idInstalacion);
 
 
 			List<String> dias = new ArrayList<String>();

@@ -2,13 +2,17 @@ package giis.demo.util;
 
 
 
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.util.Properties;
 import org.apache.commons.dbutils.DbUtils;
+import java.io.FileInputStream;
 
-//import java.io.File;
+// PARA EXTRAER EL JAR
+//import java.io.FileInputStream;
 //import java.io.InputStream;
+//import org.apache.commons.io.FileUtils;
+//import java.io.File;
 
 /**
  * Encapsula los datos de acceso JDBC, lectura de la configuracion
@@ -16,9 +20,25 @@ import org.apache.commons.dbutils.DbUtils;
  */
 public class Database extends DbUtil {
 	//Localizacion de ficheros de configuracion y carga de bases de datos
+	
+	
+	
 	private static final String APP_PROPERTIES = "src/main/resources/application.properties";
+	
+	//PARA EXTRAER EL JAR 
+	//private static final String APP_PROPERTIES = "resources/application.properties";
+	
+	
 	private static final String SQL_SCHEMA = "src/main/resources/schema.sql";
+	
+	//PARA EXTRAER EL JAR 
+	//private static final String SQL_SCHEMA = "resources/schema.sql";
+
 	private static final String SQL_LOAD = "src/main/resources/data.sql";
+	
+	//PARA EXTRAER EL JAR 
+	//private static final String SQL_LOAD = "resources/data.sql";
+
 	//parametros de la base de datos leidos de application.properties (base de datos local sin usuario/password)
 	private String driver;
 	private String url;
@@ -32,7 +52,7 @@ public class Database extends DbUtil {
 	
 		Properties prop=new Properties();
 		
-		
+		// PARA EXTRAER EL JAR (COMENTAR LINEA 58)
 		//try (InputStream fs = this.getClass().getClassLoader().getResourceAsStream(APP_PROPERTIES)) {
 
 		try (FileInputStream fs=new FileInputStream(APP_PROPERTIES)) {
@@ -57,10 +77,17 @@ public class Database extends DbUtil {
 	 * (si onlyOnce=true solo ejecutara el script la primera vez
 	 */
 	public void createDatabase(boolean onlyOnce) {
+		
 		//actua como singleton si onlyOnce=true: solo la primera vez que se instancia para mejorar rendimiento en pruebas
 		if (!databaseCreated || !onlyOnce) { 
+
+			executeScript(SQL_SCHEMA);
+			databaseCreated=true; //NOSONAR
 			
-			/*
+
+			/*			 
+			// PARA EXTRAER EL JAR (COMENTAR TODO LO ANTERIOR)
+				
 			File f = new File("schema.sql");
 			
 			try {
@@ -76,9 +103,6 @@ public class Database extends DbUtil {
 			*/
 			
 			
-			executeScript(SQL_SCHEMA);
-			databaseCreated=true; //NOSONAR
-			
 					
 			
 		}
@@ -90,9 +114,14 @@ public class Database extends DbUtil {
 	 * (si onlyOnce=true solo ejecutara el script la primera vez
 	 */
 	public void loadDatabase() {
+
+		
+		executeScript(SQL_LOAD);
+		databaseCreated=true; //NOSONAR
 		
 		
-		/*
+		/*			 
+		// PARA EXTRAER EL JAR (COMENTAR TODO LO ANTERIOR)
 		File f = new File("load.sql");
 		
 		try {
@@ -105,11 +134,7 @@ public class Database extends DbUtil {
 		executeScript("load.sql");
 		databaseCreated=true; //NOSONAR
 		f.delete();
-
 		*/
-		
-		executeScript(SQL_LOAD);
-		databaseCreated=true; //NOSONAR
 		
 	}
 

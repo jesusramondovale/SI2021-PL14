@@ -39,12 +39,12 @@ public class CrearActividadModel {
 
 	//inserta la activdad en la base de  datos y returna el id de la actividad
 	public void insertaActividad(int idActividad , String nombre,String tipo, int precioSocio,int precioNoSocio,Date fechaInicio,Date fechaFin,
-			String periodo, int estado, int plazas, int idInstalacion){
+			String periodo, String string, int plazas, int idInstalacion){
 		System.out.println(Util.dateToIsoString(fechaInicio));
 		
 		
 		try {
-			db.executeUpdate(sql,idActividad, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),periodo,estado, plazas, idInstalacion);
+			db.executeUpdate(sql,idActividad, nombre, tipo, precioSocio, precioNoSocio,Util.dateToIsoString(fechaInicio),Util.dateToIsoString(fechaFin),periodo,string, plazas, idInstalacion);
 			SwingUtil.showMessage("Actividad creada con éxito!", "Éxito", 1);
 			
 			
