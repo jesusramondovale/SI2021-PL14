@@ -155,7 +155,7 @@ public class realizarReservaController {
 
 			if(!socio.isEmpty()){
 
-				int estado = 1;
+				String estado = "Por pagar";
 
 				int diaIni = this.view.getComboBox_dia().getSelectedIndex() +1;
 				int mesIni = this.view.getComboBox_mes().getSelectedIndex()+1;

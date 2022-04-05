@@ -413,7 +413,7 @@ public class ReservaPersonalizadaController {
 
 							System.out.println("Entro al model");
 							model.crearReserva(getRandomNumberInRange(100000,1000000) , Util.dateToIsoString(f) , 
-									horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad, 0 ,1 );
+									horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad, 0 , "Vacante" );
 
 						}
 						else {

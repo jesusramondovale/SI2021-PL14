@@ -30,8 +30,7 @@ public class ReservaPersonalizadaModel {
 			+ "WHERE idActividad = ?";
 
 	private String SQL5 = "SELECT idActividad , nombre, tipo, fechaInicio,  fechaFin "
-			+ "FROM actividades "
-			+ "WHERE fechaInicio = ?"; 
+			+ "FROM actividades "; 
 		
 
 	public boolean isSocio(int id){
@@ -61,7 +60,7 @@ public class ReservaPersonalizadaModel {
 
 
 	public void crearReserva(int idReserva, String fecha, double horaInicio, double horaFinal, int instalacion,
-			int idActividad, int idSocio, int estado){
+			int idActividad, int idSocio, String estado){
 
 
 		try {
@@ -110,7 +109,7 @@ public class ReservaPersonalizadaModel {
 		
 		try {
 		
-			return db.executeQueryPojo(ActividadDTO.class, SQL5, fecha);
+			return db.executeQueryPojo(ActividadDTO.class, SQL5);
 			
 		}
 		catch(UnexpectedException e) {

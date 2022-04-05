@@ -77,7 +77,7 @@ public class AutoReservaModel {
 
 
 		try {
-			db.executeUpdate(SQL, idReserva,  fecha,  horaInicio,  horaFinal,  idInstalacion, idActividad,  null , 1);
+			db.executeUpdate(SQL, idReserva,  fecha,  horaInicio,  horaFinal,  idInstalacion, idActividad,  null , "(Admin.)");
 				
 		}
 		catch(UnexpectedException e){

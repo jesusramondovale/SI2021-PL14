@@ -187,7 +187,7 @@ private String sql6 = "SELECT nombre from actividades";
 
 	
 	public void realizarReserva(int idReserva, int idUsuario, int idActividad, int idInstalacion, String fecha,
-			float horaInicioReserva, float horaFinReserva, int estado) {
+			float horaInicioReserva, float horaFinReserva, String estado) {
 		String sql="INSERT into reservas (idReserva, idSocio,idActividad,idInstalacion,fecha,horaInicio,horaFin, estado)"
 				+ " values (?,?,?,?,?,?,?, ?)";
 		//String fechaInicio=Util.dateToIsoString(fechaInicioReserva);

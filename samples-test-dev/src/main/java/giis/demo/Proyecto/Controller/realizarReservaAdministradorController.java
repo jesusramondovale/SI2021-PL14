@@ -205,7 +205,7 @@ public class realizarReservaAdministradorController {
 
 				if(!socio.isEmpty()){
 
-					int estado = 1;
+					String estado = "(Admin)";
 
 
 					model.realizarReserva(Integer.parseInt(view.getTxtReserva().getText()),
@@ -240,7 +240,7 @@ public class realizarReservaAdministradorController {
 
 			if(!socio.isEmpty()){
 
-				int estado = 1;
+				String estado = "(Administración)";
 
 
 				model.realizarReserva(Integer.parseInt(view.getTxtReserva().getText()),

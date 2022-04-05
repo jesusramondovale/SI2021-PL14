@@ -244,7 +244,7 @@ public class realizarReservaSocioFechaConcretaController {
 
 				if(!socio.isEmpty()){
 
-					int estado = 1;
+					String estado = "Por pagar";
 
 
 					model.realizarReserva(Integer.parseInt(view.getTxtReserva().getText()),
@@ -274,7 +274,7 @@ public class realizarReservaSocioFechaConcretaController {
 
 			if(!socio.isEmpty()){
 
-				int estado = 1;
+				String estado = "Por pagar";
 
 
 				model.realizarReserva(Integer.parseInt(view.getTxtReserva().getText()),
