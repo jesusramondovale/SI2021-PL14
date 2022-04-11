@@ -99,6 +99,15 @@ public class SwingMain {
 		});
 		frmGestr.getContentPane().add(btnMostrarActividades);
 		
+		JButton btnCancelarActividades = new JButton("Cancelar Actividades");
+		btnCancelarActividades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
+		frmGestr.getContentPane().add(btnCancelarActividades);
+		
 	}
 
 	public JFrame getFrame() { return this.frmGestr; }
