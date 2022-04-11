@@ -102,7 +102,8 @@ public class SwingMain {
 		JButton btnCancelarActividades = new JButton("Cancelar Actividades");
 		btnCancelarActividades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				CancelarActividadesController controller=new CancelarActividadesController(new CancelarActividadesView() , new CancelarActividadesModel());
+				controller.initController();
 				
 			}
 		});

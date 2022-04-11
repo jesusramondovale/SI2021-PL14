@@ -13,8 +13,34 @@ public class CancelarActividadesView {
 
 	private JFrame frmCancelarActividades;
 	private JTable table;
-	private JButton btnNewButton_CancelarActividad;
-	private JButton btnNewButton_BuscarActvidad;
+	private JButton btn_CancelarActividad;
+	private JButton btn_BuscarActvidad;
+	private JScrollPane scrollPane;
+	
+
+	public JButton getBtn_CancelarActividad() {
+		return btn_CancelarActividad;
+	}
+
+	public void setBtn_CancelarActividad(JButton btn_CancelarActividad) {
+		this.btn_CancelarActividad = btn_CancelarActividad;
+	}
+
+	public JButton getBtn_BuscarActvidad() {
+		return btn_BuscarActvidad;
+	}
+
+	public void setBtn_BuscarActvidad(JButton btn_BuscarActvidad) {
+		this.btn_BuscarActvidad = btn_BuscarActvidad;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
 
 	/**
 	 * Launch the application.
@@ -45,27 +71,27 @@ public class CancelarActividadesView {
 	private void initialize() {
 		frmCancelarActividades = new JFrame();
 		frmCancelarActividades.setTitle("Cancelar Actividades");
-		frmCancelarActividades.setBounds(100, 100, 906, 548);
+		frmCancelarActividades.setBounds(100, 100, 790, 436);
 		frmCancelarActividades.getContentPane().setLayout(null);
 		
-		btnNewButton_BuscarActvidad = new JButton("Buscar Actividades");
-		btnNewButton_BuscarActvidad.addActionListener(new ActionListener() {
+		btn_BuscarActvidad = new JButton("Buscar Actividades");
+		btn_BuscarActvidad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton_BuscarActvidad.setBounds(43, 41, 150, 23);
-		frmCancelarActividades.getContentPane().add(btnNewButton_BuscarActvidad);
+		btn_BuscarActvidad.setBounds(43, 41, 150, 23);
+		frmCancelarActividades.getContentPane().add(btn_BuscarActvidad);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(63, 93, 772, 324);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(63, 93, 627, 220);
 		frmCancelarActividades.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setColumnHeaderView(table);
 		
-		btnNewButton_CancelarActividad = new JButton("Cancelar Actividad");
-		btnNewButton_CancelarActividad.setBounds(712, 458, 123, 23);
-		frmCancelarActividades.getContentPane().add(btnNewButton_CancelarActividad);
+		btn_CancelarActividad = new JButton("Cancelar Actividad");
+		btn_CancelarActividad.setBounds(528, 338, 150, 23);
+		frmCancelarActividades.getContentPane().add(btn_CancelarActividad);
 	}
 
 	public JFrame getFrmCancelarActividades() {
@@ -85,18 +111,18 @@ public class CancelarActividadesView {
 	}
 
 	public JButton getBtnNewButton_CancelarActividad() {
-		return btnNewButton_CancelarActividad;
+		return btn_CancelarActividad;
 	}
 
 	public void setBtnNewButton_CancelarActividad(JButton btnNewButton_CancelarActividad) {
-		this.btnNewButton_CancelarActividad = btnNewButton_CancelarActividad;
+		this.btn_CancelarActividad = btnNewButton_CancelarActividad;
 	}
 
 	public JButton getBtnNewButton_BuscarActvidad() {
-		return btnNewButton_BuscarActvidad;
+		return btn_BuscarActvidad;
 	}
 
 	public void setBtnNewButton_BuscarActvidad(JButton btnNewButton_BuscarActvidad) {
-		this.btnNewButton_BuscarActvidad = btnNewButton_BuscarActvidad;
+		this.btn_BuscarActvidad = btnNewButton_BuscarActvidad;
 	}
 }

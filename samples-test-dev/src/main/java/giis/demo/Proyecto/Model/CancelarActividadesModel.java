@@ -9,14 +9,13 @@ public class CancelarActividadesModel {
 
 	private Database db=new Database();
 
-	private static String SQL = "SELECT  a.idActividad , a.nombre, a.tipo, a.precioSocio,"
-			+ " a.precioNoSocio, a.fechaInicio , a.fechaFin, a.plazas "
-			+ "FROM actividades a "
-			+ "WHERE a.estado=Vigente";
+	private static String SQL = "SELECT  idActividad , nombre, tipo, precioSocio,"
+			+ " precioNoSocio, fechaInicio , fechaFin, plazas "
+			+ "FROM actividades";
 	
 	
-	public List<MostrarActividadesDTO> getListaActividades(String nombrePeriodo){
-		return db.executeQueryPojo(MostrarActividadesDTO.class,SQL,nombrePeriodo);
+	public List<MostrarActividadesDTO> getListaActividades(){
+		return db.executeQueryPojo(MostrarActividadesDTO.class,SQL);
 	}
 	
 }

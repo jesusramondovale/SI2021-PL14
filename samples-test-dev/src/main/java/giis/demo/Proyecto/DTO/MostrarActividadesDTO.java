@@ -12,9 +12,29 @@ public class MostrarActividadesDTO {
 	private float precioSocio;
 	private float precioNoSocio;
 	private String fechaInicio;
+	private String fechaFin;
+	public String getFechaFin() {
+		return fechaFin;
+	}
+
+
+
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
+	}
 	private float horaInicio;
 	private float horaFin;
+	private String tipo;
 	
+	public String getTipo() {
+		return tipo;
+	}
+
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 	//private int idPeriodoInscripcion;
 	//private int estado;
 	private int plazas;
