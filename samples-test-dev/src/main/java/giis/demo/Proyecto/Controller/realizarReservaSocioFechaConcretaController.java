@@ -126,6 +126,8 @@ public class realizarReservaSocioFechaConcretaController {
 				view.getBtnReserva().setEnabled(true);
 			}
 		}
+		
+		horasSocio();
 	}
 
 	private void actualizarNombres() {
@@ -185,13 +187,70 @@ public class realizarReservaSocioFechaConcretaController {
 		}
 		else if(horaC > horaF) {
 			SwingUtil.showMessage("Introduzca un rango de horas válido", "Error", 1);
+			view.getBtnReserva().setEnabled(false);
+			view.getBtnResguardo().setEnabled(false);
 			return false;
 		}
 		else {
 			SwingUtil.showMessage("No se puede realizar una reserva de mas de 3 horas", "Error", 1);
+			view.getBtnReserva().setEnabled(false);
+			view.getBtnResguardo().setEnabled(false);
 			return false;
 		}
 
+	}
+	
+	public boolean horasSocio() {
+		List<reservasDisplayDTO> reservaHoras= model.obtenerHorasSocio();
+		int horas = 0;
+		boolean isHoras = true;
+		for (int i = 0; i < reservaHoras.size(); i++) {
+			if (view.getTxtSocio().getText().equalsIgnoreCase(reservaHoras.get(i).getIdSocio())) {
+				//System.out.println(" Socio "+ reservaHoras.get(i).getIdSocio() +"\n TxtSocio " + view.getTxtSocio().getText());
+				float rango = reservaHoras.get(i).getHoraFin() - reservaHoras.get(i).getHoraInicio();
+				horas = (int) (horas + rango);
+			}
+		}
+		int horaC = (int) view.getComboBox_HoraC().getSelectedIndex();
+		int horaF = (int)view.getComboBox_HoraF().getSelectedIndex();
+		if(horas >= 10){
+			SwingUtil.showMessage("No puedes realizar más reservas (Tienes reservado ya 10 horas) 0", "Error", 1);
+			view.getBtnReserva().setEnabled(false);
+			view.getBtnResguardo().setEnabled(false);
+			isHoras = false;
+			return false;
+		}else if((horaF -horaC) == 0){
+			horas++;
+			if(horas >10) {
+				SwingUtil.showMessage("No puedes realizar más reservas (Tienes reservado ya 10 horas) 1", "Error", 1);
+				view.getBtnReserva().setEnabled(false);
+				view.getBtnResguardo().setEnabled(false);
+				isHoras = false;
+				return false;
+			}
+		}else if((horaF -horaC) == 1){
+			horas = horas +2;
+			if(horas >10) {
+				SwingUtil.showMessage("No puedes realizar más reservas (Tienes reservado ya 10 horas) 2", "Error", 1);
+				view.getBtnReserva().setEnabled(false);
+				view.getBtnResguardo().setEnabled(false);
+				isHoras = false;
+				return false;
+			}
+		}else if((horaF -horaC) == 2){
+			horas = horas +3;
+			if(horas >10) {
+				SwingUtil.showMessage("No puedes realizar más reservas (Tienes reservado ya 10 horas) 3", "Error", 1);
+				view.getBtnReserva().setEnabled(false);
+				view.getBtnResguardo().setEnabled(false);
+				isHoras = false;
+				return false;
+			}
+		}
+		else {
+			return isHoras;
+		}
+		return isHoras;
 	}
 
 

@@ -19,6 +19,19 @@ private String sql3 = "SELECT precioHora FROM instalaciones";
 private String sql4 = "SELECT idReserva from reservas";
 private String sql5 = "SELECT fecha,horaInicio,horaFin,idInstalacion from reservas"; 
 private String sql6 = "SELECT nombre from actividades";
+private String sql7 = "SELECT idSocio,horaInicio,horaFin from reservas";
+
+	public List<reservasDisplayDTO> obtenerHorasSocio() {
+		try {
+			List<reservasDisplayDTO> reserva= db.executeQueryPojo(reservasDisplayDTO.class, sql7);
+			return reserva;
+			
+		}catch(UnexpectedException e) {
+			JOptionPane.showMessageDialog(null, "SQL error en Obtener la fecha de la reserva reserva.","Error",
+				    JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+	}
 
 	public void insertaReserva(int idReserva,int idsocio, String fecha,float horaInicio,
 			float horaFin, int idInstalacion, int idActividad, int estado) {
