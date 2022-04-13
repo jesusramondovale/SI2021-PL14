@@ -51,7 +51,7 @@ public class InformeSociosView {
 	private void initialize() {
 		frmGenerarInformesSobre = new JFrame();
 		frmGenerarInformesSobre.setTitle("Generar Informes sobre Socios");
-		frmGenerarInformesSobre.setBounds(100, 100, 376, 219);
+		frmGenerarInformesSobre.setBounds(100, 100, 401, 218);
 		frmGenerarInformesSobre.getContentPane().setLayout(null);
 
 		JLabel lblSocio = new JLabel("#ID de Socio");
@@ -91,16 +91,16 @@ public class InformeSociosView {
 		textFieldSocio.setColumns(10);
 
 		dateChooserInicio = new JDateChooser();
-		dateChooserInicio.setBounds(148, 48, 70, 19);
+		dateChooserInicio.setBounds(148, 48, 93, 19);
 		frmGenerarInformesSobre.getContentPane().add(dateChooserInicio);
 
 		JLabel lbl = new JLabel("<->");
 		lbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl.setBounds(225, 52, 45, 13);
+		lbl.setBounds(246, 50, 36, 13);
 		frmGenerarInformesSobre.getContentPane().add(lbl);
 
 		dateChooserFinal = new JDateChooser();
-		dateChooserFinal.setBounds(260, 48, 70, 19);
+		dateChooserFinal.setBounds(279, 49, 85, 19);
 		frmGenerarInformesSobre.getContentPane().add(dateChooserFinal);
 
 		btnLimpiar = new JButton("LIMPIAR");
