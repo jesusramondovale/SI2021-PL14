@@ -3,6 +3,7 @@ package giis.demo.Proyecto.Model;
 import java.util.List;
 
 import giis.demo.Proyecto.DTO.MostrarActividadesDTO;
+import giis.demo.Proyecto.DTO.ReservaDTO;
 import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.util.Database;
 
@@ -14,17 +15,23 @@ public class CancelarActividadesModel {
 			+ " precioNoSocio, fechaInicio , fechaFin, plazas, estado "
 			+ "FROM actividades";
 	
+	private static String SQL4 = "SELECT estado FROM reservas WHERE idReserva = ? ";
+	private static String SQL6 = "SELECT r.idReserva , r.horaInicio , r.horaFin , i.precioHora "
+			+ "FROM instalaciones i "
+			+ "INNER JOIN reservas r "
+			+ "USING (idInstalacion) "
+			+ "WHERE idReserva = ? ";
+	
 	
 	public List<MostrarActividadesDTO> getListaActividades(){
 		return db.executeQueryPojo(MostrarActividadesDTO.class,SQL);
 	}
 
-	public List<reservasDisplayDTO> getReservas(String dni){
-		String sql = "SELECT r.idReserva , i.nombre , r.fecha , r.horaInicio , r.horaFin , r.estado  " + 
+	public List<reservasDisplayDTO> getReservas(String idActividad){
+		String sql = "SELECT r.idActividad  " + 
 				"	FROM reservas r " +  
-				"	INNER JOIN instalaciones i USING(idInstalacion) " + 
-				"	WHERE idSocio= ? ";
-		return db.executeQueryPojo(reservasDisplayDTO.class, sql,dni);
+				"	WHERE idReserva= ? ";
+		return db.executeQueryPojo(reservasDisplayDTO.class, sql,idActividad);
 
 	}
 	
@@ -34,23 +41,32 @@ public class CancelarActividadesModel {
 				+ "SET estado = 'Cancelada' "
 				+ "WHERE idActividad = ? ", idActividad);
 	}
-	/*
-	public boolean yaPagada(int idReserva) {
+	
 
-		List<reservasDisplayDTO> estado = db.executeQueryPojo(reservasDisplayDTO.class, SQL4, idReserva);
+	//Libera las reservas, por tanto borramos la fila de la bd
+	public void LiberaResevas (int idActividad) {
+		db.executeUpdate("DELETE FROM reservas "
+				+ "WHERE idActividad = ? ", idActividad);
+	}
+	
+	//Avisar a los socios y devolucion importe
+	/*
+	public boolean yaPagada(int idActividad) {
+
+		List<reservasDisplayDTO> estado = db.executeQueryPojo(reservasDisplayDTO.class, SQL4, idActividad);
 		return (estado.get(0).getEstado().equalsIgnoreCase("PAGADA"));
 
 	}
 	
-	public int getImporte(int idReserva) {
+	public int getImporte(int idActividad) {
 
-		List<ReservaDTO> data = db.executeQueryPojo(ReservaDTO.class, SQL6, idReserva);
+		List<ReservaDTO> data = db.executeQueryPojo(ReservaDTO.class, SQL6, idActividad);
 		
 		int precio = data.get(0).getPrecioHora();
 		int horas = (int) (data.get(0).getHoraFin() - data.get(0).getHoraInicio());
 		
 		return horas*precio;	
 	}
-*/
+	*/
 	
 }
