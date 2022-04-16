@@ -71,7 +71,7 @@ public class CancelarActividadesView {
 	private void initialize() {
 		frmCancelarActividades = new JFrame();
 		frmCancelarActividades.setTitle("Cancelar Actividades");
-		frmCancelarActividades.setBounds(100, 100, 790, 436);
+		frmCancelarActividades.setBounds(100, 100, 827, 436);
 		frmCancelarActividades.getContentPane().setLayout(null);
 		
 		btn_BuscarActvidad = new JButton("Buscar Actividades");
@@ -83,14 +83,14 @@ public class CancelarActividadesView {
 		frmCancelarActividades.getContentPane().add(btn_BuscarActvidad);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(63, 93, 627, 220);
+		scrollPane.setBounds(63, 93, 696, 220);
 		frmCancelarActividades.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setColumnHeaderView(table);
 		
 		btn_CancelarActividad = new JButton("Cancelar Actividad");
-		btn_CancelarActividad.setBounds(528, 338, 150, 23);
+		btn_CancelarActividad.setBounds(597, 338, 150, 23);
 		frmCancelarActividades.getContentPane().add(btn_CancelarActividad);
 	}
 

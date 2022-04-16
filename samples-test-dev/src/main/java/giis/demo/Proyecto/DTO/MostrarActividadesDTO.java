@@ -13,6 +13,19 @@ public class MostrarActividadesDTO {
 	private float precioNoSocio;
 	private String fechaInicio;
 	private String fechaFin;
+	private String estado;
+	public String getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
+
 	public String getFechaFin() {
 		return fechaFin;
 	}
