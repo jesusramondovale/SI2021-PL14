@@ -32,4 +32,8 @@ public class ContabilidadMensualSociosController {
 
 		
 	}
+	
+	private void fechaActual() {
+		
+	}
 }
