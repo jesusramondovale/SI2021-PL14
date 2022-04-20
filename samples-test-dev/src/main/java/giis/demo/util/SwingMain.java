@@ -121,6 +121,15 @@ public class SwingMain {
 		
 		frmGestr.getContentPane().add(btnContabilidad);
 		
+		JButton btnContabilidadSocios = new JButton("Contabilidad Socios");
+		btnContabilidadSocios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ContabilidadMensualSociosController controller = new ContabilidadMensualSociosController(new ContabilidadMensualSociosModel(), new ContabilidadMensualSociosView());
+				controller.initController();
+			}
+		});
+		frmGestr.getContentPane().add(btnContabilidadSocios);
+		
 	}
 
 	public JFrame getFrame() { return this.frmGestr; }

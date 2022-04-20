@@ -26,6 +26,22 @@ public class ContabilidadMensualSociosView {
 		});
 	}
 
+	public JFrame getFrmContabilidadMensualDe() {
+		return frmContabilidadMensualDe;
+	}
+
+	public void setFrmContabilidadMensualDe(JFrame frmContabilidadMensualDe) {
+		this.frmContabilidadMensualDe = frmContabilidadMensualDe;
+	}
+
+	public JButton getBtnContabilidad() {
+		return btnContabilidad;
+	}
+
+	public void setBtnContabilidad(JButton btnContabilidad) {
+		this.btnContabilidad = btnContabilidad;
+	}
+
 	/**
 	 * Create the application.
 	 */
@@ -43,7 +59,7 @@ public class ContabilidadMensualSociosView {
 		frmContabilidadMensualDe.getContentPane().setLayout(null);
 		
 		btnContabilidad = new JButton("Realizar Contabilidad");
-		btnContabilidad.setBounds(116, 74, 146, 21);
+		btnContabilidad.setBounds(116, 74, 172, 21);
 		frmContabilidadMensualDe.getContentPane().add(btnContabilidad);
 	}
 }
