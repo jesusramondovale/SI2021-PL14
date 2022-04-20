@@ -76,6 +76,7 @@ public class CancelarActividadesController {
 		//Recorremos las reservas, si el idActividad de una reserva es igual a mi idActividad
 		//llamo a model.LiberaReservas
 		
+		
 	}
 	private void avisaSocios(int idActividad) {
 		
