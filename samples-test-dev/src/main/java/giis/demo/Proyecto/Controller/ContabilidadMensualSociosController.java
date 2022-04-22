@@ -37,11 +37,25 @@ public class ContabilidadMensualSociosController {
 		
 		List socios = (List) model.getSocios();
 		
+		for(int i=0; i<socios.size();i++) {
+			int dia=fechaActual();
+			if(fechaActual()>=25) //Entonces hacemos la contabilidad desde el 25 de este mes, al anterior
+			{
+				
+			}else //Hacemos la contabilidad hasta el día en el que estemos
+			{
+				
+			}
+				
+		}
+		
 		
 		
 	}
 	
-	private void fechaActual() {
-		LocalDateTime.now().getDayOfYear();
+	private int fechaActual() {
+		int fecha= LocalDateTime.now().getDayOfYear();
+		return fecha;
+		
 	}
 }
