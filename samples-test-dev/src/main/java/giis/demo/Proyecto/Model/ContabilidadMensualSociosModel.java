@@ -44,24 +44,17 @@ public class ContabilidadMensualSociosModel {
 		return horas*precio;	
 	}
 	
-	/*
-	
-	public List<Object[]> getPagosPendientesDeUsuario(int idSocio){
-		String sql = "SELECT pago.id, estado, importe, fecha, pago.socio_id, nombre, apellido1, apellido2 FROM pago INNER JOIN socio ON pago.socio_id=socio.id WHERE (estado=0 or estado = 3) AND pago.socio_id=?";
-		
-		return db.executeQueryArray(sql, idSocio);
-	}
+	public List<Object[]> getSocios(){
 
-	public List<Object[]> getPagosPendientesDeTodos(){
-		String sql = "SELECT pago.id, estado, importe, fecha, pago.socio_id, nombre, apellido1, apellido2 FROM pago INNER JOIN socio ON pago.socio_id =socio.id WHERE estado=0 or estado = 3";
-		*/
-		/*List<Object[]> a = db.executeQueryArray(sql);
-		for(int i = 0; i < a.get(0).length; i++)
-			System.out.println(a.get(0)[i]);
-		for(int i = 0; i < a.get(0).length; i++)
-			System.out.println(a.get(1)[i]);*/
-		/*
+		String sql = "SELECT dni from instalaciones order by idSocio";
+		return db.executeQueryArray(sql);
+	}
+	
+
+	public List<Object[]> getPagosRealizados(){
+		String sql = "SELECT pago.id, estado, importe, fecha, pago.socio_id, nombre, apellido1, apellido2 FROM pago INNER JOIN socio ON pago.socio_id =socio.id WHERE estado=1";
 		return db.executeQueryArray( sql);
+		
 	}
 	
 	public List<Object[]> getPagosPendientes(){
@@ -69,5 +62,5 @@ public class ContabilidadMensualSociosModel {
 		
 		return db.executeQueryArray(sql);
 	}
-	*/
+	
 }

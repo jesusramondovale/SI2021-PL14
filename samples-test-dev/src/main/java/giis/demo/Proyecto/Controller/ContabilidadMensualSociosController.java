@@ -1,10 +1,10 @@
 package giis.demo.Proyecto.Controller;
 
-import giis.demo.Proyecto.Model.CancelarReservasSociosModel;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import giis.demo.Proyecto.Model.ContabilidadMensualSociosModel;
-import giis.demo.Proyecto.View.CancelarReservasSociosView;
 import giis.demo.Proyecto.View.ContabilidadMensualSociosView;
-import giis.demo.Proyecto.View.LoginView;
 import giis.demo.util.SwingUtil;
 
 public class ContabilidadMensualSociosController {
@@ -29,11 +29,19 @@ public class ContabilidadMensualSociosController {
 	}
 
 	private void getContabilidad() {
-
+		List<Object[]> pagosPendientes = null;
+		List<Object[]> pagosRealizados = null;
+		
+		pagosPendientes=model.getPagosPendientes();
+		pagosRealizados=model.getPagosRealizados();
+		
+		List socios = (List) model.getSocios();
+		
+		
 		
 	}
 	
 	private void fechaActual() {
-		
+		LocalDateTime.now().getDayOfYear();
 	}
 }
