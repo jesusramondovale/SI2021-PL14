@@ -1,40 +1,16 @@
 package giis.demo.Proyecto.DTO;
 
-public class pagosDisplayDTO {
+public class ContabilidadDisplayDTO {
 	
-	private int idPago;
 	private float importe;
 	private String fecha;
-	private String estado;
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
+	private int estado;
 	private String idSocio;
 	private String idActividad;
 	private String idReserva;
 	
-	public pagosDisplayDTO() {}
+	public ContabilidadDisplayDTO() {}
 	
-	/*
-	public pagosDisplayDTO(int idPago, float importe, String fecha, int estado, String idSocio,
-			String idActividad, String idReserva) {
-		this.idPago = idPago;
-		this.importe = importe;
-		this.fecha = fecha;
-		this.estado = estado;
-		this.idSocio = idSocio;
-		this.idActividad = idActividad;
-		this.idReserva = idReserva;
-	}*/
-
-	public int getIdPago() {
-		return idPago;
-	}
-
-	public void setIdPago(int idPago) {
-		this.idPago = idPago;
-	}
 
 	public float getImporte() {
 		return importe;
@@ -52,8 +28,12 @@ public class pagosDisplayDTO {
 		this.fecha = fecha;
 	}
 
-	public String getEstado() {
+	public int getEstado() {
 		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
 	public String getIdSocio() {

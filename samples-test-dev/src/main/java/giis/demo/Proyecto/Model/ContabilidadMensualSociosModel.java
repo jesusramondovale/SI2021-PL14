@@ -3,12 +3,23 @@ package giis.demo.Proyecto.Model;
 import java.util.List;
 
 import giis.demo.Proyecto.DTO.ReservaDTO;
+import giis.demo.Proyecto.DTO.pagosDisplayDTO;
 import giis.demo.util.Database;
 
 public class ContabilidadMensualSociosModel {
 	private Database db = new Database();
 	
-	private static String SQL5 = "SELECT a.idActividad , a.precioSocio "
+	private static String SQL1="SELECT a.idActividad , a.idSocio, c.idReserva "
+			+ "FROM inscripciones a"
+			+ "INNER JOIN reservas c "
+			+ "USING (idSocio) "
+			+ "WHERE idSocio = ? ";
+	
+	private static String SQL5 = "SELECT a.idSocio , a.idActividad, a.idReserva, a.importe,a.estado "
+			+ "FROM pagos a "
+			+ "ORDER BY a.idSocio";
+	
+	private static String SQL9 = "SELECT a.idActividad , a.precioSocio "
 			+ "FROM actividades a ";
 	private static String SQL6 = "SELECT r.idReserva , r.horaInicio , r.horaFin , i.precioHora "
 			+ "FROM instalaciones i "
@@ -36,7 +47,7 @@ public class ContabilidadMensualSociosModel {
 	 */
 	public int getImporteActividad(int idActividad) {
 
-		List<ReservaDTO> data = db.executeQueryPojo(ReservaDTO.class, SQL5, idActividad);
+		List<ReservaDTO> data = db.executeQueryPojo(ReservaDTO.class, SQL9, idActividad);
 		
 		int precio = (int) data.get(0).getPrecioHora();
 		int horas = (int) (data.get(0).getHoraFin() - data.get(0).getHoraInicio());
@@ -57,10 +68,9 @@ public class ContabilidadMensualSociosModel {
 		
 	}
 	
-	public List<Object[]> getPagosPendientes(){
-		String sql = "SELECT pago.id, importe, fecha, pago.socio_id, nombre, apellido1, apellido2 FROM pago INNER JOIN socio ON pago.socio_id =socio.id WHERE estado=0";
+	public List<pagosDisplayDTO> getPagosPendientes(){
 		
-		return db.executeQueryArray(sql);
+		return db.executeQueryPojo(pagosDisplayDTO.class,SQL5);
 	}
 	
 }
