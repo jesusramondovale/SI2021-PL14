@@ -15,6 +15,61 @@ public class InformeSociosModel {
 
 	public Database db=new Database();
 
+	
+	/*
+	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS
+	 * DE INSTALACIONES SUELTAS (NO RELACIONADAS CON ACTIVIDADES)
+	 * (es decir, con idActividad = NULL)
+	 * de todos los socios existentes en BD  
+	 */
+	public List<ReservaDTO> getReservas() {
+
+		String SQL = "SELECT idReserva , fecha , horaInicio , horaFin , idInstalacion , "
+				+ "idActividad , idSocio , estado "
+				+ "FROM reservas "
+				+ "WHERE idActividad IS NULL " ; 
+
+		try {
+			return db.executeQueryPojo(ReservaDTO.class, SQL);
+
+		}
+
+		catch(UnexpectedException e) {
+
+			JOptionPane.showMessageDialog(null, "Error SQL en getReservas() ","Error",
+					JOptionPane.WARNING_MESSAGE);
+			return null; 
+
+		}
+	}
+	
+	/*
+	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS
+	 * CORRESPONDIENTES A ACTIVIDADES 
+	 * de todos los Socios existentes en BD  
+	 */
+	public List<ReservaDTO> getActividades() {
+
+		String SQL = "SELECT idReserva , fecha , horaInicio , horaFin , idInstalacion , "
+				+ "idActividad , idSocio , estado "
+				+ "FROM reservas "
+				+ "WHERE idActividad IS NOT NULL " ; 
+
+		try {
+			return db.executeQueryPojo(ReservaDTO.class, SQL);
+
+		}
+
+		catch(UnexpectedException e) {
+
+			JOptionPane.showMessageDialog(null, "Error SQL en getActividades() ","Error",
+					JOptionPane.WARNING_MESSAGE);
+			return null; 
+
+		}
+	}
+	
+	
 
 	/*
 	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS

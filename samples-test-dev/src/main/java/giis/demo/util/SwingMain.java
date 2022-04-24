@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-import giis.demo.*;
 import giis.demo.Proyecto.Controller.InformeSociosController;
 import giis.demo.Proyecto.Model.InformeSociosModel;
 import giis.demo.Proyecto.View.InformeSociosView;
