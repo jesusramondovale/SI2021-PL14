@@ -1,11 +1,16 @@
 package giis.demo.Proyecto.Controller;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+
+import com.opencsv.CSVWriter;
 
 import giis.demo.Proyecto.DTO.MostrarActividadesDTO;
 import giis.demo.Proyecto.Model.CancelarActividadesModel;
@@ -40,12 +45,12 @@ public class CancelarActividadesController {
 		System.out.println("OK1");
 
 		view.getBtn_BuscarActvidad().addActionListener(e -> SwingUtil.exceptionWrapper(() -> getListaActividades()));
-		view.getBtn_CancelarActividad().addActionListener(e -> SwingUtil.exceptionWrapper(() -> eliminaActividades()));
+		view.getBtn_CancelarActividad().addActionListener(e -> SwingUtil.exceptionWrapper(() -> CancelaActividades()));
 
 
 	}
 
-	private void eliminaActividades() {
+	private void CancelaActividades() {
 		// Comprueba si hay 1 reserva seleccionada en la tabla
 
 		if(this.view.getTable().getSelectedRowCount() != 1) {
@@ -57,6 +62,8 @@ public class CancelarActividadesController {
 		else { // Hay exactamente 1 fila seleccionada en la tabla
 
 			int idActividad = Integer.parseInt( this.view.getTable().getModel().getValueAt(this.view.getTable().getSelectedRow(), 0).toString());
+			
+			//boolean yaPagada =  model.yaPagada(idActividad);
 
 			try {
 				model.CancelarActividad(idActividad);
@@ -70,6 +77,85 @@ public class CancelarActividadesController {
 				SwingUtil.showMessage("Error SQL en cancelarActividad!", "Error", 0);
 			}
 		}
+		/*
+		if(yaPagada) {
+
+			System.out.println("------------------- RECIBO --------------------");
+			System.out.println("#Número de reserva: " + idReserva);
+			System.out.print("#Número de socio: " + this.login.getTxtId().getText());
+
+			System.out.print(" (" + this.view.getTextFieldNombre().getText() + ")\n");
+
+			System.out.println("Fecha de la Reserva (AAAA-MM-DD): " + 
+					this.view.getTable().getModel().getValueAt(
+							this.view.getTable().getSelectedRow() , 2));
+
+			System.out.println("Fecha de Cancelación (AAAA-MM-DD): " + Util.dateToIsoString(new Date()));
+			System.out.println("----------------------------------------------");
+
+
+			File recibosCSV = new File("./recibo.csv");
+			try {
+
+
+
+				FileWriter fw = new FileWriter(recibosCSV);
+
+
+
+				CSVWriter writer = new CSVWriter(fw, ';',
+						CSVWriter.NO_QUOTE_CHARACTER,
+						CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+						CSVWriter.DEFAULT_LINE_END);
+
+				// create a List which contains String array
+				List<String[]> data = new ArrayList<String[]>();
+				String[] cabecera = {" #N Reserva " , " #ID Socio ", " Nombre " , "Instalacion" , "Fecha de reserva" , "Fecha de Cancelacion" , "Importe (euros)"};
+
+
+				data.add(new String [] { 
+
+						//ID reserva
+						Integer.toString(idReserva)  , 
+
+						//ID de socio
+						this.login.getTxtId().getText() , 
+
+						// Nombre de Socio
+						this.view.getTextFieldNombre().getText()
+						,
+
+
+						this.view.getTable().getModel().getValueAt(
+								this.view.getTable().getSelectedRow() , 1).toString()
+						,
+
+						this.view.getTable().getModel().getValueAt(
+								this.view.getTable().getSelectedRow() , 2).toString()
+						,
+
+						Util.dateToIsoString(new Date())
+						,
+
+						Integer.toString(model.getImporte(idReserva)) +" euros"
+
+				});
+
+				writer.writeNext(cabecera);
+				writer.writeAll(data);
+
+
+				writer.close();
+
+			} catch (IOException e) 
+			{
+				e.printStackTrace();
+				SwingUtil.showMessage("Error creando el fichero CSV", "Error", 0);
+			}
+
+		} // end yaPagada situation 
+
+*/
 	}
 
 	private void liberaReservas(int idActividad) {
@@ -81,87 +167,6 @@ public class CancelarActividadesController {
 	private void avisaSocios(int idActividad) {
 		
 	}
-
-			/*
-				if(yaPagada) {
-
-					System.out.println("------------------- RECIBO --------------------");
-					System.out.println("#Número de reserva: " + idReserva);
-					System.out.print("#Número de socio: " + this.login.getTxtId().getText());
-
-					System.out.print(" (" + this.view.getTextFieldNombre().getText() + ")\n");
-
-					System.out.println("Fecha de la Reserva (AAAA-MM-DD): " + 
-							this.view.getTable().getModel().getValueAt(
-									this.view.getTable().getSelectedRow() , 2));
-
-					System.out.println("Fecha de Cancelación (AAAA-MM-DD): " + Util.dateToIsoString(new Date()));
-					System.out.println("----------------------------------------------");
-
-
-					File recibosCSV = new File("./recibo.csv");
-					try {
-
-
-
-						FileWriter fw = new FileWriter(recibosCSV);
-
-
-
-						CSVWriter writer = new CSVWriter(fw, ';',
-								CSVWriter.NO_QUOTE_CHARACTER,
-								CSVWriter.DEFAULT_ESCAPE_CHARACTER,
-								CSVWriter.DEFAULT_LINE_END);
-
-						// create a List which contains String array
-						List<String[]> data = new ArrayList<String[]>();
-						String[] cabecera = {" #N Reserva " , " #ID Socio ", " Nombre " , "Instalacion" , "Fecha de reserva" , "Fecha de Cancelacion" , "Importe (euros)"};
-
-
-						data.add(new String [] { 
-
-								//ID reserva
-								Integer.toString(idReserva)  , 
-
-								//ID de socio
-								this.login.getTxtId().getText() , 
-
-								// Nombre de Socio
-								this.view.getTextFieldNombre().getText()
-								,
-
-
-								this.view.getTable().getModel().getValueAt(
-										this.view.getTable().getSelectedRow() , 1).toString()
-								,
-
-								this.view.getTable().getModel().getValueAt(
-										this.view.getTable().getSelectedRow() , 2).toString()
-								,
-
-								Util.dateToIsoString(new Date())
-								,
-
-								Integer.toString(model.getImporte(idReserva)) +" euros"
-
-						});
-
-						writer.writeNext(cabecera);
-						writer.writeAll(data);
-
-
-						writer.close();
-
-					} catch (IOException e) 
-					{
-						e.printStackTrace();
-						SwingUtil.showMessage("Error creando el fichero CSV", "Error", 0);
-					}
-
-
-				} // end yaPagada situation 
-			 */
-
 
 	private void getListaActividades() {
 

@@ -50,14 +50,14 @@ public class CancelarActividadesModel {
 	}
 	
 	//Avisar a los socios y devolucion importe
-	/*
+	
 	public boolean yaPagada(int idActividad) {
 
 		List<reservasDisplayDTO> estado = db.executeQueryPojo(reservasDisplayDTO.class, SQL4, idActividad);
 		return (estado.get(0).getEstado().equalsIgnoreCase("PAGADA"));
 
 	}
-	
+	/*
 	public int getImporte(int idActividad) {
 
 		List<ReservaDTO> data = db.executeQueryPojo(ReservaDTO.class, SQL6, idActividad);

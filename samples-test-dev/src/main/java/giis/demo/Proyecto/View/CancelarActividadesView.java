@@ -87,7 +87,7 @@ public class CancelarActividadesView {
 		frmCancelarActividades.getContentPane().add(scrollPane);
 		
 		table = new JTable();
-		scrollPane.setColumnHeaderView(table);
+		scrollPane.setViewportView(table);
 		
 		btn_CancelarActividad = new JButton("Cancelar Actividad");
 		btn_CancelarActividad.setBounds(597, 338, 150, 23);
