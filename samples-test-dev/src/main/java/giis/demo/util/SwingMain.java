@@ -9,8 +9,9 @@ import java.awt.event.ActionEvent;
 
 
 import giis.demo.*;
-
-
+import giis.demo.Proyecto.Controller.InformeSociosController;
+import giis.demo.Proyecto.Model.InformeSociosModel;
+import giis.demo.Proyecto.View.InformeSociosView;
 import giis.demo.tkrun.*;
 import java.awt.FlowLayout;
 
@@ -48,6 +49,7 @@ public class SwingMain {
 		initialize();
 	}
 
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -86,6 +88,19 @@ public class SwingMain {
 			}
 		});
 		frmGestr.getContentPane().add(btnCargarDatosIniciales);
+		
+		JButton btnInformesSocios = new JButton("Informes Sobre Socios");
+		btnInformesSocios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InformeSociosController controller=new InformeSociosController(
+						new InformeSociosView() , new InformeSociosModel());
+				controller.initController();
+					
+			}
+		});
+		
+		frmGestr.getContentPane().add(btnInformesSocios);
 	
 		
 	}

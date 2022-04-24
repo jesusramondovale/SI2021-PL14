@@ -21,6 +21,7 @@ public class InformeSociosView {
 	private JButton btnGenerar;
 	private JCheckBox checkBoxReservas;
 	private JCheckBox checkBoxActividades;
+	private JCheckBox chckbxHistorico;
 
 	/**
 	 * Launch the application.
@@ -51,7 +52,7 @@ public class InformeSociosView {
 	private void initialize() {
 		frmGenerarInformesSobre = new JFrame();
 		frmGenerarInformesSobre.setTitle("Generar Informes sobre Socios");
-		frmGenerarInformesSobre.setBounds(100, 100, 401, 218);
+		frmGenerarInformesSobre.setBounds(100, 100, 405, 248);
 		frmGenerarInformesSobre.getContentPane().setLayout(null);
 
 		JLabel lblSocio = new JLabel("#ID de Socio");
@@ -66,23 +67,23 @@ public class InformeSociosView {
 
 		JLabel lblIncluirDatosSobre = new JLabel("Incluir Datos sobre Reservas");
 		lblIncluirDatosSobre.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblIncluirDatosSobre.setBounds(24, 74, 217, 16);
+		lblIncluirDatosSobre.setBounds(24, 103, 217, 16);
 		frmGenerarInformesSobre.getContentPane().add(lblIncluirDatosSobre);
 
 		JLabel lblIncluirDatosSobre_2 = new JLabel("Incluir Datos sobre Actividades");
 		lblIncluirDatosSobre_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblIncluirDatosSobre_2.setBounds(24, 104, 217, 16);
+		lblIncluirDatosSobre_2.setBounds(24, 130, 217, 16);
 		frmGenerarInformesSobre.getContentPane().add(lblIncluirDatosSobre_2);
 
 		checkBoxReservas = new JCheckBox("");
 		checkBoxReservas.setSelected(true);
-		checkBoxReservas.setBounds(231, 74, 93, 21);
+		checkBoxReservas.setBounds(247, 98, 93, 21);
 		frmGenerarInformesSobre.getContentPane().add(checkBoxReservas);
 
 		checkBoxActividades = new JCheckBox("");
 		checkBoxActividades.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		checkBoxActividades.setSelected(true);
-		checkBoxActividades.setBounds(231, 104, 93, 21);
+		checkBoxActividades.setBounds(247, 125, 93, 21);
 		frmGenerarInformesSobre.getContentPane().add(checkBoxActividades);
 
 		textFieldSocio = new JTextField();
@@ -104,12 +105,32 @@ public class InformeSociosView {
 		frmGenerarInformesSobre.getContentPane().add(dateChooserFinal);
 
 		btnLimpiar = new JButton("LIMPIAR");
-		btnLimpiar.setBounds(24, 142, 85, 21);
+		btnLimpiar.setBounds(24, 169, 85, 21);
 		frmGenerarInformesSobre.getContentPane().add(btnLimpiar);
 
 		btnGenerar = new JButton("GENERAR");
-		btnGenerar.setBounds(239, 142, 85, 21);
+		btnGenerar.setBounds(255, 169, 85, 21);
 		frmGenerarInformesSobre.getContentPane().add(btnGenerar);
+		
+		JLabel lblNewLabel = new JLabel("Histórico");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setBounds(24, 75, 85, 14);
+		frmGenerarInformesSobre.getContentPane().add(lblNewLabel);
+		
+		chckbxHistorico = new JCheckBox("");
+		chckbxHistorico.setBounds(88, 73, 99, 23);
+		frmGenerarInformesSobre.getContentPane().add(chckbxHistorico);
+	}
+
+	
+	
+	
+	public JCheckBox getChckbxHistorico() {
+		return chckbxHistorico;
+	}
+
+	public void setChckbxHistorico(JCheckBox chckbxHistorico) {
+		this.chckbxHistorico = chckbxHistorico;
 	}
 
 	public JFrame getFrmGenerarInformesSobre() {
@@ -175,11 +196,4 @@ public class InformeSociosView {
 	public void setCheckBoxActividades(JCheckBox checkBoxActividades) {
 		this.checkBoxActividades = checkBoxActividades;
 	}
-
-
-
-
-
-
-
 }
