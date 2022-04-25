@@ -3,6 +3,7 @@ package giis.demo.Proyecto.Controller;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.swing.table.TableModel;
 import com.opencsv.CSVWriter;
 
 import giis.demo.Proyecto.DTO.MostrarActividadesDTO;
+import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.Proyecto.Model.CancelarActividadesModel;
 import giis.demo.Proyecto.View.CancelarActividadesView;
 import giis.demo.util.SwingUtil;
@@ -62,14 +64,15 @@ public class CancelarActividadesController {
 		else { // Hay exactamente 1 fila seleccionada en la tabla
 
 			int idActividad = Integer.parseInt( this.view.getTable().getModel().getValueAt(this.view.getTable().getSelectedRow(), 0).toString());
-			
+			String NombreActividad =this.view.getTable().getModel().getValueAt(this.view.getTable().getSelectedRow(), 1).toString();
 			//boolean yaPagada =  model.yaPagada(idActividad);
 
 			try {
 				model.CancelarActividad(idActividad);
 				SwingUtil.showMessage("La Actividad " + idActividad +" fue cancelada con éxito!", "Éxito", 1);
+				
 				liberaReservas(idActividad);
-				avisaSocios(idActividad);
+				avisaSocios(NombreActividad);
 
 			}
 			catch(Exception e) {
@@ -161,12 +164,23 @@ public class CancelarActividadesController {
 	private void liberaReservas(int idActividad) {
 		//Recorremos las reservas, si el idActividad de una reserva es igual a mi idActividad
 		//llamo a model.LiberaReservas
-		
+		List<reservasDisplayDTO> listaReservas = model.getReservas(idActividad);
+		for(int i=0;i<listaReservas.size();i++) {
+			model.LiberaResevas(i);
+		}
 		
 	}
-	private void avisaSocios(int idActividad) {
-		
-	}
+	private void avisaSocios(String NombreActividad) {
+		try {
+            PrintWriter writer = new PrintWriter("./avisa.txt", "UTF-8");
+            writer.println("Buenos días, lamentamos avisarle que la actividad '"+ NombreActividad +"' a la que estaba apuntado se ha cancelado.");
+            writer.println("Un cordial saludo,");
+            writer.println("Direccion del Centro Deportivo.");
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 	private void getListaActividades() {
 

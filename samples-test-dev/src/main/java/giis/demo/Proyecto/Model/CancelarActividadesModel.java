@@ -27,7 +27,7 @@ public class CancelarActividadesModel {
 		return db.executeQueryPojo(MostrarActividadesDTO.class,SQL);
 	}
 
-	public List<reservasDisplayDTO> getReservas(String idActividad){
+	public List<reservasDisplayDTO> getReservas(int idActividad){
 		String sql = "SELECT r.idActividad  " + 
 				"	FROM reservas r " +  
 				"	WHERE idReserva= ? ";
@@ -42,7 +42,6 @@ public class CancelarActividadesModel {
 				+ "WHERE idActividad = ? ", idActividad);
 	}
 	
-
 	//Libera las reservas, por tanto borramos la fila de la bd
 	public void LiberaResevas (int idActividad) {
 		db.executeUpdate("DELETE FROM reservas "
