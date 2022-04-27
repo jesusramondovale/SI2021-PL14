@@ -31,6 +31,12 @@ INSERT INTO "actividades" VALUES (1,'Tenis','Tenis',20,25,'2022-05-01','2022-06-
 INSERT INTO "actividades" VALUES (2,'Natación','Natación',12,16,'2022-05-02','2022-06-24',2,'Vigente',0,6);
 INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12,16,'2022-05-03','2022-06-24',1,'Cancelada',1,6);
 
+INSERT INTO "listaEsperaSocios" VALUES (1,1,1);
+INSERT INTO "listaEsperaSocios" VALUES (1,4,2);
+INSERT INTO "listaEsperaSocios" VALUES (2,2,1);
+
+INSERT INTO "listaEsperaNoSocios" VALUES (1,1,1);
+INSERT INTO "listaEsperaNoSocios" VALUES (1,3,2);
 
 INSERT INTO "horarioActividad" VALUES (1 , 1 , 1);
 INSERT INTO "horarioActividad" VALUES (2 , 1 , 3);
