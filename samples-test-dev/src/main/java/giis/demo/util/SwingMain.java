@@ -90,14 +90,14 @@ public class SwingMain {
 		frmGestr.getContentPane().add(btnCargarDatosIniciales);
 
 
-		JButton btnGestionListaEspera = new JButton("Gestionar lista de espera");
-		btnGestionListaEspera.addActionListener(new ActionListener() {
+		JButton btngeneraInformeActividad = new JButton("Gestionar lista de espera");
+		btngeneraInformeActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 gestionListasEsperaController controller=new gestionListasEsperaController(new gestionListasEsperaModel() , new gestionListasEsperaView());
+				 generarInformeActividadesController controller=new generarInformeActividadesController(new generarInformeActividadesModel() , new generarInformeActividadesView());
 	                controller.initController();
 			}
 		});
-		frmGestr.getContentPane().add(btnGestionListaEspera);
+		frmGestr.getContentPane().add(btngeneraInformeActividad);
 	}
 
 	public JFrame getFrame() { return this.frmGestr; }
