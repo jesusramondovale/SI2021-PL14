@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 
@@ -92,17 +92,16 @@ public class SwingMain {
 		btnInscribir.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
 			public void actionPerformed(ActionEvent e) {
 				
-				/*
-				InscribirClientesController controller=new InscribirClientesController(new InscribirClientesView() , new InscribirClientesModel());
+				
+				InscribirClientesController controller=new InscribirClientesController(new InscribirClientesModel() , new InscribirClientesView());
 				try {
 					controller.initController();
 				} catch (ParseException e1) {
 
 					e1.printStackTrace();
 				}
-				*/
 				
-				
+						
 				
 			}
 		});

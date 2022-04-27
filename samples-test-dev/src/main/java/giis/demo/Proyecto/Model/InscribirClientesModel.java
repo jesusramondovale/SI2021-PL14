@@ -7,6 +7,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import giis.demo.Proyecto.DTO.ActividadPeriodoDTO;
+import giis.demo.Proyecto.DTO.SociosDTO;
+import giis.demo.Proyecto.DTO.noSociosDisplayDTO;
 import giis.demo.util.Database;
 import giis.demo.util.UnexpectedException;
 
@@ -55,6 +57,58 @@ public class InscribirClientesModel {
 	}
 
 
+	/*
+	 * Devuelve TRUE si el Socio existe, 
+	 * FALSE en caso contrario 
+	 */
+	public boolean isSocio(int id){
+
+
+		String SQL = "SELECT idSocio , nombre "
+				+ "FROM socios "
+				+ "WHERE idSocio = ? ";
+		try {
+			List<SociosDTO> list= db.executeQueryPojo(SociosDTO.class, SQL , id);
+			return !(list.isEmpty());
+
+
+		}
+
+		catch(UnexpectedException e) {
+			JOptionPane.showMessageDialog(null, "SQL error en is Socio.","Error",
+					JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+
+
+	}
+
+
+	/*
+	 * Devuelve TRUE si el No Socio existe, 
+	 * FALSE en caso contrario 
+	 */
+	public boolean isNoSocio(int id){
+
+
+		String SQL = "SELECT idNoSocio , nombre "
+				+ "FROM noSocios "
+				+ "WHERE idNoSocio = ? ";
+		try {
+			List<noSociosDisplayDTO> list= db.executeQueryPojo(noSociosDisplayDTO.class, SQL , id);
+			return !(list.isEmpty());
+
+
+		}
+
+		catch(UnexpectedException e) {
+			JOptionPane.showMessageDialog(null, "SQL error en is No Socio.","Error",
+					JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+
+
+	}
 
 
 	/*
@@ -71,11 +125,11 @@ public class InscribirClientesModel {
 
 
 
-		String SQL = "SELECT a.idActividad , a.nombre , p.inicioInscrNoSocios , p.finInscrNoSocios "
+		String SQL = "SELECT a.idActividad , a.nombre , p.inicioInscrSocios , p.finInscrNoSocios "
 				+ "FROM actividades a "
 				+ "INNER JOIN periodos p "
 				+ "USING (idPeriodoInscripcion) "
-				+ "WHERE p.inicioInscrNoSocios <= ? "
+				+ "WHERE p.inicioInscrSocios <= ? "
 				+ "AND p.finInscrNoSocios >= ? "
 				+ "AND estado == 'Vigente' ";
 
@@ -122,7 +176,7 @@ public class InscribirClientesModel {
 
 	}
 
-	
+
 	/*
 	 * Inscribe un no SOCIO en la Actividad indicada
 	 *   **NO REALIZA NINGUNA RESERVA DE PISTA,
