@@ -88,12 +88,12 @@ private String sql4 = "SELECT idSocio, cuota from socios";
 		db.executeUpdate("DELETE FROM listaEsperaNoSocios WHERE idActividad = ? AND posicion = ? ",idActividad, posicion);
 	}
 	
-	public void actualizaSocio(int posicion,int idActividad) {
-		db.executeUpdate("UPDATE listaEsperaSocios SET posicion = ? WHERE idActividad = ?",posicion,idActividad);
+	public void actualizaSocio(int posicion,int idActividad,int idSocio) {
+		db.executeUpdate("UPDATE listaEsperaSocios SET posicion = ? WHERE idActividad = ? AND idSocio = ?",posicion,idActividad,idSocio);
 	}
 	
-	public void actualizaNoSocio(int posicion,int idActividad) {
-		db.executeUpdate("UPDATE listaEsperaNoSocios SET posicion = ? WHERE idActividad = ?",posicion,idActividad);
+	public void actualizaNoSocio(int posicion,int idActividad, int idNoSocio) {
+		db.executeUpdate("UPDATE listaEsperaNoSocios SET posicion = ? WHERE idActividad = ? AND idNoSocio = ?",posicion,idActividad,idNoSocio);
 	}
 	
 	public void actualizarPlazas(int idActividad,int plaza) {

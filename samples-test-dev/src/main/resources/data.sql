@@ -33,7 +33,8 @@ INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12,16,'2022-05-03','2022-0
 
 INSERT INTO "listaEsperaSocios" VALUES (1,1,1);
 INSERT INTO "listaEsperaSocios" VALUES (1,4,2);
-INSERT INTO "listaEsperaSocios" VALUES (2,2,1);
+INSERT INTO "listaEsperaSocios" VALUES (1,2,3);
+INSERT INTO "listaEsperaSocios" VALUES (1,3,4);
 
 INSERT INTO "listaEsperaNoSocios" VALUES (1,1,1);
 INSERT INTO "listaEsperaNoSocios" VALUES (2,3,1);

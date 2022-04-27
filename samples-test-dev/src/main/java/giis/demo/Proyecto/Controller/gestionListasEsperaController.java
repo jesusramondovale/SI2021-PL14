@@ -140,31 +140,43 @@ public class gestionListasEsperaController {
 						List<listaEsperaSociosDisplayDTO> listaSocios2 = model.obtenerSocios();
 						if (!listaSocios2.isEmpty()) {
 							for (int act = 0; act < listaSocios2.size(); act++) {
-								model.actualizaSocio(act, actividad.get(i).getIdActividad());
-								model.actualizarPlazas(actividad.get(i).getIdActividad(), actividad.get(i).getPlazas() -1);
+								model.actualizaSocio(act + 1, actividad.get(i).getIdActividad(),
+										listaSocios2.get(act).getIdSocio());
+								model.actualizarPlazas(actividad.get(i).getIdActividad(),
+										actividad.get(i).getPlazas() - 1);
 							}
-							break;
 						}
+						break;
+						
 					}
 				}
 				if (!socioFuera) {
 					for (int Nsocio = 0; Nsocio < listaNoSocios.size(); Nsocio++) {
 						if (actividad.get(i).getIdActividad() == listaNoSocios.get(Nsocio).getIdActividad()) {
 							model.eliminaNoSocio(actividad.get(i).getIdActividad(), 1);
-							List<listaEsperaNoSociosDisplayDTO> listaSocios2 = model.obtenerNoSocios();
-							if (!listaSocios2.isEmpty()) {
-								for (int act = 0; act < listaSocios2.size(); act++) {
-									model.actualizaNoSocio(act, actividad.get(i).getIdActividad());
-									model.actualizarPlazas(actividad.get(i).getIdActividad(), actividad.get(i).getPlazas() -1);
-								}
-								break;
+							List<listaEsperaNoSociosDisplayDTO> listaNoSocios2 = model.obtenerNoSocios();
+							
+							if(listaNoSocios2.size() == 1) {
+								model.actualizaNoSocio(1, actividad.get(i).getIdActividad(),
+										listaNoSocios2.get(0).getIdSocio());
+								model.actualizarPlazas(actividad.get(i).getIdActividad(),
+										actividad.get(i).getPlazas() - 1);
 							}
+							else if (!listaNoSocios2.isEmpty()) {
+								for (int act2 = 0; act2 < listaNoSocios2.size(); act2++) {
+									model.actualizaNoSocio(act2 +1, actividad.get(i).getIdActividad(),
+											listaNoSocios2.get(act2).getIdSocio());
+									model.actualizarPlazas(actividad.get(i).getIdActividad(),
+											actividad.get(i).getPlazas() - 1);
+								}
+							}
+							break;
 						}
 					}
 				}
 			}
 		}
-		
+
 		view.getBtnInscribir().setEnabled(false);
 		view.getBtnNoInscribir().setEnabled(false);
 		view.getBtnActualizar().setEnabled(true);
@@ -187,8 +199,8 @@ public class gestionListasEsperaController {
 						List<listaEsperaSociosDisplayDTO> listaSocios2 = model.obtenerSocios();
 						if (!listaSocios2.isEmpty()) {
 							for (int act = 0; act < listaSocios2.size(); act++) {
-								model.actualizaSocio(act, actividad.get(i).getIdActividad());
-								//model.actualizarPlazas(actividad.get(i).getIdActividad(), actividad.get(i).getPlazas() -1);
+								model.actualizaSocio(act + 1, actividad.get(i).getIdActividad(),
+										listaSocios2.get(act).getIdSocio());
 							}
 							break;
 						}
@@ -198,11 +210,11 @@ public class gestionListasEsperaController {
 					for (int Nsocio = 0; Nsocio < listaNoSocios.size(); Nsocio++) {
 						if (actividad.get(i).getIdActividad() == listaNoSocios.get(Nsocio).getIdActividad()) {
 							model.eliminaNoSocio(actividad.get(i).getIdActividad(), 1);
-							List<listaEsperaNoSociosDisplayDTO> listaSocios2 = model.obtenerNoSocios();
-							if (!listaSocios2.isEmpty()) {
-								for (int act = 0; act < listaSocios2.size(); act++) {
-									model.actualizaNoSocio(act, actividad.get(i).getIdActividad());
-									//model.actualizarPlazas(actividad.get(i).getIdActividad(), actividad.get(i).getPlazas() -1);
+							List<listaEsperaNoSociosDisplayDTO> listaNoSocios2 = model.obtenerNoSocios();
+							if (!listaNoSocios2.isEmpty()) {
+								for (int act = 0; act < listaNoSocios2.size(); act++) {
+									model.actualizaSocio(act + 1, actividad.get(i).getIdActividad(),
+											listaNoSocios2.get(act).getIdSocio());
 								}
 								break;
 							}
