@@ -36,7 +36,7 @@ INSERT INTO "listaEsperaSocios" VALUES (1,4,2);
 INSERT INTO "listaEsperaSocios" VALUES (2,2,1);
 
 INSERT INTO "listaEsperaNoSocios" VALUES (1,1,1);
-INSERT INTO "listaEsperaNoSocios" VALUES (1,3,2);
+INSERT INTO "listaEsperaNoSocios" VALUES (2,3,1);
 
 INSERT INTO "horarioActividad" VALUES (1 , 1 , 1);
 INSERT INTO "horarioActividad" VALUES (2 , 1 , 3);
