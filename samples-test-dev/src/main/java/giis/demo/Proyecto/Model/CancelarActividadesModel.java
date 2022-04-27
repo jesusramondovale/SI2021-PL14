@@ -4,6 +4,7 @@ import java.util.List;
 
 import giis.demo.Proyecto.DTO.MostrarActividadesDTO;
 import giis.demo.Proyecto.DTO.ReservaDTO;
+import giis.demo.Proyecto.DTO.SociosDisplayDTO;
 import giis.demo.Proyecto.DTO.reservasDisplayDTO;
 import giis.demo.util.Database;
 
@@ -32,6 +33,15 @@ public class CancelarActividadesModel {
 				"	FROM reservas r " +  
 				"	WHERE idReserva= ? ";
 		return db.executeQueryPojo(reservasDisplayDTO.class, sql,idActividad);
+
+	}
+	public List<SociosDisplayDTO> getSocios(int idActividad){
+		 String SQL = "SELECT s.nombre, s.apellido1, s.apellido2, s.telefono, i.idActividad "
+				+ "FROM socios s "
+				+ "INNER JOIN inscripciones i "
+				+ "USING (idSocio) "
+				+ "WHERE idActividad = ? ";
+		return db.executeQueryPojo(SociosDisplayDTO.class, SQL,idActividad);
 
 	}
 	

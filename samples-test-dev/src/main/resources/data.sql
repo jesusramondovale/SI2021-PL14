@@ -11,11 +11,11 @@ INSERT INTO "instalaciones" VALUES (6,'piscina',20);
 
 
 
-INSERT INTO "socios" VALUES (1,'71728103G','Javier','Santos','Menendez','si',60);
-INSERT INTO "socios" VALUES (2,'85858585F','Pepe ','Del Arco ','Rosa','si',60);
-INSERT INTO "socios" VALUES (3,'74747474T','Maria','Perez','Alarcon','no',55);
-INSERT INTO "socios" VALUES (4,'00000000Y','Leonardo','Messi','Cuccittini','si',60);
-INSERT INTO "socios" VALUES (5,'00000000A','Agapito','Sanchez','Rios','si',55);
+INSERT INTO "socios" VALUES (1,'71728103G','Javier','Santos','Menendez','si',60,'64563784');
+INSERT INTO "socios" VALUES (2,'85858585F','Pepe ','Del Arco ','Rosa','si',60,'643784980');
+INSERT INTO "socios" VALUES (3,'74747474T','Maria','Perez','Alarcon','no',55,'612645934');
+INSERT INTO "socios" VALUES (4,'00000000Y','Leonardo','Messi','Cuccittini','si',60,'664009874');
+INSERT INTO "socios" VALUES (5,'00000000A','Agapito','Sanchez','Rios','si',55,'64343567');
 
 
 

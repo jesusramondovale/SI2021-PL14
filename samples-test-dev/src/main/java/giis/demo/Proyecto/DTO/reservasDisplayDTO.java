@@ -2,6 +2,10 @@ package giis.demo.Proyecto.DTO;
 
 public class reservasDisplayDTO {
 
+	@Override
+	public String toString() {
+		return idActividad;
+	}
 	private String idReserva;
 	private String fecha;
 	private float horaInicio ;

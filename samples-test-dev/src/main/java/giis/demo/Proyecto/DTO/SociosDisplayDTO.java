@@ -2,11 +2,28 @@ package giis.demo.Proyecto.DTO;
 
 public class SociosDisplayDTO {
 	
+	@Override
+	public String toString() {
+		return "Socio: "+ nombre + " " + apellido1 + " " + apellido2  + " con teléfono: "+ telefono + " " ;
+	}
 	private int idSocio;
 	private String dni;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
+	private String telefono;
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
 	private boolean corrientePago;
 	private int cuota;
 

@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS "socios" (
 	"apellido2"	INTEGER,
 	"corrientePago"	INTEGER,
 	"cuota"	NUMERIC,
+	"telefono" TEXT,
 	PRIMARY KEY("idSocio" AUTOINCREMENT)
 );
 
