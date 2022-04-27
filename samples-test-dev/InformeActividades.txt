@@ -1,0 +1,41 @@
+CENTRO DEPORTIVO: Informe Actividades
+-----------------------------------------------------------
+Nombre actividad: Tenis
+Instalación: pista de pádel
+Fecha inicio: 2022-05-01	Fecha Fin: 2022-06-18
+Nº plazas: 29
+Nº inscritos: 4
+Porcentaje de ocupación: 13.79%
+Inscripcion de socios: 4	Precio socio: 20.0€
+Inscripcion de no socios: 0	Precio no socio: 25.0€
+Porcentaje de ocupación de los socios: 100.0%
+Porcentaje de ocupación de los no socios: 0.0%
+Nº de gente en la lista de espera de socios: 2
+Nº de gente en la lista de espera de no socios: 1
+---------------------------------------------
+Nombre actividad: Natación
+Instalación: piscina
+Fecha inicio: 2022-05-02	Fecha Fin: 2022-06-24
+Nº plazas: 2
+Nº inscritos: 2
+Porcentaje de ocupación: 100.0%
+Inscripcion de socios: 2	Precio socio: 12.0€
+Inscripcion de no socios: 0	Precio no socio: 16.0€
+Porcentaje de ocupación de los socios: 100.0%
+Porcentaje de ocupación de los no socios: 0.0%
+Nº de gente en la lista de espera de socios: 1
+Nº de gente en la lista de espera de no socios: 1
+---------------------------------------------
+Nombre actividad: Futbol
+Instalación: piscina
+Fecha inicio: 2022-05-03	Fecha Fin: 2022-06-24
+Nº plazas: 4
+Nº inscritos: 3
+Porcentaje de ocupación: 75.0%
+Inscripcion de socios: 2	Precio socio: 12.0€
+Inscripcion de no socios: 1	Precio no socio: 16.0€
+Porcentaje de ocupación de los socios: 67.0%
+Porcentaje de ocupación de los no socios: 33.0%
+Nº de gente en la lista de espera de socios: 0
+Nº de gente en la lista de espera de no socios: 0
+---------------------------------------------

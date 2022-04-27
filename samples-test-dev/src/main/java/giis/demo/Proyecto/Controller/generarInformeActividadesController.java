@@ -77,6 +77,7 @@ public class generarInformeActividadesController {
 			Date fechaFin = null;
 			int esperaSocios = 0;
 			int esperaNoSocios = 0;
+			String fechaIniString,fechaFinString = null;
 
 			List<InformeActividadDTO> datosInforme = model.getInformacionInforme();
 			List<actividadesDisplayDTO> datosActividad = model.obtenerfechasActividades();
@@ -88,6 +89,9 @@ public class generarInformeActividadesController {
 			for(int i=0; i < datosInforme.size(); i++) {
 				fechaInicio = convertirFecha(datosActividad.get(i).getFechaInicio());
 				fechaFin = convertirFecha(datosActividad.get(i).getFechaFin());		
+				fechaIniString = datosActividad.get(i).getFechaInicio();
+				fechaFinString = datosActividad.get(i).getFechaFin();
+				
 				if(ayer.before(fechaInicio) && fechaFin.before(fin)) {
 					for (int ins = 0; ins < datoInscripcion.size(); ins++) {
 						if(Integer.parseInt(datoInscripcion.get(ins).getIdActividad()) == i+1) {
@@ -133,7 +137,9 @@ public class generarInformeActividadesController {
 					sb.append("Nombre actividad: ").append(datosInforme.get(i).getNombre())
 					.append("\n")
 					.append("Instalación: ")
-					.append(instalacion)
+					.append(instalacion).append("\n")
+					.append("Fecha inicio: ").append(fechaIniString).append("\t")
+					.append("Fecha Fin: ").append(fechaFinString)
 					.append("\n").append("Nº plazas: ").append(datosInforme.get(i).getInscritos() + datosInforme.get(i).getPlazas()).append("\n")
 					.append("Nº inscritos: ").append(datosInforme.get(i).getInscritos()).append("\n")
 					.append("Porcentaje de ocupación: ")
