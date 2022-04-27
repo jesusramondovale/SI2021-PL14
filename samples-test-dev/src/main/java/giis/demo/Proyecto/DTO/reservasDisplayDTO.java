@@ -4,7 +4,7 @@ public class reservasDisplayDTO {
 
 	@Override
 	public String toString() {
-		return idActividad;
+		return nombre;
 	}
 	private String idReserva;
 	private String fecha;
