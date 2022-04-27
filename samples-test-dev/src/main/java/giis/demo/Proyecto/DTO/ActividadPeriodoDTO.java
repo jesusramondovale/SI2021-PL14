@@ -1,6 +1,5 @@
 package giis.demo.Proyecto.DTO;
 
-import java.util.Date;
 
 public class ActividadPeriodoDTO {
 
@@ -8,13 +7,46 @@ public class ActividadPeriodoDTO {
 	private String nombre;
 	private String estado;
 	
-	private Date inicioInscrSocios;
-	private Date finInscrSocios;
-	private Date inicioInscrNoSocios;
-	private Date finInscrNoSocios;
+	private String inicioInscrSocios; 
+	private String finInscrSocios;
+	private String finInscrNoSocios;
+	
+
 	
 	
+
 	
+	
+	public ActividadPeriodoDTO() {
+	}
+	
+	public ActividadPeriodoDTO(Integer idActividad, String nombre, String estado, String inicioInscrSocios,
+			String finInscrSocios, String finInscrNoSocios) {
+		this.idActividad = idActividad;
+		this.nombre = nombre;
+		this.estado = estado;
+		this.inicioInscrSocios = inicioInscrSocios;
+		this.finInscrSocios = finInscrSocios;
+		this.finInscrNoSocios = finInscrNoSocios;
+	}
+	public String getInicioInscrSocios() {
+		return inicioInscrSocios;
+	}
+	public void setInicioInscrSocios(String inicioInscrSocios) {
+		this.inicioInscrSocios = inicioInscrSocios;
+	}
+	public String getFinInscrSocios() {
+		return finInscrSocios;
+	}
+	public void setFinInscrSocios(String finInscrSocios) {
+		this.finInscrSocios = finInscrSocios;
+	}
+	public String getFinInscrNoSocios() {
+		return finInscrNoSocios;
+	}
+	public void setFinInscrNoSocios(String finInscrNoSocios) {
+		this.finInscrNoSocios = finInscrNoSocios;
+	}
 	public Integer getIdActividad() {
 		return idActividad;
 	}
@@ -33,30 +65,7 @@ public class ActividadPeriodoDTO {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Date getInicioInscrSocios() {
-		return inicioInscrSocios;
-	}
-	public void setInicioInscrSocios(Date inicioInscrSocios) {
-		this.inicioInscrSocios = inicioInscrSocios;
-	}
-	public Date getFinInscrSocios() {
-		return finInscrSocios;
-	}
-	public void setFinInscrSocios(Date finInscrSocios) {
-		this.finInscrSocios = finInscrSocios;
-	}
-	public Date getInicioInscrNoSocios() {
-		return inicioInscrNoSocios;
-	}
-	public void setInicioInscrNoSocios(Date inicioInscrNoSocios) {
-		this.inicioInscrNoSocios = inicioInscrNoSocios;
-	}
-	public Date getFinInscrNoSocios() {
-		return finInscrNoSocios;
-	}
-	public void setFinInscrNoSocios(Date finInscrNoSocios) {
-		this.finInscrNoSocios = finInscrNoSocios;
-	}
+	
 	
 	
 	

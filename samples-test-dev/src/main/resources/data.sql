@@ -19,12 +19,12 @@ INSERT INTO "socios" VALUES (5,'00000000A','Agapito','Sanchez','Rios','si',55);
 
 
 
-INSERT INTO "noSocios" VALUES (1,'11111111R','Alejandro','Riera','Fernandez');
+INSERT INTO "noSocios" VALUES (100,'11111111R','Alejandro','Riera','Fernandez');
 
 
-INSERT INTO "periodos" VALUES (1,'Enero','2021-04-28','2021-06-02','2021-06-10');
-INSERT INTO "periodos" VALUES (2,'Junio','2021-04-29','2021-06-03','2021-06-29');
-INSERT INTO "periodos" VALUES (3,'Junio','2021-04-27','2021-06-04','2021-07-29');
+INSERT INTO "periodos" VALUES (1,'Enero','2021-04-28','2023-06-02','2023-06-10');
+INSERT INTO "periodos" VALUES (2,'Junio','2021-04-29','2023-06-03','2023-06-29');
+INSERT INTO "periodos" VALUES (3,'Junio','2021-04-27','2023-06-04','2023-07-29');
 
 
 INSERT INTO "actividades" VALUES (1,'Tenis','Tenis',20,25,'2022-05-01','2022-06-18',1,'Vigente',25,1);
@@ -51,15 +51,6 @@ INSERT INTO "reservas" VALUES (6,'2022-05-10',9,10,1,2,1,'Pagada');
 
 
 
-INSERT INTO inscripciones (idActividad,idSocio) VALUES (1,1);
-INSERT INTO inscripciones (idActividad,idSocio) VALUES (1,2);
-INSERT INTO inscripciones (idActividad,idSocio) VALUES (1,3);
-INSERT INTO inscripciones (idActividad,idSocio) VALUES (1,4);
-INSERT INTO inscripciones (idActividad,idSocio) VALUES (2,1);
-INSERT INTO inscripciones (idActividad,idSocio) VALUES (2,3);
-INSERT INTO inscripciones (idActividad,idSocio) VALUES (3,2);
-INSERT INTO inscripciones (idActividad,idSocio) VALUES (3,1);
-INSERT INTO inscripciones (idActividad,idNoSocio) VALUES (3,1);
 
 
 

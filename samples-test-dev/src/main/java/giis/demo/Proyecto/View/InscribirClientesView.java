@@ -142,7 +142,7 @@ public class InscribirClientesView {
 		
 		btnInscribir = new JButton("Inscribir");
 		btnInscribir.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnInscribir.setBounds(205, 276, 89, 23);
+		btnInscribir.setBounds(187, 276, 107, 23);
 		frmInscribirClientesEn.getContentPane().add(btnInscribir);
 		
 		btnLimpiar = new JButton("Limpiar");
