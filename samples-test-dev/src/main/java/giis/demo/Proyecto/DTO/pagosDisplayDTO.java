@@ -1,14 +1,11 @@
 package giis.demo.Proyecto.DTO;
 
+import java.util.Date;
+
 public class pagosDisplayDTO {
 	
 	private int idPago;
 	private float importe;
-	private String fecha;
-	private String estado;
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 
 	private String idSocio;
 	private String idActividad;
@@ -16,17 +13,16 @@ public class pagosDisplayDTO {
 	
 	public pagosDisplayDTO() {}
 	
-	/*
-	public pagosDisplayDTO(int idPago, float importe, String fecha, int estado, String idSocio,
+	
+	public pagosDisplayDTO(int idPago, float importe, String idSocio,
 			String idActividad, String idReserva) {
 		this.idPago = idPago;
 		this.importe = importe;
-		this.fecha = fecha;
-		this.estado = estado;
 		this.idSocio = idSocio;
 		this.idActividad = idActividad;
 		this.idReserva = idReserva;
-	}*/
+	}
+
 
 	public int getIdPago() {
 		return idPago;
@@ -44,17 +40,6 @@ public class pagosDisplayDTO {
 		this.importe = importe;
 	}
 
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
 
 	public String getIdSocio() {
 		return idSocio;

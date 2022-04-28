@@ -1,10 +1,12 @@
 package giis.demo.Proyecto.Model;
 
+import java.util.Date;
 import java.util.List;
 
 import giis.demo.Proyecto.DTO.ReservaDTO;
 import giis.demo.Proyecto.DTO.pagosDisplayDTO;
 import giis.demo.util.Database;
+import giis.demo.util.Util;
 
 public class ContabilidadMensualSociosModel {
 	private Database db = new Database();
@@ -61,10 +63,15 @@ public class ContabilidadMensualSociosModel {
 		return db.executeQueryArray(sql);
 	}
 	
-
-	public List<Object[]> getPagosRealizados(){
-		String sql = "SELECT pago.id, estado, importe, fecha, pago.socio_id, nombre, apellido1, apellido2 FROM pago INNER JOIN socio ON pago.socio_id =socio.id WHERE estado=1";
-		return db.executeQueryArray( sql);
+	
+	public List<pagosDisplayDTO> getPagosRealizados(Date fecha_inicial, Date fecha_hoy){
+		String sql = "SELECT p.idSocio, COUNT(p.idActividad) as idActividad, count (p.idReserva) as idReserva, sum(p.importe) as importe "
+				+ "	FROM pagos p"
+				+ "	INNER JOIN socios USING (idSocio)"
+				+ " WHERE fecha > ? AND  fecha < ?"
+				+ "	GROUP BY (idSocio)"	;
+		
+		return db.executeQueryPojo(pagosDisplayDTO.class, sql, Util.dateToIsoString(fecha_inicial), Util.dateToIsoString(fecha_hoy));
 		
 	}
 	

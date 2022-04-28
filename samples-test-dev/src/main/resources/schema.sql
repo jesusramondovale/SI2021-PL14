@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS "pagos";
 CREATE TABLE IF NOT EXISTS "pagos" (
 	"idPago"	INTEGER,
 	"importe"	NUMERIC,
-	"fecha"	TEXT,
+	"fecha"	DATE,
 	"estado"	TEXT,
 	"idSocio"	INTEGER,
 	"idNoSocio"	INTEGER,
