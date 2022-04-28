@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS "instalaciones" (
 DROP TABLE IF EXISTS "reservas";
 CREATE TABLE IF NOT EXISTS "reservas" (
 	"idReserva"	INTEGER NOT NULL,
-	"fecha"	TEXT,
+	"fecha"	DATE,
 	"horaInicio"	INTEGER,
 	"horaFin"	INTEGER,
 	"idInstalacion"	INTEGER NOT NULL,

@@ -5,22 +5,24 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class InformeInstalacionesView {
 
 	private JFrame frmGenerarInformesSobre;
-	private JTextField textFieldSocio;
 	private JDateChooser dateChooserInicio;
 	private JDateChooser dateChooserFinal;
 	private JButton btnLimpiar;
 	private JButton btnGenerar;
-	private JCheckBox checkBoxReservas;
-	private JCheckBox checkBoxActividades;
+	private JTextField textFieldInstalacion;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JRadioButton rdbtnReservas;
+	private JRadioButton rdbtnActividades;
 
 	/**
 	 * Launch the application.
@@ -51,7 +53,7 @@ public class InformeInstalacionesView {
 	private void initialize() {
 		frmGenerarInformesSobre = new JFrame();
 		frmGenerarInformesSobre.setTitle("Generar Informes sobre Instalaciones");
-		frmGenerarInformesSobre.setBounds(100, 100, 401, 218);
+		frmGenerarInformesSobre.setBounds(100, 100, 399, 231);
 		frmGenerarInformesSobre.getContentPane().setLayout(null);
 
 		JLabel lblSocio = new JLabel("#ID Instalación");
@@ -74,22 +76,6 @@ public class InformeInstalacionesView {
 		lblIncluirDatosSobre_2.setBounds(24, 104, 217, 16);
 		frmGenerarInformesSobre.getContentPane().add(lblIncluirDatosSobre_2);
 
-		checkBoxReservas = new JCheckBox("");
-		checkBoxReservas.setSelected(true);
-		checkBoxReservas.setBounds(231, 74, 93, 21);
-		frmGenerarInformesSobre.getContentPane().add(checkBoxReservas);
-
-		checkBoxActividades = new JCheckBox("");
-		checkBoxActividades.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		checkBoxActividades.setSelected(true);
-		checkBoxActividades.setBounds(231, 104, 93, 21);
-		frmGenerarInformesSobre.getContentPane().add(checkBoxActividades);
-
-		textFieldSocio = new JTextField();
-		textFieldSocio.setBounds(156, 23, 96, 19);
-		frmGenerarInformesSobre.getContentPane().add(textFieldSocio);
-		textFieldSocio.setColumns(10);
-
 		dateChooserInicio = new JDateChooser();
 		dateChooserInicio.setBounds(148, 48, 93, 19);
 		frmGenerarInformesSobre.getContentPane().add(dateChooserInicio);
@@ -104,12 +90,62 @@ public class InformeInstalacionesView {
 		frmGenerarInformesSobre.getContentPane().add(dateChooserFinal);
 
 		btnLimpiar = new JButton("LIMPIAR");
-		btnLimpiar.setBounds(24, 142, 85, 21);
+		btnLimpiar.setBounds(24, 154, 85, 21);
 		frmGenerarInformesSobre.getContentPane().add(btnLimpiar);
 
 		btnGenerar = new JButton("GENERAR");
-		btnGenerar.setBounds(267, 142, 85, 21);
+		btnGenerar.setBounds(279, 154, 85, 21);
 		frmGenerarInformesSobre.getContentPane().add(btnGenerar);
+		
+		textFieldInstalacion = new JTextField();
+		textFieldInstalacion.setBounds(145, 22, 96, 20);
+		frmGenerarInformesSobre.getContentPane().add(textFieldInstalacion);
+		textFieldInstalacion.setColumns(10);
+		
+		rdbtnReservas = new JRadioButton("");
+		buttonGroup.add(rdbtnReservas);
+		rdbtnReservas.setSelected(true);
+		rdbtnReservas.setBounds(233, 74, 111, 23);
+		frmGenerarInformesSobre.getContentPane().add(rdbtnReservas);
+		
+		rdbtnActividades = new JRadioButton("");
+		buttonGroup.add(rdbtnActividades);
+		rdbtnActividades.setBounds(233, 97, 111, 23);
+		frmGenerarInformesSobre.getContentPane().add(rdbtnActividades);
+	}
+
+	
+	
+	
+	
+	
+
+	public JRadioButton getRdbtnReservas() {
+		return rdbtnReservas;
+	}
+
+	public void setRdbtnReservas(JRadioButton rdbtnReservas) {
+		this.rdbtnReservas = rdbtnReservas;
+	}
+
+	public JRadioButton getRdbtnActividades() {
+		return rdbtnActividades;
+	}
+
+	public void setRdbtnActividades(JRadioButton rdbtnActividades) {
+		this.rdbtnActividades = rdbtnActividades;
+	}
+
+	public ButtonGroup getButtonGroup() {
+		return buttonGroup;
+	}
+
+	public JTextField getTextFieldInstalacion() {
+		return textFieldInstalacion;
+	}
+
+	public void setTextFieldInstalacion(JTextField textFieldInstalacion) {
+		this.textFieldInstalacion = textFieldInstalacion;
 	}
 
 	public JFrame getFrmGenerarInformesSobre() {
@@ -120,13 +156,7 @@ public class InformeInstalacionesView {
 		this.frmGenerarInformesSobre = frmGenerarInformesSobre;
 	}
 
-	public JTextField getTextFieldSocio() {
-		return textFieldSocio;
-	}
-
-	public void setTextFieldSocio(JTextField textFieldSocio) {
-		this.textFieldSocio = textFieldSocio;
-	}
+	
 
 	public JDateChooser getDateChooserInicio() {
 		return dateChooserInicio;
@@ -159,27 +189,4 @@ public class InformeInstalacionesView {
 	public void setBtnGenerar(JButton btnGenerar) {
 		this.btnGenerar = btnGenerar;
 	}
-
-	public JCheckBox getCheckBoxReservas() {
-		return checkBoxReservas;
-	}
-
-	public void setCheckBoxReservas(JCheckBox checkBoxReservas) {
-		this.checkBoxReservas = checkBoxReservas;
-	}
-
-	public JCheckBox getCheckBoxActividades() {
-		return checkBoxActividades;
-	}
-
-	public void setCheckBoxActividades(JCheckBox checkBoxActividades) {
-		this.checkBoxActividades = checkBoxActividades;
-	}
-
-
-
-
-
-
-
 }
