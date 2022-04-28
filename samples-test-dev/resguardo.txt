@@ -1,8 +1,8 @@
 RESGUARDO DE LA RESERVA DE LA INSTALACIÓN
 
-Nombre: Pepe 				Apellidos: Del Arco  Rosa
-Nº Reserva: 7
-Nº Socio: 2
+Nombre: Agapito				Apellidos: Sanchez Rios
+Nº Reserva: 10
+Nº Socio: 5
 Nº Instalación: pista de pádel
-Forma de pago: A final de mes           Fecha: 2022-04-09
-Intervalo de horas: 9:00 - 10:00       Precio reserva: 10.0€
+Forma de pago: A final de mes           Fecha: 2022-05-01
+Intervalo de horas: 9:00 - 10:00        Precio reserva: 10.0€
