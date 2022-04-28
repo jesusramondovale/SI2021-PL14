@@ -1,0 +1,37 @@
+------- INFORME DE INSTALACIONES GENERAL (RESERVAS) ------
+----------------------------------
+Instalación #1
+Nombre: pista de pádel
+Precio/hora: 10.0€
+Uso Total: 1 (horas)
+Facturación Total: 10.0€
+----------------------------------
+Instalación #2
+Nombre: campo de futbito
+Precio/hora: 12.0€
+Uso Total: 0 (horas)
+Facturación Total: 0.0€
+----------------------------------
+Instalación #3
+Nombre: cancha de baloncesto
+Precio/hora: 12.0€
+Uso Total: 0 (horas)
+Facturación Total: 0.0€
+----------------------------------
+Instalación #4
+Nombre: salon de yoga
+Precio/hora: 9.0€
+Uso Total: 0 (horas)
+Facturación Total: 0.0€
+----------------------------------
+Instalación #5
+Nombre: cancha de balonmano
+Precio/hora: 12.0€
+Uso Total: 0 (horas)
+Facturación Total: 0.0€
+----------------------------------
+Instalación #6
+Nombre: piscina
+Precio/hora: 20.0€
+Uso Total: 0 (horas)
+Facturación Total: 0.0€

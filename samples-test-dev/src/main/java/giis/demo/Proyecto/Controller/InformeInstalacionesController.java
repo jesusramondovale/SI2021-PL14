@@ -1,10 +1,18 @@
 package giis.demo.Proyecto.Controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
+import giis.demo.Proyecto.DTO.InstalacionesDisplayDTO;
+import giis.demo.Proyecto.DTO.ReservaDTO;
 import giis.demo.Proyecto.Model.InformeInstalacionesModel;
 import giis.demo.Proyecto.View.InformeInstalacionesView;
 import giis.demo.util.SwingUtil;
+import giis.demo.util.Util;
 
 public class InformeInstalacionesController {
 
@@ -255,10 +263,43 @@ public class InformeInstalacionesController {
 	 */
 	private void ActividadesHistID(int id) {
 
+		List<InstalacionesDisplayDTO> listInstalaciones = model.getInstalacion(id);
+
+		List<ReservaDTO> listActividades = model.getActividades(id);
+
+		int horasTotales = 0; 
+
+		for(ReservaDTO actividad : listActividades) {
+
+			horasTotales += actividad.getHoraFin() - actividad.getHoraInicio();
+
+		}
+
+		File fichero = new File (".","InformeInstalaciones.txt");
+		String texto = "Instalación #" + id 
+				+ "\nNombre: " + listInstalaciones.get(0).getNombre()
+				+ "\nPrecio/hora: " + listInstalaciones.get(0).getPrecioHora() + "€"
+				+ "\nUso Total: " + horasTotales + " (horas)";
 		
+		try {
+			fichero.createNewFile();
+			FileWriter fw = new FileWriter(fichero);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(texto);
 
+			bw.close();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
+		System.out.println("Instalación #" + id 
+				+ "\nNombre: " + listInstalaciones.get(0).getNombre()
+				+ "\nPrecio/hora: " + listInstalaciones.get(0).getPrecioHora() + "€"
+				+ "\nUso Total: " + horasTotales + " (horas)" 
 
+				);
 
 
 	}
@@ -267,15 +308,105 @@ public class InformeInstalacionesController {
 	 * la INSTALACIÓN pasada como argumento 
 	 */
 	private void ReservasHistID(int id) {
-		// TODO Auto-generated method stub
+
+		List<InstalacionesDisplayDTO> listInstalaciones = model.getInstalacion(id);
+
+		List<ReservaDTO> listReservas = model.getReservas(id);
+
+		int horasTotales = 0; 
+
+		for(ReservaDTO reserva : listReservas) {
+
+			horasTotales += reserva.getHoraFin() - reserva.getHoraInicio();
+
+		}
+
+		File fichero = new File (".","InformeInstalaciones.txt");
+		String texto = "Instalación #" + id 
+				+ "\nNombre: " + listInstalaciones.get(0).getNombre()
+				+ "\nPrecio/hora: " + listInstalaciones.get(0).getPrecioHora() + "€"
+				+ "\nUso Total: " + horasTotales + " (horas)" 
+				+ "\nFacturación Total: " + horasTotales*listInstalaciones.get(0).getPrecioHora() +"€";
+		
+		try {
+			fichero.createNewFile();
+			FileWriter fw = new FileWriter(fichero);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(texto);
+
+			bw.close();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		
+		
+		System.out.println("Instalación #" + id 
+				+ "\nNombre: " + listInstalaciones.get(0).getNombre()
+				+ "\nPrecio/hora: " + listInstalaciones.get(0).getPrecioHora() + "€"
+				+ "\nUso Total: " + horasTotales + " (horas)" 
+				+ "\nFacturación Total: " + horasTotales*listInstalaciones.get(0).getPrecioHora() +"€"
+				);
+
+
 
 	}
+
 
 	/* Genera un informe de ACTIVIDADES TEMPORAL sobre 
 	 * la INSTALACIÓN pasada como argumento 
 	 */
 	private void ActividadesTempID(int id, Date date, Date date2) {
-		// TODO Auto-generated method stub
+
+		List<InstalacionesDisplayDTO> listInstalaciones = model.getInstalacion(id);
+
+		List<ReservaDTO> listActividades = model.getActividadesTempID(id, date,date2);
+
+		double horasTotales = 0; 
+
+		double diasFull = (date2.getTime() - date.getTime())/ (1000*3600*24); 
+		double horasFull = diasFull * 14;
+
+		for(ReservaDTO actividad : listActividades) {
+
+			horasTotales += actividad.getHoraFin() - actividad.getHoraInicio();
+
+		}
+
+		double porcentaje = (horasTotales/horasFull)*100;
+
+		File fichero = new File (".","InformeInstalaciones.txt");
+		String texto = "Instalación #" + id 
+				+ "\nNombre: " + listInstalaciones.get(0).getNombre()
+				+ "\nPrecio/hora: " + listInstalaciones.get(0).getPrecioHora() + "€"
+				+ "\nFecha de Inicio: " + Util.dateToIsoString(date)
+				+ "\nFecha Final: " + Util.dateToIsoString(date2)
+				+ "\nUso Total: " + horasTotales + " (horas)" 
+				+ "\nPorcentaje de Uso: " + String.format("%.2f", porcentaje) + "%";
+		
+		try {
+			fichero.createNewFile();
+			FileWriter fw = new FileWriter(fichero);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(texto);
+
+			bw.close();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("Instalación #" + id 
+				+ "\nNombre: " + listInstalaciones.get(0).getNombre()
+				+ "\nPrecio/hora: " + listInstalaciones.get(0).getPrecioHora() + "€"
+				+ "\nFecha de Inicio: " + Util.dateToIsoString(date)
+				+ "\nFecha Final: " + Util.dateToIsoString(date2)
+				+ "\nUso Total: " + horasTotales + " (horas)" 
+				+ "\nPorcentaje de Uso: " + String.format("%.2f", porcentaje) + "%" );
+
 
 	}
 
@@ -283,7 +414,58 @@ public class InformeInstalacionesController {
 	 * la INSTALACIÓN pasada como argumento 
 	 */
 	private void ReservasTempID(int id, Date date, Date date2) {
-		// TODO Auto-generated method stub
+
+
+		List<InstalacionesDisplayDTO> listInstalaciones = model.getInstalacion(id);
+
+		List<ReservaDTO> listReservas = model.getReservasTempID(id,date,date2);
+
+		double horasTotales = 0; 
+
+		double diasFull = date2.getTime() - date.getTime() / (1000*3600*24); 
+		double horasFull = diasFull * 14;
+
+		for(ReservaDTO actividad : listReservas) {
+
+			horasTotales += actividad.getHoraFin() - actividad.getHoraInicio();
+
+		}
+
+		double porcentaje = (horasTotales/horasFull)*100;
+
+		File fichero = new File (".","InformeInstalaciones.txt");
+		String texto = "Instalación #" + id 
+				+ "\nNombre: " + listInstalaciones.get(0).getNombre()
+				+ "\nPrecio/hora: " + listInstalaciones.get(0).getPrecioHora() + "€"
+				+ "\nFecha de Inicio: " + Util.dateToIsoString(date)
+				+ "\nFecha Final: " + Util.dateToIsoString(date2)
+				+ "\nUso Total: " + horasTotales + " (horas)" 
+				+ "\nPorcentaje de Uso: " + String.format("%.2f", porcentaje) + "%" 
+				+ "\nFacturación Total: " + horasTotales*listInstalaciones.get(0).getPrecioHora() +"€";
+		
+		try {
+			fichero.createNewFile();
+			FileWriter fw = new FileWriter(fichero);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(texto);
+
+			bw.close();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		System.out.println("Instalación #" + id 
+				+ "\nNombre: " + listInstalaciones.get(0).getNombre()
+				+ "\nPrecio/hora: " + listInstalaciones.get(0).getPrecioHora() + "€"
+				+ "\nFecha de Inicio: " + Util.dateToIsoString(date)
+				+ "\nFecha Final: " + Util.dateToIsoString(date2)
+				+ "\nUso Total: " + horasTotales + " (horas)" 
+				+ "\nPorcentaje de Uso: " + String.format("%.2f", porcentaje) + "%" 
+				+ "\nFacturación Total: " + horasTotales*listInstalaciones.get(0).getPrecioHora() +"€"
+				);
 
 	}
 
@@ -292,7 +474,58 @@ public class InformeInstalacionesController {
 	 * TODAS LAS INSTALACIONES del centro
 	 */
 	private void ActividadesGeneralHist() {
-		// TODO Auto-generated method stub
+
+
+		List<InstalacionesDisplayDTO> listInstalaciones = model.getInstalaciones();
+
+		File fichero = new File (".","InformeInstalaciones.txt");
+		String texto = "------- INFORME DE INSTALACIONES GENERAL (ACTIVIDADES) ------";
+		
+		for(InstalacionesDisplayDTO instalacion : listInstalaciones) {
+
+			int horasTotales = 0; 
+
+			List<ReservaDTO> listActividades = model.getActividades(instalacion.getIdInstalacion());
+
+			for(ReservaDTO actividad : listActividades) {
+
+				horasTotales += actividad.getHoraFin() - actividad.getHoraInicio();
+
+			}
+
+			texto = texto.concat("\n");
+			texto = texto.concat("----------------------------------"
+					+ "\nInstalación #" + instalacion.getIdInstalacion() 
+					+ "\nNombre: " + instalacion.getNombre()
+					+ "\nPrecio/hora: " + instalacion.getPrecioHora() + "€"
+					+ "\nUso Total: " + horasTotales + " (horas)");
+
+			
+			System.out.println("----------------------------------"
+					+ "\nInstalación #" + instalacion.getIdInstalacion() 
+					+ "\nNombre: " + instalacion.getNombre()
+					+ "\nPrecio/hora: " + instalacion.getPrecioHora() + "€"
+					+ "\nUso Total: " + horasTotales + " (horas)" 
+
+					);
+
+
+		}
+		
+	
+		try {
+			fichero.createNewFile();
+			FileWriter fw = new FileWriter(fichero);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(texto);
+
+			bw.close();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 	}
 
@@ -300,7 +533,60 @@ public class InformeInstalacionesController {
 	 * TODAS LAS INSTALACIONES del centro
 	 */
 	private void ReservasGeneralHist() {
-		// TODO Auto-generated method stub
+
+
+		List<InstalacionesDisplayDTO> listInstalaciones = model.getInstalaciones();
+		
+		File fichero = new File (".","InformeInstalaciones.txt");
+		String texto = "------- INFORME DE INSTALACIONES GENERAL (RESERVAS) ------";
+
+
+		for(InstalacionesDisplayDTO instalacion : listInstalaciones) {
+
+			int horasTotales = 0; 
+
+			List<ReservaDTO> listReservas = model.getReservas(instalacion.getIdInstalacion());
+
+			for(ReservaDTO reserva : listReservas) {
+
+				horasTotales += reserva.getHoraFin() - reserva.getHoraInicio();
+
+			}
+
+			texto = texto.concat("\n");
+			texto = texto.concat("----------------------------------"
+					+ "\nInstalación #" + instalacion.getIdInstalacion() 
+					+ "\nNombre: " + instalacion.getNombre()
+					+ "\nPrecio/hora: " + instalacion.getPrecioHora() + "€"
+					+ "\nUso Total: " + horasTotales + " (horas)" 
+					+ "\nFacturación Total: " + horasTotales*instalacion.getPrecioHora() +"€");
+			
+			
+			System.out.println("----------------------------------"
+					+ "\nInstalación #" + instalacion.getIdInstalacion() 
+					+ "\nNombre: " + instalacion.getNombre()
+					+ "\nPrecio/hora: " + instalacion.getPrecioHora() + "€"
+					+ "\nUso Total: " + horasTotales + " (horas)" 
+					+ "\nFacturación Total: " + horasTotales*instalacion.getPrecioHora() +"€"
+
+					);
+
+
+		}
+
+		
+		try {
+			fichero.createNewFile();
+			FileWriter fw = new FileWriter(fichero);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(texto);
+
+			bw.close();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -309,7 +595,62 @@ public class InformeInstalacionesController {
 	 * TODAS LAS INSTALACIONES del centro
 	 */
 	private void ActividadesGeneralTemp(Date date, Date date2) {
-		// TODO Auto-generated method stub
+
+
+
+		List<InstalacionesDisplayDTO> listInstalaciones = model.getInstalaciones();
+
+		File fichero = new File (".","InformeInstalaciones.txt");
+		String texto = "------- INFORME DE INSTALACIONES TEMPORAL (ACTIVIDADES) ------";
+
+
+		for(InstalacionesDisplayDTO instalacion : listInstalaciones) {
+
+			int horasTotales = 0; 
+
+			List<ReservaDTO> listActividades = model.getActividadesTemp(instalacion.getIdInstalacion(),date,date2);
+
+			for(ReservaDTO actividad : listActividades) {
+
+				horasTotales += actividad.getHoraFin() - actividad.getHoraInicio();
+
+			}
+
+			texto = texto.concat("\n");
+			
+			texto = texto.concat("----------------------------------"
+					+ "\nInstalación #" + instalacion.getIdInstalacion() 
+					+ "\nNombre: " + instalacion.getNombre()
+					+ "\nPrecio/hora: " + instalacion.getPrecioHora() + "€"
+					+ "\nUso Total: " + horasTotales + " (horas)" );
+
+			System.out.println("----------------------------------"
+					+ "\nInstalación #" + instalacion.getIdInstalacion() 
+					+ "\nNombre: " + instalacion.getNombre()
+					+ "\nPrecio/hora: " + instalacion.getPrecioHora() + "€"
+					+ "\nUso Total: " + horasTotales + " (horas)" 
+
+					);
+
+
+		}
+		
+		try {
+			fichero.createNewFile();
+			FileWriter fw = new FileWriter(fichero);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(texto);
+
+			bw.close();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+
+
 
 	}
 
@@ -318,7 +659,60 @@ public class InformeInstalacionesController {
 	 * TODAS LAS INSTALACIONES del centro
 	 */
 	private void ReservasGeneralTemp(Date date, Date date2) {
-		// TODO Auto-generated method stub
+
+
+		List<InstalacionesDisplayDTO> listInstalaciones = model.getInstalaciones();
+
+
+		File fichero = new File (".","InformeInstalaciones.txt");
+		String texto = "------- INFORME DE INSTALACIONES TEMPORAL (RESERVAS) ------";
+
+		for(InstalacionesDisplayDTO instalacion : listInstalaciones) {
+
+			int horasTotales = 0; 
+
+			List<ReservaDTO> listActividades = model.getReservasTemp(instalacion.getIdInstalacion(),date,date2);
+
+			for(ReservaDTO actividad : listActividades) {
+
+				horasTotales += actividad.getHoraFin() - actividad.getHoraInicio();
+
+			}
+
+			
+			texto = texto.concat("\n");
+			texto = texto.concat("----------------------------------"
+					+ "\nInstalación #" + instalacion.getIdInstalacion() 
+					+ "\nNombre: " + instalacion.getNombre()
+					+ "\nPrecio/hora: " + instalacion.getPrecioHora() + "€"
+					+ "\nUso Total: " + horasTotales + " (horas)");
+
+			System.out.println("----------------------------------"
+					+ "\nInstalación #" + instalacion.getIdInstalacion() 
+					+ "\nNombre: " + instalacion.getNombre()
+					+ "\nPrecio/hora: " + instalacion.getPrecioHora() + "€"
+					+ "\nUso Total: " + horasTotales + " (horas)" 
+
+					);
+
+
+		}
+		
+		
+		try {
+			fichero.createNewFile();
+			FileWriter fw = new FileWriter(fichero);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(texto);
+
+			bw.close();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
 
 	}
 

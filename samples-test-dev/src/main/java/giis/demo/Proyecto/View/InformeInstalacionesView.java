@@ -53,7 +53,7 @@ public class InformeInstalacionesView {
 	private void initialize() {
 		frmGenerarInformesSobre = new JFrame();
 		frmGenerarInformesSobre.setTitle("Generar Informes sobre Instalaciones");
-		frmGenerarInformesSobre.setBounds(100, 100, 399, 231);
+		frmGenerarInformesSobre.setBounds(100, 100, 415, 230);
 		frmGenerarInformesSobre.getContentPane().setLayout(null);
 
 		JLabel lblSocio = new JLabel("#ID Instalación");
@@ -86,7 +86,7 @@ public class InformeInstalacionesView {
 		frmGenerarInformesSobre.getContentPane().add(lbl);
 
 		dateChooserFinal = new JDateChooser();
-		dateChooserFinal.setBounds(279, 49, 85, 19);
+		dateChooserFinal.setBounds(279, 49, 96, 19);
 		frmGenerarInformesSobre.getContentPane().add(dateChooserFinal);
 
 		btnLimpiar = new JButton("LIMPIAR");
@@ -94,7 +94,7 @@ public class InformeInstalacionesView {
 		frmGenerarInformesSobre.getContentPane().add(btnLimpiar);
 
 		btnGenerar = new JButton("GENERAR");
-		btnGenerar.setBounds(279, 154, 85, 21);
+		btnGenerar.setBounds(246, 154, 118, 21);
 		frmGenerarInformesSobre.getContentPane().add(btnGenerar);
 		
 		textFieldInstalacion = new JTextField();

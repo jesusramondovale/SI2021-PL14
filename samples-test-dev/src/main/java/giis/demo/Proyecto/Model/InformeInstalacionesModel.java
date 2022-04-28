@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import giis.demo.Proyecto.DTO.InstalacionesDisplayDTO;
 import giis.demo.Proyecto.DTO.ReservaDTO;
 import giis.demo.util.Database;
 import giis.demo.util.UnexpectedException;
@@ -41,8 +42,8 @@ public class InformeInstalacionesModel {
 
 		}
 	}
-	
-	
+
+
 	/*
 	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS
 	 * DE INSTALACIONES SUELTAS (NO RELACIONADAS CON ACTIVIDADES)
@@ -50,13 +51,13 @@ public class InformeInstalacionesModel {
 	 * de CUALQUIER Instalación del centro
 	 * PARA EL CLIENTE INDICADO
 	 */
-	public List<ReservaDTO> getReservasCliente(int id) {
+	public List<ReservaDTO> getReservasID(int id) {
 
 		String SQL = "SELECT idReserva , fecha , horaInicio , horaFin , idInstalacion , "
 				+ "idActividad , idSocio , estado "
 				+ "FROM reservas "
 				+ "WHERE idActividad IS NULL "
-				+ "AND idSocio = ? " ; 
+				+ "AND idInstalacion = ? " ; 
 
 		try {
 			return db.executeQueryPojo(ReservaDTO.class, SQL, id);
@@ -71,10 +72,10 @@ public class InformeInstalacionesModel {
 
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	/*
 	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS
 	 * DE INSTALACIONES SUELTAS (NO RELACIONADAS CON ACTIVIDADES)
@@ -102,9 +103,9 @@ public class InformeInstalacionesModel {
 
 		}
 	}
-	
-	
-	
+
+
+
 	/*
 	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS
 	 * DE INSTALACIONES SUELTAS (NO RELACIONADAS CON ACTIVIDADES)
@@ -112,13 +113,13 @@ public class InformeInstalacionesModel {
 	 * de CUALQUIER Instalación del centro
 	 * para el CLIENTE indicado
 	 */
-	public List<ReservaDTO> getReservasTempCliente(int id , Date ini , Date fin) {
+	public List<ReservaDTO> getReservasTempID(int id , Date ini , Date fin) {
 
 		String SQL = "SELECT idReserva , fecha , horaInicio , horaFin , idInstalacion , "
 				+ "idActividad , idSocio , estado "
 				+ "FROM reservas "
 				+ "WHERE idActividad IS NULL "
-				+ "AND idSocio = ? "
+				+ "AND idInstalacion = ? "
 				+ "AND fecha > ? AND fecha <= ? " ; 
 
 		try {
@@ -134,9 +135,9 @@ public class InformeInstalacionesModel {
 
 		}
 	}
-	
-	
-	
+
+
+
 	/*
 	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS
 	 * DE INSTALACIONES SUELTAS (NO RELACIONADAS CON ACTIVIDADES)
@@ -165,7 +166,7 @@ public class InformeInstalacionesModel {
 		}
 	}
 
-	
+
 	/*
 	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS
 	 * DE INSTALACIONES SUELTAS (NO RELACIONADAS CON ACTIVIDADES)
@@ -217,7 +218,7 @@ public class InformeInstalacionesModel {
 			//Extraemos la lista HISTÓRICA
 			return db.executeQueryPojo(ReservaDTO.class, SQL, id , Util.dateToIsoString(ini), Util.dateToIsoString(fin));
 
-			
+
 		}
 
 		catch(UnexpectedException e) {
@@ -252,7 +253,7 @@ public class InformeInstalacionesModel {
 			//Extraemos la lista HISTÓRICA
 			return db.executeQueryPojo(ReservaDTO.class, SQL, idInstalacion , idCliente , Util.dateToIsoString(ini), Util.dateToIsoString(fin));
 
-			
+
 		}
 
 		catch(UnexpectedException e) {
@@ -263,7 +264,7 @@ public class InformeInstalacionesModel {
 
 		}
 	}
-	
+
 
 	/*
 	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS
@@ -291,20 +292,20 @@ public class InformeInstalacionesModel {
 		}
 	}
 
-	
+
 	/*
 	 * Obtiene un listado de todas las RESERVAS HISTÓRICAS
 	 * CORRESPONDIENTES A ACTIVIDADES 
 	 * de CUALQUIER instalación del centro
 	 * para el CLIENTE indicado
 	 */
-	public List<ReservaDTO> getActividadesCliente(int id) {
+	public List<ReservaDTO> getActividadesID(int id) {
 
 		String SQL = "SELECT idReserva , fecha , horaInicio , horaFin , idInstalacion , "
 				+ "idActividad , idSocio , estado "
 				+ "FROM reservas "
 				+ "WHERE idActividad IS NOT NULL "
-				+ "AND idSocio = ? " ; 
+				+ "AND idInstalacion = ? " ; 
 
 		try {
 			return db.executeQueryPojo(ReservaDTO.class, SQL , id);
@@ -320,7 +321,7 @@ public class InformeInstalacionesModel {
 		}
 	}
 
-	
+
 	/*
 	 * Obtiene un listado de todas las RESERVAS 
 	 * CORRESPONDIENTES A ACTIVIDADES 
@@ -349,7 +350,7 @@ public class InformeInstalacionesModel {
 		}
 	}
 
-	
+
 	/*
 	 * Obtiene un listado de todas las RESERVAS 
 	 * CORRESPONDIENTES A ACTIVIDADES 
@@ -357,13 +358,13 @@ public class InformeInstalacionesModel {
 	 * entre las fechas indicadas
 	 * para el CLIENTE indicado
 	 */
-	public List<ReservaDTO> getActividadesTempCliente(int id , Date ini, Date fin) {
+	public List<ReservaDTO> getActividadesTempID(int id , Date ini, Date fin) {
 
 		String SQL = "SELECT idReserva , fecha , horaInicio , horaFin , idInstalacion , "
 				+ "idActividad , idSocio , estado "
 				+ "FROM reservas "
 				+ "WHERE idActividad IS NOT NULL "
-				+ "AND idSocio = ? "
+				+ "AND idInstalacion = ? "
 				+ "AND fecha > ? AND fecha <= ? " ; 
 
 		try {
@@ -457,7 +458,7 @@ public class InformeInstalacionesModel {
 			//Extraemos la lista HISTÓRICA
 			return db.executeQueryPojo(ReservaDTO.class, SQL, id , Util.dateToIsoString(ini) , Util.dateToIsoString(fin));
 
-			
+
 		}
 
 		catch(UnexpectedException e) {
@@ -469,8 +470,8 @@ public class InformeInstalacionesModel {
 		}
 	}
 
-	
-	
+
+
 	/*
 	 * Obtiene un listado de todas las RESERVAS 
 	 * comprendidas entre las fechas indicadas como parámetro
@@ -492,7 +493,7 @@ public class InformeInstalacionesModel {
 			//Extraemos la lista HISTÓRICA
 			return db.executeQueryPojo(ReservaDTO.class, SQL, idInstalacion , idCliente , Util.dateToIsoString(ini) , Util.dateToIsoString(fin));
 
-			
+
 		}
 
 		catch(UnexpectedException e) {
@@ -503,9 +504,30 @@ public class InformeInstalacionesModel {
 
 		}
 	}
+
+	public List<InstalacionesDisplayDTO> getInstalaciones(){
+
+		String SQL = "SELECT idInstalacion , nombre , precioHora "
+				+ "FROM instalaciones" ;
+		
+		return db.executeQueryPojo(InstalacionesDisplayDTO.class, SQL);
+
+	}
+
 	
-	
-	
-	
-	
+	public List<InstalacionesDisplayDTO> getInstalacion(int id){
+
+		String SQL = "SELECT idInstalacion , nombre , precioHora "
+				+ "FROM instalaciones "
+				+ "WHERE idInstalacion = ? " ;
+		
+		return db.executeQueryPojo(InstalacionesDisplayDTO.class, SQL , id);
+
+	}
+
+
+
+
+
+
 }

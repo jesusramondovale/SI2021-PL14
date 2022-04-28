@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-import giis.demo.*;
-
-
+import giis.demo.Proyecto.Controller.InformeInstalacionesController;
+import giis.demo.Proyecto.Model.InformeInstalacionesModel;
+import giis.demo.Proyecto.View.InformeInstalacionesView;
 import giis.demo.tkrun.*;
 import java.awt.FlowLayout;
 
@@ -56,7 +56,7 @@ public class SwingMain {
 		frmGestr.setTitle("Gestión Centro Deportivo");
 		frmGestr.setBounds(0, 0, 467, 292);
 		frmGestr.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		
+
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
 		btnEjecutarTkrun.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
 			public void actionPerformed(ActionEvent e) {
@@ -66,8 +66,8 @@ public class SwingMain {
 		});
 		frmGestr.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		frmGestr.getContentPane().add(btnEjecutarTkrun);
-		
-			
+
+
 		JButton btnInicializarBaseDeDatos = new JButton("Inicializar Base de Datos en Blanco");
 		btnInicializarBaseDeDatos.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
 			public void actionPerformed(ActionEvent e) {
@@ -76,7 +76,7 @@ public class SwingMain {
 			}
 		});
 		frmGestr.getContentPane().add(btnInicializarBaseDeDatos);
-			
+
 		JButton btnCargarDatosIniciales = new JButton("Cargar Datos Iniciales para Pruebas");
 		btnCargarDatosIniciales.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
 			public void actionPerformed(ActionEvent e) {
@@ -86,10 +86,24 @@ public class SwingMain {
 			}
 		});
 		frmGestr.getContentPane().add(btnCargarDatosIniciales);
-	
-		
+
+
+		JButton btnInformeInstalaciones = new JButton("Generar Informe (Instalaciones)");
+		btnInformeInstalaciones.addActionListener(new ActionListener () {
+			public void actionPerformed(ActionEvent e) {
+				InformeInstalacionesController controller = new InformeInstalacionesController(new InformeInstalacionesView() , new InformeInstalacionesModel());
+				controller.initController();
+
+			}
+
+		});
+
+		frmGestr.getContentPane().add(btnInformeInstalaciones);
+
+
+
 	}
 
 	public JFrame getFrame() { return this.frmGestr; }
-	
+
 }
