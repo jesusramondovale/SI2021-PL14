@@ -1,6 +1,7 @@
 package giis.demo.Proyecto.Controller;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,6 +12,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
 
 import giis.demo.Proyecto.DTO.InstalacionesDisplayDTO;
@@ -27,7 +29,7 @@ public class realizarReservaSocioFechaConcretaController {
 	private realizarReservaSocioFechaConcretaView view;
 	private LoginView introView;
 	java.sql.Date sqlDate;
-	private int pos;
+	private int siguiente,anterior,pos;
 	private String SocioS,instalacionS,horaInicioS,horaFinS,precioS;
 
 	public realizarReservaSocioFechaConcretaController( LoginView intro,
@@ -74,9 +76,7 @@ public class realizarReservaSocioFechaConcretaController {
 	}
 	
 	public boolean compruebaId() {
-		
-		try { 
-			List<SociosDisplayDTO> idSocio = model.getInfoSocio(Integer.parseInt(introView.getTxtId().getText()));
+		List<SociosDisplayDTO> idSocio = model.getInfoSocio(Integer.parseInt(introView.getTxtId().getText()));
 			if(!idSocio.isEmpty()) {
 				view.getTxtSocio().setText(introView.getTxtId().getText());
 				actualizarNombres();
@@ -86,15 +86,6 @@ public class realizarReservaSocioFechaConcretaController {
 				SwingUtil.showMessage("El socio no existe en la BBDD", "Error", 0);
 				return false;
 			}
-			
-		}
-		catch(NumberFormatException e) {
-			SwingUtil.showMessage("El #ID de socio debe ser un número", "Error", 0);
-			return false;
-			
-		}
-		
-		
 	}
 	
 	private void comprobarReservas() {
@@ -112,7 +103,8 @@ public class realizarReservaSocioFechaConcretaController {
 			if(!reservas.isEmpty()) {
 				for (int i =0 ; i < reservas.size();i++){
 					if((reservas.get(i).getFecha().equals(fecha)) && 
-							((reservas.get(i).getHoraInicio() == horaI) || ((reservas.get(i).getHoraInicio() -1 )== horaF)) &&
+							((reservas.get(i).getHoraInicio() == horaI) || ((reservas.get(i).getHoraInicio() -1 )== horaF)
+									|| (reservas.get(i).getHoraFin() -1 == horaI) || ((reservas.get(i).getHoraFin())== horaF)) &&
 							((Integer.parseInt(reservas.get(i).getIdInstalacion())) == instalacion)) 
 						estaReservado = true;
 				}
@@ -135,6 +127,8 @@ public class realizarReservaSocioFechaConcretaController {
 				view.getBtnReserva().setEnabled(true);
 			}
 		}
+		horasDias();
+		horasSocio();
 	}
 
 	private void actualizarNombres() {
@@ -194,15 +188,100 @@ public class realizarReservaSocioFechaConcretaController {
 		}
 		else if(horaC > horaF) {
 			SwingUtil.showMessage("Introduzca un rango de horas válido", "Error", 1);
+			view.getBtnReserva().setEnabled(false);
+			view.getBtnResguardo().setEnabled(false);
 			return false;
 		}
 		else {
 			SwingUtil.showMessage("No se puede realizar una reserva de mas de 3 horas", "Error", 1);
+			view.getBtnReserva().setEnabled(false);
+			view.getBtnResguardo().setEnabled(false);
 			return false;
 		}
 
 	}
+	
+	public boolean horasSocio() {
+		List<reservasDisplayDTO> reservaHoras= model.obtenerHorasSocio();
+		int horas = 0;
+		boolean isHoras = true;
+		for (int i = 0; i < reservaHoras.size(); i++) {
+			if (view.getTxtSocio().getText().equalsIgnoreCase(reservaHoras.get(i).getIdSocio())) {
+				//System.out.println(" Socio "+ reservaHoras.get(i).getIdSocio() +"\n TxtSocio " + view.getTxtSocio().getText());
+				float rango = reservaHoras.get(i).getHoraFin() - reservaHoras.get(i).getHoraInicio();
+				horas = (int) (horas + rango);
+			}
+		}
+		int horaC = (int) view.getComboBox_HoraC().getSelectedIndex();
+		int horaF = (int)view.getComboBox_HoraF().getSelectedIndex();
+		if(horas > 10){
+			SwingUtil.showMessage("No puedes realizar más reservas (Tienes reservado ya 10 horas) 0", "Error", 1);
+			view.getBtnReserva().setEnabled(false);
+			view.getBtnResguardo().setEnabled(false);
+			isHoras = false;
+			return false;
+		}else if((horaF -horaC) == 0){
+			horas++;
+			if(horas >10) {
+				SwingUtil.showMessage("No puedes realizar más reservas (Tienes reservado ya 10 horas) 1", "Error", 1);
+				view.getBtnReserva().setEnabled(false);
+				view.getBtnResguardo().setEnabled(false);
+				isHoras = false;
+				return false;
+			}
+		}else if((horaF -horaC) == 1){
+			horas = horas +2;
+			if(horas >10) {
+				SwingUtil.showMessage("No puedes realizar más reservas (Tienes reservado ya 10 horas) 2", "Error", 1);
+				view.getBtnReserva().setEnabled(false);
+				view.getBtnResguardo().setEnabled(false);
+				isHoras = false;
+				return false;
+			}
+		}else if((horaF -horaC) == 2){
+			horas = horas +3;
+			if(horas >10) {
+				SwingUtil.showMessage("No puedes realizar más reservas (Tienes reservado ya 10 horas) 3", "Error", 1);
+				view.getBtnReserva().setEnabled(false);
+				view.getBtnResguardo().setEnabled(false);
+				isHoras = false;
+				return false;
+			}
+		}
+		else {
+			return isHoras;
+		}
+		return isHoras;
+	}
 
+	public boolean horasDias() {
+		List<reservasDisplayDTO> reservaHoras= model.obtenerHorasSocio();
+		int horas = 0;
+		for (int i = 0; i < reservaHoras.size(); i++) {
+			if (view.getTxtSocio().getText().equalsIgnoreCase(reservaHoras.get(i).getIdSocio()) &&
+					view.getTextFecha().getText().equalsIgnoreCase(reservaHoras.get(i).getFecha())) {
+				//System.out.println(" Socio "+ reservaHoras.get(i).getIdSocio() +"\n TxtSocio " + view.getTxtSocio().getText());
+				float rango = reservaHoras.get(i).getHoraFin() - reservaHoras.get(i).getHoraInicio();
+				horas = (int) (horas + rango);
+			}
+		}
+		
+		int horaC = (int) view.getComboBox_HoraC().getSelectedIndex();
+		int horaF = (int)view.getComboBox_HoraF().getSelectedIndex();
+		int total = horaF - horaC;
+		if(horas >= 6) {
+			SwingUtil.showMessage("No se puede realizar más reservas en esta fecha.", "Error", 1);
+			view.getBtnReserva().setEnabled(false);
+			view.getBtnResguardo().setEnabled(false);
+			return false;
+		}else if((total + horas) == 6) {
+			SwingUtil.showMessage("No se puede realizar más reservas en esta fecha.", "Error", 1);
+			view.getBtnReserva().setEnabled(false);
+			view.getBtnResguardo().setEnabled(false);
+			return false;
+		}else
+			return true;
+	}
 
 	/**
 	 * Metodo para cargar de la BD en ComboBoxs
