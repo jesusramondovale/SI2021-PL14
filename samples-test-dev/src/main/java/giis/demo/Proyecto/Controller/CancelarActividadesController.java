@@ -67,6 +67,7 @@ public class CancelarActividadesController {
 			String NombreActividad =this.view.getTable().getModel().getValueAt(this.view.getTable().getSelectedRow(), 1).toString();
 			//boolean yaPagada =  model.yaPagada(idActividad);
 
+			/*
 			try {
 				model.CancelarActividad(idActividad);
 				SwingUtil.showMessage("La Actividad " + idActividad +" fue cancelada con éxito!", "Éxito", 1);
@@ -79,7 +80,14 @@ public class CancelarActividadesController {
 			catch(Exception e) {
 
 				SwingUtil.showMessage("Error SQL en cancelarActividad!", "Error", 0);
-			}
+			}*/
+			
+			model.CancelarActividad(idActividad);
+			SwingUtil.showMessage("La Actividad " + idActividad +" fue cancelada con éxito!", "Éxito", 1);
+			
+			liberaReservas(idActividad);
+			avisaSocios(NombreActividad);
+			listaSocios(NombreActividad, idActividad);
 		}
 	}
 
@@ -87,9 +95,8 @@ public class CancelarActividadesController {
 		//Recorremos las reservas, si el idActividad de una reserva es igual a mi idActividad
 		//llamo a model.LiberaReservas
 		List<reservasDisplayDTO> listaReservas = model.getReservas(idActividad);
-		System.out.println(listaReservas.toString());
-		for(int i=0;i<listaReservas.size();i++) {
-			model.LiberaResevas(i);
+		for(reservasDisplayDTO reserva : listaReservas) {
+			model.LiberaResevas(Integer.parseInt(reserva.getIdActividad()));
 		}
 		
 	}

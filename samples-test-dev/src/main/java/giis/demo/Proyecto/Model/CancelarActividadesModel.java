@@ -31,7 +31,7 @@ public class CancelarActividadesModel {
 	public List<reservasDisplayDTO> getReservas(int idActividad){
 		String sql = "SELECT r.idActividad  " + 
 				"	FROM reservas r " +  
-				"	WHERE idReserva= ? ";
+				"	WHERE idActividad = ? ";
 		return db.executeQueryPojo(reservasDisplayDTO.class, sql,idActividad);
 
 	}
