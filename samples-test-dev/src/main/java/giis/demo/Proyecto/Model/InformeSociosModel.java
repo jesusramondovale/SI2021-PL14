@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import giis.demo.Proyecto.DTO.ReservaDTO;
+import giis.demo.Proyecto.DTO.SociosDisplayDTO;
 import giis.demo.util.Database;
 import giis.demo.util.UnexpectedException;
 import giis.demo.util.Util;
@@ -114,11 +115,12 @@ public class InformeSociosModel {
 				+ "idActividad , idSocio , estado "
 				+ "FROM reservas "
 				+ "WHERE idSocio = ? "
-				+ "AND idActividad IS NULL " ; 
+				+ "AND idActividad IS NULL "
+				+ "AND fecha >= ? AND fecha <= ? " ; 
 
 		try {
 			//Extraemos la lista HISTÓRICA
-			List<ReservaDTO> listFull = db.executeQueryPojo(ReservaDTO.class, SQL, idSocio);
+			List<ReservaDTO> listFull = db.executeQueryPojo(ReservaDTO.class, SQL, idSocio , Util.dateToIsoString(ini) , Util.dateToIsoString(fin));
 
 			List<ReservaDTO> list = new ArrayList<ReservaDTO>();
 
@@ -193,11 +195,12 @@ public class InformeSociosModel {
 				+ "idActividad , idSocio , estado "
 				+ "FROM reservas "
 				+ "WHERE idSocio = ? "
-				+ "AND idActividad IS NOT NULL " ; 
+				+ "AND idActividad IS NOT NULL "
+				+ "AND fecha >= ? AND fecha <= ? " ; 
 
 		try {
 			//Extraemos la lista HISTÓRICA
-			List<ReservaDTO> listFull = db.executeQueryPojo(ReservaDTO.class, SQL, idSocio);
+			List<ReservaDTO> listFull = db.executeQueryPojo(ReservaDTO.class, SQL, idSocio, Util.dateToIsoString(ini) , Util.dateToIsoString(fin));
 
 			List<ReservaDTO> list = new ArrayList<ReservaDTO>();
 
@@ -225,6 +228,55 @@ public class InformeSociosModel {
 			return null; 
 
 		}
+	}
+	
+	
+	/*
+	 * Retorna la lista de todos los Socios
+	 */
+	public List<SociosDisplayDTO> getSocios(){
+		
+		
+		String SQL = "SELECT * "
+				+ "FROM socios ";
+		
+		try {
+			
+			return db.executeQueryPojo(SociosDisplayDTO.class, SQL);
+			
+		}
+		catch (UnexpectedException e) {
+			
+			JOptionPane.showMessageDialog(null, "Error SQL en getSocios() ","Error",
+					JOptionPane.WARNING_MESSAGE);
+			return null; 
+		}
+		
+	}
+	
+	
+	/*
+	 * Retorna la lista del socio indicado
+	 */
+	public List<SociosDisplayDTO> getSocio(int id){
+		
+		
+		String SQL = "SELECT * "
+				+ "FROM socios "
+				+ "WHERE idSocio = ? ";
+		
+		try {
+			
+			return db.executeQueryPojo(SociosDisplayDTO.class, SQL , id);
+			
+		}
+		catch (UnexpectedException e) {
+			
+			JOptionPane.showMessageDialog(null, "Error SQL en getSocio(int id) ","Error",
+					JOptionPane.WARNING_MESSAGE);
+			return null; 
+		}
+		
 	}
 
 }

@@ -1,0 +1,36 @@
+------- INFORME DE SOCIOS GENERAL (RESERVAS) ------
+----------------------------------
+Socio #1
+Nombre: Javier Santos Menendez
+Número de Reservas: 1
+Uso Total de Instalaciones: 1 (horas)
+Cuota: 60€
+Corriente de Pago: Sí
+----------------------------------
+Socio #2
+Nombre: Pepe  Del Arco  Rosa
+Número de Reservas: 0
+Uso Total de Instalaciones: 0 (horas)
+Cuota: 60€
+Corriente de Pago: Sí
+----------------------------------
+Socio #3
+Nombre: Maria Perez Alarcon
+Número de Reservas: 0
+Uso Total de Instalaciones: 0 (horas)
+Cuota: 55€
+Corriente de Pago: No
+----------------------------------
+Socio #4
+Nombre: Leonardo Messi Cuccittini
+Número de Reservas: 0
+Uso Total de Instalaciones: 0 (horas)
+Cuota: 60€
+Corriente de Pago: Sí
+----------------------------------
+Socio #5
+Nombre: Agapito Sanchez Rios
+Número de Reservas: 0
+Uso Total de Instalaciones: 0 (horas)
+Cuota: 55€
+Corriente de Pago: Sí
