@@ -196,15 +196,31 @@ public class AutoReservaController {
 
 					if(cal.get(Calendar.DAY_OF_WEEK) == diasINT.get(i)) {
 
-						if(!alreadyReserved(idInstalacion , Util.dateToIsoString(f) , horasIni.get(i))) {
+						if(!alreadyReserved(idInstalacion , Util.dateToIsoString(f) , horasIni.get(i))
+								&& 
+							!alreadyReservedByClient(idInstalacion , Util.dateToIsoString(f) , horasIni.get(i))	) {
 
 
 							model.crearReserva(getRandomNumberInRange(100000,1000000) , Util.dateToIsoString(f) , horasIni.get(i) , horasFin.get(i) , idInstalacion , idActividad );
 
 
 						}
-						else {
-							SwingUtil.showMessage("La instalación #"+ idInstalacion +" ya se encuentra reservada (" +f.getDate()+"/"+(f.getMonth()+1)+"/"+(1900+f.getYear())+ ") - (" +horasIni.get(i)+"h00)", "Vaya..", 1);
+						else if(alreadyReservedByClient(idInstalacion , Util.dateToIsoString(f) , horasIni.get(i))) {
+							
+							int idReserva = getIdalreadyReserved(idInstalacion, Util.dateToIsoString(f), horasIni.get(i));
+							int idSocio = getIdSocioReserva(idReserva);
+							model.actualizarReserva(idReserva);
+							SwingUtil.showMessage("Aviso! La Reserva #"+ idReserva +
+									" para el día " + Util.dateToIsoString(f) + 
+									"\n(#ID Socio): " + idSocio + " ha sido cancelada!"
+									, "AVISO !", 1);
+							ok = true;
+							
+						}
+						else if (alreadyReserved(idInstalacion , Util.dateToIsoString(f) , horasIni.get(i))){
+							
+							
+							SwingUtil.showMessage("La instalación #"+ idInstalacion +" ya se encuentra reservada por ADMIN.(" +f.getDate()+"/"+(f.getMonth()+1)+"/"+(1900+f.getYear())+ ") - (" +horasIni.get(i)+"h00)", "Vaya..", 1);
 							ok = false;
 						}
 
@@ -226,7 +242,7 @@ public class AutoReservaController {
 				JOptionPane.showMessageDialog(
 						null, 
 						"Finalizado! "
-						+ "Algunas Reservas no fueron creadas", 
+						+ "Algunas reservas ya existían previamente!", 
 						"Aviso",
 						JOptionPane.INFORMATION_MESSAGE ); 	
 			}
@@ -236,6 +252,21 @@ public class AutoReservaController {
 
 	}
 
+
+	private int getIdSocioReserva(int idReserva) {
+		
+		List<ReservaDTO> reservas = model.getReserva(idReserva);
+		return reservas.get(0).getIdSocio();
+		
+	}
+
+	private boolean alreadyReservedByClient(int idInstalacion, String fecha , Integer horaInicio) {
+		
+		List<ReservaDTO> reservas = model.getListaReservasByClient(Util.dateToIsoString(Util.isoStringToDate(fecha)) , 
+				idInstalacion ,  horaInicio  );
+		if(reservas.size() == 0) { return false ;}
+		else return true;
+	}
 
 	/*
 	 * Comprueba si una instalación se encuentra reservada para una fecha y horas concretas
@@ -248,6 +279,17 @@ public class AutoReservaController {
 				idInstalacion ,  horaInicio  );
 		if(reservas.size() == 0) { return false ;}
 		else return true;
+
+
+	}
+	
+	public int getIdalreadyReserved(int idInstalacion, String fecha, int horaInicio ){
+
+
+		List<ReservaDTO> reservas = model.getListaReservasByClient(Util.dateToIsoString(Util.isoStringToDate(fecha)) , 
+				idInstalacion ,  horaInicio  );
+		if(reservas.size() == 0) { return 0 ;}
+		else return reservas.get(0).getIdReserva();
 
 
 	}
