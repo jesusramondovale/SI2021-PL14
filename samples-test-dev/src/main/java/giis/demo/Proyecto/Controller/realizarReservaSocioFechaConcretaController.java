@@ -1,18 +1,15 @@
 package giis.demo.Proyecto.Controller;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 
 import giis.demo.Proyecto.DTO.InstalacionesDisplayDTO;
@@ -29,7 +26,7 @@ public class realizarReservaSocioFechaConcretaController {
 	private realizarReservaSocioFechaConcretaView view;
 	private LoginView introView;
 	java.sql.Date sqlDate;
-	private int siguiente,anterior,pos;
+	private int pos;
 	private String SocioS,instalacionS,horaInicioS,horaFinS,precioS;
 
 	public realizarReservaSocioFechaConcretaController( LoginView intro,

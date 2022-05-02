@@ -7,12 +7,12 @@ public class SociosDisplayDTO {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
-	private boolean corrientePago;
+	private String corrientePago;
 	private int cuota;
 
 	public SociosDisplayDTO() {}
 	public SociosDisplayDTO(int rowIdSocio, String rowDNI, String rowApellido1, String rowApellido2, 
-			String rowNombre, boolean rowCorriente, int rowCuota) {
+			String rowNombre, String rowCorriente, int rowCuota) {
 	this.idSocio=rowIdSocio;
 	this.nombre=rowNombre;
 	this.apellido1=rowApellido1;
@@ -23,6 +23,20 @@ public class SociosDisplayDTO {
 	}
 	
 	
+	
+	
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	public String getCorrientePago() {
+		return corrientePago;
+	}
+	public void setCorrientePago(String corrientePago) {
+		this.corrientePago = corrientePago;
+	}
 	public int getIdSocio() {
 		return idSocio;
 	}
@@ -53,12 +67,7 @@ public class SociosDisplayDTO {
 	public void setdni(String dNI_NIF) {
 		dni = dNI_NIF;
 	}
-	public boolean isCorrientePago() {
-		return corrientePago;
-	}
-	public void setCorrientePago(boolean corrientePago) {
-		this.corrientePago = corrientePago;
-	}
+	
 	public int getCuota() {
 		return cuota;
 	}

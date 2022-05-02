@@ -56,7 +56,7 @@ public class SwingMain {
 	private void initialize() {
 		frmGestr = new JFrame();
 		frmGestr.setTitle("Gestión Centro Deportivo");
-		frmGestr.setBounds(0, 0, 467, 292);
+		frmGestr.setBounds(0, 0, 587, 298);
 		frmGestr.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
@@ -252,6 +252,51 @@ public class SwingMain {
 
 		});
 		frmGestr.getContentPane().add(btnVisualizarReservasSocios);
+		
+		JButton btnInformesSocios = new JButton("Generar Informe (Socios)");
+		btnInformesSocios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InformeSociosController controller=new InformeSociosController(
+						new InformeSociosView() , new InformeSociosModel());
+				controller.initController();
+					
+			}
+		});
+		
+		frmGestr.getContentPane().add(btnInformesSocios);
+
+
+		JButton btnInformeInstalaciones = new JButton("Generar Informe (Instalaciones)");
+		btnInformeInstalaciones.addActionListener(new ActionListener () {
+			public void actionPerformed(ActionEvent e) {
+				InformeInstalacionesController controller = new InformeInstalacionesController(new InformeInstalacionesView() , new InformeInstalacionesModel());
+				controller.initController();
+
+			}
+
+		});
+
+		frmGestr.getContentPane().add(btnInformeInstalaciones);
+		
+		JButton btnInscribir = new JButton("Inscribir Clientes");
+		btnInscribir.addActionListener(new ActionListener() { //NOSONAR codigo autogenerado
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				InscribirClientesController controller=new InscribirClientesController(new InscribirClientesModel() , new InscribirClientesView());
+				try {
+					controller.initController();
+				} catch (ParseException e1) {
+
+					e1.printStackTrace();
+				}
+				
+						
+				
+			}
+		});
+		frmGestr.getContentPane().add(btnInscribir);
 	}
 
 	public JFrame getFrame() { return this.frmGestr; }

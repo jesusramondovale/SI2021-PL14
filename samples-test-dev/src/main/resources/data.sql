@@ -22,9 +22,9 @@ INSERT INTO "socios" VALUES (5,'00000000A','Agapito','Sanchez','Rios','si',55);
 INSERT INTO "noSocios" VALUES (1,'11111111R','Alejandro','Riera','Fernandez');
 
 
-INSERT INTO "periodos" VALUES (1,'Enero','2021-04-28','2021-06-02','2021-06-10');
-INSERT INTO "periodos" VALUES (2,'Junio','2021-04-29','2021-06-03','2021-06-29');
-INSERT INTO "periodos" VALUES (3,'Junio','2021-04-27','2021-06-04','2021-07-29');
+INSERT INTO "periodos" VALUES (1,'Enero','2022-04-28','2022-06-02','2022-06-10');
+INSERT INTO "periodos" VALUES (2,'Junio','2022-04-29','2022-06-03','2022-06-29');
+INSERT INTO "periodos" VALUES (3,'Junio','2022-04-27','2022-06-04','2022-07-29');
 
 
 INSERT INTO "actividades" VALUES (1,'Tenis','Tenis',20,25,'2022-05-01','2022-06-18',1,'Vigente',25,1);
