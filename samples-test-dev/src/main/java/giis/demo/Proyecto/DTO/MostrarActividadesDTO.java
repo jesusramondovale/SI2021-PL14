@@ -1,10 +1,7 @@
 package giis.demo.Proyecto.DTO;
 
 
-
 public class MostrarActividadesDTO {
-
-	
 	
 	private int idActividad;
 	private String nombre;

@@ -132,7 +132,6 @@ public class CancelarActividadesController {
 		//Delegamos en el modelo 
 		listActividades = model.getListaActividades();
 
-
 		//Comprueba si la consulta retornada está vacía 
 		if (listActividades.isEmpty()){
 
