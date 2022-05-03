@@ -1,6 +1,5 @@
 package giis.demo.Proyecto.DTO;
 
-import java.util.Date;
 
 public class actividadesDisplayDTO {
 
@@ -9,19 +8,19 @@ public class actividadesDisplayDTO {
 	private String tipo;
 	private float precioSocio;
 	private float precioNoSocio;
-	private Date fechaInicio;
-	private Date fechaFin;
+	private String fechaInicio;
+	private String fechaFin;
 	private float horaInicio;
 	private float horaFin;
 	private int idPeriodoInscripcion;
-	private int estado;
+	private String estado;
 	private int plazas;
 	private int idInstalacion;
 	
 	public actividadesDisplayDTO() {}
 	
 	public actividadesDisplayDTO(int idActividad, String nombre, String tipo, float precioSocio, float precioNoSocio,
-			Date fechaInicio, Date fechaFin, float horaInicio, float horaFin, int idPeriodoInscripcion, int estado,
+			String fechaInicio, String fechaFin, float horaInicio, float horaFin, int idPeriodoInscripcion, String estado,
 			int plazas, int idInstalacion) {
 		this.idActividad = idActividad;
 		this.nombre = nombre;
@@ -78,19 +77,19 @@ public class actividadesDisplayDTO {
 		this.precioNoSocio = precioNoSocio;
 	}
 
-	public Date getFechaInicio() {
+	public String getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(Date fechaInicio) {
+	public void setFechaInicio(String fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Date getFechaFin() {
+	public String getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 
@@ -118,11 +117,11 @@ public class actividadesDisplayDTO {
 		this.idPeriodoInscripcion = idPeriodoInscripcion;
 	}
 
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 

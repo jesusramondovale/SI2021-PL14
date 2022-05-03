@@ -56,7 +56,7 @@ public class SwingMain {
 	private void initialize() {
 		frmGestr = new JFrame();
 		frmGestr.setTitle("Gestión Centro Deportivo");
-		frmGestr.setBounds(0, 0, 587, 298);
+		frmGestr.setBounds(0, 0, 590, 311);
 		frmGestr.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
@@ -297,6 +297,24 @@ public class SwingMain {
 			}
 		});
 		frmGestr.getContentPane().add(btnInscribir);
+		
+		JButton btnGestionListaEspera = new JButton("Gestionar Listas de espera");
+		btnGestionListaEspera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 gestionListasEsperaController controller=new gestionListasEsperaController(new gestionListasEsperaModel() , new gestionListasEsperaView());
+	                controller.initController();
+			}
+		});
+		frmGestr.getContentPane().add(btnGestionListaEspera);
+		
+		JButton btngeneraInformeActividad = new JButton("Generar Informe (Actividades)");
+		btngeneraInformeActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 generarInformeActividadesController controller=new generarInformeActividadesController(new generarInformeActividadesModel() , new generarInformeActividadesView());
+	                controller.initController();
+			}
+		});
+		frmGestr.getContentPane().add(btngeneraInformeActividad);
 	}
 
 	public JFrame getFrame() { return this.frmGestr; }
