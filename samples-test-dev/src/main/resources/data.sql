@@ -69,8 +69,8 @@ INSERT INTO inscripciones (idActividad,idNoSocio) VALUES (3,1);
 
 
 
-INSERT INTO "pagos" ("idPago","importe","fecha","estado","idSocio","idNoSocio","idActividad","idReserva") VALUES (1,15,'2021-03-01',1,1,NULL,1,1),
+INSERT INTO "pagos" ("idPago","importe","fecha","estado","idSocio","idNoSocio","idActividad","idReserva") VALUES (1,15,'2022-05-02',1,1,NULL,1,1),
  (2,10,'2022-04-27',0,2,NULL,2,2),
- (3,5,'2022-04-23',1,1,NULL,1,3),
+ (3,5,'2022-05-01',1,1,NULL,1,3),
  (4,12,'2022-03-25',1,1,NULL,2,4);
 COMMIT;
