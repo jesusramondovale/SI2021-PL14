@@ -9,21 +9,36 @@ public class SociosDisplayDTO {
 	private String apellido2;
 	private String corrientePago;
 	private int cuota;
+	private String telefono;
 
 	public SociosDisplayDTO() {}
-	public SociosDisplayDTO(int rowIdSocio, String rowDNI, String rowApellido1, String rowApellido2, 
-			String rowNombre, String rowCorriente, int rowCuota) {
-	this.idSocio=rowIdSocio;
-	this.nombre=rowNombre;
-	this.apellido1=rowApellido1;
-	this.apellido2=rowApellido2;
-	this.dni=rowDNI;
-	this.setCorrientePago(rowCorriente);
-	this.setCuota(rowCuota);
+
+	
+	
+	
+	
+	public SociosDisplayDTO(int idSocio, String dni, String nombre, String apellido1, String apellido2,
+			String corrientePago, int cuota, String telefono) {
+		super();
+		this.idSocio = idSocio;
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.corrientePago = corrientePago;
+		this.cuota = cuota;
+		this.telefono = telefono;
 	}
-	
-	
-	
+
+
+
+
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
 	
 	public String getDni() {
 		return dni;
@@ -74,5 +89,8 @@ public class SociosDisplayDTO {
 	public void setCuota(int cuota) {
 		this.cuota = cuota;
 	}
-	
+	@Override
+	public String toString() {
+		return "Socio: "+ nombre + " " + apellido1 + " " + apellido2  + " con teléfono: "+ telefono + " " ;
+	}
 }

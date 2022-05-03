@@ -1,0 +1,31 @@
+------- INFORME DE INSTALACIONES GENERAL (ACTIVIDADES) ------
+----------------------------------
+Instalación #1
+Nombre: pista de pádel
+Precio/hora: 10.0€
+Uso Total: 2 (horas)
+----------------------------------
+Instalación #2
+Nombre: campo de futbito
+Precio/hora: 12.0€
+Uso Total: 3 (horas)
+----------------------------------
+Instalación #3
+Nombre: cancha de baloncesto
+Precio/hora: 12.0€
+Uso Total: 0 (horas)
+----------------------------------
+Instalación #4
+Nombre: salon de yoga
+Precio/hora: 9.0€
+Uso Total: 0 (horas)
+----------------------------------
+Instalación #5
+Nombre: cancha de balonmano
+Precio/hora: 12.0€
+Uso Total: 0 (horas)
+----------------------------------
+Instalación #6
+Nombre: piscina
+Precio/hora: 20.0€
+Uso Total: 0 (horas)

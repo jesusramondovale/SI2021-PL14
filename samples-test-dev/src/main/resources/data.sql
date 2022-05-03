@@ -11,12 +11,11 @@ INSERT INTO "instalaciones" VALUES (6,'piscina',20);
 
 
 
-INSERT INTO "socios" VALUES (1,'71728103G','Javier','Santos','Menendez','si',60);
-INSERT INTO "socios" VALUES (2,'85858585F','Pepe ','Del Arco ','Rosa','si',60);
-INSERT INTO "socios" VALUES (3,'74747474T','Maria','Perez','Alarcon','no',55);
-INSERT INTO "socios" VALUES (4,'00000000Y','Leonardo','Messi','Cuccittini','si',60);
-INSERT INTO "socios" VALUES (5,'00000000A','Agapito','Sanchez','Rios','si',55);
-
+INSERT INTO "socios" VALUES (1,'71728103G','Javier','Santos','Menendez','si',60,'64563784');
+INSERT INTO "socios" VALUES (2,'85858585F','Pepe ','Del Arco ','Rosa','si',60,'643784980');
+INSERT INTO "socios" VALUES (3,'74747474T','Maria','Perez','Alarcon','no',55,'612645934');
+INSERT INTO "socios" VALUES (4,'00000000Y','Leonardo','Messi','Cuccittini','si',60,'664009874');
+INSERT INTO "socios" VALUES (5,'00000000A','Agapito','Sanchez','Rios','si',55,'64343567');
 
 
 INSERT INTO "noSocios" VALUES (1,'11111111R','Alejandro','Riera','Fernandez');
@@ -27,9 +26,9 @@ INSERT INTO "periodos" VALUES (2,'Junio','2022-04-29','2022-06-03','2022-06-29')
 INSERT INTO "periodos" VALUES (3,'Junio','2022-04-27','2022-06-04','2022-07-29');
 
 
-INSERT INTO "actividades" VALUES (1,'Tenis','Tenis',20,25,'2022-05-01','2022-06-18',1,'Vigente',25,1);
-INSERT INTO "actividades" VALUES (2,'Natación','Natación',12,16,'2022-05-02','2022-06-24',2,'Vigente',0,6);
-INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12,16,'2022-05-03','2022-06-24',1,'Cancelada',1,6);
+INSERT INTO "actividades" VALUES (1,'Tenis','Tenis',20.0,25.0,'2022-05-01','2022-06-18',1,'Vigente',25,1);
+INSERT INTO "actividades" VALUES (2,'Natación','Natación',12.0,16.0,'2022-05-02','2022-06-24',2,'Vigente',0,6);
+INSERT INTO "actividades" VALUES (3,'Futbol','Futbol',12.5,16.5,'2022-05-03','2022-06-24',1,'Cancelada',1,6);
 
 INSERT INTO "listaEsperaSocios" VALUES (1,1,1);
 INSERT INTO "listaEsperaSocios" VALUES (1,4,2);
@@ -71,7 +70,7 @@ INSERT INTO inscripciones (idActividad,idNoSocio) VALUES (3,1);
 
 
 INSERT INTO "pagos" ("idPago","importe","fecha","estado","idSocio","idNoSocio","idActividad","idReserva") VALUES (1,15,'2021-03-01',1,1,NULL,1,1),
- (2,10,'2021-03-01',0,2,NULL,2,2),
- (3,5,'2021-03-01',1,1,NULL,1,3),
- (4,12,'2021-03-01',1,1,NULL,2,4);
+ (2,10,'2022-04-27',0,2,NULL,2,2),
+ (3,5,'2022-04-23',1,1,NULL,1,3),
+ (4,12,'2022-03-25',1,1,NULL,2,4);
 COMMIT;

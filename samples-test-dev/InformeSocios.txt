@@ -1,0 +1,46 @@
+------- INFORME DE SOCIOS TEMPORAL (RESERVAS) ------
+----------------------------------
+Socio #1
+Nombre: Javier Santos Menendez
+Fecha de Inicio: 2020-05-15
+Fecha Final: 2024-05-16
+Número de Reservas: 2
+Uso Total de Instalaciones: 2 (horas)
+Cuota: 60€
+Corriente de Pago: Sí
+----------------------------------
+Socio #2
+Nombre: Pepe  Del Arco  Rosa
+Fecha de Inicio: 2020-05-15
+Fecha Final: 2024-05-16
+Número de Reservas: 2
+Uso Total de Instalaciones: 2 (horas)
+Cuota: 60€
+Corriente de Pago: Sí
+----------------------------------
+Socio #3
+Nombre: Maria Perez Alarcon
+Fecha de Inicio: 2020-05-15
+Fecha Final: 2024-05-16
+Número de Reservas: 0
+Uso Total de Instalaciones: 0 (horas)
+Cuota: 55€
+Corriente de Pago: No
+----------------------------------
+Socio #4
+Nombre: Leonardo Messi Cuccittini
+Fecha de Inicio: 2020-05-15
+Fecha Final: 2024-05-16
+Número de Reservas: 0
+Uso Total de Instalaciones: 0 (horas)
+Cuota: 60€
+Corriente de Pago: Sí
+----------------------------------
+Socio #5
+Nombre: Agapito Sanchez Rios
+Fecha de Inicio: 2020-05-15
+Fecha Final: 2024-05-16
+Número de Reservas: 0
+Uso Total de Instalaciones: 0 (horas)
+Cuota: 55€
+Corriente de Pago: Sí

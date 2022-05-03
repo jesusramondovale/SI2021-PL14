@@ -16,7 +16,7 @@ public class AutoReservaModel {
 
 	public Database db = new Database();
 
-	private static String SQL1 = "SELECT idActividad , nombre, tipo, fechaInicio, fechaFin "
+	private static String SQL1 = "SELECT nombre, tipo, fechaInicio, fechaFin "
 			+ "FROM actividades";
 
 	private static String SQL2 = "SELECT idActividad , fechaInicio, fechaFin , idInstalacion , dia , horaInicio , horaFin "
@@ -24,18 +24,30 @@ public class AutoReservaModel {
 			+ "INNER JOIN horarioActividad USING (idActividad) "
 			+ "INNER JOIN horarios USING (idHorarios) "
 			+ "WHERE idActividad = ? ";
-	
+
 	private static String SQL4 = "SELECT a.idActividad , a.fechaInicio, a.fechaFin , a.idInstalacion , h.dia , h.horaInicio , h.horaFin "
 			+ "FROM actividades a "
 			+ "INNER JOIN reservas r USING (idActividad) "
 			+ "INNER JOIN horarioActividad hA USING (idActividad) "
 			+ "INNER JOIN horarios h USING (idHorarios) "
-			+ "WHERE r.fecha = ? AND r.idInstalacion = ? AND r.horaInicio = ?" ;
-			
-			 
-			
+			+ "WHERE r.idSocio IS NULL AND r.fecha = ? AND r.idInstalacion = ? AND r.horaInicio = ?" ;
+
+
+	private static String SQL5 = "SELECT r.idSocio , r.idReserva , a.idActividad , a.fechaInicio, a.fechaFin , a.idInstalacion , h.dia , h.horaInicio , h.horaFin "
+			+ "FROM actividades a "
+			+ "INNER JOIN reservas r USING (idActividad) "
+			+ "INNER JOIN horarioActividad hA USING (idActividad) "
+			+ "INNER JOIN horarios h USING (idHorarios) "
+			+ "WHERE r.idSocio IS NOT NULL AND r.fecha = ? AND r.idInstalacion = ? AND r.horaInicio = ?" ;
+
+
 
 	private static String SQL = "INSERT INTO reservas VALUES (?,?,?,?,?,?,?,?)" ;
+
+	private static String SQL_1 = "UPDATE reservas "
+			+ "SET idSocio = NULL "
+			+ "WHERE idReserva = ? " ;
+
 
 	/*
 	private static String SQL2 = "SELECT fecha , idInstalacion , horaInicio , horaFin "
@@ -71,14 +83,33 @@ public class AutoReservaModel {
 
 	}
 
+	public void actualizarReserva(int idReserva ){
+
+
+		try {
+			db.executeUpdate(SQL_1, idReserva);
+
+		}
+		catch(UnexpectedException e){
+
+			JOptionPane.showMessageDialog(
+					null, 
+					"Se ha producido un error en la inserción SQL! ", 
+					"Error",
+					JOptionPane.WARNING_MESSAGE ); 		
+		}
+
+
+	}
+
 
 	public void crearReserva(int idReserva, String fecha, double horaInicio, double horaFinal, int idInstalacion,
 			int idActividad){
 
 
 		try {
-			db.executeUpdate(SQL, idReserva,  fecha,  horaInicio,  horaFinal,  idInstalacion, idActividad,  null , "(Admin.)");
-				
+			db.executeUpdate(SQL, idReserva,  fecha,  horaInicio,  horaFinal,  idInstalacion, idActividad,  null , 1);
+
 		}
 		catch(UnexpectedException e){
 
@@ -133,17 +164,37 @@ public class AutoReservaModel {
 
 	public List<ReservaDTO> getListaReservas(String fecha, int idInstalacion, int horaInicio) {
 
-		
-		
+
+
 		return db.executeQueryPojo(ReservaDTO.class, SQL4, fecha , idInstalacion , horaInicio);
 
 	}
 
 
+	public List<ReservaDTO> getListaReservasByClient(String fecha, int idInstalacion, int horaInicio) {
 
 
+
+		return db.executeQueryPojo(ReservaDTO.class, SQL5, fecha , idInstalacion , horaInicio);
+
+	}
+
+	public List<ReservaDTO> getReserva(int idReserva) {
+
+		String SQL6 = "SELECT * "
+				+ "FROM reservas "
+				+ "WHERE idReserva = ? ";
+
+		return  db.executeQueryPojo(ReservaDTO.class, SQL6, idReserva);
+	}
 
 }
+
+
+
+
+
+
 
 
 

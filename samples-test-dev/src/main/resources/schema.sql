@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS "socios" (
 	"apellido2"	INTEGER,
 	"corrientePago"	INTEGER,
 	"cuota"	NUMERIC,
+	"telefono" TEXT,
 	PRIMARY KEY("idSocio" AUTOINCREMENT)
 );
 
@@ -82,7 +83,7 @@ DROP TABLE IF EXISTS "pagos";
 CREATE TABLE IF NOT EXISTS "pagos" (
 	"idPago"	INTEGER,
 	"importe"	NUMERIC,
-	"fecha"	TEXT,
+	"fecha"	DATE,
 	"estado"	TEXT,
 	"idSocio"	INTEGER,
 	"idNoSocio"	INTEGER,

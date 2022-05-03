@@ -56,7 +56,7 @@ public class SwingMain {
 	private void initialize() {
 		frmGestr = new JFrame();
 		frmGestr.setTitle("Gestión Centro Deportivo");
-		frmGestr.setBounds(0, 0, 590, 311);
+		frmGestr.setBounds(0, 0, 590, 366);
 		frmGestr.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
 		JButton btnEjecutarTkrun = new JButton("Ejecutar giis.demo.tkrun");
@@ -315,6 +315,25 @@ public class SwingMain {
 			}
 		});
 		frmGestr.getContentPane().add(btngeneraInformeActividad);
+		
+		JButton btnContabilidadSocios = new JButton("Contabilidad de Socios");
+		btnContabilidadSocios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ContabilidadMensualSociosController controller = new ContabilidadMensualSociosController(new ContabilidadMensualSociosModel(), new ContabilidadMensualSociosView());
+				controller.initController();
+			}
+		});
+		frmGestr.getContentPane().add(btnContabilidadSocios);
+		
+		JButton btnCancelarActividades = new JButton("Cancelar Actividades (Admin.)");
+		btnCancelarActividades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CancelarActividadesController controller=new CancelarActividadesController(new CancelarActividadesView() , new CancelarActividadesModel());
+				controller.initController();
+				
+			}
+		});
+		frmGestr.getContentPane().add(btnCancelarActividades);
 	}
 
 	public JFrame getFrame() { return this.frmGestr; }

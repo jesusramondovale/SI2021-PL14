@@ -4,24 +4,47 @@ package giis.demo.Proyecto.DTO;
 
 public class MostrarActividadesDTO {
 
-	
-	
+
 	private int idActividad;
 	private String nombre;
-	//private String tipo;
 	private float precioSocio;
 	private float precioNoSocio;
 	private String fechaInicio;
+	private String fechaFin;
+	private String estado;
 	private float horaInicio;
 	private float horaFin;
-	
-	//private int idPeriodoInscripcion;
-	//private int estado;
+	private String tipo;
 	private int plazas;
-	//private int idInstalacion;
+	private int idPeriodoInscripcion;
+	private int idInstalacion;
+
+
 	
-	
-	
+	public int getIdPeriodoInscripcion() {
+		return idPeriodoInscripcion;
+	}
+
+
+
+	public void setIdPeriodoInscripcion(int idPeriodoInscripcion) {
+		this.idPeriodoInscripcion = idPeriodoInscripcion;
+	}
+
+
+
+	public int getIdInstalacion() {
+		return idInstalacion;
+	}
+
+
+
+	public void setIdInstalacion(int idInstalacion) {
+		this.idInstalacion = idInstalacion;
+	}
+
+
+
 	public float getHoraInicio() {
 		return horaInicio;
 	}
@@ -54,16 +77,16 @@ public class MostrarActividadesDTO {
 	public void setHoraFin(float horaFin) {
 		this.horaFin = horaFin;
 	}
-	
-	
-	
+
+
+
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public float getPrecioSocio() {
 		return precioSocio;
 	}
@@ -82,15 +105,43 @@ public class MostrarActividadesDTO {
 	public void setFechaInicio(String fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-	
+
 	public int getPlazas() {
 		return plazas;
 	}
 	public void setPlazas(int plazas) {
 		this.plazas = plazas;
 	}
-	
-	
-	
+	public String getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
+
+	public String getFechaFin() {
+		return fechaFin;
+	}
+
+
+
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 }
